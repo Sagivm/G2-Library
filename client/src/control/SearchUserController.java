@@ -14,10 +14,13 @@ import entity.Validate;
 import enums.ActionType;
 import interfaces.ScreensIF;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -131,6 +134,19 @@ public class SearchUserController implements ScreensIF{
 			actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 		}
 		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				SearchUserRecv recv_searchUser = new SearchUserRecv();
+				recv_searchUser.start();
+				synchronized (recv_searchUser) {
+					try{
+						recv_searchUser.wait();
+					}catch(InterruptedException e){
+						e.printStackTrace();
+					}
+				}
+			}});
 		
     	if(ClientUI.getTypeOfUser()=="Librarian")
     	{

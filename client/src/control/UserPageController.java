@@ -267,7 +267,7 @@ public class UserPageController implements ScreensIF{
         		managerMain = new HomepageManagerController();
         	managerMain.setPage(ScreensInfo.SEARCH_USER_RESULTS_SCREEN);
     	}
-		SearchUserResultsRecv.canContinue = true;
+		
 		ScreenController screenController = new ScreenController();
 		try{
 			if(ClientUI.getTypeOfUser()=="Librarian")
@@ -357,26 +357,4 @@ public class UserPageController implements ScreensIF{
 
 }
 
-/** This class makes sure the information from the server was received successfully.
- * @author itain
- */
-class SearchUserRecvv extends Thread{
-	
-	/**
-	 * Get true after receiving values from DB.
-	 */
-	public static boolean canContinue = false;
-	
-	@Override
-	public void run() {
-		synchronized (this) {
-        	while(canContinue == false)
-    		{
-        		System.out.print("");
-    		}
-        	canContinue = false;
-			notify();
-		}
-	}
-	
-}
+
