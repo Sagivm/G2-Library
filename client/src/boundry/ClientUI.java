@@ -15,7 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
+//
 //TODO: Auto-generated Javadoc
 /**
  * ClientUI executes the application in the first time with GUI interface.
