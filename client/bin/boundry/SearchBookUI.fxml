@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.SearchBookController">
+  <children>
+    <Label layoutX="332.0" layoutY="1.0" text="Books Search">
+      <font>
+        <Font size="50.0" />
+      </font>
+    </Label>
+    <Label layoutX="29.0" layoutY="92.0" text="Title:" />
+    <TextField fx:id="titleTextField" layoutX="131.0" layoutY="90.0" prefHeight="25.0" prefWidth="280.0" />
+    <Label layoutX="28.0" layoutY="134.0" text="Author:" />
+    <Label layoutX="28.0" layoutY="212.0" text="Language:" />
+    <Label layoutX="28.0" layoutY="247.0" text="Summary:" />
+    <Label layoutX="479.0" layoutY="90.0" text="Table of contents:" />
+    <TextArea fx:id="tocTextArea" layoutX="583.0" layoutY="90.0" prefHeight="54.0" prefWidth="280.0" />
+    <Label layoutX="479.0" layoutY="165.0" text="Domain:" />
+    <Label layoutX="480.0" layoutY="249.0" text="Key words:" />
+    <TextArea fx:id="keywTextArea" layoutX="583.0" layoutY="249.0" prefHeight="60.0" prefWidth="280.0" />
+    <Button fx:id="searchButton" layoutX="389.0" layoutY="415.0" mnemonicParsing="false" onAction="#searchButtonPressed" text="Search" />
+    <Button fx:id="clearButton" layoutX="459.0" layoutY="415.0" mnemonicParsing="false" onAction="#clearButtonPressed" text="Clear" />
+    <RadioButton fx:id="andRadioButton" layoutX="387.0" layoutY="370.0" mnemonicParsing="false" selected="true" text="AND">
+      <toggleGroup>
+        <ToggleGroup fx:id="searchGroup" />
+      </toggleGroup>
+    </RadioButton>
+    <RadioButton fx:id="orRadioButton" layoutX="464.0" layoutY="370.0" mnemonicParsing="false" text="OR" toggleGroup="$searchGroup" />
+    <ComboBox fx:id="languageComboBox" layoutX="130.0" layoutY="209.0" prefWidth="280.0" />
+    <ListView fx:id="authorListView" layoutX="130.0" layoutY="134.0" prefHeight="60.0" prefWidth="280.0" />
+    <ListView fx:id="domainListView" layoutX="583.0" layoutY="165.0" prefHeight="60.0" prefWidth="280.0" />
+      <TextArea fx:id="summaryTextArea" layoutX="131.0" layoutY="251.0" prefHeight="60.0" prefWidth="280.0" />
+      <ImageView fx:id="authorImage" fitHeight="16.0" fitWidth="16.0" layoutX="411.0" layoutY="135.0" onMouseClicked="#msgMultipleChoice" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="domainImage" fitHeight="16.0" fitWidth="16.0" layoutX="863.0" layoutY="166.0" onMouseClicked="#msgMultipleChoice" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="keyWordsImage" fitHeight="16.0" fitWidth="16.0" layoutX="863.0" layoutY="248.0" onMouseClicked="#msgKeyWords" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="booksImageView" fitHeight="128.0" fitWidth="128.0" layoutX="381.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true" />
+  </children>
+</AnchorPane>

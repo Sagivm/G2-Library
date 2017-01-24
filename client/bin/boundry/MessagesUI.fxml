@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="617.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.MessagesController">
+   <children>
+      <Label layoutX="88.0" layoutY="53.0" text="Messages">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="26.0" layoutY="134.0" prefHeight="449.0" prefWidth="802.0">
+        <columns>
+          <TableColumn fx:id="dateCol" prefWidth="75.0" text="Date" />
+          <TableColumn fx:id="timeCol" prefWidth="75.0" text="Time" />
+            <TableColumn fx:id="msgCol" prefWidth="651.0" text="Message" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="617.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.PendingReviewsController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Label layoutX="175.0" layoutY="28.0" prefHeight="67.0" prefWidth="580.0" text="Pending Readers Reviews">
+      <font>
+        <Font size="50.0" />
+      </font>
+    </Label>
+      <TableView fx:id="table" layoutX="58.0" layoutY="149.0" prefHeight="424.0" prefWidth="774.0">
+        <columns>
+            <TableColumn fx:id="idCol" prefWidth="47.0" text="id" />
+          <TableColumn fx:id="usernameCol" prefWidth="123.0" text="Username" />
+          <TableColumn fx:id="firstNameCol" minWidth="0.0" prefWidth="118.0" text="First name" />
+            <TableColumn fx:id="lastNameCol" minWidth="0.0" prefWidth="120.0" text="Last name" />
+            <TableColumn fx:id="bookTitleCol" prefWidth="202.0" text="Book" />
+            <TableColumn fx:id="dateCol" prefWidth="85.0" text="Date" />
+            <TableColumn fx:id="btnEdit" prefWidth="79.0" />
+        </columns>
+      </TableView>
+  </children>
+</AnchorPane>

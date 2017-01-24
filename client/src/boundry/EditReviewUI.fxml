@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="617.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.EditReviewController">
+   <children>
+      <Label layoutX="100.0" layoutY="49.0" prefHeight="73.0" prefWidth="705.0" text="Review of Book:">
+         <font>
+            <Font size="50.0" />
+         </font></Label>
+      <Label fx:id="lblUsername" layoutX="60.0" layoutY="202.0" prefHeight="25.0" prefWidth="245.0" text="username">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDate" layoutX="570.0" layoutY="202.0" prefHeight="18.0" prefWidth="216.0" text="date">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtAreaContent" layoutX="60.0" layoutY="272.0" prefHeight="200.0" prefWidth="752.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextArea>
+      <Button fx:id="btnApprove" layoutX="62.0" layoutY="507.0" mnemonicParsing="false" onAction="#aprroveButtonPressed" prefHeight="46.0" prefWidth="127.0" text="Approve">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnDecline" layoutX="373.0" layoutY="507.0" mnemonicParsing="false" onAction="#declineButtonPressed" prefHeight="46.0" prefWidth="127.0" text="Decline">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Label fx:id="lblTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="116.0" prefHeight="73.0" prefWidth="705.0" text="book title" textAlignment="CENTER">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblFullName" layoutX="60.0" layoutY="234.0" prefHeight="21.0" prefWidth="245.0" text="full name">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnBack" layoutX="685.0" layoutY="507.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="46.0" prefWidth="127.0" text="&lt; Back">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

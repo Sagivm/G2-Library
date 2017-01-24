@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="617.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.PendingAccountTypeController">
+   <children>
+      <Label layoutX="133.0" layoutY="70.0" prefHeight="73.0" prefWidth="596.0" text="Account Type Pending List">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="22.0" layoutY="185.0" prefHeight="324.0" prefWidth="842.0">
+        <columns>
+          <TableColumn fx:id="username" prefWidth="117.0" text="username" />
+          <TableColumn fx:id="firstName" prefWidth="117.0" text="First name" />
+            <TableColumn fx:id="lastName" prefWidth="132.0" text="Last name" />
+            <TableColumn fx:id="currentAccType" prefWidth="136.0" text="Current Account type" />
+            <TableColumn fx:id="requestedAccType" prefWidth="147.0" text="Requested Account type" />
+            <TableColumn fx:id="btnConfirm" minWidth="0.0" prefWidth="100.0" />
+            <TableColumn fx:id="btnDecline" minWidth="0.0" prefWidth="92.0" />
+        </columns>
+      </TableView>
+      <Label fx:id="CountLabel" layoutX="34.0" layoutY="171.0" />
+      <Label fx:id="printAction" layoutX="174.0" layoutY="561.0" prefHeight="27.0" prefWidth="518.0" />
+   </children>
+</AnchorPane>

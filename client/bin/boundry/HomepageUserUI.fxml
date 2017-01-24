@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-background-color 0xf4f4f4ff?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0000999999975" prefWidth="1125.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.HomepageUserController">
+  <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="666.0" layoutX="-4.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="241.0" />
+    <ImageView fx:id="clientLogoImgView" fitHeight="122.93968200683594" fitWidth="247.74915206296103" layoutX="1.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../img/home_user.png" />
+      </image>
+    </ImageView>
+    <Button id="searcBookButton" layoutX="1.0" layoutY="241.0" mnemonicParsing="false" onAction="#searchBookButtonPressed" prefHeight="42.0" prefWidth="235.0" text="Books Search">
+      <font>
+        <Font name="System Bold" size="16.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button id="myBooksButton" font="$x1" layoutX="1.0" layoutY="283.0" mnemonicParsing="false" onAction="#myBooksButtonPressed" prefHeight="42.0" prefWidth="235.0" text="My Books" />
+    <Button font="$x1" layoutX="2.0" layoutY="325.0" mnemonicParsing="false" onAction="#settingsButtonPressed" prefHeight="42.0" prefWidth="235.0" text="Set Account Type" />
+    <Button id="payButton" fx:id="btnPayForSubscription" font="$x1" layoutX="2.0" layoutY="368.0" mnemonicParsing="false" onAction="#btnPayForSubscriptionPressed" prefHeight="42.0" prefWidth="235.0" text="Pay for Subscription" />
+    <Button id="userMsgsButton" font="$x1" layoutX="2.0" layoutY="410.0" mnemonicParsing="false" onAction="#messageButtonPressed" prefHeight="42.0" prefWidth="235.0" text="Messages" />
+    <Button id="logoutButton" font="$x1" layoutX="1.0" layoutY="570.0" mnemonicParsing="false" onAction="#logoutButtonPressed" prefHeight="42.0" prefWidth="235.0" text="Logout" />
+    <Line endX="-102.0" endY="349.0" layoutX="341.0" layoutY="306.0" startX="-108.0" startY="-307.0" stroke="#9f9f9f" strokeLineJoin="MITER" visible="false" />
+    <Button fx:id="exitButton" font="$x1" layoutX="1.0" layoutY="611.0" mnemonicParsing="false" onAction="#pressedCloseMenu" prefHeight="42.0" prefWidth="235.0" text="Exit" />
+    <AnchorPane fx:id="content" layoutX="235.0" prefHeight="617.7070922851562" prefWidth="889.0" />
+    <Label fx:id="usernameLabel" layoutX="4.0" layoutY="156.0" prefHeight="36.0" prefWidth="229.0" text="">
+      <font>
+        <Font name="System Bold" size="15.0" />
+      </font>
+    </Label>
+      <Button layoutX="1.0" layoutY="535.0" mnemonicParsing="false" onAction="#testbookreport" text="Test book report lotr" />
+      <Label fx:id="lblCredits" layoutX="2.0" layoutY="217.0" prefHeight="25.0" prefWidth="95.0" text="Credits" textFill="#04d700">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblSubscribed" layoutX="2.0" layoutY="192.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="235.0" text="Subscribed Account">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblExpDate" layoutX="99.0" layoutY="217.0" prefHeight="25.0" prefWidth="134.0" text="ExpDate">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+  </children>
+</AnchorPane>

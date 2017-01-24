@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="491.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.UserReportController">
+   <children>
+      <TableView fx:id="table" layoutX="103.0" layoutY="68.0" prefHeight="365.0" prefWidth="684.0">
+        <columns>
+          <TableColumn fx:id="bookIdColumn" prefWidth="73.0" text="Book id" />
+          <TableColumn fx:id="titleColumn" prefWidth="133.0" text="Title" />
+            <TableColumn fx:id="authorColumn" prefWidth="121.0" text="Author" />
+            <TableColumn fx:id="languageColumn" prefWidth="110.0" text="Language" />
+            <TableColumn fx:id="dateColumn" prefWidth="117.0" text="Date" />
+            <TableColumn fx:id="priceColumn" prefWidth="125.0" text="price" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

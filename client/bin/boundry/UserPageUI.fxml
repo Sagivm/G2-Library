@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.UserPageController">
+   <children>
+      <TabPane fx:id="userTabPane" layoutX="2.0" layoutY="66.0" prefHeight="500.0" prefWidth="885.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab fx:id="detailsTab" text="Details">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="540.0" prefWidth="684.0">
+                     <children>
+                        <ImageView fx:id="userImageView" fitHeight="128.0" fitWidth="128.0" layoutX="376.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="lNameLable" layoutX="460.0" layoutY="256.0" prefHeight="17.0" prefWidth="197.0" />
+                        <Label layoutX="340.0" layoutY="256.0" text="Last name:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label layoutX="340.0" layoutY="225.0" text="First name:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label fx:id="fNameLable" layoutX="460.0" layoutY="225.0" prefHeight="17.0" prefWidth="197.0" />
+                        <CheckBox fx:id="blockedCheckBox" layoutX="459.0" layoutY="285.0" mnemonicParsing="false" />
+                        <Label fx:id="usernameLable" layoutX="460.0" layoutY="168.0" prefHeight="17.0" prefWidth="197.0" />
+                        <Label layoutX="340.0" layoutY="168.0" text="Username:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label layoutX="341.0" layoutY="285.0" text="Blocked:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label layoutX="340.0" layoutY="197.0" text="Password:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label fx:id="passwordLable" layoutX="460.0" layoutY="197.0" prefHeight="17.0" prefWidth="197.0" />
+                        <Label layoutX="340.0" layoutY="339.0" text="Account type:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label fx:id="accountTypeLable" layoutX="460.0" layoutY="339.0" prefHeight="17.0" prefWidth="197.0" />
+                        <Label fx:id="accountStatusLable" layoutX="460.0" layoutY="314.0" prefHeight="17.0" prefWidth="197.0" />
+                        <Label layoutX="340.0" layoutY="314.0" text="Account status:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label fx:id="endSubscroptionLable" layoutX="459.0" layoutY="394.0" prefHeight="17.0" prefWidth="197.0" />
+                        <Label fx:id="eosTextLable" layoutX="340.0" layoutY="394.0" text="End of subsciption:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label fx:id="creditsLable" layoutX="460.0" layoutY="364.0" prefHeight="17.0" prefWidth="197.0" />
+                        <Label fx:id="crdtsLable" layoutX="340.0" layoutY="364.0" text="Credits:">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="blockButton" layoutX="431.0" layoutY="437.0" mnemonicParsing="false" onAction="#blockButtonPressed" text="BLOCK" />
+                        <Button fx:id="unblockButton" layoutX="423.0" layoutY="429.0" mnemonicParsing="false" onAction="#unblockButtonPressed" text="UNBLOCK" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="editUserLibrarianTab" text="Edit">
+               <content>
+                  <AnchorPane fx:id="editUserLibrarianContent" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane fx:id="editUserLibrarianContent" layoutX="-2.0" prefHeight="472.0" prefWidth="889.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="userReportTab" text="Report">
+               <content>
+                  <AnchorPane fx:id="userReportContent" minHeight="0.0" minWidth="0.0" prefHeight="423.0" prefWidth="684.0" />
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <Label fx:id="userLable" alignment="CENTER" layoutX="10.0" layoutY="8.0" prefHeight="46.0" prefWidth="869.0" textAlignment="CENTER">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Button fx:id="backButton" layoutX="702.0" layoutY="557.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="46.0" prefWidth="127.0" text="&lt; Back">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

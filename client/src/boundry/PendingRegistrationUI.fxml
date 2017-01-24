@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="617.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.PendingRegistrationController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Label layoutX="274.0" layoutY="56.0" prefWidth="351.0" text="Registration Pending List">
+      <font>
+        <Font size="30.0" />
+      </font>
+    </Label>
+      <TableView fx:id="table" layoutX="164.0" layoutY="190.0" prefHeight="343.0" prefWidth="583.0">
+         <columns>
+            <TableColumn fx:id="username" prefWidth="102.0" text="ID" />
+            <TableColumn fx:id="firstName" prefWidth="119.0" text="First Name" />
+            <TableColumn fx:id="lastName" prefWidth="144.0" text="Last Name" />
+            <TableColumn fx:id="btnConfirm" maxWidth="108.0" prefWidth="108.0" />
+            <TableColumn fx:id="btnDecline" maxWidth="108.0" prefWidth="108.0" />
+         </columns>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></TableView>
+      <Label fx:id="printAction" layoutX="164.0" layoutY="551.0" prefHeight="27.0" prefWidth="518.0" />
+      <Label fx:id="CountLabel" layoutX="164.0" layoutY="161.0" />
+  </children>
+</AnchorPane>

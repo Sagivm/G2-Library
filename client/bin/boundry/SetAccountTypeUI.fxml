@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="617.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.SetAccountTypeController">
+   <children>
+      <Label layoutX="88.0" layoutY="136.0" text="Select desired account type">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="settingList" layoutX="273.0" layoutY="199.0" prefWidth="150.0" />
+      <Button layoutX="322.0" layoutY="253.0" mnemonicParsing="false" onAction="#submitSettingButtonPressed" text="Submit" />
+      <Label layoutX="82.0" layoutY="329.0" text="*Per Book Subscription- Custumer wiil pay per purchase and will have to do this proccess for every deal. " />
+      <Label layoutX="88.0" layoutY="53.0" text="Account Type Settings">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <Label layoutX="82.0" layoutY="357.0" text="*Monthly Subscription -Custumer will get 300 credits for the entire month. At the end of the month the subscription will be reset." />
+      <Label layoutX="88.0" layoutY="374.0" text="Price- 250." />
+      <Label layoutX="88.0" layoutY="401.0" text="*Yearly Subscription -Custumer will get 4000 credits for the entire year. At the end of the year the subscription will be reset." />
+      <Label layoutX="88.0" layoutY="418.0" text="Price- 2800." />
+   </children>
+</AnchorPane>

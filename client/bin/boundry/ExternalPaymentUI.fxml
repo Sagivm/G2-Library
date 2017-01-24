@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="493.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.ExternalPaymentController">
+   <children>
+      <ImageView fx:id="imgViewLogo" fitHeight="100.0" fitWidth="271.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/ExternalPaymentLogo.png" />
+         </image>
+      </ImageView>
+      <Line endX="495.0" layoutX="108.0" layoutY="107.0" startX="-108.0" strokeWidth="0.2" />
+      <Label layoutX="31.0" layoutY="127.0" text="You pay for:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblProduct" layoutX="143.0" layoutY="127.0" prefHeight="27.0" prefWidth="410.0" text="product">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="164.0" text="Amount:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPrice" layoutX="107.0" layoutY="164.0" prefHeight="17.0" prefWidth="104.0" text="price" textFill="#22d00e">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="rbVisa" layoutX="135.0" layoutY="197.0" mnemonicParsing="false" />
+      <RadioButton fx:id="rbMasterCard" layoutX="257.0" layoutY="197.0" mnemonicParsing="false" />
+      <RadioButton fx:id="rbAmex" layoutX="355.0" layoutY="196.0" mnemonicParsing="false" />
+      <ImageView fitHeight="26.0" fitWidth="71.0" layoutX="159.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/visa.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="44.0" layoutX="284.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/MasterCard.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="378.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/AmericanExpress.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="31.0" layoutY="252.0" text="Card Number:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCardNum" layoutX="181.0" layoutY="249.0" prefHeight="25.0" prefWidth="243.0" />
+      <Label layoutX="31.0" layoutY="302.0" text="Expiry Date (MM/YY):">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtMonth" layoutX="182.0" layoutY="300.0" prefHeight="25.0" prefWidth="35.0" />
+      <TextField fx:id="txtYear" layoutX="261.0" layoutY="300.0" prefHeight="25.0" prefWidth="35.0" />
+      <Label alignment="CENTER" layoutX="220.0" layoutY="302.0" prefHeight="20.0" prefWidth="35.0" text="/">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="346.0" text="CVV:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCVV" layoutX="182.0" layoutY="344.0" prefHeight="25.0" prefWidth="45.0" />
+      <ImageView fitHeight="27.0" fitWidth="52.0" layoutX="123.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/cvv.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="31.0" layoutY="395.0" text="Name On Card:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtName" layoutX="182.0" layoutY="393.0" prefHeight="25.0" prefWidth="237.0" />
+      <Label layoutX="36.0" layoutY="445.0" text="ID Number:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtID" layoutX="182.0" layoutY="443.0" prefHeight="25.0" prefWidth="237.0" />
+      <Button fx:id="btnPay" layoutX="37.0" layoutY="506.0" mnemonicParsing="false" onAction="#btnPayPressed" prefHeight="22.0" prefWidth="138.0" style="-fx-background-color: LimeGreen;" text="Pay" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCancel" layoutX="285.0" layoutY="506.0" mnemonicParsing="false" onAction="#btnCancelPressed" prefHeight="22.0" prefWidth="138.0" style="-fx-background-color: Coral;" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="65.0" fitWidth="144.0" layoutX="341.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/SecurePayment.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

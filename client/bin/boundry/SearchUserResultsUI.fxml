@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.SearchUserResultsController">
+   <children>
+      <Label layoutX="230.0" layoutY="14.0" text="Users Search Results">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <TableView fx:id="resultsTable" layoutX="39.0" layoutY="109.0" prefHeight="427.0" prefWidth="807.0">
+        <columns>
+          <TableColumn fx:id="usernameCol" prefWidth="122.0" text="Username" />
+          <TableColumn fx:id="fNameCol" prefWidth="130.0" text="First Name" />
+            <TableColumn fx:id="lNameCol" prefWidth="130.0" text="Last Name" />
+            <TableColumn fx:id="accountTypeCol" prefWidth="138.0" text="Account Type" />
+            <TableColumn fx:id="accountStatusCol" prefWidth="125.0" text="Account Status" />
+            <TableColumn fx:id="isBlockedCol" prefWidth="89.0" text="Blocked" />
+            <TableColumn fx:id="userPageCol" prefWidth="70.0" />
+        </columns>
+      </TableView>
+      <Button fx:id="backButton" layoutX="718.0" layoutY="551.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="46.0" prefWidth="127.0" text="&lt; Back">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

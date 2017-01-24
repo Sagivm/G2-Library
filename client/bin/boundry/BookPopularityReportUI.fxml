@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="478.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.BookPopularityReportController">
+   <children>
+      <TableView fx:id="table" layoutX="108.0" layoutY="46.0" prefHeight="236.0" prefWidth="674.0">
+        <columns>
+          <TableColumn fx:id="bookIdColumn" prefWidth="75.0" text="Book Id" />
+          <TableColumn fx:id="titleColumn" prefWidth="145.0" text="Title" />
+            <TableColumn fx:id="authorColumn" minWidth="5.0" prefWidth="128.0" text="Author" />
+            <TableColumn fx:id="languageColumn" prefWidth="124.0" text="Language" />
+            <TableColumn fx:id="purchaseColumn" prefWidth="200.0" text="# Purchase" />
+        </columns>
+      </TableView>
+      <Label layoutX="108.0" layoutY="290.0" prefHeight="17.0" prefWidth="55.0" text="Agianst:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="allBooksRadio" layoutX="186.0" layoutY="292.0" mnemonicParsing="false" text="All books">
+         <toggleGroup>
+            <ToggleGroup fx:id="settings" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="domainRadio" layoutX="186.0" layoutY="322.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="71.0" text="Domain:" toggleGroup="$settings" />
+      <ListView fx:id="domains" layoutX="276.0" layoutY="322.0" prefHeight="67.0" prefWidth="86.0" />
+      <Button layoutX="445.0" layoutY="298.0" mnemonicParsing="false" onAction="#displaySettings" text="Execute" />
+   </children>
+</AnchorPane>

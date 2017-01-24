@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-background-color 0xf4f4f4ff?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0000999999975" prefWidth="1125.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.HomepageManagerController">
+  <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="666.0" layoutX="-4.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="241.0" />
+    <Button fx:id="logoutButton" layoutX="1.0" layoutY="569.0" mnemonicParsing="false" onAction="#logoutButtonPressed" prefHeight="42.0" prefWidth="235.0" text="Logout">
+      <font>
+        <Font name="System Bold" size="14.0" fx:id="x1" />
+      </font>
+    </Button>
+    <ImageView fx:id="clientLogoImgView" fitHeight="116.59811757537969" fitWidth="234.96958923339844" layoutX="1.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../img/home_manager.png" />
+      </image>
+    </ImageView>
+    <Button font="$x1" layoutX="0.0" layoutY="192.0" mnemonicParsing="false" onAction="#searchBookButtonPressed" prefHeight="42.0" prefWidth="235.0" text="Books Search" />
+    <Button id="myBooksButton" fx:id="bookMngButton" font="$x1" layoutX="0.0" layoutY="234.0" mnemonicParsing="false" onAction="#bookManagmentButtonPressed" prefHeight="42.0" prefWidth="235.0" text="Books Management" />
+    <Button id="payButton" fx:id="pendingReviewsButton" font="$x1" layoutX="0.0" layoutY="276.0" mnemonicParsing="false" onAction="#pendingReviewsButtonPressed" prefHeight="42.0" prefWidth="235.0" text="Pending Readers Reviews" />
+    <Line endX="-102.0" endY="349.0" layoutX="341.0" layoutY="306.0" startX="-108.0" startY="-307.0" stroke="#9f9f9f" strokeLineJoin="MITER" visible="false" />
+    <Button id="userMsgsButton" fx:id="exitButton" font="$x1" layoutX="2.0" layoutY="611.0" mnemonicParsing="false" onAction="#pressedCloseMenu" prefHeight="42.0" prefWidth="235.0" text="Exit" />
+    <Button id="userMsgsButton" fx:id="blockUserButton" font="$x1" layoutX="0.0" layoutY="318.0" mnemonicParsing="false" onAction="#blockUserButtonPressed" prefHeight="42.0" prefWidth="235.0" text="Users Management" />
+    <AnchorPane id="content" fx:id="content" layoutX="235.0" prefHeight="617.7070922851562" prefWidth="889.0" />
+      <Label fx:id="usernameLabel" layoutX="4.0" layoutY="159.0" prefHeight="27.0" prefWidth="229.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button id="userMsgsButton" font="$x1" layoutY="360.0" mnemonicParsing="false" onAction="#searchWorkerButtonPressed" prefHeight="42.0" prefWidth="235.0" text="Workers Search" />
+  </children>
+</AnchorPane>
