@@ -1590,32 +1590,34 @@ private Button editAuthorSubmit;
 					}catch(InterruptedException e){
 						e.printStackTrace();
 					}
+					
+				    Platform.runLater(() -> {
+				        String authors = "";
+				        for (int i = 0; i < BooksList.size(); i += 9) {
+				         if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
+				          authors = authors + BooksList.get(i + 5) + ",";
+				         } else {
+				          if (authors.equals("")) {
+				           String hide;
+				           if (BooksList.get(i + 3).equals("0")) hide = "no";
+				           else hide = "yes";
+				           data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+				           filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+				          } else {
+				           String hide;
+				           if (BooksList.get(i + 3).equals("0")) hide = "no";
+				           else hide = "yes";
+				           data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+				           filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+				          }
+				          authors = "";
+				         }
+				        }
+				       });
 				}
 		}});
     
-    Platform.runLater(() -> {
-     String authors = "";
-     for (int i = 0; i < BooksList.size(); i += 9) {
-      if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
-       authors = authors + BooksList.get(i + 5) + ",";
-      } else {
-       if (authors.equals("")) {
-        String hide;
-        if (BooksList.get(i + 3).equals("0")) hide = "no";
-        else hide = "yes";
-        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-       } else {
-        String hide;
-        if (BooksList.get(i + 3).equals("0")) hide = "no";
-        else hide = "yes";
-        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-       }
-       authors = "";
-      }
-     }
-    });
+
 
     
     addBookPane.setVisible(false);
@@ -1762,32 +1764,34 @@ private Button editAuthorSubmit;
 						}catch(InterruptedException e){
 							e.printStackTrace();
 						}
+						
+						Platform.runLater(() -> {
+						     String authors = "";
+						     for (int i = 0; i < BooksList.size(); i += 9) {
+						      if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
+						       authors = authors + BooksList.get(i + 5) + ",";
+						      } else {
+						       if (authors.equals("")) {
+						        String hide;
+						        if (BooksList.get(i + 3).equals("0")) hide = "no";
+						        else hide = "yes";
+						        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						       } else {
+						        String hide;
+						        if (BooksList.get(i + 3).equals("0")) hide = "no";
+						        else hide = "yes";
+						        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						       }
+						       authors = "";
+						      }
+						     }
+						    });
 					}
 			}});
 	    
-	    Platform.runLater(() -> {
-	     String authors = "";
-	     for (int i = 0; i < BooksList.size(); i += 9) {
-	      if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
-	       authors = authors + BooksList.get(i + 5) + ",";
-	      } else {
-	       if (authors.equals("")) {
-	        String hide;
-	        if (BooksList.get(i + 3).equals("0")) hide = "no";
-	        else hide = "yes";
-	        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-	        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-	       } else {
-	        String hide;
-	        if (BooksList.get(i + 3).equals("0")) hide = "no";
-	        else hide = "yes";
-	        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-	        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-	       }
-	       authors = "";
-	      }
-	     }
-	    });
+	    
 
 	    
 	    TitleLabel.setVisible(false);
@@ -1842,14 +1846,16 @@ private Button editAuthorSubmit;
 					}catch(InterruptedException e){
 						e.printStackTrace();
 					}
+					
+					Platform.runLater(() -> {
+						for(int i=0;i<domainsList.size();i+=2){
+							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
+						}
+				  });
 				}
 		}});
   
-	Platform.runLater(() -> {
-		for(int i=0;i<domainsList.size();i+=2){
-			dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-		}
-  });
+
   
 	domainId.setCellValueFactory(
             new PropertyValueFactory<PropertyDomain, String>("domainId"));
@@ -1932,15 +1938,16 @@ private Button editAuthorSubmit;
   									}catch(InterruptedException e){
   										e.printStackTrace();
   									}
+  				  				    Platform.runLater(() -> {
+  				  						for(int i=0;i<domainsList.size();i+=2){
+  				  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
+  				  						}
+  				  				    });
   								}
   						}});
   				  
   				    
-  				    Platform.runLater(() -> {
-  						for(int i=0;i<domainsList.size();i+=2){
-  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-  						}
-  				    });
+
 
 				    
 				    addDomainPane.setVisible(false);
@@ -1983,61 +1990,58 @@ private Button editAuthorSubmit;
 									}catch(InterruptedException e){
 										e.printStackTrace();
 									}
+									
+									   Platform.runLater(() -> {
+										   
+											if(countBookByDomain>0)  
+												actionOnError(ActionType.CONTINUE,"You can't to remove domain that contains books!");
+											else{
+												Message message6 = prepareGetNumberBookAtDomain(ActionType.DELETE_DOMAIN ,DomainId);
+												try {
+												   	ClientController.clientConnectionController.sendToServer(message6);
+												   } catch (IOException e1) {	
+												   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+												   }
+												//////////////////////////////////
+												
+												//////////////////////////////////
+												
+												actionOnError(ActionType.CONTINUE, "The domain deleted successfully!");
+											    dataDomains.clear();
+							  				    Message message7 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
+							  				    try {
+							  				     ClientController.clientConnectionController.sendToServer(message7);
+							  				    } catch (IOException e2) {
+							  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+							  				    }
+							  				    
+							  				    
+							  				  //itai
+							  				  Platform.runLater(new Runnable() {
+							  						@Override
+							  						public void run() {
+							  								BookManagermentGetDomainsWithIdRecv3 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv3();
+							  								recv_getDomainsWithId.start();
+							  								synchronized (recv_getDomainsWithId) {
+							  									try{
+							  										recv_getDomainsWithId.wait();
+							  									}catch(InterruptedException e){
+							  										e.printStackTrace();
+							  									}
+							  									
+											  				    Platform.runLater(() -> {
+											  						for(int i=0;i<domainsList.size();i+=2){
+											  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
+											  						}
+											  				    });
+							  								}
+							  						}});
+
+											}
+											
+										   });
 								}
 						}});
-			   
-			   Platform.runLater(() -> {
-				   
-				if(countBookByDomain>0)  
-					actionOnError(ActionType.CONTINUE,"You can't to remove domain that contains books!");
-				else{
-					Message message6 = prepareGetNumberBookAtDomain(ActionType.DELETE_DOMAIN ,DomainId);
-					try {
-					   	ClientController.clientConnectionController.sendToServer(message6);
-					   } catch (IOException e1) {	
-					   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-					   }
-					//////////////////////////////////
-					
-					//////////////////////////////////
-					
-					actionOnError(ActionType.CONTINUE, "The domain deleted successfully!");
-				    dataDomains.clear();
-  				    Message message7 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
-  				    try {
-  				     ClientController.clientConnectionController.sendToServer(message7);
-  				    } catch (IOException e2) {
-  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  				    }
-  				    
-  				    
-  				  //itai
-  				  Platform.runLater(new Runnable() {
-  						@Override
-  						public void run() {
-  								BookManagermentGetDomainsWithIdRecv3 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv3();
-  								recv_getDomainsWithId.start();
-  								synchronized (recv_getDomainsWithId) {
-  									try{
-  										recv_getDomainsWithId.wait();
-  									}catch(InterruptedException e){
-  										e.printStackTrace();
-  									}
-  								}
-  						}});
-  				  
-  				    
-  				    Platform.runLater(() -> {
-  						for(int i=0;i<domainsList.size();i+=2){
-  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-  						}
-  				    });
-
-					
-				}
-				
-			   });
-			 
 
 		});
    		
@@ -2092,15 +2096,16 @@ private Button editAuthorSubmit;
   									}catch(InterruptedException e){
   										e.printStackTrace();
   									}
+  				  				    Platform.runLater(() -> {
+  				  						for(int i=0;i<domainsList.size();i+=2){
+  				  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
+  				  						}
+  				  				    });
   								}
   						}});
   				  
   				    
-  				    Platform.runLater(() -> {
-  						for(int i=0;i<domainsList.size();i+=2){
-  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-  						}
-  				    });
+
 
   				    
   				  mainDomainPane.setVisible(true);
@@ -2143,14 +2148,16 @@ private Button editAuthorSubmit;
 						}catch(InterruptedException e){
 							e.printStackTrace();
 						}
+						
+				  		Platform.runLater(() -> {
+				  			for(int i=0;i<subjectsList.size();i+=4){
+				  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
+				  			}
+				  	  });
 					}
 			}});
   	  
-  		Platform.runLater(() -> {
-  			for(int i=0;i<subjectsList.size();i+=4){
-  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-  			}
-  	  });
+
   	  
   		subjectId.setCellValueFactory(
   	            new PropertyValueFactory<PropertyDomain, String>("subjectId"));
@@ -2211,23 +2218,20 @@ private Button editAuthorSubmit;
   								}catch(InterruptedException e){
   									e.printStackTrace();
   								}
-  							}
-  					}});
-  			  
-  				
-  				Platform.runLater(() -> { 
-  				 ArrayList < String > domains = new ArrayList < String > ();
-  			    //System.out.println(statush.get(1).getFirstname());
-  			    for (int i = 0; i < domainsList.size(); i+=2) {
-  			    	domains.add("(" + domainsList.get(i) + ")" + " " + domainsList.get(i+1));
-  			    }
+  				  				Platform.runLater(() -> { 
+  				   				 ArrayList < String > domains = new ArrayList < String > ();
+  				   			    //System.out.println(statush.get(1).getFirstname());
+  				   			    for (int i = 0; i < domainsList.size(); i+=2) {
+  				   			    	domains.add("(" + domainsList.get(i) + ")" + " " + domainsList.get(i+1));
+  				   			    }
 
-  			  ObservableList < String > domainsList = FXCollections.observableArrayList(domains);
-  			  editSubjectsDomainsList.setItems(domainsList);  
-  			editSubjectsDomainsList.getSelectionModel().select(selectedItem.getSubjectDomain());
-  			   
-  			 });
-  				
+  				   			  ObservableList < String > domainsList = FXCollections.observableArrayList(domains);
+  				   			  editSubjectsDomainsList.setItems(domainsList);  
+  				   			editSubjectsDomainsList.getSelectionModel().select(selectedItem.getSubjectDomain());
+  				   			   
+  				   			 });
+  							}
+  					}});		
   				
 
   				
@@ -2260,21 +2264,22 @@ private Button editAuthorSubmit;
 									}catch(InterruptedException e){
 										e.printStackTrace();
 									}
+									Platform.runLater(() -> { 
+										 ArrayList < String > domains = new ArrayList < String > ();
+									    //System.out.println(statush.get(1).getFirstname());
+									    for (int i = 0; i < domainsList.size(); i+=2) {
+									    	domains.add("(" + domainsList.get(i) + ")" + " " + domainsList.get(i+1));
+									    }
+
+									  ObservableList < String > domainsList = FXCollections.observableArrayList(domains);
+									  addSubjectsDomainsList.setItems(domainsList);  
+
+										});
 								}
 						}});
 				  
 				//
-				Platform.runLater(() -> { 
-				 ArrayList < String > domains = new ArrayList < String > ();
-			    //System.out.println(statush.get(1).getFirstname());
-			    for (int i = 0; i < domainsList.size(); i+=2) {
-			    	domains.add("(" + domainsList.get(i) + ")" + " " + domainsList.get(i+1));
-			    }
 
-			  ObservableList < String > domainsList = FXCollections.observableArrayList(domains);
-			  addSubjectsDomainsList.setItems(domainsList);  
-
-				});
 			 });
   			
   			
@@ -2342,14 +2347,15 @@ private Button editAuthorSubmit;
   	  							}catch(InterruptedException e){
   	  								e.printStackTrace();
   	  							}
+  	  	  	  	  	  		Platform.runLater(() -> {
+  	    	  	  	  			for(int i=0;i<subjectsList.size();i+=4){
+  	    	  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
+  	    	  	  	  			}
+  	    	  	  	  	  });
   	  						}
   	  				}});
   	  	  	  	  
-  	  	  	  		Platform.runLater(() -> {
-  	  	  	  			for(int i=0;i<subjectsList.size();i+=4){
-  	  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-  	  	  	  			}
-  	  	  	  	  });
+
 
   	  	  				mainSubjectTable.setItems(dataSubjects);
   						
@@ -2422,14 +2428,15 @@ private Button editAuthorSubmit;
   	  						}catch(InterruptedException e){
   	  							e.printStackTrace();
   	  						}
+  	  	  	  	  		Platform.runLater(() -> {
+  	    	  	  			for(int i=0;i<subjectsList.size();i+=4){
+  	    	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
+  	    	  	  			}
+  	    	  	  	  });
   	  					}
   	  			}});
   	  	  	  
-  	  	  		Platform.runLater(() -> {
-  	  	  			for(int i=0;i<subjectsList.size();i+=4){
-  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-  	  	  			}
-  	  	  	  });
+
 
   	  				mainSubjectTable.setItems(dataSubjects);
   	  			mainSubjectPane.setVisible(true);
@@ -2492,14 +2499,15 @@ private Button editAuthorSubmit;
 	  	  						}catch(InterruptedException e){
 	  	  							e.printStackTrace();
 	  	  						}
+	  	  	  	  	  		Platform.runLater(() -> {
+	  		  	  	  			for(int i=0;i<subjectsList.size();i+=4){
+	  		  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
+	  		  	  	  			}
+	  		  	  	  	  });
 	  	  					}
 	  	  			}});
 	  	  	  	  
-	  	  	  		Platform.runLater(() -> {
-	  	  	  			for(int i=0;i<subjectsList.size();i+=4){
-	  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-	  	  	  			}
-	  	  	  	  });
+
 	
 	  	  				mainSubjectTable.setItems(dataSubjects);
 	  	  			mainSubjectPane.setVisible(true);
@@ -2542,14 +2550,15 @@ private Button editAuthorSubmit;
   						}catch(InterruptedException e){
   							e.printStackTrace();
   						}
+  				  		Platform.runLater(() -> {
+  				  			for(int i=0;i<authorList.size();i++){
+  				  				dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
+  				  			}
+  				  	  });
   					}
   			}});
   	  
-  		Platform.runLater(() -> {
-  			for(int i=0;i<authorList.size();i++){
-  				dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
-  			}
-  	  });
+
   	  
   		authorId.setCellValueFactory(
   	            new PropertyValueFactory<PropertyDomain, String>("authorId"));
@@ -2639,15 +2648,16 @@ private Button editAuthorSubmit;
   	  									}catch(InterruptedException e){
   	  										e.printStackTrace();
   	  									}
+  	  		  	  				    Platform.runLater(() -> {
+  	  	  	  				    	for(int i=0;i<authorList.size();i++){
+  	  	  	  				    			dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
+  	  	  	  				    		}
+  	  	  	  				    });
+
   	  								}
   	  						}});
   	  				    
   	  				    
-  	  				    Platform.runLater(() -> {
-  	  				    	for(int i=0;i<authorList.size();i++){
-  	  				    			dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
-  	  				    		}
-  	  				    });
 
   	  				    
   	  				filterField.clear();
@@ -2673,32 +2683,33 @@ private Button editAuthorSubmit;
   	  						}catch(InterruptedException e){
   	  							e.printStackTrace();
   	  						}
+  	  					Platform.runLater(() -> {
+  	  	  	  		     String authors = "";
+  	  	  	  		     for (int i = 0; i < BooksList.size(); i += 9) {
+  	  	  	  		      if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
+  	  	  	  		       authors = authors + BooksList.get(i + 5) + ",";
+  	  	  	  		      } else {
+  	  	  	  		       if (authors.equals("")) {
+  	  	  	  		        String hide;
+  	  	  	  		        if (BooksList.get(i + 3).equals("0")) hide = "no";
+  	  	  	  		        else hide = "yes";
+  	  	  	  		        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+  	  	  	  		        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+  	  	  	  		       } else {
+  	  	  	  		        String hide;
+  	  	  	  		        if (BooksList.get(i + 3).equals("0")) hide = "no";
+  	  	  	  		        else hide = "yes";
+  	  	  	  		        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+  	  	  	  		        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+  	  	  	  		       }
+  	  	  	  		       authors = "";
+  	  	  	  		      }
+  	  	  	  		     }
+  	  	  	  		    });
   	  					}
   	  			}});
   	  		    
-  	  		    Platform.runLater(() -> {
-  	  		     String authors = "";
-  	  		     for (int i = 0; i < BooksList.size(); i += 9) {
-  	  		      if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
-  	  		       authors = authors + BooksList.get(i + 5) + ",";
-  	  		      } else {
-  	  		       if (authors.equals("")) {
-  	  		        String hide;
-  	  		        if (BooksList.get(i + 3).equals("0")) hide = "no";
-  	  		        else hide = "yes";
-  	  		        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-  	  		        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-  	  		       } else {
-  	  		        String hide;
-  	  		        if (BooksList.get(i + 3).equals("0")) hide = "no";
-  	  		        else hide = "yes";
-  	  		        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-  	  		        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-  	  		       }
-  	  		       authors = "";
-  	  		      }
-  	  		     }
-  	  		    });
+  	  		    
  
   	  		    
   	  		    TitleLabel.setVisible(false);
@@ -2754,54 +2765,55 @@ private Button editAuthorSubmit;
    									}catch(InterruptedException e){
    										e.printStackTrace();
    									}
+   				  				   Platform.runLater(() -> {
+
+   				  					   //System.out.println(countBookOfUser);
+   				  					if(countBookOfUser>0)  
+   				  						actionOnError(ActionType.CONTINUE,"You can't to remove author that contains books!");
+   				  					else{
+   				  						Message message8 = prepareGetNumberBookAtDomain(ActionType.DELETE_AUTHOR ,AuthorId);
+   				  						try {
+   				  						   	ClientController.clientConnectionController.sendToServer(message8);
+   				  						   } catch (IOException e1) {	
+   				  						   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+   				  						   }
+   				  						actionOnError(ActionType.CONTINUE, "The author deleted successfully!");
+   				  						dataAuthors.clear();
+   				  	  				    Message message9 = prepareGetAuthors(ActionType.GET_AUTHORS);
+   				  	  				    try {
+   				  	  				     ClientController.clientConnectionController.sendToServer(message9);
+   				  	  				    } catch (IOException e2) {
+   				  	  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+   				  	  				    }
+   				  	  				  //itai
+   				  	  				  Platform.runLater(new Runnable() {
+   				  	  						@Override
+   				  	  						public void run() {
+   				  	  							BookManagermentGetAuthorsRecv5 recv_getAuthors = new BookManagermentGetAuthorsRecv5();
+   				  	  								recv_getAuthors.start();
+   				  	  								synchronized (recv_getAuthors) {
+   				  	  									try{
+   				  	  										recv_getAuthors.wait();
+   				  	  									}catch(InterruptedException e){
+   				  	  										e.printStackTrace();
+   				  	  									}
+   				  	  								}
+   				  	  						}});
+   				  	  				    
+   				  	  				    Platform.runLater(() -> {
+   				  	  				    for(int i=0;i<authorList.size();i++){
+   								    			dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
+   								    		}
+   				  	  				    });
+
+   				  						
+   				  					}
+   				  					
+   				  				   });
    								}
    						}});
   				   
-  				   Platform.runLater(() -> {
 
-  					   //System.out.println(countBookOfUser);
-  					if(countBookOfUser>0)  
-  						actionOnError(ActionType.CONTINUE,"You can't to remove author that contains books!");
-  					else{
-  						Message message8 = prepareGetNumberBookAtDomain(ActionType.DELETE_AUTHOR ,AuthorId);
-  						try {
-  						   	ClientController.clientConnectionController.sendToServer(message8);
-  						   } catch (IOException e1) {	
-  						   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  						   }
-  						actionOnError(ActionType.CONTINUE, "The author deleted successfully!");
-  						dataAuthors.clear();
-  	  				    Message message9 = prepareGetAuthors(ActionType.GET_AUTHORS);
-  	  				    try {
-  	  				     ClientController.clientConnectionController.sendToServer(message9);
-  	  				    } catch (IOException e2) {
-  	  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  	  				    }
-  	  				  //itai
-  	  				  Platform.runLater(new Runnable() {
-  	  						@Override
-  	  						public void run() {
-  	  							BookManagermentGetAuthorsRecv5 recv_getAuthors = new BookManagermentGetAuthorsRecv5();
-  	  								recv_getAuthors.start();
-  	  								synchronized (recv_getAuthors) {
-  	  									try{
-  	  										recv_getAuthors.wait();
-  	  									}catch(InterruptedException e){
-  	  										e.printStackTrace();
-  	  									}
-  	  								}
-  	  						}});
-  	  				    
-  	  				    Platform.runLater(() -> {
-  	  				    for(int i=0;i<authorList.size();i++){
-				    			dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
-				    		}
-  	  				    });
-
-  						
-  					}
-  					
-  				   });
   				 
 
   			});
@@ -2863,14 +2875,15 @@ private Button editAuthorSubmit;
   	  									}catch(InterruptedException e){
   	  										e.printStackTrace();
   	  									}
+  	  		  	  				    Platform.runLater(() -> {
+  	  	  	  				    	for(int i=0;i<authorList.size();i++){
+  	  	  	  				    		dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
+  	  	  	  				    	}
+  	  	  	  				    });
   	  								}
   	  						}});
   	  				    
-  	  				    Platform.runLater(() -> {
-  	  				    	for(int i=0;i<authorList.size();i++){
-  	  				    		dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
-  	  				    	}
-  	  				    });
+
 
   	  				    
   	  				  mainAuthorPane.setVisible(true);
