@@ -2903,7 +2903,7 @@ private Button editAuthorSubmit;
  }
 
  // ---------------- functions -------------------
- //
+ 
 
 /**
  * Open file chooser in the user home directory
