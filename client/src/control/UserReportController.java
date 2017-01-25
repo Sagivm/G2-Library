@@ -205,38 +205,47 @@ public class UserReportController implements Initializable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-
-				try {
-					if (data != null) {
-						table.setEditable(true);
-						arrangelist();
-
-						mergeDuplicates();
-						items = FXCollections.observableArrayList();
-						for (int i = 0; i < list.size(); i++) {
-							items.add(list.get(i));
+				UserReportRecv recv = new UserReportRecv();
+    	        recv.start();
+    			synchronized(recv)
+    			{
+    				try {
+    					recv.wait();
+    				} catch (InterruptedException e1) {
+    					e1.printStackTrace();
+    				}
+					try {
+						if (data != null) {
+							table.setEditable(true);
+							arrangelist();
+	
+							mergeDuplicates();
+							items = FXCollections.observableArrayList();
+							for (int i = 0; i < list.size(); i++) {
+								items.add(list.get(i));
+							}
+	
+							bookIdColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("id"));
+							titleColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("title"));
+							authorColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("author"));
+							languageColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("language"));
+							dateColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("date"));
+							priceColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("price"));
+	
+							table.setVisible(true);
+							table.setItems(items);
+							table.setVisible(true);
+	
+						} else {
+							// actionToDisplay("Info", ActionType.CONTINUE,"No
+							// purchase data for this user");
 						}
-
-						bookIdColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("id"));
-						titleColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("title"));
-						authorColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("author"));
-						languageColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("language"));
-						dateColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("date"));
-						priceColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("price"));
-
-						table.setVisible(true);
-						table.setItems(items);
-						table.setVisible(true);
-
-					} else {
-						// actionToDisplay("Info", ActionType.CONTINUE,"No
-						// purchase data for this user");
-					}
-
-					// }
-
-				} catch (Exception e) {
-					e.printStackTrace();
+	
+						// }
+	
+					} catch (Exception e) {
+						e.printStackTrace();
+					}	
 				}
 			}
 		});
@@ -443,7 +452,29 @@ public class UserReportController implements Initializable {
 		public void setPrice(String price) {
 			this.price = price;
 		}
-
 	}
+}
 
+/**This class makes sure the information from the server was received successfully.
+ * @author ork
+ *
+ */
+class UserReportRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+    @Override
+    public void run(){
+        synchronized(this){
+        	while(canContinue == false)
+        		{
+        			System.out.print("");
+        		}
+        	canContinue = false;
+            notify();
+        }
+    }
 }

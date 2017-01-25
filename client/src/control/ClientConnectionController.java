@@ -521,7 +521,7 @@ public class ClientConnectionController extends AbstractClient{
 				UserReportController.data = replay.getElementsList();
 			else
 				UserReportController.data = null;
-			UserBooksRecv.canContinue = true;
+			UserReportRecv.canContinue = true;
 			break;
 		}
 		case GETDOMAINSSPECIFIC: {
@@ -716,6 +716,7 @@ public class ClientConnectionController extends AbstractClient{
 				MyBooksController.data = replay.getElementsList();
 			else
 				MyBooksController.data = null;
+			MyBooksRecv.canContinue = true;
 			break;
 		}
 		}

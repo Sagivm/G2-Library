@@ -104,10 +104,11 @@ public class BookReportController implements Initializable {
 					}catch(InterruptedException e){
 						e.printStackTrace();
 					}
+					receive();
 				}
 			}});
 		
-		receive();
+		//receive();
 	}
 
 	/**
