@@ -1,7 +1,46 @@
+<<<<<<< HEAD
 ιπε 25, 2017 12:06:49 PM control.ServerController writeToLog
+=======
+ιπε 25, 2017 12:40:33 PM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Connected to database
+<<<<<<< HEAD
 ιπε 25, 2017 12:06:49 PM control.ServerController writeToLog
+=======
+ιπε 25, 2017 12:40:33 PM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Server listening for connections
 on port: 1337
+<<<<<<< HEAD
 ιπε 25, 2017 12:07:39 PM control.ServerController writeToLog
+=======
+ιπε 25, 2017 12:40:39 PM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Login attempt
+<<<<<<< HEAD
+=======
+ιπε 25, 2017 12:40:49 PM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 25, 2017 12:40:56 PM control.ServerController writeToLog
+INFO: 302659743 Changed accountStatus toPendingYearly
+ιπε 25, 2017 12:42:31 PM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 25, 2017 12:42:41 PM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 25, 2017 12:42:45 PM control.ServerController writeToLog
+INFO: 302659743 Changed accountStatus toPendingYearly
+ιπε 25, 2017 12:42:56 PM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 25, 2017 12:43:06 PM control.ServerController writeToLog
+INFO: Search counter of book ID '10' was increased from '1' to '2'
+ιπε 25, 2017 12:43:06 PM control.ServerController writeToLog
+INFO: Search counter of book ID '9' was increased from '1' to '2'
+ιπε 25, 2017 12:43:06 PM control.ServerController writeToLog
+INFO: Search counter of book ID '11' was increased from '1' to '2'
+ιπε 25, 2017 12:43:44 PM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 25, 2017 12:43:54 PM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 25, 2017 12:44:16 PM control.ServerController writeToLog
+INFO: Login attempt
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp

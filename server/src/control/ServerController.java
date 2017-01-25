@@ -1677,7 +1677,7 @@ public class ServerController extends AbstractServer {
 				ArrayList<String> elementsList = new ArrayList<String>();
 				Statement stmt = DatabaseController.connection.createStatement();
 				ResultSet rs = stmt.executeQuery(
-						"SELECT username,firstName,lastName,accountType,accountStatus FROM project.clients WHERE accountStatus<>'Standard' AND isBlocked=0");
+						"SELECT username,firstName,lastName,accountType,accountStatus FROM project.clients WHERE accountStatus<>'Standard' AND accountStatus<>'PendingPayment' AND isBlocked=0");
 				while (rs.next()) {
 					elementsList.add(rs.getString(1)); // username
 					elementsList.add(rs.getString(2)); // first name
@@ -1697,6 +1697,8 @@ public class ServerController extends AbstractServer {
 				Statement stmt = DatabaseController.connection.createStatement();
 				String username = data.get(0);
 				String operation = data.get(1);
+				
+				//System.out.println(data.get(0) + " " + data.get(1) + " " + data.get(2));
 				
 				if(operation.equals("approve"))
 				{

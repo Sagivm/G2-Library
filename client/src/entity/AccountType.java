@@ -21,6 +21,11 @@ public enum AccountType {
 	/**
 	 * States that the user has a yearly subscription.
 	 */
-	Yearly
+	Yearly,
+	
+	/**
+	 * States that the user is waiting for registration approval.
+	 */
+	RegisterPending
 
 };
