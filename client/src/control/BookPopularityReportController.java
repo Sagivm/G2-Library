@@ -322,10 +322,14 @@ public class BookPopularityReportController implements Initializable {
 		removeAllRows();
 		arrangelist();
 		mergeDuplicatesAuthors();
+		/*
 		for(int i=0;i<list.size();i++)
 			System.out.println(list.get(i).getTitle()+" "+list.get(i).getDomain());
+			*/
 		ObservableList<String> selectedDomains = domains.getSelectionModel().getSelectedItems();
+		/*
 		System.out.println(selectedDomains.get(0));
+		*/
 		removeAllRows();
 		if (domainRadio.isSelected()) {
 			displaydomains(selectedDomains);
@@ -358,7 +362,7 @@ public class BookPopularityReportController implements Initializable {
 	 */
 	private void displaydomains(ObservableList<String> selectedDomains) {
 		ArrayList<String> dom = new ArrayList<String>(selectedDomains);
-		System.out.println(list.size());
+		//System.out.println(list.size());
 		for (int i = 0; i < list.size(); i++) {
 			if (selectedDomains.contains(list.get(i).domain)) {
 				specificList.add(list.get(i));

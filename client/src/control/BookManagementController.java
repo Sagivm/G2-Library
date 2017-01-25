@@ -1464,7 +1464,7 @@ private Button editAuthorSubmit;
      String base64EncodedImage = DatatypeConverter.printBase64Binary(output.toByteArray());
      imageInBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64EncodedImage);
      picStr = base64EncodedImage;
-     System.out.println(base64EncodedImage);
+     //System.out.println(base64EncodedImage);
      BufferedImage imgbuf;
      imgbuf = ImageIO.read(new ByteArrayInputStream(imageInBytes));
      Image image1 = SwingFXUtils.toFXImage(imgbuf, null);
@@ -1643,7 +1643,7 @@ private Button editAuthorSubmit;
 	     String base64EncodedImage = DatatypeConverter.printBase64Binary(output.toByteArray());
 	     imageInBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64EncodedImage);
 	     picStr = base64EncodedImage;
-	     System.out.println(base64EncodedImage);
+	     //System.out.println(base64EncodedImage);
 	     BufferedImage imgbuf;
 	     imgbuf = ImageIO.read(new ByteArrayInputStream(imageInBytes));
 	     Image image1 = SwingFXUtils.toFXImage(imgbuf, null);
@@ -1891,7 +1891,7 @@ private Button editAuthorSubmit;
 			String DomainName = null;
 			DomainName = editDomainName.getText();
 			
-			System.out.println(DomainId+" "+DomainName);
+			//System.out.println(DomainId+" "+DomainName);
 
 			
 			if (DomainName.equals(""))
@@ -2056,7 +2056,7 @@ private Button editAuthorSubmit;
   		addDomainSubmit.setOnAction(e -> {
   			String DomainName = null;
   			DomainName = addDomainName.getText();
-  			System.out.println(DomainName);
+  			//System.out.println(DomainName);
   			
   			if (DomainName.equals(""))
   			    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");
@@ -2164,7 +2164,7 @@ private Button editAuthorSubmit;
   		subjectId.setStyle( "-fx-alignment: CENTER;");
   		subjectName.setStyle( "-fx-alignment: CENTER;");
   		subjectDomain.setStyle( "-fx-alignment: CENTER;");
-  		System.out.println("asas");
+  		//System.out.println("asas");
   		mainSubjectTable.setItems(dataSubjects);
   			
   		
@@ -2377,10 +2377,10 @@ private Button editAuthorSubmit;
   		addSubjetcsSubmit.setOnAction(e -> {
   	  			String SubjectName = null;
   	  			SubjectName = addSubjectsName.getText();
-  	  			System.out.println(SubjectName);
+  	  			//System.out.println(SubjectName);
   	  			String SubjectDomain;
   	  			SubjectDomain = addSubjectsDomainsList.getSelectionModel().getSelectedItem().toString();
-  	  			System.out.println(SubjectDomain);
+  	  			//System.out.println(SubjectDomain);
   	  			
   	  			if (SubjectName.equals("") || SubjectDomain.equals(""))
   	  			    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");

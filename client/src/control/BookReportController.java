@@ -83,7 +83,7 @@ public class BookReportController implements Initializable {
 	private void initializeChart() {
 		ArrayList<String> elementsList = new ArrayList<String>();
 		elementsList.add(String.valueOf(selectedBook.getBookSn()));
-		System.out.println(selectedBook.getBookSn());
+		//System.out.println(selectedBook.getBookSn());
 		Message message = new Message(ActionType.BOOKREPORT, elementsList);
 		try {
 			ClientController.clientConnectionController.sendToServer(message);
@@ -120,7 +120,7 @@ public class BookReportController implements Initializable {
 			public void run() {
 
 				try {
-					System.out.println(data.get(0));
+					//System.out.println(data.get(0));
 					
 					displayChart();
 				} catch (Exception e) {

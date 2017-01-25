@@ -163,7 +163,7 @@ public class SearchUserResultsController implements ScreensIF{
 				
 			}
 			
-	
+			
 	
 					try {
 						try{
