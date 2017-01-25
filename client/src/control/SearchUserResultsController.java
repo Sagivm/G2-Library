@@ -303,7 +303,7 @@ public class SearchUserResultsController implements ScreensIF{
 							}  
 				}
 			}});
-		System.out.println("test2");
+
 			
 
 		

@@ -129,7 +129,7 @@ public class UserReportController implements Initializable {
 		        if (event.getClickCount() == 2 && (! row.isEmpty()) )
 		        {
 		        	Purchase rowData = row.getItem();
-		            System.out.println(rowData.getId());
+		            //System.out.println(rowData.getId());
 		            
 		            BookPageController.searchedBookPage = new SearchBookResult(
 		            		rowData.getId(),rowData.getTitle(),rowData.getLanguage(),
