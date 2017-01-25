@@ -124,7 +124,7 @@ public class SearchUserController implements ScreensIF{
 		user.setId(id);
 		user.setFirstname(firstName);
 		user.setLastname(lastName);
-		
+		//
 		Message message = prepareUserSearch(ActionType.SEARCH_USER,user);
 		
 		try {
