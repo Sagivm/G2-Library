@@ -3104,15 +3104,15 @@ public Message prepareGetDomainsWithId(ActionType type) {
 public Message prepareAddBook(ActionType type, String titleBook, String authorsId2, String keywords, String language, String subjectsList2, String tableOfContent, String summary, String picture, String price) {
   Message message = new Message();
   ArrayList < String > elementsList = new ArrayList < String > ();
-  elementsList.add(titleBook);
-  elementsList.add(authorsId2);
-  elementsList.add(keywords);
-  elementsList.add(language);
-  elementsList.add(subjectsList2);
-  elementsList.add(tableOfContent);
-  elementsList.add(summary);
-  elementsList.add(picture);
-  elementsList.add(price);
+  elementsList.add(Validate.fixText(titleBook));
+  elementsList.add(Validate.fixText(authorsId2));
+  elementsList.add(Validate.fixText(keywords));
+  elementsList.add(Validate.fixText(language));
+  elementsList.add(Validate.fixText(subjectsList2));
+  elementsList.add(Validate.fixText(tableOfContent));
+  elementsList.add(Validate.fixText(summary));
+  elementsList.add(Validate.fixText(picture));
+  elementsList.add(Validate.fixText(price));
   message.setType(type);
   message.setElementsList(elementsList);
   return message;
@@ -3143,8 +3143,8 @@ public Message prepareAddBook(ActionType type, String titleBook, String authorsI
 	private Message prepareAddAuthor(ActionType type, String AuthorFirstName, String AuthorLastName) {
 		  Message message = new Message();
 		  ArrayList < String > elementsList = new ArrayList < String > ();
-		  elementsList.add(AuthorFirstName);
-		  elementsList.add(AuthorLastName);
+		  elementsList.add(Validate.fixText(AuthorFirstName));
+		  elementsList.add(Validate.fixText(AuthorLastName));
 		  message.setType(type);
 		  message.setElementsList(elementsList);
 		  return message;
@@ -3160,8 +3160,8 @@ public Message prepareAddBook(ActionType type, String titleBook, String authorsI
 	private Message prepareAddSubject(ActionType type, String subjectName, String subjectDomain) {
 		  Message message = new Message();
 		  ArrayList < String > elementsList = new ArrayList < String > ();
-		  elementsList.add(subjectName);
-		  elementsList.add(subjectDomain);
+		  elementsList.add(Validate.fixText(subjectName));
+		  elementsList.add(Validate.fixText(subjectDomain));
 		  message.setType(type);
 		  message.setElementsList(elementsList);
 		  return message;
@@ -3185,16 +3185,16 @@ public Message prepareAddBook(ActionType type, String titleBook, String authorsI
 public Message prepareEditBook(ActionType type, String Sn, String titleBook, String authorsId2, String keywords, String language, String subjectsList2, String tableOfContent, String summary, String picture, String price) {
 	  Message message = new Message();
 	  ArrayList < String > elementsList = new ArrayList < String > ();
-	  elementsList.add(titleBook);
-	  elementsList.add(authorsId2);
-	  elementsList.add(keywords);
-	  elementsList.add(language);
-	  elementsList.add(subjectsList2);
-	  elementsList.add(tableOfContent);
-	  elementsList.add(summary);
-	  elementsList.add(picture);
-	  elementsList.add(price);
-	  elementsList.add(Sn);
+	  elementsList.add(Validate.fixText(titleBook));
+	  elementsList.add(Validate.fixText(authorsId2));
+	  elementsList.add(Validate.fixText(keywords));
+	  elementsList.add(Validate.fixText(language));
+	  elementsList.add(Validate.fixText(subjectsList2));
+	  elementsList.add(Validate.fixText(tableOfContent));
+	  elementsList.add(Validate.fixText(summary));
+	  elementsList.add(Validate.fixText(picture));
+	  elementsList.add(Validate.fixText(price));
+	  elementsList.add(Validate.fixText(Sn));
 	  message.setType(type);
 	  message.setElementsList(elementsList);
 	  return message;
@@ -3220,7 +3220,7 @@ public Message prepareGetAuthors(ActionType type) {
 public Message prepareGetAuthors(ActionType type,String bookSn) {
 	  Message message = new Message();
 	  ArrayList < String > elementsList = new ArrayList < String > ();
-	  elementsList.add(bookSn);
+	  elementsList.add(Validate.fixText(bookSn));
 	  message.setType(type);
 	  message.setElementsList(elementsList);
 	  return message;
@@ -3235,7 +3235,7 @@ public Message prepareGetAuthors(ActionType type,String bookSn) {
 public Message prepareGetLanguage(ActionType type,String bookSn) {
 	  Message message = new Message();
 	  ArrayList < String > elementsList = new ArrayList < String > ();
-	  elementsList.add(bookSn);
+	  elementsList.add(Validate.fixText(bookSn));
 	  message.setType(type);
 	  message.setElementsList(elementsList);
 	  return message;
@@ -3250,7 +3250,7 @@ public Message prepareGetLanguage(ActionType type,String bookSn) {
 public Message prepareGetTableOfContent(ActionType type,String bookSn) {
 	  Message message = new Message();
 	  ArrayList < String > elementsList = new ArrayList < String > ();
-	  elementsList.add(bookSn);
+	  elementsList.add(Validate.fixText(bookSn));
 	  message.setType(type);
 	  message.setElementsList(elementsList);
 	  return message;
@@ -3266,7 +3266,7 @@ public Message prepareGetTableOfContent(ActionType type,String bookSn) {
 public Message prepareGetSubjects(ActionType type,String bookSn) {
 		  Message message = new Message();
 		  ArrayList < String > elementsList = new ArrayList < String > ();
-		  elementsList.add(bookSn);
+		  elementsList.add(Validate.fixText(bookSn));
 		  message.setType(type);
 		  message.setElementsList(elementsList);
 		  return message;
@@ -3292,7 +3292,7 @@ public Message prepareGetSubjects(ActionType type) {
 public Message prepareDeleteBook(ActionType type, String sn) {
   Message message = new Message();
   ArrayList < String > elementsList = new ArrayList < String > ();
-  elementsList.add(sn);
+  elementsList.add(Validate.fixText(sn));
   message.setType(type);
   message.setElementsList(elementsList);
   return message;
@@ -3309,7 +3309,7 @@ public Message prepareDeleteBook(ActionType type, String sn) {
 public Message prepareHideBook(ActionType type, String sn, String hide) {
   Message message = new Message();
   ArrayList < String > elementsList = new ArrayList < String > ();
-  elementsList.add(sn);
+  elementsList.add(Validate.fixText(sn));
   elementsList.add(hide);
   message.setType(type);
   message.setElementsList(elementsList);
