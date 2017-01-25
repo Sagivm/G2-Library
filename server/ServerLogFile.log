@@ -1,9 +1,11 @@
-ιπε 25, 2017 1:16:24 PM control.ServerController writeToLog
+ιπε 25, 2017 2:12:16 PM control.ServerController writeToLog
 INFO: Connected to database
-ιπε 25, 2017 1:16:24 PM control.ServerController writeToLog
+ιπε 25, 2017 2:12:16 PM control.ServerController writeToLog
 INFO: Server listening for connections
 on port: 1337
-ιπε 25, 2017 1:16:28 PM control.ServerController writeToLog
+ιπε 25, 2017 2:12:26 PM control.ServerController writeToLog
 INFO: Login attempt
-ιπε 25, 2017 1:17:00 PM control.ServerController writeToLog
-INFO: Name of username '123456789' was changed to 'itai Naor'
+ιπε 25, 2017 2:13:36 PM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 25, 2017 2:13:38 PM control.ServerController writeToLog
+INFO: Login attempt
