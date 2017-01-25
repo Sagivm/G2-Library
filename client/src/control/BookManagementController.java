@@ -2263,7 +2263,7 @@ private Button editAuthorSubmit;
 								}
 						}});
 				  
-				
+				//
 				Platform.runLater(() -> { 
 				 ArrayList < String > domains = new ArrayList < String > ();
 			    //System.out.println(statush.get(1).getFirstname());
