@@ -684,8 +684,16 @@ public class BookPageController implements ScreensIF
 
 			// Traditional way to get the response value.
 			Optional<String> result = dialog.showAndWait();
+			Optional emptyOptional = Optional.empty();
+
+			if (result == emptyOptional) return;
+			//System.out.println(result);
+			//result.
+			if (result.equals("Optional.empty")) return;
+			
 			String format = result.get();
-		
+
+			
 			final Label labelSelectedDirectory = new Label();
 			DirectoryChooser directoryChooser = new DirectoryChooser();
             File selectedDirectory = 
@@ -710,7 +718,7 @@ public class BookPageController implements ScreensIF
     		} catch (IOException e) {	
             
     		}
-    		
+    		/*
 			  //itai
 			  Platform.runLater(new Runnable() {
 					@Override
@@ -726,7 +734,7 @@ public class BookPageController implements ScreensIF
 							}
 					}});
 
-		
+		*/
 		}
 		catch(Exception e) {
 			e.printStackTrace();

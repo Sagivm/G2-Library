@@ -124,7 +124,7 @@ public class ClientConnectionController extends AbstractClient{
 		
 		case FILE: {
 			downloadFile(fileEvent);
-			DownloadFileRecv.canContinue = true;
+			//DownloadFileRecv.canContinue = true;
 		}
 		break;
 		case GET_MESSAGES: {
@@ -770,6 +770,7 @@ public class ClientConnectionController extends AbstractClient{
 	public void downloadFile(FileEvent fileEvent) {
 		try {
 		String outputFile = fileEvent.getDestinationDirectory() + fileEvent.getFilename();
+		System.out.println(outputFile);
 		if (!new File(fileEvent.getDestinationDirectory()).exists()) {
 		new File(fileEvent.getDestinationDirectory()).mkdirs();
 		}
