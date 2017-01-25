@@ -1089,7 +1089,6 @@ private Button editAuthorSubmit;
 	  Message message9 = prepareGetTableOfContent(ActionType.GET_BOOK_TABLE_OF_CONTENT,selectedItem.getBookSn());
 
 	  try {
-		   System.out.println("1");
 	    ClientController.clientConnectionController.sendToServer(message4);
 	    ClientController.clientConnectionController.sendToServer(message5);
 	    ClientController.clientConnectionController.sendToServer(message6);
@@ -1131,6 +1130,21 @@ private Button editAuthorSubmit;
 					}
 			}});
 	  
+	  
+	  //itai
+	  Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+					BookManagermentRecv recv_getBookSubjects = new BookManagermentRecv();
+					recv_getBookSubjects.start();
+					synchronized (recv_getBookSubjects) {
+						try{
+							recv_getBookSubjects.wait();
+						}catch(InterruptedException e){
+							e.printStackTrace();
+						}
+					}
+			}});
 		
 		  
 		  //itai
@@ -1142,6 +1156,22 @@ private Button editAuthorSubmit;
 						synchronized (recv_getSubjects) {
 							try{
 								recv_getSubjects.wait();
+							}catch(InterruptedException e){
+								e.printStackTrace();
+							}
+						}
+				}});
+		  
+		  
+		//itai
+		  Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+						BookManagermentRecv recv_getBookLanguages = new BookManagermentRecv();
+						recv_getBookLanguages.start();
+						synchronized (recv_getBookLanguages) {
+							try{
+								recv_getBookLanguages.wait();
 							}catch(InterruptedException e){
 								e.printStackTrace();
 							}
@@ -1294,6 +1324,11 @@ private Button editAuthorSubmit;
    } catch (IOException e1) {	
    	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
    }
+   
+   /////////////////////////////////////////////////////////////////
+   
+   ///////////////////////////////////////////////////////////////////
+   
    Platform.runLater(() -> {
    			data.remove(selectedItem);
    });
@@ -1311,6 +1346,12 @@ private Button editAuthorSubmit;
      e1.printStackTrace();
      actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
     }
+    
+    /////////////////////////////////////////////////////////////////
+    
+    ///////////////////////////////////////////////////////////////////
+    
+    
     Platform.runLater(() -> {
      selectedItem.setBookHide("no");
      hideBtn.setText("Hide Book");
@@ -1323,6 +1364,11 @@ private Button editAuthorSubmit;
     	e1.printStackTrace();
      actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
     }
+    
+    /////////////////////////////////////////////////////////////////
+    
+    ///////////////////////////////////////////////////////////////////
+    
     Platform.runLater(() -> {
      selectedItem.setBookHide("yes");
      hideBtn.setText("Unhide Book");
@@ -1534,6 +1580,10 @@ private Button editAuthorSubmit;
     } catch (Exception e1) {
      e1.printStackTrace();
     }
+    ////////////////////////////////////////////////////////////////
+    
+    ////////////////////////////////////////////////////////////////	
+    
     Platform.runLater(() -> {
     actionOnError(ActionType.CONTINUE, "The book added successfully!");
     addBookTitle.setText("");
@@ -1595,11 +1645,7 @@ private Button editAuthorSubmit;
       }
      }
     });
-    try {
-		Thread.sleep(1000);
-	} catch (Exception e1) {
-		e1.printStackTrace();
-	}
+
     
     addBookPane.setVisible(false);
     editBookPane.setVisible(false);
@@ -1703,6 +1749,13 @@ private Button editAuthorSubmit;
 	    } catch (Exception e1) {
 	     e1.printStackTrace();
 	    }
+	    
+	    ////////////////////////////////////////////////////////////////
+	    
+	    
+	    ////////////////////////////////////////////////////////////////
+
+	    
 	    Platform.runLater(() -> {
 	    actionOnError(ActionType.CONTINUE, "The book added successfully!");
 	    addBookTitle.setText("");
@@ -1912,11 +1965,7 @@ private Button editAuthorSubmit;
   							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
   						}
   				    });
-  				    try {
-  						Thread.sleep(500);
-  					} catch (Exception e1) {
-  						e1.printStackTrace();
-  					}
+
 				    
 				    addDomainPane.setVisible(false);
 				    editDomainPane.setVisible(false);
@@ -2003,11 +2052,7 @@ private Button editAuthorSubmit;
   							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
   						}
   				    });
-  				    try {
-  						Thread.sleep(500);
-  					} catch (Exception e1) {
-  						e1.printStackTrace();
-  					}
+
 					
 				}
 				
@@ -2076,11 +2121,7 @@ private Button editAuthorSubmit;
   							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
   						}
   				    });
-  				    try {
-  						Thread.sleep(500);
-  					} catch (Exception e1) {
-  						e1.printStackTrace();
-  					}
+
   				    
   				  mainDomainPane.setVisible(true);
   				  addDomainPane.setVisible(false);
@@ -2325,11 +2366,7 @@ private Button editAuthorSubmit;
   	  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
   	  	  	  			}
   	  	  	  	  });
-  	  	  				    try {
-  	  	  						Thread.sleep(500);
-  	  	  					} catch (Exception e1) {
-  	  	  						e1.printStackTrace();
-  	  	  					}
+
   	  	  				mainSubjectTable.setItems(dataSubjects);
   						
   					}
@@ -2405,11 +2442,7 @@ private Button editAuthorSubmit;
   	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
   	  	  			}
   	  	  	  });
-  	  				    try {
-  	  						Thread.sleep(500);
-  	  					} catch (Exception e1) {
-  	  						e1.printStackTrace();
-  	  					}
+
   	  				mainSubjectTable.setItems(dataSubjects);
   	  			mainSubjectPane.setVisible(true);
   	  				addSubjectPane.setVisible(false);
@@ -2475,11 +2508,7 @@ private Button editAuthorSubmit;
 	  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
 	  	  	  			}
 	  	  	  	  });
-	  	  				    try {
-	  	  						Thread.sleep(500);
-	  	  					} catch (Exception e1) {
-	  	  						e1.printStackTrace();
-	  	  					}
+	
 	  	  				mainSubjectTable.setItems(dataSubjects);
 	  	  			mainSubjectPane.setVisible(true);
 	  	  				addSubjectPane.setVisible(false);
@@ -2674,11 +2703,7 @@ private Button editAuthorSubmit;
   	  		      }
   	  		     }
   	  		    });
-  	  		    try {
-  	  				Thread.sleep(700);
-  	  			} catch (Exception e1) {
-  	  				e1.printStackTrace();
-  	  			}
+ 
   	  		    
   	  		    TitleLabel.setVisible(false);
   	  		    InfoTitle.setVisible(false);
@@ -2776,11 +2801,7 @@ private Button editAuthorSubmit;
 				    			dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
 				    		}
   	  				    });
-  	  				    try {
-  	  						Thread.sleep(500);
-  	  					} catch (Exception e1) {
-  	  						e1.printStackTrace();
-  	  					}
+
   						
   					}
   					
@@ -2854,11 +2875,7 @@ private Button editAuthorSubmit;
   	  				    		dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
   	  				    	}
   	  				    });
-  	  				    try {
-  	  						Thread.sleep(500);
-  	  					} catch (Exception e1) {
-  	  						e1.printStackTrace();
-  	  					}
+
   	  				    
   	  				  mainAuthorPane.setVisible(true);
   	  				  addAuthorPane.setVisible(false);

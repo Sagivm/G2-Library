@@ -124,6 +124,7 @@ public class ClientConnectionController extends AbstractClient{
 		
 		case FILE: {
 			downloadFile(fileEvent);
+			DownloadFileRecv.canContinue = true;
 		}
 		break;
 		case GET_MESSAGES: {
@@ -473,6 +474,7 @@ public class ClientConnectionController extends AbstractClient{
 		
 		case GET_DOMAINS_WITH_ID: {
 			BookManagementController.domainsList = replay.getElementsList();
+			BookManagermentRecv.canContinue=true;
 			break;
 		}
 		
@@ -491,6 +493,7 @@ public class ClientConnectionController extends AbstractClient{
 		
 		case GET_BOOK_SUBJETCS: {
 			BookManagementController.selectedSubjectString = replay.getElementsList();
+			BookManagermentRecv.canContinue=true;
 			break;
 		}
 
@@ -562,6 +565,7 @@ public class ClientConnectionController extends AbstractClient{
 		
 		case GET_BOOK_LANGUAGE: {
 			BookManagementController.editBookLanguage=replay.getElementsList().get(0);
+			BookManagermentRecv.canContinue = true;
 			//System.out.println(replay.getElementsList().get(0));
 			break;	
 		}

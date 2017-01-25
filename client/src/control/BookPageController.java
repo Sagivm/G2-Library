@@ -709,16 +709,29 @@ public class BookPageController implements ScreensIF
     			ClientController.clientConnectionController.sendToServer(message);
     		} catch (IOException e) {	
             
+    		}
+    		
+			  //itai
+			  Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						DownloadFileRecv recv_file = new DownloadFileRecv();
+						recv_file.start();
+							synchronized (recv_file) {
+								try{
+									recv_file.wait();
+								}catch(InterruptedException e){
+									e.printStackTrace();
+								}
+							}
+					}});
+
+		
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-	} 
-		finally 
-		{
-		
-		}
+
 	}
 
 	
@@ -923,6 +936,30 @@ class BuyBookRecv extends Thread{
  *
  */
 class BookImgRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+    @Override
+    public void run(){
+        synchronized(this){
+        	while(canContinue == false)
+        		{
+        			System.out.print("");
+        		}
+        	canContinue = false;
+            notify();
+        }
+    }
+}
+
+/**This class makes sure the information from the server was received successfully.
+ * @author ork
+ *
+ */
+class DownloadFileRecv extends Thread{
 	
 	/**
 	 * Get true after receiving values from DB.
