@@ -694,6 +694,13 @@ public class ClientConnectionController extends AbstractClient{
 			HomepageUserRecv.canContinue = true;
 		break;
 		}	
+		case MY_BOOKS: {
+			if (success == true)
+				MyBooksController.data = replay.getElementsList();
+			else
+				MyBooksController.data = null;
+			break;
+		}
 		}
 
 	}

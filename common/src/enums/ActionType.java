@@ -350,6 +350,7 @@ public enum ActionType {
 	 * File transformation.
 	 */
 	FILE,
+	MY_BOOKS,
 
 
 }

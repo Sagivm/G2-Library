@@ -36,7 +36,7 @@ import javafx.util.Callback;
  * 
  * @author sagivm
  */
-public class UserBooksController implements Initializable {
+public class MyBooksController implements Initializable {
 
 	/**
 	 * Main table in the Popularity report screen
@@ -126,7 +126,6 @@ public class UserBooksController implements Initializable {
 		//
 
 		initializeTable();
-		initializeLabel();
 		
 		table.setRowFactory( tv -> {
 		    TableRow<Purchase> row = new TableRow<>();
@@ -189,8 +188,8 @@ public class UserBooksController implements Initializable {
 	 */
 	private void initializeTable() {
 		ArrayList<String> elementsList = new ArrayList<String>();
-		elementsList.add(selectedUser.getId());
-		Message message = new Message(ActionType.USEREPORT, elementsList);
+		elementsList.add(selectedUser.getId().toString());
+		Message message = new Message(ActionType.MY_BOOKS, elementsList);
 		try {
 			ClientController.clientConnectionController.sendToServer(message);
 
@@ -264,7 +263,7 @@ public class UserBooksController implements Initializable {
 	 *            a specific user that the list will be based upon
 	 */
 	public static void setSelectedUser(User selectedUser) {
-		UserBooksController.setSelectedUser(selectedUser);
+		MyBooksController.setSelectedUser(selectedUser);
 
 	}
 
@@ -298,14 +297,6 @@ public class UserBooksController implements Initializable {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Creates a label displaying the current user
-	 */
-	private void initializeLabel() {
-		this.titleLabel.setText(selectedUser.getFirstname() + " " + selectedUser.getLastname() + " Report");
-
 	}
 
 	/**
