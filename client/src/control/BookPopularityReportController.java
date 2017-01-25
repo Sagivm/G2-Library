@@ -355,7 +355,7 @@ public class BookPopularityReportController implements Initializable {
 		specificList=new ArrayList<Popularity>(list);
 		displaybooks();
 	}
-
+//
 	/**
 	 * Calling displaybooks() declaring that we will display all the books that
 	 * have the selected domain
