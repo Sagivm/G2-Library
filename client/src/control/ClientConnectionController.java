@@ -477,7 +477,7 @@ public class ClientConnectionController extends AbstractClient{
 			BookManagermentRecv.canContinue = true;
 			break;
 		}
-		
+		//
 		case GET_DOMAINS_WITH_ID: {
 			BookManagementController.domainsList = replay.getElementsList();
 			BookManagermentGetDomainsWithIdRecv.canContinue=true;
