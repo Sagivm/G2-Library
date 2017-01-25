@@ -328,7 +328,8 @@ public class ClientConnectionController extends AbstractClient{
 			}
 
 			BookManagementController.selectedAuthorsString = list;
-			BookManagermentRecv.canContinue = true;
+			BookManagermentGetBookAuthorsRecv.canContinue = true;
+			BookManagermentGetBookAuthorsRecv2.canContinue = true;
 			
 			break;
 		}
@@ -442,13 +443,15 @@ public class ClientConnectionController extends AbstractClient{
 			SearchBookController.authorList = list;
 			BookManagementController.authorList = list;
 			SearchBookAuthorsRecv.canContinue = true;
-			BookManagermentRecv.canContinue =true;
+			BookManagermentGetAuthorsRecv.canContinue =true;
+			
+			BookManagermentGetAuthorsRecv2.canContinue = true;
 			break;
 		}
 		
 		case GET_NUMBER_BOOK_AT_DOMAIN: {
 			BookManagementController.countBookByDomain = Integer.parseInt(replay.getElementsList().get(0));
-			BookManagermentRecv.canContinue =true;
+			BookManagermentGetNumberBookAtDomainRecv.canContinue =true;
 			break;
 		}
 		
@@ -461,7 +464,7 @@ public class ClientConnectionController extends AbstractClient{
 		
 		case GET_NUMBER_BOOK_AT_SUBJECT: {
 			BookManagementController.countBookBySubject = Integer.parseInt(replay.getElementsList().get(0));
-			BookManagermentRecv.canContinue = true;
+			BookManagermentGetNumberBookAtSubjectRecv.canContinue = true;
 			break;
 		}
 
@@ -474,26 +477,36 @@ public class ClientConnectionController extends AbstractClient{
 		
 		case GET_DOMAINS_WITH_ID: {
 			BookManagementController.domainsList = replay.getElementsList();
-			BookManagermentRecv.canContinue=true;
+			BookManagermentGetDomainsWithIdRecv.canContinue=true;
+			BookManagermentGetDomainsWithIdRecv2.canContinue=true;
+			BookManagermentGetDomainsWithIdRecv3.canContinue=true;
+			BookManagermentGetDomainsWithIdRecv4.canContinue=true;
+			BookManagermentGetDomainsWithIdRecv5.canContinue=true;
+			BookManagermentGetDomainsWithIdRecv6.canContinue=true;
 			break;
 		}
 		
 		case GET_SUBJECTS_INFO: {
 			BookManagementController.subjectsList = replay.getElementsList();
-			BookManagermentRecv.canContinue=true;
+			BookManagermentGetSubjectsInfoRecv.canContinue=true;
+			BookManagermentGetSubjectsInfoRecv2.canContinue=true;
+			BookManagermentGetSubjectsInfoRecv3.canContinue=true;
+			BookManagermentGetSubjectsInfoRecv4.canContinue=true;
 			break;
 		}
 		
 		case GET_SUBJECTS: {
 			BookManagementController.subjectList = replay.getElementsList();
 			BookManagementController.subjectListOfBook = replay.getElementsList();
-			BookManagermentRecv.canContinue=true;
+			BookManagermentGetSubjectsRecv.canContinue=true;
+			BookManagermentGetSubjectsRecv2.canContinue=true;
+			BookManagermentGetSubjectsRecv3.canContinue=true;
 			break;
 		}
 		
 		case GET_BOOK_SUBJETCS: {
 			BookManagementController.selectedSubjectString = replay.getElementsList();
-			BookManagermentRecv.canContinue=true;
+			BookManagermentGetBookSubjectsRecv.canContinue=true;
 			break;
 		}
 
@@ -508,6 +521,7 @@ public class ClientConnectionController extends AbstractClient{
 				UserReportController.data = replay.getElementsList();
 			else
 				UserReportController.data = null;
+			UserBooksRecv.canContinue = true;
 			break;
 		}
 		case GETDOMAINSSPECIFIC: {
@@ -554,6 +568,7 @@ public class ClientConnectionController extends AbstractClient{
 		}
 		case BOOKREPORT: {
 			BookReportController.data=replay.getElementsList();
+			BookReportRecv.canContinue = true;
 			break;
 
 		}
@@ -565,7 +580,7 @@ public class ClientConnectionController extends AbstractClient{
 		
 		case GET_BOOK_LANGUAGE: {
 			BookManagementController.editBookLanguage=replay.getElementsList().get(0);
-			BookManagermentRecv.canContinue = true;
+			BookManagermentGetBookLanguageRecv.canContinue = true;
 			//System.out.println(replay.getElementsList().get(0));
 			break;	
 		}
@@ -573,7 +588,7 @@ public class ClientConnectionController extends AbstractClient{
 		case GET_BOOK_TABLE_OF_CONTENT: {
 			BookManagementController.editBookTableOfContant=replay.getElementsList().get(0);
 			//System.out.println(replay.getElementsList().get(0));
-			BookManagermentRecv.canContinue = true;
+			BookManagermentGetBookTocRecv.canContinue = true;
 			break;	
 		}
 		
@@ -626,7 +641,9 @@ public class ClientConnectionController extends AbstractClient{
 		
 		case GET_BOOK_LIST: {
 			BookManagementController.BooksList = replay.getElementsList();
-			BookManagermentRecv.canContinue = true;
+			BookManagermentGetBookListRecv.canContinue = true;
+			BookManagermentGetBookListRecv2.canContinue = true;
+			BookManagermentGetBookListRecv3.canContinue=true;
 			break;
 		}
 		

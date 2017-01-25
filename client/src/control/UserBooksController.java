@@ -198,6 +198,21 @@ public class UserBooksController implements Initializable {
 
 			// actionToDisplay("Warning",ActionType.CONTINUE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 		}
+		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				UserBooksRecv recv_userReport = new UserBooksRecv();
+				recv_userReport.start();
+				synchronized (recv_userReport) {
+					try{
+						recv_userReport.wait();
+					}catch(InterruptedException e){
+						e.printStackTrace();
+					}
+				}
+			}});
+		
 		receiver();
 
 	}
@@ -455,4 +470,28 @@ public class UserBooksController implements Initializable {
 
 	}
 
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class UserBooksRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
 }

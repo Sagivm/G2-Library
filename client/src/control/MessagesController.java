@@ -86,13 +86,23 @@ public class MessagesController implements ScreensIF
 			actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 		}
 		
+		  //itai
+		  Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					MessagesRecv recv_getMessages = new MessagesRecv();
+					recv_getMessages.start();
+						synchronized (recv_getMessages) {
+							try{
+								recv_getMessages.wait();
+							}catch(InterruptedException e){
+								e.printStackTrace();
+							}
+						}
+				}});
 		
 		Platform.runLater(() -> {
-			try {
-				TimeUnit.MILLISECONDS.sleep(300);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
+
 			table.setEditable(true);
 			
 			dateCol.setCellValueFactory(
