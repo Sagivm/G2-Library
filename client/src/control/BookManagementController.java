@@ -2528,11 +2528,12 @@ private Button editAuthorSubmit;
   	  				 
   	  				 ///////////////////////////////////////////
   	  				 
-  	  				Platform.runLater(() -> {
+  	  				
   	  				    actionOnError(ActionType.CONTINUE, "The subject added successfully!");
   	  				addSubjectsName.setText("");
   	  				addSubjectsDomainsList.getSelectionModel().clearSelection();
-  	  				    
+  	  				
+  	  				
   	  				
   	  			dataSubjects.clear();
   	  		  	  Message message7 = prepareGetDomainsWithId(ActionType.GET_SUBJECTS_INFO);
@@ -2542,37 +2543,33 @@ private Button editAuthorSubmit;
   	  	  		  e2.printStackTrace();
   	  	  	   actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
   	  	  	  }
-  	  	  //itai
-  	  	  Platform.runLater(new Runnable() {
-  	  			@Override
-  	  			public void run() {
+
   	  					BookManagermentGetSubjectsInfoRecv3 recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv3();
   	  					recv_getSubjectsInfo.start();
   	  					synchronized (recv_getSubjectsInfo) {
   	  						try{
   	  							recv_getSubjectsInfo.wait();
-  	  						}catch(InterruptedException e){
-  	  							e.printStackTrace();
+  	  						}catch(InterruptedException e2){
+  	  							e2.printStackTrace();
   	  						}
-  	  	  	  	  		Platform.runLater(() -> {
-  	    	  	  			for(int i=0;i<subjectsList.size();i+=4){
-  	    	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-  	    	  	  			}
-  	    	  	  	  });
   	  	  	  	  		
-  	  	  				mainSubjectTable.setItems(dataSubjects);
-  	    	  			mainSubjectPane.setVisible(true);
-  	    	  				addSubjectPane.setVisible(false);
-  	    	  			editSubjectPane.setVisible(false);
+  	    	  	  			for(int i=0;i<subjectsList.size();i+=4)
+  	    	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
+  	    	  	  			
+  	    	  	  	
+  	  	  	  	  		
+	  	  	  				mainSubjectTable.setItems(dataSubjects);
+	  	    	  			mainSubjectPane.setVisible(true);
+	  	    	  				addSubjectPane.setVisible(false);
+	  	    	  			editSubjectPane.setVisible(false);
   	  					}
-  	  			}});
+  	  		
   	  	  	  
 
 
 
   	  				    
-  	  				    
-  	  				});
+  	  			
   	  			}
   	  		});
   		
@@ -2590,7 +2587,9 @@ private Button editAuthorSubmit;
 			if (SubjectName.equals("") || SubjectDomain.equals(""))
 			    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");
 			else{
-				SubjectDomain=SubjectDomain.substring(SubjectDomain.charAt('(')+1, SubjectDomain.charAt(')'));
+				//System.out.println(SubjectDomain);
+				SubjectDomain=SubjectDomain.substring(SubjectDomain.indexOf('(')+1, SubjectDomain.indexOf(')'));
+				
 				Message message6 = prepareEditSubject(ActionType.EDIT_SUBJECT, subjectId, SubjectName, SubjectDomain);
 				 try {
 				     ClientController.clientConnectionController.sendToServer(message6);

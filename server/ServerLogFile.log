@@ -1,45 +1,7 @@
-ιπε 25, 2017 8:25:48 PM control.ServerController writeToLog
+ιπε 25, 2017 9:16:03 PM control.ServerController writeToLog
 INFO: Connected to database
-ιπε 25, 2017 8:25:48 PM control.ServerController writeToLog
+ιπε 25, 2017 9:16:03 PM control.ServerController writeToLog
 INFO: Server listening for connections
 on port: 1337
-ιπε 25, 2017 8:26:21 PM control.ServerController writeToLog
+ιπε 25, 2017 9:16:05 PM control.ServerController writeToLog
 INFO: Login attempt
-ιπε 25, 2017 8:26:26 PM control.ServerController writeToLog
-INFO: Search counter of book ID '12' was increased from '1' to '2'
-ιπε 25, 2017 8:26:26 PM control.ServerController writeToLog
-INFO: Search counter of book ID '9' was increased from '1' to '2'
-ιπε 25, 2017 8:26:26 PM control.ServerController writeToLog
-INFO: Search counter of book ID '11' was increased from '1' to '2'
-ιπε 25, 2017 8:27:31 PM control.ServerController writeToLog
-INFO: Login attempt
-ιπε 25, 2017 8:27:36 PM control.ServerController writeToLog
-INFO: Search counter of book ID '12' was increased from '2' to '3'
-ιπε 25, 2017 8:27:36 PM control.ServerController writeToLog
-INFO: Search counter of book ID '9' was increased from '2' to '3'
-ιπε 25, 2017 8:27:36 PM control.ServerController writeToLog
-INFO: Search counter of book ID '11' was increased from '2' to '3'
-ιπε 25, 2017 8:28:40 PM control.ServerController writeToLog
-INFO: Login attempt
-ιπε 25, 2017 8:28:44 PM control.ServerController writeToLog
-INFO: Search counter of book ID '12' was increased from '3' to '4'
-ιπε 25, 2017 8:28:44 PM control.ServerController writeToLog
-INFO: Search counter of book ID '9' was increased from '3' to '4'
-ιπε 25, 2017 8:28:44 PM control.ServerController writeToLog
-INFO: Search counter of book ID '11' was increased from '3' to '4'
-ιπε 25, 2017 8:30:11 PM control.ServerController writeToLog
-INFO: Login attempt
-ιπε 25, 2017 8:30:17 PM control.ServerController writeToLog
-INFO: Search counter of book ID '12' was increased from '4' to '5'
-ιπε 25, 2017 8:30:17 PM control.ServerController writeToLog
-INFO: Search counter of book ID '9' was increased from '4' to '5'
-ιπε 25, 2017 8:30:17 PM control.ServerController writeToLog
-INFO: Search counter of book ID '11' was increased from '4' to '5'
-ιπε 25, 2017 8:34:49 PM control.ServerController writeToLog
-INFO: Login attempt
-ιπε 25, 2017 8:34:54 PM control.ServerController writeToLog
-INFO: Search counter of book ID '12' was increased from '5' to '6'
-ιπε 25, 2017 8:34:54 PM control.ServerController writeToLog
-INFO: Search counter of book ID '9' was increased from '5' to '6'
-ιπε 25, 2017 8:34:54 PM control.ServerController writeToLog
-INFO: Search counter of book ID '11' was increased from '5' to '6'
