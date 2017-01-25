@@ -252,7 +252,7 @@ public class UserPageController implements ScreensIF{
 	@FXML
 	public void backButtonPressed(ActionEvent event)
 	{
-		
+		SearchUserResultsRecv.canContinue=true;
 		if(ClientUI.getTypeOfUser()=="Librarian")
     	{
 			SearchUserController.updateSearchUserResults=2;

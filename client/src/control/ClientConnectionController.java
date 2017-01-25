@@ -306,7 +306,7 @@ public class ClientConnectionController extends AbstractClient{
 			ArrayList<String> list = new ArrayList<String>();
 			list=replay.getElementsList();
 			SearchUserResultsController.userResult = list;
-			SearchUserRecv.canContinue=true;
+			SearchUserResultsRecv.canContinue=true;
 			break;
 		}
 		

@@ -134,19 +134,7 @@ public class SearchUserController implements ScreensIF{
 			actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 		}
 		
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				SearchUserRecv recv_searchUser = new SearchUserRecv();
-				recv_searchUser.start();
-				synchronized (recv_searchUser) {
-					try{
-						recv_searchUser.wait();
-					}catch(InterruptedException e){
-						e.printStackTrace();
-					}
-				}
-			}});
+
 		
     	if(ClientUI.getTypeOfUser()=="Librarian")
     	{
@@ -242,26 +230,3 @@ public class SearchUserController implements ScreensIF{
 }
 
 
-/** This class makes sure the information from the server was received successfully.
- * @author itain
- */
-class SearchUserRecv extends Thread{
-	
-	/**
-	 * Get true after receiving values from DB.
-	 */
-	public static boolean canContinue = false;
-	
-	@Override
-	public void run() {
-		synchronized (this) {
-        	while(canContinue == false)
-    		{
-        		System.out.print("");
-    		}
-        	canContinue = false;
-			notify();
-		}
-	}
-	
-}

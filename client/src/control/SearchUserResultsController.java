@@ -124,6 +124,21 @@ public class SearchUserResultsController implements ScreensIF{
 	 */
 	@FXML
 	private void initialize(){
+		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				SearchUserResultsRecv recv_searchUser = new SearchUserResultsRecv();
+				recv_searchUser.start();
+				synchronized (recv_searchUser) {
+					try{
+						recv_searchUser.wait();
+					}catch(InterruptedException e){
+						e.printStackTrace();
+					}
+				}
+			}});
+		
 			if(SearchUserController.updateSearchUserResults==1) //updateBlockStatus
 			{
 				for(int i=0;i<userResult.size();i++)
@@ -342,6 +357,28 @@ public class SearchUserResultsController implements ScreensIF{
 }
 
 
-
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class SearchUserResultsRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
 
 
