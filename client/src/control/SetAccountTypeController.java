@@ -5,9 +5,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import boundry.ClientUI;
 import entity.GeneralMessages;
 import entity.Message;
 import entity.Register;
+import entity.ScreensInfo;
 import enums.ActionType;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -32,6 +34,11 @@ public class SetAccountTypeController implements Initializable {
 	@FXML
 	private ComboBox settingList;
 
+	/**
+	 * static reference of user home page.
+	 */
+	private static HomepageUserController userMain;
+	
 	/**
 	 * Initialize account type list with available account types for the user
 	 * 
@@ -105,7 +112,24 @@ public class SetAccountTypeController implements Initializable {
 
 				actionToDisplay("Warning", ActionType.CONTINUE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 			}
-		} else {
+			if (userMain == null)
+        		userMain = new HomepageUserController();
+        	userMain.setPage(null);
+        	
+        	ScreenController screenController = new ScreenController();
+    		try{
+    			if(ClientUI.getTypeOfUser()=="Librarian")
+    				screenController.replaceSceneContent(ScreensInfo.HOMEPAGE_LIBRARIAN_SCREEN,ScreensInfo.HOMEPAGE_LIBRARIAN_TITLE);						
+    			else if(ClientUI.getTypeOfUser()=="Manager")
+    				screenController.replaceSceneContent(ScreensInfo.HOMEPAGE_MANAGER_SCREEN,ScreensInfo.HOMEPAGE_MANAGER_TITLE);
+    			else if(ClientUI.getTypeOfUser()=="User")
+    				screenController.replaceSceneContent(ScreensInfo.HOMEPAGE_USER_SCREEN,ScreensInfo.HOMEPAGE_USER_TITLE);
+    		} 
+    		catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
+		else {
 			actionToDisplay("Info", ActionType.CONTINUE, "Subscription must be selected");
 		}
 

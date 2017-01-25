@@ -664,7 +664,7 @@ public class BookPageController implements ScreensIF
 	}
 	
 	/**
-	 * This buuton opens pop-up with 3 options of formats to download the book.
+	 * This button opens pop-up with 3 options of formats to download the book.
 	 * @param event
 	 * @throws IOException
 	 */

@@ -61,6 +61,11 @@ public class HomepageUserController implements ScreensIF {
 	@FXML private Button btnPayForSubscription;
 	
 	/**
+	 * Button for setting account type.
+	 */
+	@FXML private Button setAccType;
+	
+	/**
 	 * The user full name will shown in this label.
 	 */
 	@FXML private Label usernameLabel;
@@ -273,6 +278,7 @@ public class HomepageUserController implements ScreensIF {
 			} 
 		 }
 		btnPayForSubscription.setDisable(true);
+		setAccType.setDisable(true);
 		ArrayList<String> userId = new ArrayList<>();
 		userId.add(connectedUser.getId());
 		Message message = prepareGetFromSQL(ActionType.CHECK_ACCOUNT_TYPE,userId);
@@ -308,6 +314,8 @@ public class HomepageUserController implements ScreensIF {
     			
     			if(success == true)
     			{
+    				if( subscription.get(1).equals("Standard"))
+    					setAccType.setDisable(false);
     				if( subscription.get(1).equals("PendingPayment") & (subscription.get(0).equals("Monthly") || subscription.get(0).equals("Yearly") ))
     					btnPayForSubscription.setDisable(false);
     				else if(subscription.get(0).equals("Monthly") || subscription.get(0).equals("Yearly"))

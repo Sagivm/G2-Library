@@ -22,6 +22,11 @@ public enum AccountStatus {
 	/**
 	 * States that the user wants to change his account type to yearly subscription.
 	 */
-	PendingYearly
+	PendingYearly,
+	
+	/**
+	 * States that the user have to pay for his subscription.
+	 */
+	PendingPayment
 
 };
