@@ -153,17 +153,21 @@ public class BookPopularityReportController implements Initializable {
 
 			// actionToDisplay("Warning",ActionType.CONTINUE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 		}
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-
-				try {
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		
+		  //itai
+		  Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					BookPopularityReportGetTotalPriceRecv recv_getTotalPrice = new BookPopularityReportGetTotalPriceRecv();
+					recv_getTotalPrice.start();
+						synchronized (recv_getTotalPrice) {
+							try{
+								recv_getTotalPrice.wait();
+							}catch(InterruptedException e){
+								e.printStackTrace();
+							}
+						}
+				}});
 
 	}
 	/**
@@ -189,6 +193,23 @@ public class BookPopularityReportController implements Initializable {
 
 			// actionToDisplay("Warning",ActionType.CONTINUE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 		}
+		
+		  //itai
+		  Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					BookPopularityReportGetDomainSpecificRecv recv_getDomainSpecific = new BookPopularityReportGetDomainSpecificRecv();
+					recv_getDomainSpecific.start();
+						synchronized (recv_getDomainSpecific) {
+							try{
+								recv_getDomainSpecific.wait();
+							}catch(InterruptedException e){
+								e.printStackTrace();
+							}
+						}
+				}});
+		
+		
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -218,6 +239,22 @@ public class BookPopularityReportController implements Initializable {
 
 			// actionToDisplay("Warning",ActionType.CONTINUE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 		}
+		
+		  //itai
+		  Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					BookPopularityReportPopularityReportRecv recv_popularityReport = new BookPopularityReportPopularityReportRecv();
+					recv_popularityReport.start();
+						synchronized (recv_popularityReport) {
+							try{
+								recv_popularityReport.wait();
+							}catch(InterruptedException e){
+								e.printStackTrace();
+							}
+						}
+				}});
+		
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -525,3 +562,78 @@ public class BookPopularityReportController implements Initializable {
 	}
 
 }
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookPopularityReportGetTotalPriceRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookPopularityReportGetDomainSpecificRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookPopularityReportPopularityReportRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+

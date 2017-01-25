@@ -1206,21 +1206,7 @@ private Button editAuthorSubmit;
 	    	namesselected.add(i, "(" + selectedAuthorsString.get(i).getId() + ")" + "\t" + selectedAuthorsString.get(i).getFirstname() + " " + selectedAuthorsString.get(i).getLastname());
 	    	names.remove(namesselected.get(i));
 	    }
-	    
-		  //itai
-		  Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-						BookManagermentRecv recv_SubjectListOfBook = new BookManagermentRecv();
-						recv_SubjectListOfBook.start();
-						synchronized (recv_SubjectListOfBook) {
-							try{
-								recv_SubjectListOfBook.wait();
-							}catch(InterruptedException e){
-								e.printStackTrace();
-							}
-						}
-				}});
+
 	    
 	    ArrayList < String > subjects = new ArrayList < String > ();
 	    editBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -1231,21 +1217,6 @@ private Button editAuthorSubmit;
 	    ArrayList < String > subjectsselected = new ArrayList < String > ();
 	    editBookSubjectsListSelected.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 	    
-	    
-		  //itai
-		  Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-						BookManagermentRecv recv_selectedSubjectString = new BookManagermentRecv();
-						recv_selectedSubjectString.start();
-						synchronized (recv_selectedSubjectString) {
-							try{
-								recv_selectedSubjectString.wait();
-							}catch(InterruptedException e){
-								e.printStackTrace();
-							}
-						}
-				}});
 	    
 	    //System.out.println(statush.get(1).getFirstname());
 	    for (int i = 0; i < selectedSubjectString.size(); i++) {
@@ -4578,7 +4549,7 @@ class BookManagermentGetAuthorsRecv6 extends Thread{
 /** This class makes sure the information from the server was received successfully.
  * @author itain
  */
-class BookManagermentRecv extends Thread{
+class BookManagermentGetDomainsRecv extends Thread{
 	
 	/**
 	 * Get true after receiving values from DB.
@@ -4598,3 +4569,5 @@ class BookManagermentRecv extends Thread{
 	}
 	
 }
+
+

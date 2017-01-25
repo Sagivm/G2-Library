@@ -474,7 +474,6 @@ public class ClientConnectionController extends AbstractClient{
 		case GET_DOMAINS: {
 			SearchBookController.domainList = replay.getElementsList();
 			SearchBookDomainsRecv.canContinue = true;
-			BookManagermentRecv.canContinue = true;
 			break;
 		}
 		//
@@ -529,6 +528,7 @@ public class ClientConnectionController extends AbstractClient{
 		}
 		case GETDOMAINSSPECIFIC: {
 			BookPopularityReportController.domainsdata = replay.getElementsList();
+			BookPopularityReportGetDomainSpecificRecv.canContinue=true;
 			break;
 		}
 		case POPULARITYREPORT: {
@@ -536,6 +536,7 @@ public class ClientConnectionController extends AbstractClient{
 				BookPopularityReportController.data = replay.getElementsList();
 			else
 				BookPopularityReportController.data = null;
+			BookPopularityReportPopularityReportRecv.canContinue=true;
 			break;
 		}
 		
@@ -676,6 +677,7 @@ public class ClientConnectionController extends AbstractClient{
 				BookPopularityReportController.priceList=replay.getElementsList();
 			else
 				BookPopularityReportController.priceList = null;
+			BookPopularityReportGetTotalPriceRecv.canContinue=true;
 			break;
 		}
 		
