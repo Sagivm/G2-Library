@@ -405,7 +405,7 @@ public class HomepageUserController implements ScreensIF {
 	public void myBooksButtonPressed()
 	{
 		try {
-			loadPage(ScreensInfo.USER_REPORT);
+			loadPage(ScreensInfo.MY_BOOKS);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -444,15 +444,6 @@ public class HomepageUserController implements ScreensIF {
 			primaryStage.setY(primaryScreenBounds.getMaxY()/2.0 - primaryStage.getHeight()/2.0);
 
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void testbookreport() {
-		try {
-			loadPage(ScreensInfo.BOOK_POPULARITY_REPORT);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

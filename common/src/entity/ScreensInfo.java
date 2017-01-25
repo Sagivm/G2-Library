@@ -205,6 +205,11 @@ public class ScreensInfo {
 	 *  user report screen path
 	 */
 	public static final String USER_REPORT="/boundry/UserReportUI.fxml";
+	
+	/**
+	 *  user books screen path
+	 */
+	public static final String MY_BOOKS="/boundry/MyBooksUI.fxml";
 
 	/**
 	 *  Search book management screen path
@@ -287,7 +292,7 @@ public class ScreensInfo {
 	/**
 	 * Displays user's book list
 	 */
-	public static final String MY_BOOKS= "/boundry/UserReportUI.fxml";
+	//public static final String MY_BOOKS= "/boundry/UserReportUI.fxml";
 	/**
 	 * Set book popularity report screen.
 	 */

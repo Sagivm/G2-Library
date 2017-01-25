@@ -988,6 +988,30 @@ public class ServerController extends AbstractServer {
 			break;
 
 		}
+		case MY_BOOKS: {
+			ArrayList<String> elementsList = new ArrayList<String>();
+			try {
+				ResultSet rs = DatabaseController.searchInDatabase(
+						"Select books.sn,title,authors.firstName,authors.lastName,language,purchaseDate,bought_book.price "
+						+ "FROM books,bought_book,authors,book_authors "
+						+ "WHERE books.sn=bought_book.bookId and books.sn=book_authors.bookId and authors.id=book_authors.authorid and bought_book.userId="
+								+ data.get(0) + ";");
+				if (!rs.isBeforeFirst())
+					replay = new Replay(ActionType.MY_BOOKS, false);// no data
+				else {
+					while (rs.next()) {
+						elementsList.add(String.valueOf(rs.getInt(1)) + "^" + rs.getString(2) + "^" + rs.getString(3)
+								+ " " + rs.getString(4) + "^" + rs.getString(5) + "^" +rs.getString(6) 
+								+ "^" +String.valueOf(rs.getFloat(7)));
+					}
+					replay = new Replay(ActionType.MY_BOOKS, true, elementsList);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			break;
+
+		}
 		case GETDOMAINSSPECIFIC: {
 			ArrayList<String> elementsList = new ArrayList<String>();
 			try {
