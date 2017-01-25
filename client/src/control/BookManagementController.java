@@ -2563,7 +2563,7 @@ private Button editAuthorSubmit;
   	  Platform.runLater(new Runnable() {
   			@Override
   			public void run() {
-  				BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+  				BookManagermentGetAuthorsRecv3 recv_getAuthors = new BookManagermentGetAuthorsRecv3();
   					recv_getAuthors.start();
   					synchronized (recv_getAuthors) {
   						try{
@@ -2639,6 +2639,10 @@ private Button editAuthorSubmit;
   					    } catch (Exception e1) {
   					     e1.printStackTrace();
   					    }
+  					 	////////////////////////////////////
+  					 
+  					 	///////////////////////////////////
+  					 
   					    Platform.runLater(() -> {
   					    actionOnError(ActionType.CONTINUE, "The author edited successfully!");
   					    editAuthorFirstName.setText("");
@@ -2656,7 +2660,7 @@ private Button editAuthorSubmit;
   	  				  Platform.runLater(new Runnable() {
   	  						@Override
   	  						public void run() {
-  	  							BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+  	  								BookManagermentGetAuthorsRecv4 recv_getAuthors = new BookManagermentGetAuthorsRecv4();
   	  								recv_getAuthors.start();
   	  								synchronized (recv_getAuthors) {
   	  									try{
@@ -2690,7 +2694,7 @@ private Button editAuthorSubmit;
   	  		 Platform.runLater(new Runnable() {
   	  			@Override
   	  			public void run() {
-  	  					BookManagermentRecv recv_getBooks = new BookManagermentRecv();
+  	  					BookManagermentGetBookListRecv4 recv_getBooks = new BookManagermentGetBookListRecv4();
   	  					recv_getBooks.start();
   	  					synchronized (recv_getBooks) {
   	  						try{
@@ -2771,7 +2775,7 @@ private Button editAuthorSubmit;
    				  Platform.runLater(new Runnable() {
    						@Override
    						public void run() {
-   								BookManagermentRecv recv_getNumberBookOfAuthor = new BookManagermentRecv();
+   								BookManagermentGetNumberBookOfAuthorRecv recv_getNumberBookOfAuthor = new BookManagermentGetNumberBookOfAuthorRecv();
    								recv_getNumberBookOfAuthor.start();
    								synchronized (recv_getNumberBookOfAuthor) {
    									try{
@@ -2806,7 +2810,7 @@ private Button editAuthorSubmit;
   	  				  Platform.runLater(new Runnable() {
   	  						@Override
   	  						public void run() {
-  	  							BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+  	  							BookManagermentGetAuthorsRecv5 recv_getAuthors = new BookManagermentGetAuthorsRecv5();
   	  								recv_getAuthors.start();
   	  								synchronized (recv_getAuthors) {
   	  									try{
@@ -2880,7 +2884,7 @@ private Button editAuthorSubmit;
   	  				  Platform.runLater(new Runnable() {
   	  						@Override
   	  						public void run() {
-  	  							BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+  	  								BookManagermentGetAuthorsRecv6 recv_getAuthors = new BookManagermentGetAuthorsRecv6();
   	  								recv_getAuthors.start();
   	  								synchronized (recv_getAuthors) {
   	  									try{
@@ -3862,6 +3866,9 @@ class BookManagermentGetAuthorsRecv extends Thread{
 	
 }
 
+
+
+
 /** This class makes sure the information from the server was received successfully.
  * @author itain
  */
@@ -4421,6 +4428,152 @@ class BookManagermentGetSubjectsInfoRecv4 extends Thread{
 	}
 	
 }
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetAuthorsRecv3 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetAuthorsRecv4 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookListRecv4 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetNumberBookOfAuthorRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetAuthorsRecv5 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetAuthorsRecv6 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
 
 /** This class makes sure the information from the server was received successfully.
  * @author itain
