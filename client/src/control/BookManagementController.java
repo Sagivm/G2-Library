@@ -831,6 +831,8 @@ private Button editAuthorSubmit;
  * this attribute insert the data (filtered books by search) to the table.
  */
  private ObservableList < PropertyBook > filteredData = FXCollections.observableArrayList();
+ 
+
 
  /**
  * initialize all the listener and data from the DB in the form on load.
@@ -849,6 +851,7 @@ private Button editAuthorSubmit;
   delBtn.setVisible(false);
   editBtn.setVisible(false);
   hideBtn.setVisible(false);
+  
   
   
   Message message = prepareGetBooksList(ActionType.GET_BOOK_LIST);
@@ -1090,7 +1093,9 @@ private Button editAuthorSubmit;
 	  Message message7 = prepareGetSubjects(ActionType.GET_SUBJECTS);
 	  Message message8 = prepareGetLanguage(ActionType.GET_BOOK_LANGUAGE,selectedItem.getBookSn());
 	  Message message9 = prepareGetTableOfContent(ActionType.GET_BOOK_TABLE_OF_CONTENT,selectedItem.getBookSn());
-
+	  
+	  
+	  
 	  try {
 	    ClientController.clientConnectionController.sendToServer(message4);
 	    ClientController.clientConnectionController.sendToServer(message5);
@@ -1114,6 +1119,7 @@ private Button editAuthorSubmit;
 						}catch(InterruptedException e){
 							e.printStackTrace();
 						}
+						
 					}
 			}});
 	  
@@ -1130,6 +1136,7 @@ private Button editAuthorSubmit;
 						}catch(InterruptedException e){
 							e.printStackTrace();
 						}
+						
 					}
 			}});
 	  
@@ -1146,6 +1153,7 @@ private Button editAuthorSubmit;
 						}catch(InterruptedException e){
 							e.printStackTrace();
 						}
+						
 					}
 			}});
 		
@@ -1162,6 +1170,7 @@ private Button editAuthorSubmit;
 							}catch(InterruptedException e){
 								e.printStackTrace();
 							}
+							
 						}
 				}});
 		  
@@ -1178,6 +1187,7 @@ private Button editAuthorSubmit;
 							}catch(InterruptedException e){
 								e.printStackTrace();
 							}
+							
 						}
 				}});
 		
@@ -1193,98 +1203,103 @@ private Button editAuthorSubmit;
 							}catch(InterruptedException e){
 								e.printStackTrace();
 							}
+							
+						    ArrayList < String > names = new ArrayList < String > ();
+						    editBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+						    //System.out.println(statush.get(1).getFirstname());
+						    for (int i = 0; i < authorList.size(); i++) {
+						    		names.add(i, "(" + authorList.get(i).getId() + ")" + "\t" + authorList.get(i).getFirstname() + " " + authorList.get(i).getLastname());
+						    }
+						    ArrayList < String > namesselected = new ArrayList < String > ();
+						    editBookAuthorsListSelected.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+						    for (int i = 0; i < selectedAuthorsString.size(); i++) {
+						    	namesselected.add(i, "(" + selectedAuthorsString.get(i).getId() + ")" + "\t" + selectedAuthorsString.get(i).getFirstname() + " " + selectedAuthorsString.get(i).getLastname());
+						    	names.remove(namesselected.get(i));
+						    }
+
+						    
+						    ArrayList < String > subjects = new ArrayList < String > ();
+						    editBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+						    //System.out.println(statush.get(1).getFirstname());
+						    for (int i = 0; i < subjectListOfBook.size(); i++) {
+						    	subjects.add(i, subjectListOfBook.get(i));
+						    }
+						    ArrayList < String > subjectsselected = new ArrayList < String > ();
+						    editBookSubjectsListSelected.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+						    
+						    
+						    //System.out.println(statush.get(1).getFirstname());
+						    for (int i = 0; i < selectedSubjectString.size(); i++) {
+						    	subjectsselected.add(i, selectedSubjectString.get(i));
+						    	subjects.remove(subjectsselected.get(i));
+						    }
+						    
+
+						    //System.out.println(names.get(0));
+						    ObservableList < String > authors = FXCollections.observableArrayList(names);
+						    ObservableList < String > selectedAuthors = FXCollections.observableArrayList(namesselected);
+						    editBookAuthorsList.setItems(authors);    
+						    editBookAuthorsListSelected.setItems(selectedAuthors);
+						    
+							editBookAuthorsLeft.setOnAction((ActionEvent event) -> {
+							        String potential = editBookAuthorsList.getSelectionModel().getSelectedItem();
+							        if (potential != null) {
+							        	editBookAuthorsList.getSelectionModel().clearSelection();
+							        	authors.remove(potential);
+							        	selectedAuthors.add(potential);
+							        }
+							      });
+							
+							editBookAuthorsRight.setOnAction((ActionEvent event) -> {
+						        String potential = editBookAuthorsListSelected.getSelectionModel().getSelectedItem();
+						        if (potential != null) {
+						        	editBookAuthorsListSelected.getSelectionModel().clearSelection();
+						        	selectedAuthors.remove(potential);
+						        	authors.add(potential);
+						        }
+						      });
+							
+							
+						    ObservableList < String > allSubjects = FXCollections.observableArrayList(subjects);
+						    ObservableList < String > selectedSubjects = FXCollections.observableArrayList(subjectsselected);
+						    editBookSubjectsList.setItems(allSubjects);    
+						    editBookSubjectsListSelected.setItems(selectedSubjects);
+						    
+						    editBookSubjectsLeft.setOnAction((ActionEvent event) -> {
+							        String potential = editBookSubjectsList.getSelectionModel().getSelectedItem();
+							        if (potential != null) {
+							        	editBookSubjectsList.getSelectionModel().clearSelection();
+							        	allSubjects.remove(potential);
+							        	selectedSubjects.add(potential);
+							        }
+							      });
+							
+						    editBookSubjectsRight.setOnAction((ActionEvent event) -> {
+						        String potential = editBookSubjectsListSelected.getSelectionModel().getSelectedItem();
+						        if (potential != null) {
+						        	editBookSubjectsListSelected.getSelectionModel().clearSelection();
+						        	selectedSubjects.remove(potential);
+						        	allSubjects.add(potential);
+						        }
+						      });
+
+
+						  
+						   
+						   ObservableList < String > languages = FXCollections.observableArrayList(
+								     "English", "Hebrew", "Russian", "Arabic");
+						   editBookLanguageList.setItems(languages);
+						   editBookLanguageList.getSelectionModel().select(editBookLanguage);
+						   
+						   editBookTableOfContent.setText(editBookTableOfContant); 
+							
 						}
 				}});
 		  
 
-	    ArrayList < String > names = new ArrayList < String > ();
-	    editBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-	    //System.out.println(statush.get(1).getFirstname());
-	    for (int i = 0; i < authorList.size(); i++) {
-	    		names.add(i, "(" + authorList.get(i).getId() + ")" + "\t" + authorList.get(i).getFirstname() + " " + authorList.get(i).getLastname());
-	    }
-	    ArrayList < String > namesselected = new ArrayList < String > ();
-	    editBookAuthorsListSelected.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-	    for (int i = 0; i < selectedAuthorsString.size(); i++) {
-	    	namesselected.add(i, "(" + selectedAuthorsString.get(i).getId() + ")" + "\t" + selectedAuthorsString.get(i).getFirstname() + " " + selectedAuthorsString.get(i).getLastname());
-	    	names.remove(namesselected.get(i));
-	    }
+		  
+		  
 
-	    
-	    ArrayList < String > subjects = new ArrayList < String > ();
-	    editBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-	    //System.out.println(statush.get(1).getFirstname());
-	    for (int i = 0; i < subjectListOfBook.size(); i++) {
-	    	subjects.add(i, subjectListOfBook.get(i));
-	    }
-	    ArrayList < String > subjectsselected = new ArrayList < String > ();
-	    editBookSubjectsListSelected.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-	    
-	    
-	    //System.out.println(statush.get(1).getFirstname());
-	    for (int i = 0; i < selectedSubjectString.size(); i++) {
-	    	subjectsselected.add(i, selectedSubjectString.get(i));
-	    	subjects.remove(subjectsselected.get(i));
-	    }
-	    
-
-	    //System.out.println(names.get(0));
-	    ObservableList < String > authors = FXCollections.observableArrayList(names);
-	    ObservableList < String > selectedAuthors = FXCollections.observableArrayList(namesselected);
-	    editBookAuthorsList.setItems(authors);    
-	    editBookAuthorsListSelected.setItems(selectedAuthors);
-	    
-		editBookAuthorsLeft.setOnAction((ActionEvent event) -> {
-		        String potential = editBookAuthorsList.getSelectionModel().getSelectedItem();
-		        if (potential != null) {
-		        	editBookAuthorsList.getSelectionModel().clearSelection();
-		        	authors.remove(potential);
-		        	selectedAuthors.add(potential);
-		        }
-		      });
-		
-		editBookAuthorsRight.setOnAction((ActionEvent event) -> {
-	        String potential = editBookAuthorsListSelected.getSelectionModel().getSelectedItem();
-	        if (potential != null) {
-	        	editBookAuthorsListSelected.getSelectionModel().clearSelection();
-	        	selectedAuthors.remove(potential);
-	        	authors.add(potential);
-	        }
-	      });
-		
-		
-	    ObservableList < String > allSubjects = FXCollections.observableArrayList(subjects);
-	    ObservableList < String > selectedSubjects = FXCollections.observableArrayList(subjectsselected);
-	    editBookSubjectsList.setItems(allSubjects);    
-	    editBookSubjectsListSelected.setItems(selectedSubjects);
-	    
-	    editBookSubjectsLeft.setOnAction((ActionEvent event) -> {
-		        String potential = editBookSubjectsList.getSelectionModel().getSelectedItem();
-		        if (potential != null) {
-		        	editBookSubjectsList.getSelectionModel().clearSelection();
-		        	allSubjects.remove(potential);
-		        	selectedSubjects.add(potential);
-		        }
-		      });
-		
-	    editBookSubjectsRight.setOnAction((ActionEvent event) -> {
-	        String potential = editBookSubjectsListSelected.getSelectionModel().getSelectedItem();
-	        if (potential != null) {
-	        	editBookSubjectsListSelected.getSelectionModel().clearSelection();
-	        	selectedSubjects.remove(potential);
-	        	allSubjects.add(potential);
-	        }
-	      });
-
-
-	  
-	   
-	   ObservableList < String > languages = FXCollections.observableArrayList(
-			     "English", "Hebrew", "Russian", "Arabic");
-	   editBookLanguageList.setItems(languages);
-	   editBookLanguageList.getSelectionModel().select(editBookLanguage);
-	   
-	   editBookTableOfContent.setText(editBookTableOfContant); 
 
 	  }); //end edit button
 
@@ -1393,21 +1408,23 @@ private Button editAuthorSubmit;
  					}catch(InterruptedException e){
  						e.printStackTrace();
  					}
+ 					
+ 				   Platform.runLater(() -> {
+ 					    ArrayList < String > names = new ArrayList < String > ();
+ 					    addBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+ 					    //System.out.println(statush.get(1).getFirstname());
+ 					    for (int i = 0; i < authorList.size(); i++) {
+ 					     names.add(i, "(" + authorList.get(i).getId() + ")" + "\t" + authorList.get(i).getFirstname() + " " + authorList.get(i).getLastname());
+ 					    }
+ 					    //System.out.println(names.get(0));
+ 					    ObservableList < String > authors = FXCollections.observableArrayList(names);
+ 					    addBookAuthorsList.setItems(authors);
+
+ 					   });
  				}
  		}});
    
-   Platform.runLater(() -> {
-    ArrayList < String > names = new ArrayList < String > ();
-    addBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-    //System.out.println(statush.get(1).getFirstname());
-    for (int i = 0; i < authorList.size(); i++) {
-     names.add(i, "(" + authorList.get(i).getId() + ")" + "\t" + authorList.get(i).getFirstname() + " " + authorList.get(i).getLastname());
-    }
-    //System.out.println(names.get(0));
-    ObservableList < String > authors = FXCollections.observableArrayList(names);
-    addBookAuthorsList.setItems(authors);
 
-   });
 
 
 
@@ -1430,15 +1447,17 @@ private Button editAuthorSubmit;
  					}catch(InterruptedException e){
  						e.printStackTrace();
  					}
+ 					
+ 				   Platform.runLater(() -> {
+ 					    addBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+ 					    ObservableList < String > subjects = FXCollections.observableArrayList(subjectList);
+ 					    addBookSubjectsList.setItems(subjects);
+
+ 					   });
  				}
  		}});
    
-   Platform.runLater(() -> {
-    addBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-    ObservableList < String > subjects = FXCollections.observableArrayList(subjectList);
-    addBookSubjectsList.setItems(subjects);
 
-   });
 
   }); //endbtn
 
@@ -1850,115 +1869,114 @@ private Button editAuthorSubmit;
 						e.printStackTrace();
 					}
 					
-					Platform.runLater(() -> {
-						for(int i=0;i<domainsList.size();i+=2){
+
+						for(int i=0;i<domainsList.size();i+=2)
 							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-						}
-				  });
+						
+						domainId.setCellValueFactory(
+					            new PropertyValueFactory<PropertyDomain, String>("domainId"));
+
+							domainName.setCellValueFactory(
+					            new PropertyValueFactory<PropertyDomain, String>("domainName"));
+							
+							domainId.setStyle( "-fx-alignment: CENTER;");
+							domainName.setStyle( "-fx-alignment: CENTER;");
+							mainDomainTableView.setItems(dataDomains);
+							
+							
+							mainDomainTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+							 if (newSelection != null) {
+								  addDomainEditBtn.setVisible(true);
+								  DomainDeleteBtn.setVisible(true);
+								  }
+							});
+							
+							addDomainEditBtn.setOnAction(e -> {
+								mainDomainPane.setVisible(false);
+								addDomainPane.setVisible(false);
+								editDomainPane.setVisible(true);
+								PropertyDomain selectedItem = mainDomainTableView.getSelectionModel().getSelectedItem();
+								editDomainName.setText(selectedItem.getDomainName());
+							});
+							
+							editDomainBack.setOnAction(e -> {
+								   editDomainName.setText("");
+								   addDomainPane.setVisible(false);
+								   editDomainPane.setVisible(false);
+								   mainDomainPane.setVisible(true);
+								  });
+							
+							editDomainSubmit.setOnAction(e -> {
+								PropertyDomain selectedItem = mainDomainTableView.getSelectionModel().getSelectedItem(); 
+								String DomainId = null;
+								DomainId = selectedItem.getDomainId();
+								String DomainName = null;
+								DomainName = editDomainName.getText();
+								
+								System.out.println(DomainId+" "+DomainName);
+
+								
+								if (DomainName.equals(""))
+								    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");
+								else{
+									Message message5 = prepareEditDomain(ActionType.EDIT_DOMAIN, DomainId, DomainName);
+									 try {
+									     ClientController.clientConnectionController.sendToServer(message5);
+									    } catch (Exception e1) {
+									     e1.printStackTrace();
+									    }
+									    Platform.runLater(() -> {
+									    actionOnError(ActionType.CONTINUE, "The domain edited successfully!");
+									    editDomainName.setText("");
+									    
+									    dataDomains.clear();
+					  				    Message message6 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
+					  				    try {
+					  				     ClientController.clientConnectionController.sendToServer(message6);
+					  				    } catch (IOException e2) {
+					  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+					  				    }
+					  				    
+					  				  //itai
+					  				  Platform.runLater(new Runnable() {
+					  						@Override
+					  						public void run() {
+					  								BookManagermentGetDomainsWithIdRecv2 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv2();
+					  								recv_getDomainsWithId.start();
+					  								synchronized (recv_getDomainsWithId) {
+					  									try{
+					  										recv_getDomainsWithId.wait();
+					  									}catch(InterruptedException e){
+					  										e.printStackTrace();
+					  									}
+					  								}
+					  						}});
+					  				  
+					  				    
+					  				    Platform.runLater(() -> {
+					  						for(int i=0;i<domainsList.size();i+=2){
+					  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
+					  						}
+					  				    });
+					  				    try {
+					  						Thread.sleep(500);
+					  					} catch (Exception e1) {
+					  						e1.printStackTrace();
+					  					}
+									    
+									    addDomainPane.setVisible(false);
+									    editDomainPane.setVisible(false);
+									    mainDomainPane.setVisible(true);
+								});
+								}
+							});
+
 				}
 		}});
   
 
   
-	domainId.setCellValueFactory(
-            new PropertyValueFactory<PropertyDomain, String>("domainId"));
-
-		domainName.setCellValueFactory(
-            new PropertyValueFactory<PropertyDomain, String>("domainName"));
-		
-		domainId.setStyle( "-fx-alignment: CENTER;");
-		domainName.setStyle( "-fx-alignment: CENTER;");
-		mainDomainTableView.setItems(dataDomains);
-		
-		
-		mainDomainTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-		 if (newSelection != null) {
-			  addDomainEditBtn.setVisible(true);
-			  DomainDeleteBtn.setVisible(true);
-			  }
-		});
-		
-		addDomainEditBtn.setOnAction(e -> {
-			mainDomainPane.setVisible(false);
-			addDomainPane.setVisible(false);
-			editDomainPane.setVisible(true);
-			PropertyDomain selectedItem = mainDomainTableView.getSelectionModel().getSelectedItem();
-			editDomainName.setText(selectedItem.getDomainName());
-		});
-		
-		editDomainBack.setOnAction(e -> {
-			   editDomainName.setText("");
-			   addDomainPane.setVisible(false);
-			   editDomainPane.setVisible(false);
-			   mainDomainPane.setVisible(true);
-			  });
-		
-		editDomainSubmit.setOnAction(e -> {
-			PropertyDomain selectedItem = mainDomainTableView.getSelectionModel().getSelectedItem(); 
-			String DomainId = null;
-			DomainId = selectedItem.getDomainId();
-			String DomainName = null;
-			DomainName = editDomainName.getText();
-			
-			//System.out.println(DomainId+" "+DomainName);
-
-			
-			if (DomainName.equals(""))
-			    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");
-			else{
-				Message message5 = prepareEditDomain(ActionType.EDIT_DOMAIN, DomainId, DomainName);
-				 try {
-				     ClientController.clientConnectionController.sendToServer(message5);
-				    } catch (Exception e1) {
-				     e1.printStackTrace();
-				    }
-				 
-				 	////////////////////////////////////////////
-				 
-				 	////////////////////////////////////////////
-				 
-				    Platform.runLater(() -> {
-				    actionOnError(ActionType.CONTINUE, "The domain edited successfully!");
-				    editDomainName.setText("");
-				    
-				    dataDomains.clear();
-  				    Message message6 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
-  				    try {
-  				     ClientController.clientConnectionController.sendToServer(message6);
-  				    } catch (IOException e2) {
-  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  				    }
-  				    
-  				  //itai
-  				  Platform.runLater(new Runnable() {
-  						@Override
-  						public void run() {
-  								BookManagermentGetDomainsWithIdRecv2 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv2();
-  								recv_getDomainsWithId.start();
-  								synchronized (recv_getDomainsWithId) {
-  									try{
-  										recv_getDomainsWithId.wait();
-  									}catch(InterruptedException e){
-  										e.printStackTrace();
-  									}
-  				  				    Platform.runLater(() -> {
-  				  						for(int i=0;i<domainsList.size();i+=2){
-  				  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-  				  						}
-  				  				    });
-  								}
-  						}});
-  				  
-  				    
-
-
-				    
-				    addDomainPane.setVisible(false);
-				    editDomainPane.setVisible(false);
-				    mainDomainPane.setVisible(true);
-			});
-			}
-		});
+	
 
 		
 		
@@ -2037,6 +2055,106 @@ private Button editAuthorSubmit;
 											  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
 											  						}
 											  				    });
+											  				    
+											  				  domainId.setCellValueFactory(
+											  			            new PropertyValueFactory<PropertyDomain, String>("domainId"));
+
+											  					domainName.setCellValueFactory(
+											  			            new PropertyValueFactory<PropertyDomain, String>("domainName"));
+											  					
+											  					domainId.setStyle( "-fx-alignment: CENTER;");
+											  					domainName.setStyle( "-fx-alignment: CENTER;");
+											  					mainDomainTableView.setItems(dataDomains);
+											  					
+											  					
+											  					mainDomainTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+											  					 if (newSelection != null) {
+											  						  addDomainEditBtn.setVisible(true);
+											  						  DomainDeleteBtn.setVisible(true);
+											  						  }
+											  					});
+											  					
+											  					addDomainEditBtn.setOnAction(e -> {
+											  						mainDomainPane.setVisible(false);
+											  						addDomainPane.setVisible(false);
+											  						editDomainPane.setVisible(true);
+											  						PropertyDomain selectedItem = mainDomainTableView.getSelectionModel().getSelectedItem();
+											  						editDomainName.setText(selectedItem.getDomainName());
+											  					});
+											  					
+											  					editDomainBack.setOnAction(e -> {
+											  						   editDomainName.setText("");
+											  						   addDomainPane.setVisible(false);
+											  						   editDomainPane.setVisible(false);
+											  						   mainDomainPane.setVisible(true);
+											  						  });
+											  					
+											  					editDomainSubmit.setOnAction(e -> {
+											  						PropertyDomain selectedItem = mainDomainTableView.getSelectionModel().getSelectedItem(); 
+											  						String DomainId = null;
+											  						DomainId = selectedItem.getDomainId();
+											  						String DomainName = null;
+											  						DomainName = editDomainName.getText();
+											  						
+											  						//System.out.println(DomainId+" "+DomainName);
+
+											  						
+											  						if (DomainName.equals(""))
+											  						    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");
+											  						else{
+											  							Message message5 = prepareEditDomain(ActionType.EDIT_DOMAIN, DomainId, DomainName);
+											  							 try {
+											  							     ClientController.clientConnectionController.sendToServer(message5);
+											  							    } catch (Exception e1) {
+											  							     e1.printStackTrace();
+											  							    }
+											  							 
+											  							 	////////////////////////////////////////////
+											  							 
+											  							 	////////////////////////////////////////////
+											  							 
+											  							    Platform.runLater(() -> {
+											  							    actionOnError(ActionType.CONTINUE, "The domain edited successfully!");
+											  							    editDomainName.setText("");
+											  							    
+											  							    dataDomains.clear();
+											  			  				    Message message6 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
+											  			  				    try {
+											  			  				     ClientController.clientConnectionController.sendToServer(message6);
+											  			  				    } catch (IOException e2) {
+											  			  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+											  			  				    }
+											  			  				    
+											  			  				  //itai
+											  			  				  Platform.runLater(new Runnable() {
+											  			  						@Override
+											  			  						public void run() {
+											  			  								BookManagermentGetDomainsWithIdRecv2 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv2();
+											  			  								recv_getDomainsWithId.start();
+											  			  								synchronized (recv_getDomainsWithId) {
+											  			  									try{
+											  			  										recv_getDomainsWithId.wait();
+											  			  									}catch(InterruptedException e){
+											  			  										e.printStackTrace();
+											  			  									}
+											  			  				  				    Platform.runLater(() -> {
+											  			  				  						for(int i=0;i<domainsList.size();i+=2){
+											  			  				  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
+											  			  				  						}
+											  			  				  				    });
+											  			  								}
+											  			  						}});
+											  			  				  
+											  			  				    
+
+
+											  							    
+											  							    addDomainPane.setVisible(false);
+											  							    editDomainPane.setVisible(false);
+											  							    mainDomainPane.setVisible(true);
+											  						});
+											  						}
+											  					});
 							  								}
 							  						}});
 
@@ -2157,33 +2275,35 @@ private Button editAuthorSubmit;
 				  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
 				  			}
 				  	  });
+				  		
+				  		subjectId.setCellValueFactory(
+				  	            new PropertyValueFactory<PropertyDomain, String>("subjectId"));
+
+				  		subjectName.setCellValueFactory(
+				  	            new PropertyValueFactory<PropertyDomain, String>("subjectName"));
+				  			
+				  		subjectDomain.setCellValueFactory(
+				  	  	            new PropertyValueFactory<PropertyDomain, String>("subjectDomain"));
+				  			
+				  		subjectId.setStyle( "-fx-alignment: CENTER;");
+				  		subjectName.setStyle( "-fx-alignment: CENTER;");
+				  		subjectDomain.setStyle( "-fx-alignment: CENTER;");
+				  		//System.out.println("asas");
+				  		mainSubjectTable.setItems(dataSubjects);
+				  			
+				  		
+				  		mainSubjectTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+				  			 if (newSelection != null) {
+				  				subjectsEditBtn.setVisible(true);
+				  				subjectsDeleteBtn.setVisible(true);
+				  				  }
+				  			});
 					}
 			}});
   	  
 
   	  
-  		subjectId.setCellValueFactory(
-  	            new PropertyValueFactory<PropertyDomain, String>("subjectId"));
-
-  		subjectName.setCellValueFactory(
-  	            new PropertyValueFactory<PropertyDomain, String>("subjectName"));
-  			
-  		subjectDomain.setCellValueFactory(
-  	  	            new PropertyValueFactory<PropertyDomain, String>("subjectDomain"));
-  			
-  		subjectId.setStyle( "-fx-alignment: CENTER;");
-  		subjectName.setStyle( "-fx-alignment: CENTER;");
-  		subjectDomain.setStyle( "-fx-alignment: CENTER;");
-  		//System.out.println("asas");
-  		mainSubjectTable.setItems(dataSubjects);
-  			
   		
-  		mainSubjectTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-  			 if (newSelection != null) {
-  				subjectsEditBtn.setVisible(true);
-  				subjectsDeleteBtn.setVisible(true);
-  				  }
-  			});
   				
   			
   		editSubjetcsBack.setOnAction(e -> {
@@ -2310,61 +2430,64 @@ private Button editAuthorSubmit;
   									}catch(InterruptedException e){
   										e.printStackTrace();
   									}
+  									
+  				  				   Platform.runLater(() -> {
+  				   					if(countBookBySubject>0)  
+  				   						actionOnError(ActionType.CONTINUE,"You can't to remove subject that contains books!");
+  				   					else{
+  				   						Message message7 = prepareGetNumberBookAtDomain(ActionType.DELETE_SUBJECT ,subjectId);
+  				   						try {
+  				   						   	ClientController.clientConnectionController.sendToServer(message7);
+  				   						   } catch (IOException e1) {	
+  				   						   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+  				   						   }
+  				   						actionOnError(ActionType.CONTINUE, "The subject deleted successfully!");
+  				   						
+  				   						////////////////////////////////////////
+  				   						
+  				   						///////////////////////////////////////
+  				   						
+  				   						dataSubjects.clear();
+  				   	  	  		  	  Message message8 = prepareGetDomainsWithId(ActionType.GET_SUBJECTS_INFO);
+  				   	  	  	  	  try {
+  				   	  	  	  	   ClientController.clientConnectionController.sendToServer(message8);
+  				   	  	  	  	  } catch (IOException e2) {
+  				   	  	  	  		  e2.printStackTrace();
+  				   	  	  	  	   actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+  				   	  	  	  	  }
+  				   	  	  	  	  
+  				   	  		  //itai
+  				   	  		  Platform.runLater(new Runnable() {
+  				   	  				@Override
+  				   	  				public void run() {
+  				   	  						BookManagermentGetSubjectsInfoRecv2 recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv2();
+  				   	  						recv_getSubjectsInfo.start();
+  				   	  						synchronized (recv_getSubjectsInfo) {
+  				   	  							try{
+  				   	  								recv_getSubjectsInfo.wait();
+  				   	  							}catch(InterruptedException e){
+  				   	  								e.printStackTrace();
+  				   	  							}
+  				   	  	  	  	  	  		Platform.runLater(() -> {
+  				   	    	  	  	  			for(int i=0;i<subjectsList.size();i+=4){
+  				   	    	  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
+  				   	    	  	  	  			}
+  				   	    	  	  	  			mainSubjectTable.setItems(dataSubjects);
+  				   	    	  	  	  	  });
+  				   	  						}
+  				   	  				}});
+  				   	  	  	  	  
+
+
+  				   	  	  				
+  				   						
+  				   					}
+  				   					
+  				   				   });
   								}
   						}});
   				  
-  				   Platform.runLater(() -> {
-  					if(countBookBySubject>0)  
-  						actionOnError(ActionType.CONTINUE,"You can't to remove subject that contains books!");
-  					else{
-  						Message message7 = prepareGetNumberBookAtDomain(ActionType.DELETE_SUBJECT ,subjectId);
-  						try {
-  						   	ClientController.clientConnectionController.sendToServer(message7);
-  						   } catch (IOException e1) {	
-  						   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  						   }
-  						actionOnError(ActionType.CONTINUE, "The subject deleted successfully!");
-  						
-  						////////////////////////////////////////
-  						
-  						///////////////////////////////////////
-  						
-  						dataSubjects.clear();
-  	  	  		  	  Message message8 = prepareGetDomainsWithId(ActionType.GET_SUBJECTS_INFO);
-  	  	  	  	  try {
-  	  	  	  	   ClientController.clientConnectionController.sendToServer(message8);
-  	  	  	  	  } catch (IOException e2) {
-  	  	  	  		  e2.printStackTrace();
-  	  	  	  	   actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  	  	  	  	  }
-  	  	  	  	  
-  	  		  //itai
-  	  		  Platform.runLater(new Runnable() {
-  	  				@Override
-  	  				public void run() {
-  	  						BookManagermentGetSubjectsInfoRecv2 recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv2();
-  	  						recv_getSubjectsInfo.start();
-  	  						synchronized (recv_getSubjectsInfo) {
-  	  							try{
-  	  								recv_getSubjectsInfo.wait();
-  	  							}catch(InterruptedException e){
-  	  								e.printStackTrace();
-  	  							}
-  	  	  	  	  	  		Platform.runLater(() -> {
-  	    	  	  	  			for(int i=0;i<subjectsList.size();i+=4){
-  	    	  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-  	    	  	  	  			}
-  	    	  	  	  	  });
-  	  						}
-  	  				}});
-  	  	  	  	  
 
-
-  	  	  				mainSubjectTable.setItems(dataSubjects);
-  						
-  					}
-  					
-  				   });
   				 
 
   			});
@@ -2436,15 +2559,17 @@ private Button editAuthorSubmit;
   	    	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
   	    	  	  			}
   	    	  	  	  });
+  	  	  	  	  		
+  	  	  				mainSubjectTable.setItems(dataSubjects);
+  	    	  			mainSubjectPane.setVisible(true);
+  	    	  				addSubjectPane.setVisible(false);
+  	    	  			editSubjectPane.setVisible(false);
   	  					}
   	  			}});
   	  	  	  
 
 
-  	  				mainSubjectTable.setItems(dataSubjects);
-  	  			mainSubjectPane.setVisible(true);
-  	  				addSubjectPane.setVisible(false);
-  	  			editSubjectPane.setVisible(false);
+
   	  				    
   	  				    
   	  				});
@@ -2507,15 +2632,17 @@ private Button editAuthorSubmit;
 	  		  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
 	  		  	  	  			}
 	  		  	  	  	  });
+	  	  	  	  	  		
+		  	  				mainSubjectTable.setItems(dataSubjects);
+			  	  			mainSubjectPane.setVisible(true);
+			  	  				addSubjectPane.setVisible(false);
+			  	  			editSubjectPane.setVisible(false);
 	  	  					}
 	  	  			}});
 	  	  	  	  
 
 	
-	  	  				mainSubjectTable.setItems(dataSubjects);
-	  	  			mainSubjectPane.setVisible(true);
-	  	  				addSubjectPane.setVisible(false);
-	  	  			editSubjectPane.setVisible(false);
+
 			});
 			}
   			
@@ -2558,32 +2685,33 @@ private Button editAuthorSubmit;
   				  				dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
   				  			}
   				  	  });
+  				  	authorId.setCellValueFactory(
+  			  	            new PropertyValueFactory<PropertyDomain, String>("authorId"));
+
+  			  		authorFirstName.setCellValueFactory(
+  			  	            new PropertyValueFactory<PropertyDomain, String>("authorFirstName"));
+  			  		
+  			  		authorLastName.setCellValueFactory(
+  			  	            new PropertyValueFactory<PropertyDomain, String>("authorLastName"));
+  			  			
+  			  		authorId.setStyle( "-fx-alignment: CENTER;");
+  			  		authorFirstName.setStyle( "-fx-alignment: CENTER;");
+  			  		authorLastName.setStyle( "-fx-alignment: CENTER;");;
+  			  			mainAuthorTableView.setItems(dataAuthors);
+  			  			
+  			  		
+  			  			mainAuthorTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+  			  			 if (newSelection != null) {
+  			  				  addAuthorEditBtn.setVisible(true);
+  			  				  AuthorDeleteBtn.setVisible(true);
+  			  				  }
+  			  			});
   					}
   			}});
   	  
 
   	  
-  		authorId.setCellValueFactory(
-  	            new PropertyValueFactory<PropertyDomain, String>("authorId"));
-
-  		authorFirstName.setCellValueFactory(
-  	            new PropertyValueFactory<PropertyDomain, String>("authorFirstName"));
   		
-  		authorLastName.setCellValueFactory(
-  	            new PropertyValueFactory<PropertyDomain, String>("authorLastName"));
-  			
-  		authorId.setStyle( "-fx-alignment: CENTER;");
-  		authorFirstName.setStyle( "-fx-alignment: CENTER;");
-  		authorLastName.setStyle( "-fx-alignment: CENTER;");;
-  			mainAuthorTableView.setItems(dataAuthors);
-  			
-  		
-  			mainAuthorTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-  			 if (newSelection != null) {
-  				  addAuthorEditBtn.setVisible(true);
-  				  AuthorDeleteBtn.setVisible(true);
-  				  }
-  			});
   					
   			addAuthorEditBtn.setOnAction(e -> {
   				mainAuthorPane.setVisible(false);
@@ -2656,6 +2784,10 @@ private Button editAuthorSubmit;
   	  	  	  				    			dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
   	  	  	  				    		}
   	  	  	  				    });
+  	  		  	  				    
+  	  		 	  				filterField.clear();
+  	  		 	  				data.clear();
+  	  		 	  				filteredData.clear();
 
   	  								}
   	  						}});
@@ -2663,9 +2795,7 @@ private Button editAuthorSubmit;
   	  				    
 
   	  				    
-  	  				filterField.clear();
-  	  		    data.clear();
-  	  		    filteredData.clear();
+ 
   	  		    Message message9 = prepareGetBooksList(ActionType.GET_BOOK_LIST);
   	  		    try {
   	  		     ClientController.clientConnectionController.sendToServer(message9);
