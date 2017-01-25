@@ -863,7 +863,7 @@ private Button editAuthorSubmit;
   Platform.runLater(new Runnable() {
 		@Override
 		public void run() {
-			BookManagermentRecv recv_getBooks = new BookManagermentRecv();
+			BookManagermentGetBookListRecv recv_getBooks = new BookManagermentGetBookListRecv();
 				recv_getBooks.start();
 				synchronized (recv_getBooks) {
 					try{
@@ -913,7 +913,7 @@ private Button editAuthorSubmit;
   Platform.runLater(new Runnable() {
 		@Override
 		public void run() {
-			BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+			BookManagermentGetAuthorsRecv recv_getAuthors = new BookManagermentGetAuthorsRecv();
 				recv_getAuthors.start();
 				synchronized (recv_getAuthors) {
 					try{
@@ -953,7 +953,7 @@ private Button editAuthorSubmit;
   Platform.runLater(new Runnable() {
 		@Override
 		public void run() {
-				BookManagermentRecv recv_getSubjects = new BookManagermentRecv();
+				BookManagermentGetSubjectsRecv recv_getSubjects = new BookManagermentGetSubjectsRecv();
 				recv_getSubjects.start();
 				synchronized (recv_getSubjects) {
 					try{
@@ -1103,7 +1103,7 @@ private Button editAuthorSubmit;
 	  Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-					BookManagermentRecv recv_getBookAuthors = new BookManagermentRecv();
+					BookManagermentGetBookAuthorsRecv recv_getBookAuthors = new BookManagermentGetBookAuthorsRecv();
 					recv_getBookAuthors.start();
 					synchronized (recv_getBookAuthors) {
 						try{
@@ -1119,7 +1119,7 @@ private Button editAuthorSubmit;
 	  Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+				BookManagermentGetBookAuthorsRecv2 recv_getAuthors = new BookManagermentGetBookAuthorsRecv2();
 					recv_getAuthors.start();
 					synchronized (recv_getAuthors) {
 						try{
@@ -1135,7 +1135,7 @@ private Button editAuthorSubmit;
 	  Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-					BookManagermentRecv recv_getBookSubjects = new BookManagermentRecv();
+					BookManagermentGetBookSubjectsRecv recv_getBookSubjects = new BookManagermentGetBookSubjectsRecv();
 					recv_getBookSubjects.start();
 					synchronized (recv_getBookSubjects) {
 						try{
@@ -1151,7 +1151,7 @@ private Button editAuthorSubmit;
 		  Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-						BookManagermentRecv recv_getSubjects = new BookManagermentRecv();
+						BookManagermentGetSubjectsRecv2 recv_getSubjects = new BookManagermentGetSubjectsRecv2();
 						recv_getSubjects.start();
 						synchronized (recv_getSubjects) {
 							try{
@@ -1167,7 +1167,7 @@ private Button editAuthorSubmit;
 		  Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-						BookManagermentRecv recv_getBookLanguages = new BookManagermentRecv();
+						BookManagermentGetBookLanguageRecv recv_getBookLanguages = new BookManagermentGetBookLanguageRecv();
 						recv_getBookLanguages.start();
 						synchronized (recv_getBookLanguages) {
 							try{
@@ -1182,7 +1182,7 @@ private Button editAuthorSubmit;
 		  Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-						BookManagermentRecv recv_getBookTableOfContent = new BookManagermentRecv();
+						BookManagermentGetBookTocRecv recv_getBookTableOfContent = new BookManagermentGetBookTocRecv();
 						recv_getBookTableOfContent.start();
 						synchronized (recv_getBookTableOfContent) {
 							try{
@@ -1411,7 +1411,7 @@ private Button editAuthorSubmit;
    Platform.runLater(new Runnable() {
  		@Override
  		public void run() {
- 			BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+ 				BookManagermentGetAuthorsRecv2 recv_getAuthors = new BookManagermentGetAuthorsRecv2();
  				recv_getAuthors.start();
  				synchronized (recv_getAuthors) {
  					try{
@@ -1448,7 +1448,7 @@ private Button editAuthorSubmit;
    Platform.runLater(new Runnable() {
  		@Override
  		public void run() {
- 				BookManagermentRecv recv_getSubjects = new BookManagermentRecv();
+ 				BookManagermentGetSubjectsRecv3 recv_getSubjects = new BookManagermentGetSubjectsRecv3();
  				recv_getSubjects.start();
  				synchronized (recv_getSubjects) {
  					try{
@@ -1611,7 +1611,7 @@ private Button editAuthorSubmit;
     Platform.runLater(new Runnable() {
 		@Override
 		public void run() {
-				BookManagermentRecv recv_getBooks = new BookManagermentRecv();
+				BookManagermentGetBookListRecv2 recv_getBooks = new BookManagermentGetBookListRecv2();
 				recv_getBooks.start();
 				synchronized (recv_getBooks) {
 					try{
@@ -1783,7 +1783,7 @@ private Button editAuthorSubmit;
 	    Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-					BookManagermentRecv recv_getBooks = new BookManagermentRecv();
+					BookManagermentGetBookListRecv3 recv_getBooks = new BookManagermentGetBookListRecv3();
 					recv_getBooks.start();
 					synchronized (recv_getBooks) {
 						try{
@@ -1863,7 +1863,7 @@ private Button editAuthorSubmit;
   Platform.runLater(new Runnable() {
 		@Override
 		public void run() {
-				BookManagermentRecv recv_getDomainsWithId = new BookManagermentRecv();
+				BookManagermentGetDomainsWithIdRecv recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv();
 				recv_getDomainsWithId.start();
 				synchronized (recv_getDomainsWithId) {
 					try{
@@ -1932,6 +1932,11 @@ private Button editAuthorSubmit;
 				    } catch (Exception e1) {
 				     e1.printStackTrace();
 				    }
+				 
+				 	////////////////////////////////////////////
+				 
+				 	////////////////////////////////////////////
+				 
 				    Platform.runLater(() -> {
 				    actionOnError(ActionType.CONTINUE, "The domain edited successfully!");
 				    editDomainName.setText("");
@@ -1948,7 +1953,7 @@ private Button editAuthorSubmit;
   				  Platform.runLater(new Runnable() {
   						@Override
   						public void run() {
-  								BookManagermentRecv recv_getDomainsWithId = new BookManagermentRecv();
+  								BookManagermentGetDomainsWithIdRecv2 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv2();
   								recv_getDomainsWithId.start();
   								synchronized (recv_getDomainsWithId) {
   									try{
@@ -1999,7 +2004,7 @@ private Button editAuthorSubmit;
 				  Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-								BookManagermentRecv recv_getNumberBookAtDomain = new BookManagermentRecv();
+								BookManagermentGetNumberBookAtDomainRecv recv_getNumberBookAtDomain = new BookManagermentGetNumberBookAtDomainRecv();
 								recv_getNumberBookAtDomain.start();
 								synchronized (recv_getNumberBookAtDomain) {
 									try{
@@ -2021,6 +2026,10 @@ private Button editAuthorSubmit;
 					   } catch (IOException e1) {	
 					   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 					   }
+					//////////////////////////////////
+					
+					//////////////////////////////////
+					
 					actionOnError(ActionType.CONTINUE, "The domain deleted successfully!");
 				    dataDomains.clear();
   				    Message message7 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
@@ -2035,7 +2044,7 @@ private Button editAuthorSubmit;
   				  Platform.runLater(new Runnable() {
   						@Override
   						public void run() {
-  								BookManagermentRecv recv_getDomainsWithId = new BookManagermentRecv();
+  								BookManagermentGetDomainsWithIdRecv3 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv3();
   								recv_getDomainsWithId.start();
   								synchronized (recv_getDomainsWithId) {
   									try{
@@ -2104,7 +2113,7 @@ private Button editAuthorSubmit;
   				  Platform.runLater(new Runnable() {
   						@Override
   						public void run() {
-  								BookManagermentRecv recv_getDomainsWithId = new BookManagermentRecv();
+  								BookManagermentGetDomainsWithIdRecv4 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv4();
   								recv_getDomainsWithId.start();
   								synchronized (recv_getDomainsWithId) {
   									try{
@@ -2155,7 +2164,7 @@ private Button editAuthorSubmit;
 	  Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-					BookManagermentRecv recv_getSubjectsInfo = new BookManagermentRecv();
+					BookManagermentGetSubjectsInfoRecv recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv();
 					recv_getSubjectsInfo.start();
 					synchronized (recv_getSubjectsInfo) {
 						try{
@@ -2223,7 +2232,7 @@ private Button editAuthorSubmit;
   			  Platform.runLater(new Runnable() {
   					@Override
   					public void run() {
-  							BookManagermentRecv recv_getDomainsWithId = new BookManagermentRecv();
+  							BookManagermentGetDomainsWithIdRecv5 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv5();
   							recv_getDomainsWithId.start();
   							synchronized (recv_getDomainsWithId) {
   								try{
@@ -2272,7 +2281,7 @@ private Button editAuthorSubmit;
 				  Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-								BookManagermentRecv recv_getDomainsWithId = new BookManagermentRecv();
+								BookManagermentGetDomainsWithIdRecv6 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv6();
 								recv_getDomainsWithId.start();
 								synchronized (recv_getDomainsWithId) {
 									try{
@@ -2314,7 +2323,7 @@ private Button editAuthorSubmit;
   				  Platform.runLater(new Runnable() {
   						@Override
   						public void run() {
-  								BookManagermentRecv recv_getNumberBookAtSubject = new BookManagermentRecv();
+  								BookManagermentGetNumberBookAtSubjectRecv recv_getNumberBookAtSubject = new BookManagermentGetNumberBookAtSubjectRecv();
   								recv_getNumberBookAtSubject.start();
   								synchronized (recv_getNumberBookAtSubject) {
   									try{
@@ -2337,6 +2346,10 @@ private Button editAuthorSubmit;
   						   }
   						actionOnError(ActionType.CONTINUE, "The subject deleted successfully!");
   						
+  						////////////////////////////////////////
+  						
+  						///////////////////////////////////////
+  						
   						dataSubjects.clear();
   	  	  		  	  Message message8 = prepareGetDomainsWithId(ActionType.GET_SUBJECTS_INFO);
   	  	  	  	  try {
@@ -2350,7 +2363,7 @@ private Button editAuthorSubmit;
   	  		  Platform.runLater(new Runnable() {
   	  				@Override
   	  				public void run() {
-  	  						BookManagermentRecv recv_getSubjectsInfo = new BookManagermentRecv();
+  	  						BookManagermentGetSubjectsInfoRecv2 recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv2();
   	  						recv_getSubjectsInfo.start();
   	  						synchronized (recv_getSubjectsInfo) {
   	  							try{
@@ -2408,6 +2421,10 @@ private Button editAuthorSubmit;
   	  				    } catch (Exception e1) {
   	  				     e1.printStackTrace();
   	  				    }
+  	  				 ////////////////////////////////////////////
+  	  				 
+  	  				 ///////////////////////////////////////////
+  	  				 
   	  				Platform.runLater(() -> {
   	  				    actionOnError(ActionType.CONTINUE, "The subject added successfully!");
   	  				addSubjectsName.setText("");
@@ -2426,7 +2443,7 @@ private Button editAuthorSubmit;
   	  	  Platform.runLater(new Runnable() {
   	  			@Override
   	  			public void run() {
-  	  					BookManagermentRecv recv_getSubjectsInfo = new BookManagermentRecv();
+  	  					BookManagermentGetSubjectsInfoRecv3 recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv3();
   	  					recv_getSubjectsInfo.start();
   	  					synchronized (recv_getSubjectsInfo) {
   	  						try{
@@ -2474,6 +2491,10 @@ private Button editAuthorSubmit;
 				    } catch (Exception e1) {
 				     e1.printStackTrace();
 				    }
+				 	//////////////////////////////////////
+				 
+				 	//////////////////////////////////////
+				 
 				    Platform.runLater(() -> {
 				    actionOnError(ActionType.CONTINUE, "The subject edited successfully!");
 				    editDomainName.setText("");
@@ -2492,7 +2513,7 @@ private Button editAuthorSubmit;
 	  	  	  Platform.runLater(new Runnable() {
 	  	  			@Override
 	  	  			public void run() {
-	  	  					BookManagermentRecv recv_getSubjectsInfo = new BookManagermentRecv();
+	  	  					BookManagermentGetSubjectsInfoRecv4 recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv4();
 	  	  					recv_getSubjectsInfo.start();
 	  	  					synchronized (recv_getSubjectsInfo) {
 	  	  						try{
@@ -3793,6 +3814,613 @@ public void setBookPrice(String bookPrice) {
 
 }
 
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookListRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetAuthorsRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookAuthorsRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookAuthorsRecv2 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookSubjectsRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsRecv2 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookLanguageRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookTocRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetAuthorsRecv2 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsRecv3 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookListRecv2 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookListRecv3 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsWithIdRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsWithIdRecv2 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsWithIdRecv3 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetNumberBookAtDomainRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsWithIdRecv4 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsInfoRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsWithIdRecv5 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsWithIdRecv6 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetNumberBookAtSubjectRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsInfoRecv2 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsInfoRecv3 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsInfoRecv4 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
 
 /** This class makes sure the information from the server was received successfully.
  * @author itain
