@@ -875,31 +875,7 @@ private Button editAuthorSubmit;
 		}});
 		
   
-  Platform.runLater(() -> {
-	  
-	  
-   String authors = "";
-   for (int i = 0; i < BooksList.size(); i += 9) {
-    if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
-     authors = authors + BooksList.get(i + 5) + ",";
-    } else {
-     if (authors.equals("")) {
-      String hide;
-      if (BooksList.get(i + 3).equals("0")) hide = "no";
-      else hide = "yes";
-      data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-      filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-     } else {
-      String hide;
-      if (BooksList.get(i + 3).equals("0")) hide = "no";
-      else hide = "yes";
-      data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-      filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-     }
-     authors = "";
-    }
-   }
-  });
+  
   
 
   Message message2 = prepareGetAuthors(ActionType.GET_AUTHORS);
@@ -921,24 +897,52 @@ private Button editAuthorSubmit;
 					}catch(InterruptedException e){
 						e.printStackTrace();
 					}
+					
+					Platform.runLater(() -> {
+						  
+						  
+						   String authors = "";
+						   for (int i = 0; i < BooksList.size(); i += 9) {
+						    if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
+						     authors = authors + BooksList.get(i + 5) + ",";
+						    } else {
+						     if (authors.equals("")) {
+						      String hide;
+						      if (BooksList.get(i + 3).equals("0")) hide = "no";
+						      else hide = "yes";
+						      data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						      filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						     } else {
+						      String hide;
+						      if (BooksList.get(i + 3).equals("0")) hide = "no";
+						      else hide = "yes";
+						      data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						      filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						     }
+						     authors = "";
+						    }
+						   }
+						  });
+					
+					  Platform.runLater(() -> {
+						   ArrayList < String > names = new ArrayList < String > ();
+						   addBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+						   //System.out.println(statush.get(1).getFirstname());
+						   for (int i = 0; i < authorList.size(); i++) {
+						    names.add(i, "(" + authorList.get(i).getId() + ")" + "\t" + authorList.get(i).getFirstname() + " " + authorList.get(i).getLastname());
+						   }
+						   //System.out.println(names.get(0));
+						   ObservableList < String > authors = FXCollections.observableArrayList(names);
+						   addBookAuthorsList.setItems(authors);
+
+						  });
 				}
 		}});
   
   
   
   
-  Platform.runLater(() -> {
-   ArrayList < String > names = new ArrayList < String > ();
-   addBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-   //System.out.println(statush.get(1).getFirstname());
-   for (int i = 0; i < authorList.size(); i++) {
-    names.add(i, "(" + authorList.get(i).getId() + ")" + "\t" + authorList.get(i).getFirstname() + " " + authorList.get(i).getLastname());
-   }
-   //System.out.println(names.get(0));
-   ObservableList < String > authors = FXCollections.observableArrayList(names);
-   addBookAuthorsList.setItems(authors);
 
-  });
 
 
 
@@ -961,100 +965,99 @@ private Button editAuthorSubmit;
 					}catch(InterruptedException e){
 						e.printStackTrace();
 					}
+					
+					  Platform.runLater(() -> {
+						   addBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+						   ObservableList < String > subjects = FXCollections.observableArrayList(subjectList);
+						   addBookSubjectsList.setItems(subjects);
+
+						  });
+					  
+					  BooksTableView.setEditable(true);
+
+					  BookSn.setCellValueFactory(
+					   new PropertyValueFactory < pendingUser, String > ("bookSn"));
+
+					  BookTitle.setCellValueFactory(
+					   new PropertyValueFactory < pendingUser, String > ("bookTitle"));
+
+					  BookKeywords.setCellValueFactory(
+					   new PropertyValueFactory < pendingUser, String > ("bookKeywords"));
+
+					  BookHide.setCellValueFactory(
+					   new PropertyValueFactory < pendingUser, String > ("bookHide"));
+
+					  BookAuthors.setCellValueFactory(
+					   new PropertyValueFactory < pendingUser, String > ("authorName"));
 				}
+				
+				  BookSn.setStyle("-fx-alignment: CENTER;");
+				  BookTitle.setStyle("-fx-alignment: CENTER;");
+				  BookKeywords.setStyle("-fx-alignment: CENTER;");
+				  BookHide.setStyle("-fx-alignment: CENTER;");
+				  BookAuthors.setStyle("-fx-alignment: CENTER;");
+				  
+				  BooksTableView.setItems(filteredData);
+
+				  BooksTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+				   if (newSelection != null) {
+				    TitleLabel.setVisible(true);
+				    AuthorsLabel.setVisible(true);
+				    KeywordsLabel.setVisible(true);
+				    SummaryLabel.setVisible(true);
+				    PriceLabel.setVisible(true);
+				    BookSummary.setVisible(true);
+				    imageView.setVisible(true);
+				    infoPrice.setVisible(true);
+				    InfoAuthors.setVisible(true);
+				    InfoKeywords.setVisible(true);
+				    InfoTitle.setVisible(true);
+				    delBtn.setVisible(true);
+				    editBtn.setVisible(true);
+				    hideBtn.setVisible(true);
+
+				    if (newSelection.getBookHide().equals("yes"))
+				     hideBtn.setText("Unhide Book");
+				    else
+				     hideBtn.setText("Hide Book");
+				    
+				    InfoTitle.setText(newSelection.getBookTitle());
+				    InfoAuthors.setText(newSelection.getAuthorName());
+				    InfoKeywords.setMaxWidth(170);
+				    InfoKeywords.setWrapText(true);
+				    InfoKeywords.setText(newSelection.getBookKeywords());
+				    BookSummary.setStyle("-fx-focus-color: -fx-control-inner-background ; -fx-faint-focus-color: -fx-control-inner-background ; -fx-background-insets: 0;-fx-background-color: transparent, white, transparent, white;");
+				    BookSummary.setMaxWidth(280);
+				    BookSummary.setWrapText(true);
+				    BookSummary.setText(newSelection.getBookSummary());
+				    BookSummary.setEditable(false);
+				    infoPrice.setText(newSelection.getBookPrice());
+
+				    //show picture
+				    if(newSelection.getBookImage()!=null){
+				    String base64EncodedImage = newSelection.getBookImage();
+				    byte[] imageInBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64EncodedImage);
+				    BufferedImage imgbuf;
+				    try {
+				     imgbuf = ImageIO.read(new ByteArrayInputStream(imageInBytes));
+				     Image image = SwingFXUtils.toFXImage(imgbuf, null);
+				     imageView.setImage(image);
+				    } catch (Exception e1) {
+				     // TODO Auto-generated catch block
+				     e1.printStackTrace();
+				    }
+				  }
+				    else imageView.setImage(null);
+				    //end show picture
+
+				   }
+				  });
+				  
+				  
+				  
+				  
 		}});
 		
-  
-  Platform.runLater(() -> {
-   addBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-   ObservableList < String > subjects = FXCollections.observableArrayList(subjectList);
-   addBookSubjectsList.setItems(subjects);
-
-  });
-
-  BooksTableView.setEditable(true);
-
-  BookSn.setCellValueFactory(
-   new PropertyValueFactory < pendingUser, String > ("bookSn"));
-
-  BookTitle.setCellValueFactory(
-   new PropertyValueFactory < pendingUser, String > ("bookTitle"));
-
-  BookKeywords.setCellValueFactory(
-   new PropertyValueFactory < pendingUser, String > ("bookKeywords"));
-
-  BookHide.setCellValueFactory(
-   new PropertyValueFactory < pendingUser, String > ("bookHide"));
-
-  BookAuthors.setCellValueFactory(
-   new PropertyValueFactory < pendingUser, String > ("authorName"));
-
-
-
-  BookSn.setStyle("-fx-alignment: CENTER;");
-  BookTitle.setStyle("-fx-alignment: CENTER;");
-  BookKeywords.setStyle("-fx-alignment: CENTER;");
-  BookHide.setStyle("-fx-alignment: CENTER;");
-  BookAuthors.setStyle("-fx-alignment: CENTER;");
-
-
-
-
-  BooksTableView.setItems(filteredData);
-
-  BooksTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-   if (newSelection != null) {
-    TitleLabel.setVisible(true);
-    AuthorsLabel.setVisible(true);
-    KeywordsLabel.setVisible(true);
-    SummaryLabel.setVisible(true);
-    PriceLabel.setVisible(true);
-    BookSummary.setVisible(true);
-    imageView.setVisible(true);
-    infoPrice.setVisible(true);
-    InfoAuthors.setVisible(true);
-    InfoKeywords.setVisible(true);
-    InfoTitle.setVisible(true);
-    delBtn.setVisible(true);
-    editBtn.setVisible(true);
-    hideBtn.setVisible(true);
-
-    if (newSelection.getBookHide().equals("yes"))
-     hideBtn.setText("Unhide Book");
-    else
-     hideBtn.setText("Hide Book");
-    
-    InfoTitle.setText(newSelection.getBookTitle());
-    InfoAuthors.setText(newSelection.getAuthorName());
-    InfoKeywords.setMaxWidth(170);
-    InfoKeywords.setWrapText(true);
-    InfoKeywords.setText(newSelection.getBookKeywords());
-    BookSummary.setStyle("-fx-focus-color: -fx-control-inner-background ; -fx-faint-focus-color: -fx-control-inner-background ; -fx-background-insets: 0;-fx-background-color: transparent, white, transparent, white;");
-    BookSummary.setMaxWidth(280);
-    BookSummary.setWrapText(true);
-    BookSummary.setText(newSelection.getBookSummary());
-    BookSummary.setEditable(false);
-    infoPrice.setText(newSelection.getBookPrice());
-
-    //show picture
-    if(newSelection.getBookImage()!=null){
-    String base64EncodedImage = newSelection.getBookImage();
-    byte[] imageInBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64EncodedImage);
-    BufferedImage imgbuf;
-    try {
-     imgbuf = ImageIO.read(new ByteArrayInputStream(imageInBytes));
-     Image image = SwingFXUtils.toFXImage(imgbuf, null);
-     imageView.setImage(image);
-    } catch (Exception e1) {
-     // TODO Auto-generated catch block
-     e1.printStackTrace();
-    }
-  }
-    else imageView.setImage(null);
-    //end show picture
-
-   }
-  });
   
   editBtn.setOnAction(e -> {
 	  mainPane.setVisible(false);
@@ -1079,7 +1082,7 @@ private Button editAuthorSubmit;
 		       }
 	  }
 
-	  
+
 	  
 	  Message message4 = prepareGetAuthors(ActionType.GET_BOOK_AUTHORS,selectedItem.getBookSn());
 	  Message message5 = prepareGetAuthors(ActionType.GET_AUTHORS);
@@ -1193,7 +1196,7 @@ private Button editAuthorSubmit;
 						}
 				}});
 		  
-	   Platform.runLater(() -> { 
+
 	    ArrayList < String > names = new ArrayList < String > ();
 	    editBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 	    //System.out.println(statush.get(1).getFirstname());
@@ -1273,7 +1276,7 @@ private Button editAuthorSubmit;
 	        }
 	      });
 
-	   });
+
 	  
 	   
 	   ObservableList < String > languages = FXCollections.observableArrayList(
