@@ -123,7 +123,7 @@ public class UserReportController implements Initializable {
 		initializeTable();
 	
 		
-		table.setRowFactory( tv -> {
+		/*table.setRowFactory( tv -> {
 		    TableRow<Purchase> row = new TableRow<>();
 		    row.setOnMouseClicked(event -> {
 		        if (event.getClickCount() == 2 && (! row.isEmpty()) )
@@ -173,7 +173,7 @@ public class UserReportController implements Initializable {
 		        }
 		    });
 		    return row ;
-		});
+		});*/
 	}
 
 	/**

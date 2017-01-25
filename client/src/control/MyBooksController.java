@@ -113,9 +113,6 @@ public class MyBooksController implements Initializable {
 	 */
 	private static HomepageManagerController managerMain;
 	
-
-	
-	
 	/* (non-Javadoc)
 	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
 	 */
@@ -127,7 +124,7 @@ public class MyBooksController implements Initializable {
 
 		initializeTable();
 		
-		table.setRowFactory( tv -> {
+	/*	table.setRowFactory( tv -> {
 		    TableRow<Purchase> row = new TableRow<>();
 		    row.setOnMouseClicked(event -> {
 		        if (event.getClickCount() == 2 && (! row.isEmpty()) )
@@ -177,7 +174,7 @@ public class MyBooksController implements Initializable {
 		        }
 		    });
 		    return row ;
-		});
+		});*/
 	}
 
 	/**
