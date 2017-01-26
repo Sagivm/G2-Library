@@ -1913,7 +1913,7 @@ private Button editAuthorSubmit;
 								String DomainName = null;
 								DomainName = editDomainName.getText();
 								
-								System.out.println(DomainId+" "+DomainName);
+								//System.out.println(DomainId+" "+DomainName);
 
 								
 								if (DomainName.equals(""))
