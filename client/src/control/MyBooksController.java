@@ -56,7 +56,7 @@ public class MyBooksController implements Initializable {
 	 * Book id column in the table
 	 */
 	@FXML
-	private TableColumn<Purchase, String> bookIdColumn;
+	private TableColumn<Purchase, Integer> bookIdColumn;
 	/**
 	 * Title column in the table
 	 */
@@ -82,7 +82,7 @@ public class MyBooksController implements Initializable {
 	 * Price column in the table
 	 */
 	@FXML
-	private TableColumn<Purchase, String> priceColumn;
+	private TableColumn<Purchase, Float> priceColumn;
 	/**
 	 * Displays user name
 	 */
@@ -226,12 +226,12 @@ public class MyBooksController implements Initializable {
 								items.add(list.get(i));
 							}
 	
-							bookIdColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("id"));
+							bookIdColumn.setCellValueFactory(new PropertyValueFactory<Purchase, Integer>("id"));
 							titleColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("title"));
 							authorColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("author"));
 							languageColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("language"));
 							dateColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("date"));
-							priceColumn.setCellValueFactory(new PropertyValueFactory<Purchase, String>("price"));
+							priceColumn.setCellValueFactory(new PropertyValueFactory<Purchase, Float>("price"));
 	
 							table.setVisible(true);
 							table.setItems(items);
@@ -296,7 +296,7 @@ public class MyBooksController implements Initializable {
 			dup[i] = false;
 		for (int i = 0; i < list.size(); i++) {
 			for (int j = i + 1; j < list.size(); j++) {
-				if (list.get(i).getId().equals(list.get(j).getId()) && i != j) {
+				if (list.get(i).getId()==(list.get(j).getId()) && i != j) {
 					list.get(i).setAuthor(list.get(i).getAuthor() + " & " + list.get(j).getAuthor());
 					list.remove(j);
 
@@ -313,7 +313,7 @@ public class MyBooksController implements Initializable {
 		/**
 		 * Book's id
 		 */
-		private String id;
+		private int id;
 		/**
 		 * Book's title
 		 */
@@ -333,7 +333,7 @@ public class MyBooksController implements Initializable {
 		/**
 		 * Book's price at the acquisition date
 		 */
-		private String price;
+		private float price;
 
 		/**
 		 * constructor
@@ -343,19 +343,19 @@ public class MyBooksController implements Initializable {
 		 *            the order id,title,author,language,date,price
 		 */
 		public Purchase(String split[]) {
-			this.id = new String(split[0]);
+			this.id = Integer.valueOf(split[0]);
 			this.title = new String(split[1]);
 			this.author = new String(split[2]);
 			this.language = new String(split[3]);
 			this.date = new String(split[4]);
-			this.price = new String(split[5]);
+			this.price = Float.valueOf(split[5]);
 		}
 
 		/**
 		 * Getter
 		 * @return book's Id
 		 */
-		public String getId() {
+		public int getId() {
 			return id;
 		}
 
@@ -364,7 +364,7 @@ public class MyBooksController implements Initializable {
 		 * sets bookId
 		 * @param id of the book
 		 */
-		public void setId(String id) {
+		public void setId(int id) {
 			this.id = id;
 		}
 		/**
@@ -438,7 +438,7 @@ public class MyBooksController implements Initializable {
 		 * @return the price of the book at the acquisition date
 		 */
 
-		public String getPrice() {
+		public float getPrice() {
 			return price;
 		}
 		/**
@@ -446,7 +446,7 @@ public class MyBooksController implements Initializable {
 		 * sets the price of the book at the acquisition date
 		 * @param book's price at the acquisition date
 		 */
-		public void setPrice(String price) {
+		public void setPrice(float price) {
 			this.price = price;
 		}
 

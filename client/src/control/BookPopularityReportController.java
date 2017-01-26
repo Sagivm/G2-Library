@@ -3,7 +3,9 @@ package control;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import control.UserReportController.Purchase;
 import entity.Author;
@@ -52,7 +54,7 @@ public class BookPopularityReportController implements Initializable {
 	 * Book id column in the table
 	 */
 	@FXML
-	private TableColumn<Popularity, String> bookIdColumn;
+	private TableColumn<Popularity, Integer> bookIdColumn;
 	/**
 	 * Title column in the table
 	 */
@@ -73,7 +75,7 @@ public class BookPopularityReportController implements Initializable {
 	 * Number of purchases column in the table
 	 */
 	@FXML
-	private TableColumn<Popularity, String> purchaseColumn;
+	private TableColumn<Popularity, Integer> purchaseColumn;
 
 	/**
 	 * If chosen displays book against all books
@@ -281,7 +283,7 @@ public class BookPopularityReportController implements Initializable {
 			dup[i] = false;
 		for (int i = 0; i < specificList.size(); i++) {
 			for (int j = i + 1; j < specificList.size(); j++) {
-				if (specificList.get(i).getId().equals(specificList.get(j).getId())
+				if (specificList.get(i).getId()==(specificList.get(j).getId())
 						&& !specificList.get(i).getDomain().equals(specificList.get(j).getDomain()) && i != j) {
 					specificList.get(i)
 							.setDomain(specificList.get(i).getDomain() + " & " + specificList.get(j).getDomain());
@@ -302,7 +304,7 @@ public class BookPopularityReportController implements Initializable {
 		ArrayList<Purchase> temp = new ArrayList<Purchase>();
 		for (int i = 0; i < list.size(); i++) {
 			for (int j = i + 1; j < list.size(); j++) {
-				if (list.get(i).getId().equals(list.get(j).getId())
+				if (list.get(i).getId()==list.get(j).getId()
 						&& list.get(i).getDomain().equals(list.get(j).getDomain())
 						&& !list.get(i).getAuthor().equals(list.get(j).getAuthor()) && i != j) {
 					list.get(i).setAuthor(list.get(i).getAuthor() + " & " + list.get(j).getAuthor());
@@ -372,18 +374,25 @@ public class BookPopularityReportController implements Initializable {
 
 	}
 
-	/**
+	/**s
 	 * Generates the list that will be displayed base on the settings
 	 * selected by the manager
 	 */
 	private void displaybooks() {
 		mergeDuplicatesDomain();
 		setPrice();
-		bookIdColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("id"));
+		//Double merge duplicate discrete
+		for(int i=0;i<specificList.size();i++)
+		{
+			for(int j=0;j<specificList.size();j++)
+				if(specificList.get(i).getId()==specificList.get(j).getId()&&i!=j)
+					specificList.remove(j);
+		}
+		bookIdColumn.setCellValueFactory(new PropertyValueFactory<Popularity, Integer>("id"));
 		titleColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("title"));
 		authorColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("author"));
 		languageColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("language"));
-		purchaseColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("purchase"));
+		purchaseColumn.setCellValueFactory(new PropertyValueFactory<Popularity, Integer>("purchase"));
 		ObservableList<Popularity> items = FXCollections.observableArrayList(specificList);
 		table.setItems(items);
 		specificList.clear();
@@ -398,7 +407,7 @@ public class BookPopularityReportController implements Initializable {
 			split = priceList.get(i).split("\\^");
 			for (int j = 0; j < specificList.size(); j++) {
 				if (split[0].equals(specificList.get(j).getId())) {
-					specificList.get(j).setPurchase(split[1]);
+					specificList.get(j).setPurchase(Integer.valueOf(split[1]));
 
 				}
 			}
@@ -429,7 +438,7 @@ public class BookPopularityReportController implements Initializable {
 		/**
 		 * Book's id
 		 */
-		private String id;
+		private int id;
 		/**
 		 * Book's title
 		 */
@@ -445,7 +454,7 @@ public class BookPopularityReportController implements Initializable {
 		/**
 		 * Book's #purchase
 		 */
-		private String purchase;
+		private int purchase;
 		/**
 		 * Book's domain
 		 */
@@ -459,11 +468,11 @@ public class BookPopularityReportController implements Initializable {
 		 *            the order id,title,author,language,#purchase and domain
 		 */
 		public Popularity(String split[]) {
-			this.id = new String(split[0]);
+			this.id = Integer.valueOf(split[0]);
 			this.title = new String(split[1]);
 			this.author = new String(split[2]);
 			this.language = new String(split[3]);
-			this.purchase = "";
+			this.purchase = 0;
 			this.domain = split[4];
 		}
 
@@ -471,7 +480,7 @@ public class BookPopularityReportController implements Initializable {
 		 * Getter
 		 * @return book's Id
 		 */
-		public String getId() {
+		public int getId() {
 			return id;
 		}
 
@@ -480,7 +489,7 @@ public class BookPopularityReportController implements Initializable {
 		 * sets bookId
 		 * @param id of the book
 		 */
-		public void setId(String id) {
+		public void setId(int id) {
 			this.id = id;
 		}
 
@@ -536,7 +545,7 @@ public class BookPopularityReportController implements Initializable {
 		 * Getter
 		 * @return the number of purchases for each book
 		 */
-		public String getPurchase() {
+		public int getPurchase() {
 			return purchase;
 		}
 		/**
@@ -544,7 +553,7 @@ public class BookPopularityReportController implements Initializable {
 		 * sets number of purchases of the book
 		 * @param number of purchases of the book
 		 */
-		public void setPurchase(String purchase) {
+		public void setPurchase(int purchase) {
 			this.purchase = purchase;
 		}
 
