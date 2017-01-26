@@ -14,10 +14,13 @@ import entity.Validate;
 import enums.ActionType;
 import interfaces.ScreensIF;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -121,7 +124,7 @@ public class SearchUserController implements ScreensIF{
 		user.setId(id);
 		user.setFirstname(firstName);
 		user.setLastname(lastName);
-		
+		//
 		Message message = prepareUserSearch(ActionType.SEARCH_USER,user);
 		
 		try {
@@ -131,6 +134,7 @@ public class SearchUserController implements ScreensIF{
 			actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 		}
 		
+
 		
     	if(ClientUI.getTypeOfUser()=="Librarian")
     	{
@@ -226,26 +230,3 @@ public class SearchUserController implements ScreensIF{
 }
 
 
-/** This class makes sure the information from the server was received successfully.
- * @author itain
- */
-class SearchUserRecv extends Thread{
-	
-	/**
-	 * Get true after receiving values from DB.
-	 */
-	public static boolean canContinue = false;
-	
-	@Override
-	public void run() {
-		synchronized (this) {
-        	while(canContinue == false)
-    		{
-        		System.out.print("");
-    		}
-        	canContinue = false;
-			notify();
-		}
-	}
-	
-}

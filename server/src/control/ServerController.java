@@ -988,6 +988,30 @@ public class ServerController extends AbstractServer {
 			break;
 
 		}
+		case MY_BOOKS: {
+			ArrayList<String> elementsList = new ArrayList<String>();
+			try {
+				ResultSet rs = DatabaseController.searchInDatabase(
+						"Select books.sn,title,authors.firstName,authors.lastName,language,purchaseDate,bought_book.price "
+						+ "FROM books,bought_book,authors,book_authors "
+						+ "WHERE books.sn=bought_book.bookId and books.sn=book_authors.bookId and authors.id=book_authors.authorid and bought_book.userId="
+								+ data.get(0) + ";");
+				if (!rs.isBeforeFirst())
+					replay = new Replay(ActionType.MY_BOOKS, false);// no data
+				else {
+					while (rs.next()) {
+						elementsList.add(String.valueOf(rs.getInt(1)) + "^" + rs.getString(2) + "^" + rs.getString(3)
+								+ " " + rs.getString(4) + "^" + rs.getString(5) + "^" +rs.getString(6) 
+								+ "^" +String.valueOf(rs.getFloat(7)));
+					}
+					replay = new Replay(ActionType.MY_BOOKS, true, elementsList);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			break;
+
+		}
 		case GETDOMAINSSPECIFIC: {
 			ArrayList<String> elementsList = new ArrayList<String>();
 			try {
@@ -1653,7 +1677,7 @@ public class ServerController extends AbstractServer {
 				ArrayList<String> elementsList = new ArrayList<String>();
 				Statement stmt = DatabaseController.connection.createStatement();
 				ResultSet rs = stmt.executeQuery(
-						"SELECT username,firstName,lastName,accountType,accountStatus FROM project.clients WHERE accountStatus<>'Standard' AND isBlocked=0");
+						"SELECT username,firstName,lastName,accountType,accountStatus FROM project.clients WHERE accountStatus<>'Standard' AND accountStatus<>'PendingPayment' AND isBlocked=0");
 				while (rs.next()) {
 					elementsList.add(rs.getString(1)); // username
 					elementsList.add(rs.getString(2)); // first name
@@ -1673,6 +1697,8 @@ public class ServerController extends AbstractServer {
 				Statement stmt = DatabaseController.connection.createStatement();
 				String username = data.get(0);
 				String operation = data.get(1);
+				
+				//System.out.println(data.get(0) + " " + data.get(1) + " " + data.get(2));
 				
 				if(operation.equals("approve"))
 				{

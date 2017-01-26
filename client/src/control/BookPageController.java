@@ -664,7 +664,7 @@ public class BookPageController implements ScreensIF
 	}
 	
 	/**
-	 * This buuton opens pop-up with 3 options of formats to download the book.
+	 * This button opens pop-up with 3 options of formats to download the book.
 	 * @param event
 	 * @throws IOException
 	 */
@@ -684,8 +684,16 @@ public class BookPageController implements ScreensIF
 
 			// Traditional way to get the response value.
 			Optional<String> result = dialog.showAndWait();
+			Optional emptyOptional = Optional.empty();
+
+			if (result == emptyOptional) return;
+			//System.out.println(result);
+			//result.
+			if (result.equals("Optional.empty")) return;
+			
 			String format = result.get();
-		
+
+			
 			final Label labelSelectedDirectory = new Label();
 			DirectoryChooser directoryChooser = new DirectoryChooser();
             File selectedDirectory = 
@@ -709,16 +717,29 @@ public class BookPageController implements ScreensIF
     			ClientController.clientConnectionController.sendToServer(message);
     		} catch (IOException e) {	
             
+    		}
+    		/*
+			  //itai
+			  Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						DownloadFileRecv recv_file = new DownloadFileRecv();
+						recv_file.start();
+							synchronized (recv_file) {
+								try{
+									recv_file.wait();
+								}catch(InterruptedException e){
+									e.printStackTrace();
+								}
+							}
+					}});
+
+		*/
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-	} 
-		finally 
-		{
-		
-		}
+
 	}
 
 	
@@ -941,3 +962,5 @@ class BookImgRecv extends Thread{
         }
     }
 }
+
+

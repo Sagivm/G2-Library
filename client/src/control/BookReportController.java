@@ -83,7 +83,7 @@ public class BookReportController implements Initializable {
 	private void initializeChart() {
 		ArrayList<String> elementsList = new ArrayList<String>();
 		elementsList.add(String.valueOf(selectedBook.getBookSn()));
-		System.out.println(selectedBook.getBookSn());
+		//System.out.println(selectedBook.getBookSn());
 		Message message = new Message(ActionType.BOOKREPORT, elementsList);
 		try {
 			ClientController.clientConnectionController.sendToServer(message);
@@ -92,7 +92,23 @@ public class BookReportController implements Initializable {
 
 			// actionToDisplay("Warning",ActionType.CONTINUE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 		}
-		receive();
+		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				BookReportRecv recv_bookReport = new BookReportRecv();
+				recv_bookReport.start();
+				synchronized (recv_bookReport) {
+					try{
+						recv_bookReport.wait();
+					}catch(InterruptedException e){
+						e.printStackTrace();
+					}
+					receive();
+				}
+			}});
+		
+		//receive();
 	}
 
 	/**
@@ -104,7 +120,7 @@ public class BookReportController implements Initializable {
 			public void run() {
 
 				try {
-					System.out.println(data.get(0));
+					//System.out.println(data.get(0));
 					
 					displayChart();
 				} catch (Exception e) {
@@ -254,4 +270,29 @@ public class BookReportController implements Initializable {
 		}
 	}
 
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookReportRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
 }

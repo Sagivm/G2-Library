@@ -831,6 +831,8 @@ private Button editAuthorSubmit;
  * this attribute insert the data (filtered books by search) to the table.
  */
  private ObservableList < PropertyBook > filteredData = FXCollections.observableArrayList();
+ 
+
 
  /**
  * initialize all the listener and data from the DB in the form on load.
@@ -851,6 +853,7 @@ private Button editAuthorSubmit;
   hideBtn.setVisible(false);
   
   
+  
   Message message = prepareGetBooksList(ActionType.GET_BOOK_LIST);
   try {
    ClientController.clientConnectionController.sendToServer(message);
@@ -863,7 +866,7 @@ private Button editAuthorSubmit;
   Platform.runLater(new Runnable() {
 		@Override
 		public void run() {
-			BookManagermentRecv recv_getBooks = new BookManagermentRecv();
+			BookManagermentGetBookListRecv recv_getBooks = new BookManagermentGetBookListRecv();
 				recv_getBooks.start();
 				synchronized (recv_getBooks) {
 					try{
@@ -875,31 +878,7 @@ private Button editAuthorSubmit;
 		}});
 		
   
-  Platform.runLater(() -> {
-	  
-	  
-   String authors = "";
-   for (int i = 0; i < BooksList.size(); i += 9) {
-    if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
-     authors = authors + BooksList.get(i + 5) + ",";
-    } else {
-     if (authors.equals("")) {
-      String hide;
-      if (BooksList.get(i + 3).equals("0")) hide = "no";
-      else hide = "yes";
-      data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-      filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-     } else {
-      String hide;
-      if (BooksList.get(i + 3).equals("0")) hide = "no";
-      else hide = "yes";
-      data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-      filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-     }
-     authors = "";
-    }
-   }
-  });
+  
   
 
   Message message2 = prepareGetAuthors(ActionType.GET_AUTHORS);
@@ -913,7 +892,7 @@ private Button editAuthorSubmit;
   Platform.runLater(new Runnable() {
 		@Override
 		public void run() {
-			BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+			BookManagermentGetAuthorsRecv recv_getAuthors = new BookManagermentGetAuthorsRecv();
 				recv_getAuthors.start();
 				synchronized (recv_getAuthors) {
 					try{
@@ -921,24 +900,52 @@ private Button editAuthorSubmit;
 					}catch(InterruptedException e){
 						e.printStackTrace();
 					}
+					
+					Platform.runLater(() -> {
+						  
+						  
+						   String authors = "";
+						   for (int i = 0; i < BooksList.size(); i += 9) {
+						    if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
+						     authors = authors + BooksList.get(i + 5) + ",";
+						    } else {
+						     if (authors.equals("")) {
+						      String hide;
+						      if (BooksList.get(i + 3).equals("0")) hide = "no";
+						      else hide = "yes";
+						      data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						      filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						     } else {
+						      String hide;
+						      if (BooksList.get(i + 3).equals("0")) hide = "no";
+						      else hide = "yes";
+						      data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						      filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						     }
+						     authors = "";
+						    }
+						   }
+						  });
+					
+					  Platform.runLater(() -> {
+						   ArrayList < String > names = new ArrayList < String > ();
+						   addBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+						   //System.out.println(statush.get(1).getFirstname());
+						   for (int i = 0; i < authorList.size(); i++) {
+						    names.add(i, "(" + authorList.get(i).getId() + ")" + "\t" + authorList.get(i).getFirstname() + " " + authorList.get(i).getLastname());
+						   }
+						   //System.out.println(names.get(0));
+						   ObservableList < String > authors = FXCollections.observableArrayList(names);
+						   addBookAuthorsList.setItems(authors);
+
+						  });
 				}
 		}});
   
   
   
   
-  Platform.runLater(() -> {
-   ArrayList < String > names = new ArrayList < String > ();
-   addBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-   //System.out.println(statush.get(1).getFirstname());
-   for (int i = 0; i < authorList.size(); i++) {
-    names.add(i, "(" + authorList.get(i).getId() + ")" + "\t" + authorList.get(i).getFirstname() + " " + authorList.get(i).getLastname());
-   }
-   //System.out.println(names.get(0));
-   ObservableList < String > authors = FXCollections.observableArrayList(names);
-   addBookAuthorsList.setItems(authors);
 
-  });
 
 
 
@@ -953,7 +960,7 @@ private Button editAuthorSubmit;
   Platform.runLater(new Runnable() {
 		@Override
 		public void run() {
-				BookManagermentRecv recv_getSubjects = new BookManagermentRecv();
+				BookManagermentGetSubjectsRecv recv_getSubjects = new BookManagermentGetSubjectsRecv();
 				recv_getSubjects.start();
 				synchronized (recv_getSubjects) {
 					try{
@@ -961,100 +968,99 @@ private Button editAuthorSubmit;
 					}catch(InterruptedException e){
 						e.printStackTrace();
 					}
+					
+					  Platform.runLater(() -> {
+						   addBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+						   ObservableList < String > subjects = FXCollections.observableArrayList(subjectList);
+						   addBookSubjectsList.setItems(subjects);
+
+						  });
+					  
+					  BooksTableView.setEditable(true);
+
+					  BookSn.setCellValueFactory(
+					   new PropertyValueFactory < pendingUser, String > ("bookSn"));
+
+					  BookTitle.setCellValueFactory(
+					   new PropertyValueFactory < pendingUser, String > ("bookTitle"));
+
+					  BookKeywords.setCellValueFactory(
+					   new PropertyValueFactory < pendingUser, String > ("bookKeywords"));
+
+					  BookHide.setCellValueFactory(
+					   new PropertyValueFactory < pendingUser, String > ("bookHide"));
+
+					  BookAuthors.setCellValueFactory(
+					   new PropertyValueFactory < pendingUser, String > ("authorName"));
 				}
+				
+				  BookSn.setStyle("-fx-alignment: CENTER;");
+				  BookTitle.setStyle("-fx-alignment: CENTER;");
+				  BookKeywords.setStyle("-fx-alignment: CENTER;");
+				  BookHide.setStyle("-fx-alignment: CENTER;");
+				  BookAuthors.setStyle("-fx-alignment: CENTER;");
+				  
+				  BooksTableView.setItems(filteredData);
+
+				  BooksTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+				   if (newSelection != null) {
+				    TitleLabel.setVisible(true);
+				    AuthorsLabel.setVisible(true);
+				    KeywordsLabel.setVisible(true);
+				    SummaryLabel.setVisible(true);
+				    PriceLabel.setVisible(true);
+				    BookSummary.setVisible(true);
+				    imageView.setVisible(true);
+				    infoPrice.setVisible(true);
+				    InfoAuthors.setVisible(true);
+				    InfoKeywords.setVisible(true);
+				    InfoTitle.setVisible(true);
+				    delBtn.setVisible(true);
+				    editBtn.setVisible(true);
+				    hideBtn.setVisible(true);
+
+				    if (newSelection.getBookHide().equals("yes"))
+				     hideBtn.setText("Unhide Book");
+				    else
+				     hideBtn.setText("Hide Book");
+				    
+				    InfoTitle.setText(newSelection.getBookTitle());
+				    InfoAuthors.setText(newSelection.getAuthorName());
+				    InfoKeywords.setMaxWidth(170);
+				    InfoKeywords.setWrapText(true);
+				    InfoKeywords.setText(newSelection.getBookKeywords());
+				    BookSummary.setStyle("-fx-focus-color: -fx-control-inner-background ; -fx-faint-focus-color: -fx-control-inner-background ; -fx-background-insets: 0;-fx-background-color: transparent, white, transparent, white;");
+				    BookSummary.setMaxWidth(280);
+				    BookSummary.setWrapText(true);
+				    BookSummary.setText(newSelection.getBookSummary());
+				    BookSummary.setEditable(false);
+				    infoPrice.setText(newSelection.getBookPrice());
+
+				    //show picture
+				    if(newSelection.getBookImage()!=null){
+				    String base64EncodedImage = newSelection.getBookImage();
+				    byte[] imageInBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64EncodedImage);
+				    BufferedImage imgbuf;
+				    try {
+				     imgbuf = ImageIO.read(new ByteArrayInputStream(imageInBytes));
+				     Image image = SwingFXUtils.toFXImage(imgbuf, null);
+				     imageView.setImage(image);
+				    } catch (Exception e1) {
+				     // TODO Auto-generated catch block
+				     e1.printStackTrace();
+				    }
+				  }
+				    else imageView.setImage(null);
+				    //end show picture
+
+				   }
+				  });
+				  
+				  
+				  
+				  
 		}});
 		
-  
-  Platform.runLater(() -> {
-   addBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-   ObservableList < String > subjects = FXCollections.observableArrayList(subjectList);
-   addBookSubjectsList.setItems(subjects);
-
-  });
-
-  BooksTableView.setEditable(true);
-
-  BookSn.setCellValueFactory(
-   new PropertyValueFactory < pendingUser, String > ("bookSn"));
-
-  BookTitle.setCellValueFactory(
-   new PropertyValueFactory < pendingUser, String > ("bookTitle"));
-
-  BookKeywords.setCellValueFactory(
-   new PropertyValueFactory < pendingUser, String > ("bookKeywords"));
-
-  BookHide.setCellValueFactory(
-   new PropertyValueFactory < pendingUser, String > ("bookHide"));
-
-  BookAuthors.setCellValueFactory(
-   new PropertyValueFactory < pendingUser, String > ("authorName"));
-
-
-
-  BookSn.setStyle("-fx-alignment: CENTER;");
-  BookTitle.setStyle("-fx-alignment: CENTER;");
-  BookKeywords.setStyle("-fx-alignment: CENTER;");
-  BookHide.setStyle("-fx-alignment: CENTER;");
-  BookAuthors.setStyle("-fx-alignment: CENTER;");
-
-
-
-
-  BooksTableView.setItems(filteredData);
-
-  BooksTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-   if (newSelection != null) {
-    TitleLabel.setVisible(true);
-    AuthorsLabel.setVisible(true);
-    KeywordsLabel.setVisible(true);
-    SummaryLabel.setVisible(true);
-    PriceLabel.setVisible(true);
-    BookSummary.setVisible(true);
-    imageView.setVisible(true);
-    infoPrice.setVisible(true);
-    InfoAuthors.setVisible(true);
-    InfoKeywords.setVisible(true);
-    InfoTitle.setVisible(true);
-    delBtn.setVisible(true);
-    editBtn.setVisible(true);
-    hideBtn.setVisible(true);
-
-    if (newSelection.getBookHide().equals("yes"))
-     hideBtn.setText("Unhide Book");
-    else
-     hideBtn.setText("Hide Book");
-    
-    InfoTitle.setText(newSelection.getBookTitle());
-    InfoAuthors.setText(newSelection.getAuthorName());
-    InfoKeywords.setMaxWidth(170);
-    InfoKeywords.setWrapText(true);
-    InfoKeywords.setText(newSelection.getBookKeywords());
-    BookSummary.setStyle("-fx-focus-color: -fx-control-inner-background ; -fx-faint-focus-color: -fx-control-inner-background ; -fx-background-insets: 0;-fx-background-color: transparent, white, transparent, white;");
-    BookSummary.setMaxWidth(280);
-    BookSummary.setWrapText(true);
-    BookSummary.setText(newSelection.getBookSummary());
-    BookSummary.setEditable(false);
-    infoPrice.setText(newSelection.getBookPrice());
-
-    //show picture
-    if(newSelection.getBookImage()!=null){
-    String base64EncodedImage = newSelection.getBookImage();
-    byte[] imageInBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64EncodedImage);
-    BufferedImage imgbuf;
-    try {
-     imgbuf = ImageIO.read(new ByteArrayInputStream(imageInBytes));
-     Image image = SwingFXUtils.toFXImage(imgbuf, null);
-     imageView.setImage(image);
-    } catch (Exception e1) {
-     // TODO Auto-generated catch block
-     e1.printStackTrace();
-    }
-  }
-    else imageView.setImage(null);
-    //end show picture
-
-   }
-  });
   
   editBtn.setOnAction(e -> {
 	  mainPane.setVisible(false);
@@ -1079,7 +1085,7 @@ private Button editAuthorSubmit;
 		       }
 	  }
 
-	  
+
 	  
 	  Message message4 = prepareGetAuthors(ActionType.GET_BOOK_AUTHORS,selectedItem.getBookSn());
 	  Message message5 = prepareGetAuthors(ActionType.GET_AUTHORS);
@@ -1087,9 +1093,10 @@ private Button editAuthorSubmit;
 	  Message message7 = prepareGetSubjects(ActionType.GET_SUBJECTS);
 	  Message message8 = prepareGetLanguage(ActionType.GET_BOOK_LANGUAGE,selectedItem.getBookSn());
 	  Message message9 = prepareGetTableOfContent(ActionType.GET_BOOK_TABLE_OF_CONTENT,selectedItem.getBookSn());
-
+	  
+	  
+	  
 	  try {
-		   System.out.println("1");
 	    ClientController.clientConnectionController.sendToServer(message4);
 	    ClientController.clientConnectionController.sendToServer(message5);
 	    ClientController.clientConnectionController.sendToServer(message6);
@@ -1104,7 +1111,7 @@ private Button editAuthorSubmit;
 	  Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-					BookManagermentRecv recv_getBookAuthors = new BookManagermentRecv();
+					BookManagermentGetBookAuthorsRecv recv_getBookAuthors = new BookManagermentGetBookAuthorsRecv();
 					recv_getBookAuthors.start();
 					synchronized (recv_getBookAuthors) {
 						try{
@@ -1112,6 +1119,7 @@ private Button editAuthorSubmit;
 						}catch(InterruptedException e){
 							e.printStackTrace();
 						}
+						
 					}
 			}});
 	  
@@ -1120,7 +1128,7 @@ private Button editAuthorSubmit;
 	  Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+				BookManagermentGetBookAuthorsRecv2 recv_getAuthors = new BookManagermentGetBookAuthorsRecv2();
 					recv_getAuthors.start();
 					synchronized (recv_getAuthors) {
 						try{
@@ -1128,16 +1136,33 @@ private Button editAuthorSubmit;
 						}catch(InterruptedException e){
 							e.printStackTrace();
 						}
+						
 					}
 			}});
 	  
+	  
+	  //itai
+	  Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+					BookManagermentGetBookSubjectsRecv recv_getBookSubjects = new BookManagermentGetBookSubjectsRecv();
+					recv_getBookSubjects.start();
+					synchronized (recv_getBookSubjects) {
+						try{
+							recv_getBookSubjects.wait();
+						}catch(InterruptedException e){
+							e.printStackTrace();
+						}
+						
+					}
+			}});
 		
 		  
 		  //itai
 		  Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-						BookManagermentRecv recv_getSubjects = new BookManagermentRecv();
+						BookManagermentGetSubjectsRecv2 recv_getSubjects = new BookManagermentGetSubjectsRecv2();
 						recv_getSubjects.start();
 						synchronized (recv_getSubjects) {
 							try{
@@ -1145,6 +1170,24 @@ private Button editAuthorSubmit;
 							}catch(InterruptedException e){
 								e.printStackTrace();
 							}
+							
+						}
+				}});
+		  
+		  
+		//itai
+		  Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+						BookManagermentGetBookLanguageRecv recv_getBookLanguages = new BookManagermentGetBookLanguageRecv();
+						recv_getBookLanguages.start();
+						synchronized (recv_getBookLanguages) {
+							try{
+								recv_getBookLanguages.wait();
+							}catch(InterruptedException e){
+								e.printStackTrace();
+							}
+							
 						}
 				}});
 		
@@ -1152,7 +1195,7 @@ private Button editAuthorSubmit;
 		  Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-						BookManagermentRecv recv_getBookTableOfContent = new BookManagermentRecv();
+						BookManagermentGetBookTocRecv recv_getBookTableOfContent = new BookManagermentGetBookTocRecv();
 						recv_getBookTableOfContent.start();
 						synchronized (recv_getBookTableOfContent) {
 							try{
@@ -1160,127 +1203,103 @@ private Button editAuthorSubmit;
 							}catch(InterruptedException e){
 								e.printStackTrace();
 							}
+							
+						    ArrayList < String > names = new ArrayList < String > ();
+						    editBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+						    //System.out.println(statush.get(1).getFirstname());
+						    for (int i = 0; i < authorList.size(); i++) {
+						    		names.add(i, "(" + authorList.get(i).getId() + ")" + "\t" + authorList.get(i).getFirstname() + " " + authorList.get(i).getLastname());
+						    }
+						    ArrayList < String > namesselected = new ArrayList < String > ();
+						    editBookAuthorsListSelected.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+						    for (int i = 0; i < selectedAuthorsString.size(); i++) {
+						    	namesselected.add(i, "(" + selectedAuthorsString.get(i).getId() + ")" + "\t" + selectedAuthorsString.get(i).getFirstname() + " " + selectedAuthorsString.get(i).getLastname());
+						    	names.remove(namesselected.get(i));
+						    }
+
+						    
+						    ArrayList < String > subjects = new ArrayList < String > ();
+						    editBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+						    //System.out.println(statush.get(1).getFirstname());
+						    for (int i = 0; i < subjectListOfBook.size(); i++) {
+						    	subjects.add(i, subjectListOfBook.get(i));
+						    }
+						    ArrayList < String > subjectsselected = new ArrayList < String > ();
+						    editBookSubjectsListSelected.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+						    
+						    
+						    //System.out.println(statush.get(1).getFirstname());
+						    for (int i = 0; i < selectedSubjectString.size(); i++) {
+						    	subjectsselected.add(i, selectedSubjectString.get(i));
+						    	subjects.remove(subjectsselected.get(i));
+						    }
+						    
+
+						    //System.out.println(names.get(0));
+						    ObservableList < String > authors = FXCollections.observableArrayList(names);
+						    ObservableList < String > selectedAuthors = FXCollections.observableArrayList(namesselected);
+						    editBookAuthorsList.setItems(authors);    
+						    editBookAuthorsListSelected.setItems(selectedAuthors);
+						    
+							editBookAuthorsLeft.setOnAction((ActionEvent event) -> {
+							        String potential = editBookAuthorsList.getSelectionModel().getSelectedItem();
+							        if (potential != null) {
+							        	editBookAuthorsList.getSelectionModel().clearSelection();
+							        	authors.remove(potential);
+							        	selectedAuthors.add(potential);
+							        }
+							      });
+							
+							editBookAuthorsRight.setOnAction((ActionEvent event) -> {
+						        String potential = editBookAuthorsListSelected.getSelectionModel().getSelectedItem();
+						        if (potential != null) {
+						        	editBookAuthorsListSelected.getSelectionModel().clearSelection();
+						        	selectedAuthors.remove(potential);
+						        	authors.add(potential);
+						        }
+						      });
+							
+							
+						    ObservableList < String > allSubjects = FXCollections.observableArrayList(subjects);
+						    ObservableList < String > selectedSubjects = FXCollections.observableArrayList(subjectsselected);
+						    editBookSubjectsList.setItems(allSubjects);    
+						    editBookSubjectsListSelected.setItems(selectedSubjects);
+						    
+						    editBookSubjectsLeft.setOnAction((ActionEvent event) -> {
+							        String potential = editBookSubjectsList.getSelectionModel().getSelectedItem();
+							        if (potential != null) {
+							        	editBookSubjectsList.getSelectionModel().clearSelection();
+							        	allSubjects.remove(potential);
+							        	selectedSubjects.add(potential);
+							        }
+							      });
+							
+						    editBookSubjectsRight.setOnAction((ActionEvent event) -> {
+						        String potential = editBookSubjectsListSelected.getSelectionModel().getSelectedItem();
+						        if (potential != null) {
+						        	editBookSubjectsListSelected.getSelectionModel().clearSelection();
+						        	selectedSubjects.remove(potential);
+						        	allSubjects.add(potential);
+						        }
+						      });
+
+
+						  
+						   
+						   ObservableList < String > languages = FXCollections.observableArrayList(
+								     "English", "Hebrew", "Russian", "Arabic");
+						   editBookLanguageList.setItems(languages);
+						   editBookLanguageList.getSelectionModel().select(editBookLanguage);
+						   
+						   editBookTableOfContent.setText(editBookTableOfContant); 
+							
 						}
 				}});
 		  
-	   Platform.runLater(() -> { 
-	    ArrayList < String > names = new ArrayList < String > ();
-	    editBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-	    //System.out.println(statush.get(1).getFirstname());
-	    for (int i = 0; i < authorList.size(); i++) {
-	    		names.add(i, "(" + authorList.get(i).getId() + ")" + "\t" + authorList.get(i).getFirstname() + " " + authorList.get(i).getLastname());
-	    }
-	    ArrayList < String > namesselected = new ArrayList < String > ();
-	    editBookAuthorsListSelected.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-	    for (int i = 0; i < selectedAuthorsString.size(); i++) {
-	    	namesselected.add(i, "(" + selectedAuthorsString.get(i).getId() + ")" + "\t" + selectedAuthorsString.get(i).getFirstname() + " " + selectedAuthorsString.get(i).getLastname());
-	    	names.remove(namesselected.get(i));
-	    }
-	    
-		  //itai
-		  Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-						BookManagermentRecv recv_SubjectListOfBook = new BookManagermentRecv();
-						recv_SubjectListOfBook.start();
-						synchronized (recv_SubjectListOfBook) {
-							try{
-								recv_SubjectListOfBook.wait();
-							}catch(InterruptedException e){
-								e.printStackTrace();
-							}
-						}
-				}});
-	    
-	    ArrayList < String > subjects = new ArrayList < String > ();
-	    editBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-	    //System.out.println(statush.get(1).getFirstname());
-	    for (int i = 0; i < subjectListOfBook.size(); i++) {
-	    	subjects.add(i, subjectListOfBook.get(i));
-	    }
-	    ArrayList < String > subjectsselected = new ArrayList < String > ();
-	    editBookSubjectsListSelected.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-	    
-	    
-		  //itai
-		  Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-						BookManagermentRecv recv_selectedSubjectString = new BookManagermentRecv();
-						recv_selectedSubjectString.start();
-						synchronized (recv_selectedSubjectString) {
-							try{
-								recv_selectedSubjectString.wait();
-							}catch(InterruptedException e){
-								e.printStackTrace();
-							}
-						}
-				}});
-	    
-	    //System.out.println(statush.get(1).getFirstname());
-	    for (int i = 0; i < selectedSubjectString.size(); i++) {
-	    	subjectsselected.add(i, selectedSubjectString.get(i));
-	    	subjects.remove(subjectsselected.get(i));
-	    }
-	    
 
-	    //System.out.println(names.get(0));
-	    ObservableList < String > authors = FXCollections.observableArrayList(names);
-	    ObservableList < String > selectedAuthors = FXCollections.observableArrayList(namesselected);
-	    editBookAuthorsList.setItems(authors);    
-	    editBookAuthorsListSelected.setItems(selectedAuthors);
-	    
-		editBookAuthorsLeft.setOnAction((ActionEvent event) -> {
-		        String potential = editBookAuthorsList.getSelectionModel().getSelectedItem();
-		        if (potential != null) {
-		        	editBookAuthorsList.getSelectionModel().clearSelection();
-		        	authors.remove(potential);
-		        	selectedAuthors.add(potential);
-		        }
-		      });
-		
-		editBookAuthorsRight.setOnAction((ActionEvent event) -> {
-	        String potential = editBookAuthorsListSelected.getSelectionModel().getSelectedItem();
-	        if (potential != null) {
-	        	editBookAuthorsListSelected.getSelectionModel().clearSelection();
-	        	selectedAuthors.remove(potential);
-	        	authors.add(potential);
-	        }
-	      });
-		
-		
-	    ObservableList < String > allSubjects = FXCollections.observableArrayList(subjects);
-	    ObservableList < String > selectedSubjects = FXCollections.observableArrayList(subjectsselected);
-	    editBookSubjectsList.setItems(allSubjects);    
-	    editBookSubjectsListSelected.setItems(selectedSubjects);
-	    
-	    editBookSubjectsLeft.setOnAction((ActionEvent event) -> {
-		        String potential = editBookSubjectsList.getSelectionModel().getSelectedItem();
-		        if (potential != null) {
-		        	editBookSubjectsList.getSelectionModel().clearSelection();
-		        	allSubjects.remove(potential);
-		        	selectedSubjects.add(potential);
-		        }
-		      });
-		
-	    editBookSubjectsRight.setOnAction((ActionEvent event) -> {
-	        String potential = editBookSubjectsListSelected.getSelectionModel().getSelectedItem();
-	        if (potential != null) {
-	        	editBookSubjectsListSelected.getSelectionModel().clearSelection();
-	        	selectedSubjects.remove(potential);
-	        	allSubjects.add(potential);
-	        }
-	      });
+		  
+		  
 
-	   });
-	  
-	   
-	   ObservableList < String > languages = FXCollections.observableArrayList(
-			     "English", "Hebrew", "Russian", "Arabic");
-	   editBookLanguageList.setItems(languages);
-	   editBookLanguageList.getSelectionModel().select(editBookLanguage);
-	   
-	   editBookTableOfContent.setText(editBookTableOfContant); 
 
 	  }); //end edit button
 
@@ -1294,6 +1313,11 @@ private Button editAuthorSubmit;
    } catch (IOException e1) {	
    	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
    }
+   
+   /////////////////////////////////////////////////////////////////
+   
+   ///////////////////////////////////////////////////////////////////
+   
    Platform.runLater(() -> {
    			data.remove(selectedItem);
    });
@@ -1311,6 +1335,12 @@ private Button editAuthorSubmit;
      e1.printStackTrace();
      actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
     }
+    
+    /////////////////////////////////////////////////////////////////
+    
+    ///////////////////////////////////////////////////////////////////
+    
+    
     Platform.runLater(() -> {
      selectedItem.setBookHide("no");
      hideBtn.setText("Hide Book");
@@ -1323,6 +1353,11 @@ private Button editAuthorSubmit;
     	e1.printStackTrace();
      actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
     }
+    
+    /////////////////////////////////////////////////////////////////
+    
+    ///////////////////////////////////////////////////////////////////
+    
     Platform.runLater(() -> {
      selectedItem.setBookHide("yes");
      hideBtn.setText("Unhide Book");
@@ -1365,7 +1400,7 @@ private Button editAuthorSubmit;
    Platform.runLater(new Runnable() {
  		@Override
  		public void run() {
- 			BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+ 				BookManagermentGetAuthorsRecv2 recv_getAuthors = new BookManagermentGetAuthorsRecv2();
  				recv_getAuthors.start();
  				synchronized (recv_getAuthors) {
  					try{
@@ -1373,21 +1408,23 @@ private Button editAuthorSubmit;
  					}catch(InterruptedException e){
  						e.printStackTrace();
  					}
+ 					
+ 				   Platform.runLater(() -> {
+ 					    ArrayList < String > names = new ArrayList < String > ();
+ 					    addBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+ 					    //System.out.println(statush.get(1).getFirstname());
+ 					    for (int i = 0; i < authorList.size(); i++) {
+ 					     names.add(i, "(" + authorList.get(i).getId() + ")" + "\t" + authorList.get(i).getFirstname() + " " + authorList.get(i).getLastname());
+ 					    }
+ 					    //System.out.println(names.get(0));
+ 					    ObservableList < String > authors = FXCollections.observableArrayList(names);
+ 					    addBookAuthorsList.setItems(authors);
+
+ 					   });
  				}
  		}});
    
-   Platform.runLater(() -> {
-    ArrayList < String > names = new ArrayList < String > ();
-    addBookAuthorsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-    //System.out.println(statush.get(1).getFirstname());
-    for (int i = 0; i < authorList.size(); i++) {
-     names.add(i, "(" + authorList.get(i).getId() + ")" + "\t" + authorList.get(i).getFirstname() + " " + authorList.get(i).getLastname());
-    }
-    //System.out.println(names.get(0));
-    ObservableList < String > authors = FXCollections.observableArrayList(names);
-    addBookAuthorsList.setItems(authors);
 
-   });
 
 
 
@@ -1402,7 +1439,7 @@ private Button editAuthorSubmit;
    Platform.runLater(new Runnable() {
  		@Override
  		public void run() {
- 				BookManagermentRecv recv_getSubjects = new BookManagermentRecv();
+ 				BookManagermentGetSubjectsRecv3 recv_getSubjects = new BookManagermentGetSubjectsRecv3();
  				recv_getSubjects.start();
  				synchronized (recv_getSubjects) {
  					try{
@@ -1410,15 +1447,17 @@ private Button editAuthorSubmit;
  					}catch(InterruptedException e){
  						e.printStackTrace();
  					}
+ 					
+ 				   Platform.runLater(() -> {
+ 					    addBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+ 					    ObservableList < String > subjects = FXCollections.observableArrayList(subjectList);
+ 					    addBookSubjectsList.setItems(subjects);
+
+ 					   });
  				}
  		}});
    
-   Platform.runLater(() -> {
-    addBookSubjectsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-    ObservableList < String > subjects = FXCollections.observableArrayList(subjectList);
-    addBookSubjectsList.setItems(subjects);
 
-   });
 
   }); //endbtn
 
@@ -1447,7 +1486,7 @@ private Button editAuthorSubmit;
      String base64EncodedImage = DatatypeConverter.printBase64Binary(output.toByteArray());
      imageInBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64EncodedImage);
      picStr = base64EncodedImage;
-     System.out.println(base64EncodedImage);
+     //System.out.println(base64EncodedImage);
      BufferedImage imgbuf;
      imgbuf = ImageIO.read(new ByteArrayInputStream(imageInBytes));
      Image image1 = SwingFXUtils.toFXImage(imgbuf, null);
@@ -1534,6 +1573,10 @@ private Button editAuthorSubmit;
     } catch (Exception e1) {
      e1.printStackTrace();
     }
+    ////////////////////////////////////////////////////////////////
+    
+    ////////////////////////////////////////////////////////////////	
+    
     Platform.runLater(() -> {
     actionOnError(ActionType.CONTINUE, "The book added successfully!");
     addBookTitle.setText("");
@@ -1561,7 +1604,7 @@ private Button editAuthorSubmit;
     Platform.runLater(new Runnable() {
 		@Override
 		public void run() {
-				BookManagermentRecv recv_getBooks = new BookManagermentRecv();
+				BookManagermentGetBookListRecv2 recv_getBooks = new BookManagermentGetBookListRecv2();
 				recv_getBooks.start();
 				synchronized (recv_getBooks) {
 					try{
@@ -1569,37 +1612,35 @@ private Button editAuthorSubmit;
 					}catch(InterruptedException e){
 						e.printStackTrace();
 					}
+					
+				    Platform.runLater(() -> {
+				        String authors = "";
+				        for (int i = 0; i < BooksList.size(); i += 9) {
+				         if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
+				          authors = authors + BooksList.get(i + 5) + ",";
+				         } else {
+				          if (authors.equals("")) {
+				           String hide;
+				           if (BooksList.get(i + 3).equals("0")) hide = "no";
+				           else hide = "yes";
+				           data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+				           filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+				          } else {
+				           String hide;
+				           if (BooksList.get(i + 3).equals("0")) hide = "no";
+				           else hide = "yes";
+				           data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+				           filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+				          }
+				          authors = "";
+				         }
+				        }
+				       });
 				}
 		}});
     
-    Platform.runLater(() -> {
-     String authors = "";
-     for (int i = 0; i < BooksList.size(); i += 9) {
-      if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
-       authors = authors + BooksList.get(i + 5) + ",";
-      } else {
-       if (authors.equals("")) {
-        String hide;
-        if (BooksList.get(i + 3).equals("0")) hide = "no";
-        else hide = "yes";
-        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-       } else {
-        String hide;
-        if (BooksList.get(i + 3).equals("0")) hide = "no";
-        else hide = "yes";
-        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-       }
-       authors = "";
-      }
-     }
-    });
-    try {
-		Thread.sleep(1000);
-	} catch (Exception e1) {
-		e1.printStackTrace();
-	}
+
+
     
     addBookPane.setVisible(false);
     editBookPane.setVisible(false);
@@ -1626,7 +1667,7 @@ private Button editAuthorSubmit;
 	     String base64EncodedImage = DatatypeConverter.printBase64Binary(output.toByteArray());
 	     imageInBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64EncodedImage);
 	     picStr = base64EncodedImage;
-	     System.out.println(base64EncodedImage);
+	     //System.out.println(base64EncodedImage);
 	     BufferedImage imgbuf;
 	     imgbuf = ImageIO.read(new ByteArrayInputStream(imageInBytes));
 	     Image image1 = SwingFXUtils.toFXImage(imgbuf, null);
@@ -1703,6 +1744,13 @@ private Button editAuthorSubmit;
 	    } catch (Exception e1) {
 	     e1.printStackTrace();
 	    }
+	    
+	    ////////////////////////////////////////////////////////////////
+	    
+	    
+	    ////////////////////////////////////////////////////////////////
+
+	    
 	    Platform.runLater(() -> {
 	    actionOnError(ActionType.CONTINUE, "The book added successfully!");
 	    addBookTitle.setText("");
@@ -1730,7 +1778,7 @@ private Button editAuthorSubmit;
 	    Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-					BookManagermentRecv recv_getBooks = new BookManagermentRecv();
+					BookManagermentGetBookListRecv3 recv_getBooks = new BookManagermentGetBookListRecv3();
 					recv_getBooks.start();
 					synchronized (recv_getBooks) {
 						try{
@@ -1738,32 +1786,34 @@ private Button editAuthorSubmit;
 						}catch(InterruptedException e){
 							e.printStackTrace();
 						}
+						
+						Platform.runLater(() -> {
+						     String authors = "";
+						     for (int i = 0; i < BooksList.size(); i += 9) {
+						      if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
+						       authors = authors + BooksList.get(i + 5) + ",";
+						      } else {
+						       if (authors.equals("")) {
+						        String hide;
+						        if (BooksList.get(i + 3).equals("0")) hide = "no";
+						        else hide = "yes";
+						        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						       } else {
+						        String hide;
+						        if (BooksList.get(i + 3).equals("0")) hide = "no";
+						        else hide = "yes";
+						        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+						       }
+						       authors = "";
+						      }
+						     }
+						    });
 					}
 			}});
 	    
-	    Platform.runLater(() -> {
-	     String authors = "";
-	     for (int i = 0; i < BooksList.size(); i += 9) {
-	      if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
-	       authors = authors + BooksList.get(i + 5) + ",";
-	      } else {
-	       if (authors.equals("")) {
-	        String hide;
-	        if (BooksList.get(i + 3).equals("0")) hide = "no";
-	        else hide = "yes";
-	        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-	        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-	       } else {
-	        String hide;
-	        if (BooksList.get(i + 3).equals("0")) hide = "no";
-	        else hide = "yes";
-	        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-	        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-	       }
-	       authors = "";
-	      }
-	     }
-	    });
+	    
 
 	    
 	    TitleLabel.setVisible(false);
@@ -1810,7 +1860,7 @@ private Button editAuthorSubmit;
   Platform.runLater(new Runnable() {
 		@Override
 		public void run() {
-				BookManagermentRecv recv_getDomainsWithId = new BookManagermentRecv();
+				BookManagermentGetDomainsWithIdRecv recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv();
 				recv_getDomainsWithId.start();
 				synchronized (recv_getDomainsWithId) {
 					try{
@@ -1818,112 +1868,115 @@ private Button editAuthorSubmit;
 					}catch(InterruptedException e){
 						e.printStackTrace();
 					}
+					
+
+						for(int i=0;i<domainsList.size();i+=2)
+							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
+						
+						domainId.setCellValueFactory(
+					            new PropertyValueFactory<PropertyDomain, String>("domainId"));
+
+							domainName.setCellValueFactory(
+					            new PropertyValueFactory<PropertyDomain, String>("domainName"));
+							
+							domainId.setStyle( "-fx-alignment: CENTER;");
+							domainName.setStyle( "-fx-alignment: CENTER;");
+							mainDomainTableView.setItems(dataDomains);
+							
+							
+							mainDomainTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+							 if (newSelection != null) {
+								  addDomainEditBtn.setVisible(true);
+								  DomainDeleteBtn.setVisible(true);
+								  }
+							});
+							
+							addDomainEditBtn.setOnAction(e -> {
+								mainDomainPane.setVisible(false);
+								addDomainPane.setVisible(false);
+								editDomainPane.setVisible(true);
+								PropertyDomain selectedItem = mainDomainTableView.getSelectionModel().getSelectedItem();
+								editDomainName.setText(selectedItem.getDomainName());
+							});
+							
+							editDomainBack.setOnAction(e -> {
+								   editDomainName.setText("");
+								   addDomainPane.setVisible(false);
+								   editDomainPane.setVisible(false);
+								   mainDomainPane.setVisible(true);
+								  });
+							
+							editDomainSubmit.setOnAction(e -> {
+								PropertyDomain selectedItem = mainDomainTableView.getSelectionModel().getSelectedItem(); 
+								String DomainId = null;
+								DomainId = selectedItem.getDomainId();
+								String DomainName = null;
+								DomainName = editDomainName.getText();
+								
+								System.out.println(DomainId+" "+DomainName);
+
+								
+								if (DomainName.equals(""))
+								    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");
+								else{
+									Message message5 = prepareEditDomain(ActionType.EDIT_DOMAIN, DomainId, DomainName);
+									 try {
+									     ClientController.clientConnectionController.sendToServer(message5);
+									    } catch (Exception e1) {
+									     e1.printStackTrace();
+									    }
+									    Platform.runLater(() -> {
+									    actionOnError(ActionType.CONTINUE, "The domain edited successfully!");
+									    editDomainName.setText("");
+									    
+									    dataDomains.clear();
+					  				    Message message6 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
+					  				    try {
+					  				     ClientController.clientConnectionController.sendToServer(message6);
+					  				    } catch (IOException e2) {
+					  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+					  				    }
+					  				    
+					  				  //itai
+					  				  Platform.runLater(new Runnable() {
+					  						@Override
+					  						public void run() {
+					  								BookManagermentGetDomainsWithIdRecv2 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv2();
+					  								recv_getDomainsWithId.start();
+					  								synchronized (recv_getDomainsWithId) {
+					  									try{
+					  										recv_getDomainsWithId.wait();
+					  									}catch(InterruptedException e){
+					  										e.printStackTrace();
+					  									}
+					  								}
+					  						}});
+					  				  
+					  				    
+					  				    Platform.runLater(() -> {
+					  						for(int i=0;i<domainsList.size();i+=2){
+					  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
+					  						}
+					  				    });
+					  				    try {
+					  						Thread.sleep(500);
+					  					} catch (Exception e1) {
+					  						e1.printStackTrace();
+					  					}
+									    
+									    addDomainPane.setVisible(false);
+									    editDomainPane.setVisible(false);
+									    mainDomainPane.setVisible(true);
+								});
+								}
+							});
+
 				}
 		}});
   
-	Platform.runLater(() -> {
-		for(int i=0;i<domainsList.size();i+=2){
-			dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-		}
-  });
+
   
-	domainId.setCellValueFactory(
-            new PropertyValueFactory<PropertyDomain, String>("domainId"));
-
-		domainName.setCellValueFactory(
-            new PropertyValueFactory<PropertyDomain, String>("domainName"));
-		
-		domainId.setStyle( "-fx-alignment: CENTER;");
-		domainName.setStyle( "-fx-alignment: CENTER;");
-		mainDomainTableView.setItems(dataDomains);
-		
-		
-		mainDomainTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-		 if (newSelection != null) {
-			  addDomainEditBtn.setVisible(true);
-			  DomainDeleteBtn.setVisible(true);
-			  }
-		});
-		
-		addDomainEditBtn.setOnAction(e -> {
-			mainDomainPane.setVisible(false);
-			addDomainPane.setVisible(false);
-			editDomainPane.setVisible(true);
-			PropertyDomain selectedItem = mainDomainTableView.getSelectionModel().getSelectedItem();
-			editDomainName.setText(selectedItem.getDomainName());
-		});
-		
-		editDomainBack.setOnAction(e -> {
-			   editDomainName.setText("");
-			   addDomainPane.setVisible(false);
-			   editDomainPane.setVisible(false);
-			   mainDomainPane.setVisible(true);
-			  });
-		
-		editDomainSubmit.setOnAction(e -> {
-			PropertyDomain selectedItem = mainDomainTableView.getSelectionModel().getSelectedItem(); 
-			String DomainId = null;
-			DomainId = selectedItem.getDomainId();
-			String DomainName = null;
-			DomainName = editDomainName.getText();
-			
-			System.out.println(DomainId+" "+DomainName);
-
-			
-			if (DomainName.equals(""))
-			    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");
-			else{
-				Message message5 = prepareEditDomain(ActionType.EDIT_DOMAIN, DomainId, DomainName);
-				 try {
-				     ClientController.clientConnectionController.sendToServer(message5);
-				    } catch (Exception e1) {
-				     e1.printStackTrace();
-				    }
-				    Platform.runLater(() -> {
-				    actionOnError(ActionType.CONTINUE, "The domain edited successfully!");
-				    editDomainName.setText("");
-				    
-				    dataDomains.clear();
-  				    Message message6 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
-  				    try {
-  				     ClientController.clientConnectionController.sendToServer(message6);
-  				    } catch (IOException e2) {
-  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  				    }
-  				    
-  				  //itai
-  				  Platform.runLater(new Runnable() {
-  						@Override
-  						public void run() {
-  								BookManagermentRecv recv_getDomainsWithId = new BookManagermentRecv();
-  								recv_getDomainsWithId.start();
-  								synchronized (recv_getDomainsWithId) {
-  									try{
-  										recv_getDomainsWithId.wait();
-  									}catch(InterruptedException e){
-  										e.printStackTrace();
-  									}
-  								}
-  						}});
-  				  
-  				    
-  				    Platform.runLater(() -> {
-  						for(int i=0;i<domainsList.size();i+=2){
-  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-  						}
-  				    });
-  				    try {
-  						Thread.sleep(500);
-  					} catch (Exception e1) {
-  						e1.printStackTrace();
-  					}
-				    
-				    addDomainPane.setVisible(false);
-				    editDomainPane.setVisible(false);
-				    mainDomainPane.setVisible(true);
-			});
-			}
-		});
+	
 
 		
 		
@@ -1950,7 +2003,7 @@ private Button editAuthorSubmit;
 				  Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-								BookManagermentRecv recv_getNumberBookAtDomain = new BookManagermentRecv();
+								BookManagermentGetNumberBookAtDomainRecv recv_getNumberBookAtDomain = new BookManagermentGetNumberBookAtDomainRecv();
 								recv_getNumberBookAtDomain.start();
 								synchronized (recv_getNumberBookAtDomain) {
 									try{
@@ -1958,61 +2011,158 @@ private Button editAuthorSubmit;
 									}catch(InterruptedException e){
 										e.printStackTrace();
 									}
+									
+									   Platform.runLater(() -> {
+										   
+											if(countBookByDomain>0)  
+												actionOnError(ActionType.CONTINUE,"You can't to remove domain that contains books!");
+											else{
+												Message message6 = prepareGetNumberBookAtDomain(ActionType.DELETE_DOMAIN ,DomainId);
+												try {
+												   	ClientController.clientConnectionController.sendToServer(message6);
+												   } catch (IOException e1) {	
+												   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+												   }
+												//////////////////////////////////
+												
+												//////////////////////////////////
+												
+												actionOnError(ActionType.CONTINUE, "The domain deleted successfully!");
+											    dataDomains.clear();
+							  				    Message message7 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
+							  				    try {
+							  				     ClientController.clientConnectionController.sendToServer(message7);
+							  				    } catch (IOException e2) {
+							  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+							  				    }
+							  				    
+							  				    
+							  				  //itai
+							  				  Platform.runLater(new Runnable() {
+							  						@Override
+							  						public void run() {
+							  								BookManagermentGetDomainsWithIdRecv3 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv3();
+							  								recv_getDomainsWithId.start();
+							  								synchronized (recv_getDomainsWithId) {
+							  									try{
+							  										recv_getDomainsWithId.wait();
+							  									}catch(InterruptedException e){
+							  										e.printStackTrace();
+							  									}
+							  									
+											  				    Platform.runLater(() -> {
+											  						for(int i=0;i<domainsList.size();i+=2){
+											  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
+											  						}
+											  				    });
+											  				    
+											  				  domainId.setCellValueFactory(
+											  			            new PropertyValueFactory<PropertyDomain, String>("domainId"));
+
+											  					domainName.setCellValueFactory(
+											  			            new PropertyValueFactory<PropertyDomain, String>("domainName"));
+											  					
+											  					domainId.setStyle( "-fx-alignment: CENTER;");
+											  					domainName.setStyle( "-fx-alignment: CENTER;");
+											  					mainDomainTableView.setItems(dataDomains);
+											  					
+											  					
+											  					mainDomainTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+											  					 if (newSelection != null) {
+											  						  addDomainEditBtn.setVisible(true);
+											  						  DomainDeleteBtn.setVisible(true);
+											  						  }
+											  					});
+											  					
+											  					addDomainEditBtn.setOnAction(e -> {
+											  						mainDomainPane.setVisible(false);
+											  						addDomainPane.setVisible(false);
+											  						editDomainPane.setVisible(true);
+											  						PropertyDomain selectedItem = mainDomainTableView.getSelectionModel().getSelectedItem();
+											  						editDomainName.setText(selectedItem.getDomainName());
+											  					});
+											  					
+											  					editDomainBack.setOnAction(e -> {
+											  						   editDomainName.setText("");
+											  						   addDomainPane.setVisible(false);
+											  						   editDomainPane.setVisible(false);
+											  						   mainDomainPane.setVisible(true);
+											  						  });
+											  					
+											  					editDomainSubmit.setOnAction(e -> {
+											  						PropertyDomain selectedItem = mainDomainTableView.getSelectionModel().getSelectedItem(); 
+											  						String DomainId = null;
+											  						DomainId = selectedItem.getDomainId();
+											  						String DomainName = null;
+											  						DomainName = editDomainName.getText();
+											  						
+											  						//System.out.println(DomainId+" "+DomainName);
+
+											  						
+											  						if (DomainName.equals(""))
+											  						    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");
+											  						else{
+											  							Message message5 = prepareEditDomain(ActionType.EDIT_DOMAIN, DomainId, DomainName);
+											  							 try {
+											  							     ClientController.clientConnectionController.sendToServer(message5);
+											  							    } catch (Exception e1) {
+											  							     e1.printStackTrace();
+											  							    }
+											  							 
+											  							 	////////////////////////////////////////////
+											  							 
+											  							 	////////////////////////////////////////////
+											  							 
+											  							    Platform.runLater(() -> {
+											  							    actionOnError(ActionType.CONTINUE, "The domain edited successfully!");
+											  							    editDomainName.setText("");
+											  							    
+											  							    dataDomains.clear();
+											  			  				    Message message6 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
+											  			  				    try {
+											  			  				     ClientController.clientConnectionController.sendToServer(message6);
+											  			  				    } catch (IOException e2) {
+											  			  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+											  			  				    }
+											  			  				    
+											  			  				  //itai
+											  			  				  Platform.runLater(new Runnable() {
+											  			  						@Override
+											  			  						public void run() {
+											  			  								BookManagermentGetDomainsWithIdRecv2 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv2();
+											  			  								recv_getDomainsWithId.start();
+											  			  								synchronized (recv_getDomainsWithId) {
+											  			  									try{
+											  			  										recv_getDomainsWithId.wait();
+											  			  									}catch(InterruptedException e){
+											  			  										e.printStackTrace();
+											  			  									}
+											  			  				  				    Platform.runLater(() -> {
+											  			  				  						for(int i=0;i<domainsList.size();i+=2){
+											  			  				  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
+											  			  				  						}
+											  			  				  				    });
+											  			  								}
+											  			  						}});
+											  			  				  
+											  			  				    
+
+
+											  							    
+											  							    addDomainPane.setVisible(false);
+											  							    editDomainPane.setVisible(false);
+											  							    mainDomainPane.setVisible(true);
+											  						});
+											  						}
+											  					});
+							  								}
+							  						}});
+
+											}
+											
+										   });
 								}
 						}});
-			   
-			   Platform.runLater(() -> {
-				   
-				if(countBookByDomain>0)  
-					actionOnError(ActionType.CONTINUE,"You can't to remove domain that contains books!");
-				else{
-					Message message6 = prepareGetNumberBookAtDomain(ActionType.DELETE_DOMAIN ,DomainId);
-					try {
-					   	ClientController.clientConnectionController.sendToServer(message6);
-					   } catch (IOException e1) {	
-					   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-					   }
-					actionOnError(ActionType.CONTINUE, "The domain deleted successfully!");
-				    dataDomains.clear();
-  				    Message message7 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
-  				    try {
-  				     ClientController.clientConnectionController.sendToServer(message7);
-  				    } catch (IOException e2) {
-  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  				    }
-  				    
-  				    
-  				  //itai
-  				  Platform.runLater(new Runnable() {
-  						@Override
-  						public void run() {
-  								BookManagermentRecv recv_getDomainsWithId = new BookManagermentRecv();
-  								recv_getDomainsWithId.start();
-  								synchronized (recv_getDomainsWithId) {
-  									try{
-  										recv_getDomainsWithId.wait();
-  									}catch(InterruptedException e){
-  										e.printStackTrace();
-  									}
-  								}
-  						}});
-  				  
-  				    
-  				    Platform.runLater(() -> {
-  						for(int i=0;i<domainsList.size();i+=2){
-  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-  						}
-  				    });
-  				    try {
-  						Thread.sleep(500);
-  					} catch (Exception e1) {
-  						e1.printStackTrace();
-  					}
-					
-				}
-				
-			   });
-			 
 
 		});
    		
@@ -2031,7 +2181,7 @@ private Button editAuthorSubmit;
   		addDomainSubmit.setOnAction(e -> {
   			String DomainName = null;
   			DomainName = addDomainName.getText();
-  			System.out.println(DomainName);
+  			//System.out.println(DomainName);
   			
   			if (DomainName.equals(""))
   			    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");
@@ -2059,7 +2209,7 @@ private Button editAuthorSubmit;
   				  Platform.runLater(new Runnable() {
   						@Override
   						public void run() {
-  								BookManagermentRecv recv_getDomainsWithId = new BookManagermentRecv();
+  								BookManagermentGetDomainsWithIdRecv4 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv4();
   								recv_getDomainsWithId.start();
   								synchronized (recv_getDomainsWithId) {
   									try{
@@ -2067,20 +2217,17 @@ private Button editAuthorSubmit;
   									}catch(InterruptedException e){
   										e.printStackTrace();
   									}
+  				  				    Platform.runLater(() -> {
+  				  						for(int i=0;i<domainsList.size();i+=2){
+  				  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
+  				  						}
+  				  				    });
   								}
   						}});
   				  
   				    
-  				    Platform.runLater(() -> {
-  						for(int i=0;i<domainsList.size();i+=2){
-  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-  						}
-  				    });
-  				    try {
-  						Thread.sleep(500);
-  					} catch (Exception e1) {
-  						e1.printStackTrace();
-  					}
+
+
   				    
   				  mainDomainPane.setVisible(true);
   				  addDomainPane.setVisible(false);
@@ -2114,7 +2261,7 @@ private Button editAuthorSubmit;
 	  Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-					BookManagermentRecv recv_getSubjectsInfo = new BookManagermentRecv();
+					BookManagermentGetSubjectsInfoRecv recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv();
 					recv_getSubjectsInfo.start();
 					synchronized (recv_getSubjectsInfo) {
 						try{
@@ -2122,37 +2269,41 @@ private Button editAuthorSubmit;
 						}catch(InterruptedException e){
 							e.printStackTrace();
 						}
+						
+				  		Platform.runLater(() -> {
+				  			for(int i=0;i<subjectsList.size();i+=4){
+				  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
+				  			}
+				  	  });
+				  		
+				  		subjectId.setCellValueFactory(
+				  	            new PropertyValueFactory<PropertyDomain, String>("subjectId"));
+
+				  		subjectName.setCellValueFactory(
+				  	            new PropertyValueFactory<PropertyDomain, String>("subjectName"));
+				  			
+				  		subjectDomain.setCellValueFactory(
+				  	  	            new PropertyValueFactory<PropertyDomain, String>("subjectDomain"));
+				  			
+				  		subjectId.setStyle( "-fx-alignment: CENTER;");
+				  		subjectName.setStyle( "-fx-alignment: CENTER;");
+				  		subjectDomain.setStyle( "-fx-alignment: CENTER;");
+				  		//System.out.println("asas");
+				  		mainSubjectTable.setItems(dataSubjects);
+				  			
+				  		
+				  		mainSubjectTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+				  			 if (newSelection != null) {
+				  				subjectsEditBtn.setVisible(true);
+				  				subjectsDeleteBtn.setVisible(true);
+				  				  }
+				  			});
 					}
 			}});
   	  
-  		Platform.runLater(() -> {
-  			for(int i=0;i<subjectsList.size();i+=4){
-  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-  			}
-  	  });
-  	  
-  		subjectId.setCellValueFactory(
-  	            new PropertyValueFactory<PropertyDomain, String>("subjectId"));
 
-  		subjectName.setCellValueFactory(
-  	            new PropertyValueFactory<PropertyDomain, String>("subjectName"));
-  			
-  		subjectDomain.setCellValueFactory(
-  	  	            new PropertyValueFactory<PropertyDomain, String>("subjectDomain"));
-  			
-  		subjectId.setStyle( "-fx-alignment: CENTER;");
-  		subjectName.setStyle( "-fx-alignment: CENTER;");
-  		subjectDomain.setStyle( "-fx-alignment: CENTER;");
-  		System.out.println("asas");
-  		mainSubjectTable.setItems(dataSubjects);
-  			
+  	  
   		
-  		mainSubjectTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-  			 if (newSelection != null) {
-  				subjectsEditBtn.setVisible(true);
-  				subjectsDeleteBtn.setVisible(true);
-  				  }
-  			});
   				
   			
   		editSubjetcsBack.setOnAction(e -> {
@@ -2182,7 +2333,7 @@ private Button editAuthorSubmit;
   			  Platform.runLater(new Runnable() {
   					@Override
   					public void run() {
-  							BookManagermentRecv recv_getDomainsWithId = new BookManagermentRecv();
+  							BookManagermentGetDomainsWithIdRecv5 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv5();
   							recv_getDomainsWithId.start();
   							synchronized (recv_getDomainsWithId) {
   								try{
@@ -2190,23 +2341,20 @@ private Button editAuthorSubmit;
   								}catch(InterruptedException e){
   									e.printStackTrace();
   								}
-  							}
-  					}});
-  			  
-  				
-  				Platform.runLater(() -> { 
-  				 ArrayList < String > domains = new ArrayList < String > ();
-  			    //System.out.println(statush.get(1).getFirstname());
-  			    for (int i = 0; i < domainsList.size(); i+=2) {
-  			    	domains.add("(" + domainsList.get(i) + ")" + " " + domainsList.get(i+1));
-  			    }
+  				  				Platform.runLater(() -> { 
+  				   				 ArrayList < String > domains = new ArrayList < String > ();
+  				   			    //System.out.println(statush.get(1).getFirstname());
+  				   			    for (int i = 0; i < domainsList.size(); i+=2) {
+  				   			    	domains.add("(" + domainsList.get(i) + ")" + " " + domainsList.get(i+1));
+  				   			    }
 
-  			  ObservableList < String > domainsList = FXCollections.observableArrayList(domains);
-  			  editSubjectsDomainsList.setItems(domainsList);  
-  			editSubjectsDomainsList.getSelectionModel().select(selectedItem.getSubjectDomain());
-  			   
-  			 });
-  				
+  				   			  ObservableList < String > domainsList = FXCollections.observableArrayList(domains);
+  				   			  editSubjectsDomainsList.setItems(domainsList);  
+  				   			editSubjectsDomainsList.getSelectionModel().select(selectedItem.getSubjectDomain());
+  				   			   
+  				   			 });
+  							}
+  					}});		
   				
 
   				
@@ -2231,7 +2379,7 @@ private Button editAuthorSubmit;
 				  Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-								BookManagermentRecv recv_getDomainsWithId = new BookManagermentRecv();
+								BookManagermentGetDomainsWithIdRecv6 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv6();
 								recv_getDomainsWithId.start();
 								synchronized (recv_getDomainsWithId) {
 									try{
@@ -2239,21 +2387,22 @@ private Button editAuthorSubmit;
 									}catch(InterruptedException e){
 										e.printStackTrace();
 									}
+									Platform.runLater(() -> { 
+										 ArrayList < String > domains = new ArrayList < String > ();
+									    //System.out.println(statush.get(1).getFirstname());
+									    for (int i = 0; i < domainsList.size(); i+=2) {
+									    	domains.add("(" + domainsList.get(i) + ")" + " " + domainsList.get(i+1));
+									    }
+
+									  ObservableList < String > domainsList = FXCollections.observableArrayList(domains);
+									  addSubjectsDomainsList.setItems(domainsList);  
+
+										});
 								}
 						}});
 				  
-				
-				Platform.runLater(() -> { 
-				 ArrayList < String > domains = new ArrayList < String > ();
-			    //System.out.println(statush.get(1).getFirstname());
-			    for (int i = 0; i < domainsList.size(); i+=2) {
-			    	domains.add("(" + domainsList.get(i) + ")" + " " + domainsList.get(i+1));
-			    }
+				//
 
-			  ObservableList < String > domainsList = FXCollections.observableArrayList(domains);
-			  addSubjectsDomainsList.setItems(domainsList);  
-
-				});
 			 });
   			
   			
@@ -2273,7 +2422,7 @@ private Button editAuthorSubmit;
   				  Platform.runLater(new Runnable() {
   						@Override
   						public void run() {
-  								BookManagermentRecv recv_getNumberBookAtSubject = new BookManagermentRecv();
+  								BookManagermentGetNumberBookAtSubjectRecv recv_getNumberBookAtSubject = new BookManagermentGetNumberBookAtSubjectRecv();
   								recv_getNumberBookAtSubject.start();
   								synchronized (recv_getNumberBookAtSubject) {
   									try{
@@ -2281,60 +2430,64 @@ private Button editAuthorSubmit;
   									}catch(InterruptedException e){
   										e.printStackTrace();
   									}
+  									
+  				  				   Platform.runLater(() -> {
+  				   					if(countBookBySubject>0)  
+  				   						actionOnError(ActionType.CONTINUE,"You can't to remove subject that contains books!");
+  				   					else{
+  				   						Message message7 = prepareGetNumberBookAtDomain(ActionType.DELETE_SUBJECT ,subjectId);
+  				   						try {
+  				   						   	ClientController.clientConnectionController.sendToServer(message7);
+  				   						   } catch (IOException e1) {	
+  				   						   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+  				   						   }
+  				   						actionOnError(ActionType.CONTINUE, "The subject deleted successfully!");
+  				   						
+  				   						////////////////////////////////////////
+  				   						
+  				   						///////////////////////////////////////
+  				   						
+  				   						dataSubjects.clear();
+  				   	  	  		  	  Message message8 = prepareGetDomainsWithId(ActionType.GET_SUBJECTS_INFO);
+  				   	  	  	  	  try {
+  				   	  	  	  	   ClientController.clientConnectionController.sendToServer(message8);
+  				   	  	  	  	  } catch (IOException e2) {
+  				   	  	  	  		  e2.printStackTrace();
+  				   	  	  	  	   actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+  				   	  	  	  	  }
+  				   	  	  	  	  
+  				   	  		  //itai
+  				   	  		  Platform.runLater(new Runnable() {
+  				   	  				@Override
+  				   	  				public void run() {
+  				   	  						BookManagermentGetSubjectsInfoRecv2 recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv2();
+  				   	  						recv_getSubjectsInfo.start();
+  				   	  						synchronized (recv_getSubjectsInfo) {
+  				   	  							try{
+  				   	  								recv_getSubjectsInfo.wait();
+  				   	  							}catch(InterruptedException e){
+  				   	  								e.printStackTrace();
+  				   	  							}
+  				   	  	  	  	  	  		Platform.runLater(() -> {
+  				   	    	  	  	  			for(int i=0;i<subjectsList.size();i+=4){
+  				   	    	  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
+  				   	    	  	  	  			}
+  				   	    	  	  	  			mainSubjectTable.setItems(dataSubjects);
+  				   	    	  	  	  	  });
+  				   	  						}
+  				   	  				}});
+  				   	  	  	  	  
+
+
+  				   	  	  				
+  				   						
+  				   					}
+  				   					
+  				   				   });
   								}
   						}});
   				  
-  				   Platform.runLater(() -> {
-  					if(countBookBySubject>0)  
-  						actionOnError(ActionType.CONTINUE,"You can't to remove subject that contains books!");
-  					else{
-  						Message message7 = prepareGetNumberBookAtDomain(ActionType.DELETE_SUBJECT ,subjectId);
-  						try {
-  						   	ClientController.clientConnectionController.sendToServer(message7);
-  						   } catch (IOException e1) {	
-  						   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  						   }
-  						actionOnError(ActionType.CONTINUE, "The subject deleted successfully!");
-  						
-  						dataSubjects.clear();
-  	  	  		  	  Message message8 = prepareGetDomainsWithId(ActionType.GET_SUBJECTS_INFO);
-  	  	  	  	  try {
-  	  	  	  	   ClientController.clientConnectionController.sendToServer(message8);
-  	  	  	  	  } catch (IOException e2) {
-  	  	  	  		  e2.printStackTrace();
-  	  	  	  	   actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  	  	  	  	  }
-  	  	  	  	  
-  	  		  //itai
-  	  		  Platform.runLater(new Runnable() {
-  	  				@Override
-  	  				public void run() {
-  	  						BookManagermentRecv recv_getSubjectsInfo = new BookManagermentRecv();
-  	  						recv_getSubjectsInfo.start();
-  	  						synchronized (recv_getSubjectsInfo) {
-  	  							try{
-  	  								recv_getSubjectsInfo.wait();
-  	  							}catch(InterruptedException e){
-  	  								e.printStackTrace();
-  	  							}
-  	  						}
-  	  				}});
-  	  	  	  	  
-  	  	  	  		Platform.runLater(() -> {
-  	  	  	  			for(int i=0;i<subjectsList.size();i+=4){
-  	  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-  	  	  	  			}
-  	  	  	  	  });
-  	  	  				    try {
-  	  	  						Thread.sleep(500);
-  	  	  					} catch (Exception e1) {
-  	  	  						e1.printStackTrace();
-  	  	  					}
-  	  	  				mainSubjectTable.setItems(dataSubjects);
-  						
-  					}
-  					
-  				   });
+
   				 
 
   			});
@@ -2356,10 +2509,10 @@ private Button editAuthorSubmit;
   		addSubjetcsSubmit.setOnAction(e -> {
   	  			String SubjectName = null;
   	  			SubjectName = addSubjectsName.getText();
-  	  			System.out.println(SubjectName);
+  	  			//System.out.println(SubjectName);
   	  			String SubjectDomain;
   	  			SubjectDomain = addSubjectsDomainsList.getSelectionModel().getSelectedItem().toString();
-  	  			System.out.println(SubjectDomain);
+  	  			//System.out.println(SubjectDomain);
   	  			
   	  			if (SubjectName.equals("") || SubjectDomain.equals(""))
   	  			    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");
@@ -2371,11 +2524,16 @@ private Button editAuthorSubmit;
   	  				    } catch (Exception e1) {
   	  				     e1.printStackTrace();
   	  				    }
-  	  				Platform.runLater(() -> {
+  	  				 ////////////////////////////////////////////
+  	  				 
+  	  				 ///////////////////////////////////////////
+  	  				 
+  	  				
   	  				    actionOnError(ActionType.CONTINUE, "The subject added successfully!");
   	  				addSubjectsName.setText("");
   	  				addSubjectsDomainsList.getSelectionModel().clearSelection();
-  	  				    
+  	  				
+  	  				
   	  				
   	  			dataSubjects.clear();
   	  		  	  Message message7 = prepareGetDomainsWithId(ActionType.GET_SUBJECTS_INFO);
@@ -2385,38 +2543,33 @@ private Button editAuthorSubmit;
   	  	  		  e2.printStackTrace();
   	  	  	   actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
   	  	  	  }
-  	  	  //itai
-  	  	  Platform.runLater(new Runnable() {
-  	  			@Override
-  	  			public void run() {
-  	  					BookManagermentRecv recv_getSubjectsInfo = new BookManagermentRecv();
+
+  	  					BookManagermentGetSubjectsInfoRecv3 recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv3();
   	  					recv_getSubjectsInfo.start();
   	  					synchronized (recv_getSubjectsInfo) {
   	  						try{
   	  							recv_getSubjectsInfo.wait();
-  	  						}catch(InterruptedException e){
-  	  							e.printStackTrace();
+  	  						}catch(InterruptedException e2){
+  	  							e2.printStackTrace();
   	  						}
+  	  	  	  	  		
+  	    	  	  			for(int i=0;i<subjectsList.size();i+=4)
+  	    	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
+  	    	  	  			
+  	    	  	  	
+  	  	  	  	  		
+	  	  	  				mainSubjectTable.setItems(dataSubjects);
+	  	    	  			mainSubjectPane.setVisible(true);
+	  	    	  				addSubjectPane.setVisible(false);
+	  	    	  			editSubjectPane.setVisible(false);
   	  					}
-  	  			}});
+  	  		
   	  	  	  
-  	  	  		Platform.runLater(() -> {
-  	  	  			for(int i=0;i<subjectsList.size();i+=4){
-  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-  	  	  			}
-  	  	  	  });
-  	  				    try {
-  	  						Thread.sleep(500);
-  	  					} catch (Exception e1) {
-  	  						e1.printStackTrace();
-  	  					}
-  	  				mainSubjectTable.setItems(dataSubjects);
-  	  			mainSubjectPane.setVisible(true);
-  	  				addSubjectPane.setVisible(false);
-  	  			editSubjectPane.setVisible(false);
+
+
+
   	  				    
-  	  				    
-  	  				});
+  	  			
   	  			}
   	  		});
   		
@@ -2434,13 +2587,19 @@ private Button editAuthorSubmit;
 			if (SubjectName.equals("") || SubjectDomain.equals(""))
 			    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");
 			else{
-				SubjectDomain=SubjectDomain.substring(SubjectDomain.charAt('(')+1, SubjectDomain.charAt(')'));
+				//System.out.println(SubjectDomain);
+				SubjectDomain=SubjectDomain.substring(SubjectDomain.indexOf('(')+1, SubjectDomain.indexOf(')'));
+				
 				Message message6 = prepareEditSubject(ActionType.EDIT_SUBJECT, subjectId, SubjectName, SubjectDomain);
 				 try {
 				     ClientController.clientConnectionController.sendToServer(message6);
 				    } catch (Exception e1) {
 				     e1.printStackTrace();
 				    }
+				 	//////////////////////////////////////
+				 
+				 	//////////////////////////////////////
+				 
 				    Platform.runLater(() -> {
 				    actionOnError(ActionType.CONTINUE, "The subject edited successfully!");
 				    editDomainName.setText("");
@@ -2459,7 +2618,7 @@ private Button editAuthorSubmit;
 	  	  	  Platform.runLater(new Runnable() {
 	  	  			@Override
 	  	  			public void run() {
-	  	  					BookManagermentRecv recv_getSubjectsInfo = new BookManagermentRecv();
+	  	  					BookManagermentGetSubjectsInfoRecv4 recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv4();
 	  	  					recv_getSubjectsInfo.start();
 	  	  					synchronized (recv_getSubjectsInfo) {
 	  	  						try{
@@ -2467,23 +2626,22 @@ private Button editAuthorSubmit;
 	  	  						}catch(InterruptedException e){
 	  	  							e.printStackTrace();
 	  	  						}
+	  	  	  	  	  		Platform.runLater(() -> {
+	  		  	  	  			for(int i=0;i<subjectsList.size();i+=4){
+	  		  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
+	  		  	  	  			}
+	  		  	  	  	  });
+	  	  	  	  	  		
+		  	  				mainSubjectTable.setItems(dataSubjects);
+			  	  			mainSubjectPane.setVisible(true);
+			  	  				addSubjectPane.setVisible(false);
+			  	  			editSubjectPane.setVisible(false);
 	  	  					}
 	  	  			}});
 	  	  	  	  
-	  	  	  		Platform.runLater(() -> {
-	  	  	  			for(int i=0;i<subjectsList.size();i+=4){
-	  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-	  	  	  			}
-	  	  	  	  });
-	  	  				    try {
-	  	  						Thread.sleep(500);
-	  	  					} catch (Exception e1) {
-	  	  						e1.printStackTrace();
-	  	  					}
-	  	  				mainSubjectTable.setItems(dataSubjects);
-	  	  			mainSubjectPane.setVisible(true);
-	  	  				addSubjectPane.setVisible(false);
-	  	  			editSubjectPane.setVisible(false);
+
+	
+
 			});
 			}
   			
@@ -2513,7 +2671,7 @@ private Button editAuthorSubmit;
   	  Platform.runLater(new Runnable() {
   			@Override
   			public void run() {
-  				BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+  				BookManagermentGetAuthorsRecv3 recv_getAuthors = new BookManagermentGetAuthorsRecv3();
   					recv_getAuthors.start();
   					synchronized (recv_getAuthors) {
   						try{
@@ -2521,36 +2679,38 @@ private Button editAuthorSubmit;
   						}catch(InterruptedException e){
   							e.printStackTrace();
   						}
+  				  		Platform.runLater(() -> {
+  				  			for(int i=0;i<authorList.size();i++){
+  				  				dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
+  				  			}
+  				  	  });
+  				  	authorId.setCellValueFactory(
+  			  	            new PropertyValueFactory<PropertyDomain, String>("authorId"));
+
+  			  		authorFirstName.setCellValueFactory(
+  			  	            new PropertyValueFactory<PropertyDomain, String>("authorFirstName"));
+  			  		
+  			  		authorLastName.setCellValueFactory(
+  			  	            new PropertyValueFactory<PropertyDomain, String>("authorLastName"));
+  			  			
+  			  		authorId.setStyle( "-fx-alignment: CENTER;");
+  			  		authorFirstName.setStyle( "-fx-alignment: CENTER;");
+  			  		authorLastName.setStyle( "-fx-alignment: CENTER;");;
+  			  			mainAuthorTableView.setItems(dataAuthors);
+  			  			
+  			  		
+  			  			mainAuthorTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+  			  			 if (newSelection != null) {
+  			  				  addAuthorEditBtn.setVisible(true);
+  			  				  AuthorDeleteBtn.setVisible(true);
+  			  				  }
+  			  			});
   					}
   			}});
   	  
-  		Platform.runLater(() -> {
-  			for(int i=0;i<authorList.size();i++){
-  				dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
-  			}
-  	  });
-  	  
-  		authorId.setCellValueFactory(
-  	            new PropertyValueFactory<PropertyDomain, String>("authorId"));
 
-  		authorFirstName.setCellValueFactory(
-  	            new PropertyValueFactory<PropertyDomain, String>("authorFirstName"));
+  	  
   		
-  		authorLastName.setCellValueFactory(
-  	            new PropertyValueFactory<PropertyDomain, String>("authorLastName"));
-  			
-  		authorId.setStyle( "-fx-alignment: CENTER;");
-  		authorFirstName.setStyle( "-fx-alignment: CENTER;");
-  		authorLastName.setStyle( "-fx-alignment: CENTER;");;
-  			mainAuthorTableView.setItems(dataAuthors);
-  			
-  		
-  			mainAuthorTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-  			 if (newSelection != null) {
-  				  addAuthorEditBtn.setVisible(true);
-  				  AuthorDeleteBtn.setVisible(true);
-  				  }
-  			});
   					
   			addAuthorEditBtn.setOnAction(e -> {
   				mainAuthorPane.setVisible(false);
@@ -2589,6 +2749,10 @@ private Button editAuthorSubmit;
   					    } catch (Exception e1) {
   					     e1.printStackTrace();
   					    }
+  					 	////////////////////////////////////
+  					 
+  					 	///////////////////////////////////
+  					 
   					    Platform.runLater(() -> {
   					    actionOnError(ActionType.CONTINUE, "The author edited successfully!");
   					    editAuthorFirstName.setText("");
@@ -2606,7 +2770,7 @@ private Button editAuthorSubmit;
   	  				  Platform.runLater(new Runnable() {
   	  						@Override
   	  						public void run() {
-  	  							BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+  	  								BookManagermentGetAuthorsRecv4 recv_getAuthors = new BookManagermentGetAuthorsRecv4();
   	  								recv_getAuthors.start();
   	  								synchronized (recv_getAuthors) {
   	  									try{
@@ -2614,20 +2778,23 @@ private Button editAuthorSubmit;
   	  									}catch(InterruptedException e){
   	  										e.printStackTrace();
   	  									}
+  	  		  	  				    Platform.runLater(() -> {
+  	  	  	  				    	for(int i=0;i<authorList.size();i++){
+  	  	  	  				    			dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
+  	  	  	  				    		}
+  	  	  	  				    });
+  	  		  	  				    
+  	  		 	  				filterField.clear();
+  	  		 	  				data.clear();
+  	  		 	  				filteredData.clear();
+
   	  								}
   	  						}});
   	  				    
   	  				    
-  	  				    Platform.runLater(() -> {
-  	  				    	for(int i=0;i<authorList.size();i++){
-  	  				    			dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
-  	  				    		}
-  	  				    });
 
   	  				    
-  	  				filterField.clear();
-  	  		    data.clear();
-  	  		    filteredData.clear();
+ 
   	  		    Message message9 = prepareGetBooksList(ActionType.GET_BOOK_LIST);
   	  		    try {
   	  		     ClientController.clientConnectionController.sendToServer(message9);
@@ -2640,7 +2807,7 @@ private Button editAuthorSubmit;
   	  		 Platform.runLater(new Runnable() {
   	  			@Override
   	  			public void run() {
-  	  					BookManagermentRecv recv_getBooks = new BookManagermentRecv();
+  	  					BookManagermentGetBookListRecv4 recv_getBooks = new BookManagermentGetBookListRecv4();
   	  					recv_getBooks.start();
   	  					synchronized (recv_getBooks) {
   	  						try{
@@ -2648,37 +2815,34 @@ private Button editAuthorSubmit;
   	  						}catch(InterruptedException e){
   	  							e.printStackTrace();
   	  						}
+  	  					Platform.runLater(() -> {
+  	  	  	  		     String authors = "";
+  	  	  	  		     for (int i = 0; i < BooksList.size(); i += 9) {
+  	  	  	  		      if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
+  	  	  	  		       authors = authors + BooksList.get(i + 5) + ",";
+  	  	  	  		      } else {
+  	  	  	  		       if (authors.equals("")) {
+  	  	  	  		        String hide;
+  	  	  	  		        if (BooksList.get(i + 3).equals("0")) hide = "no";
+  	  	  	  		        else hide = "yes";
+  	  	  	  		        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+  	  	  	  		        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+  	  	  	  		       } else {
+  	  	  	  		        String hide;
+  	  	  	  		        if (BooksList.get(i + 3).equals("0")) hide = "no";
+  	  	  	  		        else hide = "yes";
+  	  	  	  		        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+  	  	  	  		        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
+  	  	  	  		       }
+  	  	  	  		       authors = "";
+  	  	  	  		      }
+  	  	  	  		     }
+  	  	  	  		    });
   	  					}
   	  			}});
   	  		    
-  	  		    Platform.runLater(() -> {
-  	  		     String authors = "";
-  	  		     for (int i = 0; i < BooksList.size(); i += 9) {
-  	  		      if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
-  	  		       authors = authors + BooksList.get(i + 5) + ",";
-  	  		      } else {
-  	  		       if (authors.equals("")) {
-  	  		        String hide;
-  	  		        if (BooksList.get(i + 3).equals("0")) hide = "no";
-  	  		        else hide = "yes";
-  	  		        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-  	  		        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-  	  		       } else {
-  	  		        String hide;
-  	  		        if (BooksList.get(i + 3).equals("0")) hide = "no";
-  	  		        else hide = "yes";
-  	  		        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-  	  		        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-  	  		       }
-  	  		       authors = "";
-  	  		      }
-  	  		     }
-  	  		    });
-  	  		    try {
-  	  				Thread.sleep(700);
-  	  			} catch (Exception e1) {
-  	  				e1.printStackTrace();
-  	  			}
+  	  		    
+ 
   	  		    
   	  		    TitleLabel.setVisible(false);
   	  		    InfoTitle.setVisible(false);
@@ -2725,7 +2889,7 @@ private Button editAuthorSubmit;
    				  Platform.runLater(new Runnable() {
    						@Override
    						public void run() {
-   								BookManagermentRecv recv_getNumberBookOfAuthor = new BookManagermentRecv();
+   								BookManagermentGetNumberBookOfAuthorRecv recv_getNumberBookOfAuthor = new BookManagermentGetNumberBookOfAuthorRecv();
    								recv_getNumberBookOfAuthor.start();
    								synchronized (recv_getNumberBookOfAuthor) {
    									try{
@@ -2733,58 +2897,55 @@ private Button editAuthorSubmit;
    									}catch(InterruptedException e){
    										e.printStackTrace();
    									}
+   				  				   Platform.runLater(() -> {
+
+   				  					   //System.out.println(countBookOfUser);
+   				  					if(countBookOfUser>0)  
+   				  						actionOnError(ActionType.CONTINUE,"You can't to remove author that contains books!");
+   				  					else{
+   				  						Message message8 = prepareGetNumberBookAtDomain(ActionType.DELETE_AUTHOR ,AuthorId);
+   				  						try {
+   				  						   	ClientController.clientConnectionController.sendToServer(message8);
+   				  						   } catch (IOException e1) {	
+   				  						   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+   				  						   }
+   				  						actionOnError(ActionType.CONTINUE, "The author deleted successfully!");
+   				  						dataAuthors.clear();
+   				  	  				    Message message9 = prepareGetAuthors(ActionType.GET_AUTHORS);
+   				  	  				    try {
+   				  	  				     ClientController.clientConnectionController.sendToServer(message9);
+   				  	  				    } catch (IOException e2) {
+   				  	  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+   				  	  				    }
+   				  	  				  //itai
+   				  	  				  Platform.runLater(new Runnable() {
+   				  	  						@Override
+   				  	  						public void run() {
+   				  	  							BookManagermentGetAuthorsRecv5 recv_getAuthors = new BookManagermentGetAuthorsRecv5();
+   				  	  								recv_getAuthors.start();
+   				  	  								synchronized (recv_getAuthors) {
+   				  	  									try{
+   				  	  										recv_getAuthors.wait();
+   				  	  									}catch(InterruptedException e){
+   				  	  										e.printStackTrace();
+   				  	  									}
+   				  	  								}
+   				  	  						}});
+   				  	  				    
+   				  	  				    Platform.runLater(() -> {
+   				  	  				    for(int i=0;i<authorList.size();i++){
+   								    			dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
+   								    		}
+   				  	  				    });
+
+   				  						
+   				  					}
+   				  					
+   				  				   });
    								}
    						}});
   				   
-  				   Platform.runLater(() -> {
 
-  					   //System.out.println(countBookOfUser);
-  					if(countBookOfUser>0)  
-  						actionOnError(ActionType.CONTINUE,"You can't to remove author that contains books!");
-  					else{
-  						Message message8 = prepareGetNumberBookAtDomain(ActionType.DELETE_AUTHOR ,AuthorId);
-  						try {
-  						   	ClientController.clientConnectionController.sendToServer(message8);
-  						   } catch (IOException e1) {	
-  						   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  						   }
-  						actionOnError(ActionType.CONTINUE, "The author deleted successfully!");
-  						dataAuthors.clear();
-  	  				    Message message9 = prepareGetAuthors(ActionType.GET_AUTHORS);
-  	  				    try {
-  	  				     ClientController.clientConnectionController.sendToServer(message9);
-  	  				    } catch (IOException e2) {
-  	  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  	  				    }
-  	  				  //itai
-  	  				  Platform.runLater(new Runnable() {
-  	  						@Override
-  	  						public void run() {
-  	  							BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
-  	  								recv_getAuthors.start();
-  	  								synchronized (recv_getAuthors) {
-  	  									try{
-  	  										recv_getAuthors.wait();
-  	  									}catch(InterruptedException e){
-  	  										e.printStackTrace();
-  	  									}
-  	  								}
-  	  						}});
-  	  				    
-  	  				    Platform.runLater(() -> {
-  	  				    for(int i=0;i<authorList.size();i++){
-				    			dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
-				    		}
-  	  				    });
-  	  				    try {
-  	  						Thread.sleep(500);
-  	  					} catch (Exception e1) {
-  	  						e1.printStackTrace();
-  	  					}
-  						
-  					}
-  					
-  				   });
   				 
 
   			});
@@ -2838,7 +2999,7 @@ private Button editAuthorSubmit;
   	  				  Platform.runLater(new Runnable() {
   	  						@Override
   	  						public void run() {
-  	  							BookManagermentRecv recv_getAuthors = new BookManagermentRecv();
+  	  								BookManagermentGetAuthorsRecv6 recv_getAuthors = new BookManagermentGetAuthorsRecv6();
   	  								recv_getAuthors.start();
   	  								synchronized (recv_getAuthors) {
   	  									try{
@@ -2846,19 +3007,16 @@ private Button editAuthorSubmit;
   	  									}catch(InterruptedException e){
   	  										e.printStackTrace();
   	  									}
+  	  		  	  				    Platform.runLater(() -> {
+  	  	  	  				    	for(int i=0;i<authorList.size();i++){
+  	  	  	  				    		dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
+  	  	  	  				    	}
+  	  	  	  				    });
   	  								}
   	  						}});
   	  				    
-  	  				    Platform.runLater(() -> {
-  	  				    	for(int i=0;i<authorList.size();i++){
-  	  				    		dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
-  	  				    	}
-  	  				    });
-  	  				    try {
-  	  						Thread.sleep(500);
-  	  					} catch (Exception e1) {
-  	  						e1.printStackTrace();
-  	  					}
+
+
   	  				    
   	  				  mainAuthorPane.setVisible(true);
   	  				  addAuthorPane.setVisible(false);
@@ -3078,15 +3236,15 @@ public Message prepareGetDomainsWithId(ActionType type) {
 public Message prepareAddBook(ActionType type, String titleBook, String authorsId2, String keywords, String language, String subjectsList2, String tableOfContent, String summary, String picture, String price) {
   Message message = new Message();
   ArrayList < String > elementsList = new ArrayList < String > ();
-  elementsList.add(titleBook);
-  elementsList.add(authorsId2);
-  elementsList.add(keywords);
-  elementsList.add(language);
-  elementsList.add(subjectsList2);
-  elementsList.add(tableOfContent);
-  elementsList.add(summary);
-  elementsList.add(picture);
-  elementsList.add(price);
+  elementsList.add(Validate.fixText(titleBook));
+  elementsList.add(Validate.fixText(authorsId2));
+  elementsList.add(Validate.fixText(keywords));
+  elementsList.add(Validate.fixText(language));
+  elementsList.add(Validate.fixText(subjectsList2));
+  elementsList.add(Validate.fixText(tableOfContent));
+  elementsList.add(Validate.fixText(summary));
+  elementsList.add(Validate.fixText(picture));
+  elementsList.add(Validate.fixText(price));
   message.setType(type);
   message.setElementsList(elementsList);
   return message;
@@ -3117,8 +3275,8 @@ public Message prepareAddBook(ActionType type, String titleBook, String authorsI
 	private Message prepareAddAuthor(ActionType type, String AuthorFirstName, String AuthorLastName) {
 		  Message message = new Message();
 		  ArrayList < String > elementsList = new ArrayList < String > ();
-		  elementsList.add(AuthorFirstName);
-		  elementsList.add(AuthorLastName);
+		  elementsList.add(Validate.fixText(AuthorFirstName));
+		  elementsList.add(Validate.fixText(AuthorLastName));
 		  message.setType(type);
 		  message.setElementsList(elementsList);
 		  return message;
@@ -3134,8 +3292,8 @@ public Message prepareAddBook(ActionType type, String titleBook, String authorsI
 	private Message prepareAddSubject(ActionType type, String subjectName, String subjectDomain) {
 		  Message message = new Message();
 		  ArrayList < String > elementsList = new ArrayList < String > ();
-		  elementsList.add(subjectName);
-		  elementsList.add(subjectDomain);
+		  elementsList.add(Validate.fixText(subjectName));
+		  elementsList.add(Validate.fixText(subjectDomain));
 		  message.setType(type);
 		  message.setElementsList(elementsList);
 		  return message;
@@ -3159,16 +3317,16 @@ public Message prepareAddBook(ActionType type, String titleBook, String authorsI
 public Message prepareEditBook(ActionType type, String Sn, String titleBook, String authorsId2, String keywords, String language, String subjectsList2, String tableOfContent, String summary, String picture, String price) {
 	  Message message = new Message();
 	  ArrayList < String > elementsList = new ArrayList < String > ();
-	  elementsList.add(titleBook);
-	  elementsList.add(authorsId2);
-	  elementsList.add(keywords);
-	  elementsList.add(language);
-	  elementsList.add(subjectsList2);
-	  elementsList.add(tableOfContent);
-	  elementsList.add(summary);
-	  elementsList.add(picture);
-	  elementsList.add(price);
-	  elementsList.add(Sn);
+	  elementsList.add(Validate.fixText(titleBook));
+	  elementsList.add(Validate.fixText(authorsId2));
+	  elementsList.add(Validate.fixText(keywords));
+	  elementsList.add(Validate.fixText(language));
+	  elementsList.add(Validate.fixText(subjectsList2));
+	  elementsList.add(Validate.fixText(tableOfContent));
+	  elementsList.add(Validate.fixText(summary));
+	  elementsList.add(Validate.fixText(picture));
+	  elementsList.add(Validate.fixText(price));
+	  elementsList.add(Validate.fixText(Sn));
 	  message.setType(type);
 	  message.setElementsList(elementsList);
 	  return message;
@@ -3194,7 +3352,7 @@ public Message prepareGetAuthors(ActionType type) {
 public Message prepareGetAuthors(ActionType type,String bookSn) {
 	  Message message = new Message();
 	  ArrayList < String > elementsList = new ArrayList < String > ();
-	  elementsList.add(bookSn);
+	  elementsList.add(Validate.fixText(bookSn));
 	  message.setType(type);
 	  message.setElementsList(elementsList);
 	  return message;
@@ -3209,7 +3367,7 @@ public Message prepareGetAuthors(ActionType type,String bookSn) {
 public Message prepareGetLanguage(ActionType type,String bookSn) {
 	  Message message = new Message();
 	  ArrayList < String > elementsList = new ArrayList < String > ();
-	  elementsList.add(bookSn);
+	  elementsList.add(Validate.fixText(bookSn));
 	  message.setType(type);
 	  message.setElementsList(elementsList);
 	  return message;
@@ -3224,7 +3382,7 @@ public Message prepareGetLanguage(ActionType type,String bookSn) {
 public Message prepareGetTableOfContent(ActionType type,String bookSn) {
 	  Message message = new Message();
 	  ArrayList < String > elementsList = new ArrayList < String > ();
-	  elementsList.add(bookSn);
+	  elementsList.add(Validate.fixText(bookSn));
 	  message.setType(type);
 	  message.setElementsList(elementsList);
 	  return message;
@@ -3240,7 +3398,7 @@ public Message prepareGetTableOfContent(ActionType type,String bookSn) {
 public Message prepareGetSubjects(ActionType type,String bookSn) {
 		  Message message = new Message();
 		  ArrayList < String > elementsList = new ArrayList < String > ();
-		  elementsList.add(bookSn);
+		  elementsList.add(Validate.fixText(bookSn));
 		  message.setType(type);
 		  message.setElementsList(elementsList);
 		  return message;
@@ -3266,7 +3424,7 @@ public Message prepareGetSubjects(ActionType type) {
 public Message prepareDeleteBook(ActionType type, String sn) {
   Message message = new Message();
   ArrayList < String > elementsList = new ArrayList < String > ();
-  elementsList.add(sn);
+  elementsList.add(Validate.fixText(sn));
   message.setType(type);
   message.setElementsList(elementsList);
   return message;
@@ -3283,7 +3441,7 @@ public Message prepareDeleteBook(ActionType type, String sn) {
 public Message prepareHideBook(ActionType type, String sn, String hide) {
   Message message = new Message();
   ArrayList < String > elementsList = new ArrayList < String > ();
-  elementsList.add(sn);
+  elementsList.add(Validate.fixText(sn));
   elementsList.add(hide);
   message.setType(type);
   message.setElementsList(elementsList);
@@ -3776,11 +3934,10 @@ public void setBookPrice(String bookPrice) {
 
 }
 
-
 /** This class makes sure the information from the server was received successfully.
  * @author itain
  */
-class BookManagermentRecv extends Thread{
+class BookManagermentGetBookListRecv extends Thread{
 	
 	/**
 	 * Get true after receiving values from DB.
@@ -3800,3 +3957,762 @@ class BookManagermentRecv extends Thread{
 	}
 	
 }
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetAuthorsRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookAuthorsRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookAuthorsRecv2 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookSubjectsRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsRecv2 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookLanguageRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookTocRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetAuthorsRecv2 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsRecv3 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookListRecv2 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookListRecv3 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsWithIdRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsWithIdRecv2 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsWithIdRecv3 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetNumberBookAtDomainRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsWithIdRecv4 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsInfoRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsWithIdRecv5 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsWithIdRecv6 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetNumberBookAtSubjectRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsInfoRecv2 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsInfoRecv3 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetSubjectsInfoRecv4 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetAuthorsRecv3 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetAuthorsRecv4 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetBookListRecv4 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetNumberBookOfAuthorRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetAuthorsRecv5 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetAuthorsRecv6 extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
+/** This class makes sure the information from the server was received successfully.
+ * @author itain
+ */
+class BookManagermentGetDomainsRecv extends Thread{
+	
+	/**
+	 * Get true after receiving values from DB.
+	 */
+	public static boolean canContinue = false;
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+        	while(canContinue == false)
+    		{
+        		System.out.print("");
+    		}
+        	canContinue = false;
+			notify();
+		}
+	}
+	
+}
+
+
