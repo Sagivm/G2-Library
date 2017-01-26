@@ -213,7 +213,8 @@ public class ServerController extends AbstractServer {
 			String suffix = data.get(2);
 			URL location = ServerController.class.getProtectionDomain().getCodeSource().getLocation();
 			String destinationPath = data.get(0) + "/";
-			String sourceFilePath = location.getFile().replaceAll("bin", "src") + "books/" + data.get(1) + "." + suffix;
+			String sourceFilePath = "C:/books/" + data.get(1) + "." + suffix;
+			//String sourceFilePath = location.getFile().replaceAll("bin", "src") + "/books/" + data.get(1) + "." + suffix;
 			System.out.println(sourceFilePath);
 			replay = new Replay(ActionType.FILE, generateFile(destinationPath,sourceFilePath));
 		}
