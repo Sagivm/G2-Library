@@ -1287,7 +1287,7 @@ private Button editAuthorSubmit;
 						  
 						   
 						   ObservableList < String > languages = FXCollections.observableArrayList(
-								     "English", "Hebrew", "Russian", "Arabic");
+								     "English", "Hebrew", "Russian");
 						   editBookLanguageList.setItems(languages);
 						   editBookLanguageList.getSelectionModel().select(editBookLanguage);
 						   
