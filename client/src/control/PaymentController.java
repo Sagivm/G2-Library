@@ -137,7 +137,7 @@ public class PaymentController {
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(date);
-				System.out.println("Now:" + cal.getTime() + " , " + dateGUIFormat);
+				//System.out.println("Now:" + cal.getTime() + " , " + dateGUIFormat);
 				if(action == 4)
 				{
 					cal.add(Calendar.MONTH, 1);  // number of months to add
@@ -151,7 +151,7 @@ public class PaymentController {
 				dateDBFormat = sdf.format(cal.getTime());  // dateDBFormat is now the new date
 				dateDBFormat = sdf.format(cal.getTime());
 				dateGUIFormat = dateDBFormat.replace('-','/');
-				System.out.println("Next:" + cal.getTime() + " , " + dateGUIFormat);
+				//System.out.println("Next:" + cal.getTime() + " , " + dateGUIFormat);
 				
 				
 				ArrayList<String> buySubscription = new ArrayList<>();
@@ -331,6 +331,10 @@ public class PaymentController {
 
 }
 
+/**
+ * This class makes sure the information from the server was received successfully.
+ * @author ork
+ */
 class PaymentRecv extends Thread{
     
 	/**

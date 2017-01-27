@@ -641,7 +641,7 @@ public class BookPageController implements ScreensIF
 					                    			screenController.replaceSceneContent(ScreensInfo.HOMEPAGE_USER_SCREEN,ScreensInfo.HOMEPAGE_USER_TITLE);	
 					                    		} 
 					                    		catch (Exception e) {
-					                    			System.out.println(e);
+					                    			//System.out.println(e);
 					                    			e.printStackTrace();
 					                    		}
 				                        	}	
@@ -939,9 +939,9 @@ class BuyBookRecv extends Thread{
     }
 }
 
-/**This class makes sure the information from the server was received successfully.
+/**
+ * This class makes sure the information from the server was received successfully.
  * @author ork
- *
  */
 class BookImgRecv extends Thread{
 	

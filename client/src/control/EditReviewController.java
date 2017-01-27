@@ -168,7 +168,7 @@ public class EditReviewController implements ScreensIF {
 	public void actionPressed(String status,String content)
 	{
 		try{
-			System.out.print(editReview.getReviewID());
+			//System.out.print(editReview.getReviewID());
 			reviewStatus.add(editReview.getReviewID());
 			reviewStatus.add(Validate.fixText(content));
 			reviewStatus.add(status);
@@ -237,6 +237,10 @@ public class EditReviewController implements ScreensIF {
 
 }
 
+/**
+ * This class makes sure the information from the server was received successfully.
+ * @author ork
+ */
 class EditReviewRecv extends Thread{
     
 	/**

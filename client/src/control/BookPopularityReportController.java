@@ -388,12 +388,12 @@ public class BookPopularityReportController implements Initializable {
 				if(specificList.get(i).getId()==specificList.get(j).getId()&&i!=j)
 					specificList.remove(j);
 		}
-		for (int i=0;i<priceList.size();i++)
-			System.out.println(priceList.get(i));
+		/*for (int i=0;i<priceList.size();i++)
+			System.out.println(priceList.get(i));*/
 		setPrice();
-		System.out.println();
+		//System.out.println();
 		for (int i=0;i<priceList.size();i++)
-			System.out.println(specificList.get(i).getPurchase());
+			//System.out.println(specificList.get(i).getPurchase());
 		purchaseColumn.setSortType(TableColumn.SortType.ASCENDING);
 		bookIdColumn.setCellValueFactory(new PropertyValueFactory<Popularity, Integer>("id"));
 		titleColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("title"));

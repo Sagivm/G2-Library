@@ -215,7 +215,7 @@ public class ServerController extends AbstractServer {
 			String destinationPath = data.get(0) + "/";
 			String sourceFilePath = "C:/books/" + data.get(1) + "." + suffix;
 			//String sourceFilePath = location.getFile().replaceAll("bin", "src") + "/books/" + data.get(1) + "." + suffix;
-			System.out.println(sourceFilePath);
+			//System.out.println(sourceFilePath);
 			replay = new Replay(ActionType.FILE, generateFile(destinationPath,sourceFilePath));
 		}
 		break;
@@ -250,14 +250,14 @@ public class ServerController extends AbstractServer {
 			} catch (SQLException e) {
 				e.printStackTrace();
 				if (e.getErrorCode() == 1062) { //// duplicate primary key
-					System.out.println("username already exist");
+					//System.out.println("username already exist");
 				}
 			}
 			if (sqlResult == true)
 				replay = new Replay(ActionType.REGISTER,true);
 			else {
 				replay = new Replay(ActionType.REGISTER,false);
-				System.out.println(replay.getSucess());
+				//System.out.println(replay.getSucess());
 			}
 			writeToLog("Registration attempt");
 			break;
@@ -281,7 +281,7 @@ public class ServerController extends AbstractServer {
 					while (rs.next()) {
 						if (rs.getString(4).equals(data.get(1).toString())) {
 							
-							System.out.println(rs.getString(1));
+							//System.out.println(rs.getString(1));
 							
 						
 							ResultSet rs1 = DatabaseController.searchInDatabase("SELECT isBlocked FROM clients WHERE username='" + rs.getString(1) + "'");	
@@ -293,7 +293,7 @@ public class ServerController extends AbstractServer {
 								}
 							}
 							
-							System.out.println("login succssefully");
+							//System.out.println("login succssefully");
 							sqlResult = true;
 							action = 1;
 							elementsList.add(0, rs.getString(1)); // username
@@ -311,7 +311,7 @@ public class ServerController extends AbstractServer {
 						rs = stmt.executeQuery(login.PrepareSelectStatement(2));
 						while (rs.next()) {
 							if (rs.getString(4).equals(data.get(1).toString())) {
-								System.out.println("login succssefully");
+								//System.out.println("login succssefully");
 								sqlResult = true;
 								if (rs.getString(6).toString().equals("Manager"))
 									action = 3;
@@ -337,16 +337,16 @@ public class ServerController extends AbstractServer {
 						connectedList.add(login);
 					} else {
 						replay = new Replay(ActionType.LOGIN, false, GeneralMessages.USER_LOGGED_IN_FAILED);
-						System.out.println(replay.getSucess());
+						//System.out.println(replay.getSucess());
 						
 					}
 				} else {
 					replay = new Replay(ActionType.LOGIN, false, GeneralMessages.USER_ALREADY_LOGGED_IN);
-					System.out.println(replay.getSucess());
+					//System.out.println(replay.getSucess());
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
-				System.out.println("error");
+				//System.out.println("error");
 			}
 
 			writeToLog("Login attempt");
@@ -893,7 +893,7 @@ public class ServerController extends AbstractServer {
 				String bookSn = data.get(0);
 				ResultSet rs = stmt.executeQuery("SELECT DISTINCT subjects.name,subjects.id,subjects.domain,domains.id,domains.name FROM project.books,project.subjects,project.domains,project.book_subjects WHERE subjects.id=book_subjects.subjectId AND subjects.domain=domains.id AND book_subjects.bookId="+bookSn);
 				while (rs.next()) {
-					System.out.println(rs.getString(1));
+					//System.out.println(rs.getString(1));
 					subjectList.add("("+rs.getString(2)+") "+rs.getString(1)+" ("+rs.getString(5)+")");
 				}
 				replay = new Replay(ActionType.GET_BOOK_SUBJETCS, true, subjectList);
@@ -1058,16 +1058,16 @@ public class ServerController extends AbstractServer {
 		case BOOKREPORT: {
 			ArrayList<String> elementsList = new ArrayList<String>();
 			try {
-				System.out.println("sagiv+"+data.get(0));
+				//System.out.println("sagiv+"+data.get(0));
 				ResultSet rs = DatabaseController
 						.searchInDatabase("SELECT * FROM book_by_date WHERE bookId="
 								+ Integer.valueOf(data.get(0)) + ";");
-				System.out.println("melamed");
+				//System.out.println("melamed");
 				while (rs.next()) {
 					elementsList.add(
 							rs.getString(2) + "^" + String.valueOf(rs.getInt(3)) + "^" + String.valueOf(rs.getInt(4)));
 				}
-				System.out.println(elementsList.get(0));
+				//System.out.println(elementsList.get(0));
 				replay = new Replay(ActionType.BOOKREPORT, true, elementsList);
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
@@ -1145,9 +1145,9 @@ public class ServerController extends AbstractServer {
 				sqlResult = true;
 			} catch (SQLException e) {
 				//System.out.println(sqlStmt);
-				System.out.println(e);
+				//System.out.println(e);
 				if (e.getErrorCode() == 1062) { //// duplicate primary key
-					System.out.println("duplicate primary key - Write a review");
+					//System.out.println("duplicate primary key - Write a review");
 				}
 			}
 			if (sqlResult == true)
@@ -1158,7 +1158,7 @@ public class ServerController extends AbstractServer {
 			}
 			else {
 				replay = new Replay(ActionType.WRITE_REVIEW, false);
-				System.out.println(replay.getSucess());
+				//System.out.println(replay.getSucess());
 			}
 			break;
 		}
@@ -1434,7 +1434,7 @@ public class ServerController extends AbstractServer {
 				for(int i=1;i<subjectsId.length;i++){
 					query+=" OR id="+subjectsId[i];		
 				}
-				System.out.println(query);				
+				//System.out.println(query);				
 				ResultSet rs = stmt.executeQuery(query);
 				
 				String authorsArr[];
@@ -1453,7 +1453,7 @@ public class ServerController extends AbstractServer {
 				else{
 					query="INSERT INTO books (`title`, `language`, `authorsCount`, `summary`, `tableOfContent`, `keywords`, `price`, `hide`, `domainsCount`, `subjectsCount`, `image`) "
 							+ "VALUES('"+TitleBook+"', '"+language+"' , '"+authorsCount+"', '"+summary+"', '"+tableOfContent+"', '"+keywords+"', '"+price+"', '0', '"+DomainsCount+"', '"+SubjectsCount+"', '"+picture+"')";	
-				System.out.println("sfdsasafsafsaf");
+				//System.out.println("sfdsasafsafsaf");
 				}
 				PreparedStatement statement = (PreparedStatement) DatabaseController.connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);			
 				int affectedRows = statement.executeUpdate();
@@ -1527,34 +1527,34 @@ public class ServerController extends AbstractServer {
 						"SELECT book_subjects.subjectId FROM project.book_subjects WHERE book_subjects.bookId="+Sn);
 				while (rs.next()) {
 					elementsList.add(rs.getString(1));
-					System.out.println("===="+rs.getString(1));
+					//System.out.println("===="+rs.getString(1));
 				}
 				//update the book count of subject
 				for(int i=0;i<elementsList.size();i++){
 					stmt.executeUpdate("UPDATE subjects SET booksCount = booksCount - 1 WHERE id="+elementsList.get(i));
 				}
 				elementsList = new ArrayList<String>();
-				System.out.println("1");
+				//System.out.println("1");
 				
 				//get the authors of the book before update
 				ResultSet rs1 = stmt.executeQuery(
 						"SELECT book_authors.authorId FROM project.book_authors WHERE book_authors.bookId="+Sn);
 				while (rs1.next()) {
 					elementsList.add(rs1.getString(1));
-					System.out.println("===="+rs1.getString(1));
+					//System.out.println("===="+rs1.getString(1));
 				}
 				//update the book count of authors
 				for(int i=0;i<elementsList.size();i++){
 					stmt.executeUpdate("UPDATE authors SET booksCount = booksCount - 1 WHERE id="+elementsList.get(i));
 				}
 				elementsList = new ArrayList<String>();
-				System.out.println("2");
+				//System.out.println("2");
 				
 				//delete all the old authors
 				stmt.executeUpdate("DELETE FROM book_authors WHERE bookId="+Sn);
 				//delete all the old subjects
 				stmt.executeUpdate("DELETE FROM book_subjects WHERE bookId="+Sn);
-				System.out.println("3");
+				//System.out.println("3");
 				
 				
 				String subjectsId[];
@@ -1563,7 +1563,7 @@ public class ServerController extends AbstractServer {
 				for(int i=1;i<subjectsId.length;i++){
 					query+=" OR id="+subjectsId[i];		
 				}
-				System.out.println(query);				
+				//System.out.println(query);				
 				ResultSet rs11 = stmt.executeQuery(query);
 				
 				String authorsArr[];
@@ -1575,7 +1575,7 @@ public class ServerController extends AbstractServer {
 				int authorsCount=authorsArr.length;
 				int bookSn;
 						
-				System.out.println("4");
+				//System.out.println("4");
 				//add book
 				if(picture.equals("noPicture"))
 					query="UPDATE books SET title='"+TitleBook+"', language='"+language+"', authorsCount='"+authorsCount+"', summary='"+summary+"', tableOfContent='"+tableOfContent+"', keywords='"+keywords+"', price='"+price+"', domainsCount='"+DomainsCount+"', subjectsCount='"+SubjectsCount+"' "
@@ -1662,7 +1662,7 @@ public class ServerController extends AbstractServer {
 						+ "WHERE book_authors.authorId=authors.id AND book_authors.bookId="+bookSn);
 				while (rs.next()) {
 					elementsList.add(rs.getString(1) + "^" + rs.getString(2) + "^" + rs.getString(3));
-				System.out.println(rs.getString(1));
+				//System.out.println(rs.getString(1));
 				}
 						
 				replay = new Replay(ActionType.GET_BOOK_AUTHORS, true, elementsList);
@@ -1745,7 +1745,7 @@ public class ServerController extends AbstractServer {
 						elementsList.add(String.valueOf(rs.getInt(1)) + "^"+String.valueOf(rs.getInt(2)) );
 					}
 					for(int i=0;i<elementsList.size();i++)
-						System.out.println(elementsList.get(i));
+						//System.out.println(elementsList.get(i));
 			
 					replay = new Replay(ActionType.GET_TOTAL_PRICE, true, elementsList);
 				}

@@ -314,7 +314,10 @@ public class BookReviewsController implements ScreensIF {
 	}
 }
 
-
+/**
+ * This class makes sure the information from the server was received successfully.
+ * @author ork
+ */
 class BookReviewsRecv extends Thread{
     	
 	/**

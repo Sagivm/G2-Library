@@ -45,15 +45,7 @@ public class WriteReviewController implements ScreensIF {
 	 */
 	//public static Book book; 
 	public static SearchBookResult book;
-	
-	/**
-	 * Load the image from the path.
-	 */
-	private Image bookImage;
-	
-	protected int row = 1;
-	protected int line = 110,rowlength=0;
-	
+		
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -124,7 +116,7 @@ public class WriteReviewController implements ScreensIF {
 	public void ClearkButtonPressed(ActionEvent event) throws IOException{
 		try{
 			String text1 = txtAreaReview.getText();
-			System.out.println(text1);
+			//System.out.println(text1);
 			txtAreaReview.setText("");
 		}
 		catch(Exception e) {
@@ -150,7 +142,6 @@ public class WriteReviewController implements ScreensIF {
 			review.add(HomepageUserController.getConnectedUser().getId());	//user id
 			review.add(book.getBookSn());	//book sn
 			String text1 = txtAreaReview.getText();
-			//System.out.println(text1);
 			review.add(Validate.fixText(txtAreaReview.getText()));	//review content
 	
 			Message message = addReview(ActionType.WRITE_REVIEW,review);
