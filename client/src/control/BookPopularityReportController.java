@@ -380,7 +380,7 @@ public class BookPopularityReportController implements Initializable {
 	 */
 	private void displaybooks() {
 		mergeDuplicatesDomain();
-		setPrice();
+		
 		//Double merge duplicate discrete
 		for(int i=0;i<specificList.size();i++)
 		{
@@ -388,12 +388,20 @@ public class BookPopularityReportController implements Initializable {
 				if(specificList.get(i).getId()==specificList.get(j).getId()&&i!=j)
 					specificList.remove(j);
 		}
+		for (int i=0;i<priceList.size();i++)
+			System.out.println(priceList.get(i));
+		setPrice();
+		System.out.println();
+		for (int i=0;i<priceList.size();i++)
+			System.out.println(specificList.get(i).getPurchase());
+		purchaseColumn.setSortType(TableColumn.SortType.ASCENDING);
 		bookIdColumn.setCellValueFactory(new PropertyValueFactory<Popularity, Integer>("id"));
 		titleColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("title"));
 		authorColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("author"));
 		languageColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("language"));
 		purchaseColumn.setCellValueFactory(new PropertyValueFactory<Popularity, Integer>("purchase"));
 		ObservableList<Popularity> items = FXCollections.observableArrayList(specificList);
+		purchaseColumn.setSortType(TableColumn.SortType.ASCENDING);
 		table.setItems(items);
 		specificList.clear();
 	}
@@ -406,7 +414,7 @@ public class BookPopularityReportController implements Initializable {
 		for (int i = 0; i < priceList.size(); i++) {
 			split = priceList.get(i).split("\\^");
 			for (int j = 0; j < specificList.size(); j++) {
-				if (split[0].equals(specificList.get(j).getId())) {
+				if (split[0].equals(String.valueOf(specificList.get(j).getId()))) {
 					specificList.get(j).setPurchase(Integer.valueOf(split[1]));
 
 				}
