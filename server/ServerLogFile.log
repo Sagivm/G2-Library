@@ -1,19 +1,27 @@
-ιπε 26, 2017 8:01:58 PM control.ServerController writeToLog
+ιπε 27, 2017 10:51:57 AM control.ServerController writeToLog
 INFO: Connected to database
-ιπε 26, 2017 8:01:58 PM control.ServerController writeToLog
+ιπε 27, 2017 10:51:57 AM control.ServerController writeToLog
 INFO: Server listening for connections
 on port: 1337
-ιπε 26, 2017 8:02:03 PM control.ServerController writeToLog
+ιπε 27, 2017 10:52:03 AM control.ServerController writeToLog
 INFO: Login attempt
-ιπε 26, 2017 8:06:33 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '1' to '2'
-ιπε 26, 2017 8:06:33 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '0' to '1'
-ιπε 26, 2017 8:06:33 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '0' to '1'
-ιπε 26, 2017 8:07:06 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '2' to '3'
-ιπε 26, 2017 8:07:07 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '1' to '2'
-ιπε 26, 2017 8:07:07 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '1' to '2'
+ιπε 27, 2017 10:54:37 AM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 27, 2017 10:55:06 AM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 27, 2017 10:57:47 AM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 27, 2017 11:00:43 AM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 27, 2017 11:03:56 AM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 27, 2017 11:05:59 AM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 27, 2017 11:06:54 AM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 27, 2017 11:07:41 AM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 27, 2017 11:12:40 AM control.ServerController writeToLog
+INFO: Login attempt
+ιπε 27, 2017 11:13:37 AM control.ServerController writeToLog
+INFO: Login attempt

@@ -18,6 +18,7 @@ import entity.Author;
 import entity.GeneralMessages;
 import entity.Message;
 import entity.Register;
+import entity.ScreensInfo;
 import entity.Validate;
 import enums.ActionType;
 import img.*;
@@ -37,6 +38,8 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -68,6 +71,12 @@ import javafx.util.Callback;
  *
  */
 public class BookManagementController {
+	
+ /**
+ * Container of the global pane
+ */
+@FXML
+ private AnchorPane globalPane;
 
  // Books Tab - main pane
 	
@@ -573,7 +582,7 @@ private TextField addSubjectsName;
 * List View of domains list in add subject page
 */
 @FXML
-private ListView addSubjectsDomainsList;
+private ListView < String > addSubjectsDomainsList;
 
 /**
 * Button to go back to main subjects page from add subject form
@@ -1576,76 +1585,19 @@ private Button editAuthorSubmit;
     ////////////////////////////////////////////////////////////////
     
     ////////////////////////////////////////////////////////////////	
-    
-    Platform.runLater(() -> {
+
     actionOnError(ActionType.CONTINUE, "The book added successfully!");
-    addBookTitle.setText("");
-    addBookAuthorsList.getSelectionModel().clearSelection();
-    addBookKeywordsText.setText("");
-    addBookLanguageList.getSelectionModel().clearSelection();
-    addBookSubjectsList.getSelectionModel().clearSelection();
-    addBookTableOfContent.setText("");
-    addBookSummary.setText("");
-    picBook.setImage(null);
-    picStr="noPicture";
-    
-    
-    filterField.clear();
-    filteredData.clear();
-    Message message7 = prepareGetBooksList(ActionType.GET_BOOK_LIST);
-    try {
-     ClientController.clientConnectionController.sendToServer(message7);
-    } catch (IOException e2) {
-    	e2.printStackTrace();
-     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-    }
-    
-    //itai
-    Platform.runLater(new Runnable() {
-		@Override
-		public void run() {
-				BookManagermentGetBookListRecv2 recv_getBooks = new BookManagermentGetBookListRecv2();
-				recv_getBooks.start();
-				synchronized (recv_getBooks) {
-					try{
-						recv_getBooks.wait();
-					}catch(InterruptedException e){
-						e.printStackTrace();
-					}
-					
-				    Platform.runLater(() -> {
-				        String authors = "";
-				        for (int i = 0; i < BooksList.size(); i += 9) {
-				         if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
-				          authors = authors + BooksList.get(i + 5) + ",";
-				         } else {
-				          if (authors.equals("")) {
-				           String hide;
-				           if (BooksList.get(i + 3).equals("0")) hide = "no";
-				           else hide = "yes";
-				           data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-				           filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-				          } else {
-				           String hide;
-				           if (BooksList.get(i + 3).equals("0")) hide = "no";
-				           else hide = "yes";
-				           data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-				           filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-				          }
-				          authors = "";
-				         }
-				        }
-				       });
-				}
-		}});
-    
 
-
+		try {
+		while(globalPane.getChildren().size()>0)
+		globalPane.getChildren().remove(0);
+		Parent root = FXMLLoader.load(getClass().getResource(ScreensInfo.HOMEPAGE_BOOK_MANAGEMENT));
+	globalPane.getChildren().add(root);
+	} catch (Exception e1) {
+		e1.printStackTrace();
+	}
     
-    addBookPane.setVisible(false);
-    editBookPane.setVisible(false);
-    mainPane.setVisible(true);
-    });
+    
    }
   }); //end submit button
 
@@ -1751,90 +1703,19 @@ private Button editAuthorSubmit;
 	    ////////////////////////////////////////////////////////////////
 
 	    
-	    Platform.runLater(() -> {
-	    actionOnError(ActionType.CONTINUE, "The book added successfully!");
-	    addBookTitle.setText("");
-	    addBookAuthorsList.getSelectionModel().clearSelection();
-	    addBookKeywordsText.setText("");
-	    addBookLanguageList.getSelectionModel().clearSelection();
-	    addBookSubjectsList.getSelectionModel().clearSelection();
-	    addBookTableOfContent.setText("");
-	    addBookSummary.setText("");
-	    picBook.setImage(null);
-	    picStr="noPicture";
-	    
-	    filterField.clear();
-	    data.clear();
-	    filteredData.clear();
-	    Message message7 = prepareGetBooksList(ActionType.GET_BOOK_LIST);
-	    try {
-	     ClientController.clientConnectionController.sendToServer(message7);
-	    } catch (IOException e2) {
-	    	e2.printStackTrace();
-	     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-	    }
-	    
-	    //itai
-	    Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-					BookManagermentGetBookListRecv3 recv_getBooks = new BookManagermentGetBookListRecv3();
-					recv_getBooks.start();
-					synchronized (recv_getBooks) {
-						try{
-							recv_getBooks.wait();
-						}catch(InterruptedException e){
-							e.printStackTrace();
-						}
-						
-						Platform.runLater(() -> {
-						     String authors = "";
-						     for (int i = 0; i < BooksList.size(); i += 9) {
-						      if (i + 9 < BooksList.size() && BooksList.get(i).equals(BooksList.get(i + 9))) {
-						       authors = authors + BooksList.get(i + 5) + ",";
-						      } else {
-						       if (authors.equals("")) {
-						        String hide;
-						        if (BooksList.get(i + 3).equals("0")) hide = "no";
-						        else hide = "yes";
-						        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-						        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-						       } else {
-						        String hide;
-						        if (BooksList.get(i + 3).equals("0")) hide = "no";
-						        else hide = "yes";
-						        data.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-						        filteredData.add(new PropertyBook(BooksList.get(i), BooksList.get(i + 1), BooksList.get(i + 2), hide, BooksList.get(i + 4), authors + BooksList.get(i + 5), BooksList.get(i + 6), BooksList.get(i + 7), BooksList.get(i + 8)));
-						       }
-						       authors = "";
-						      }
-						     }
-						    });
-					}
-			}});
-	    
-	    
+
+	    actionOnError(ActionType.CONTINUE, "The book edited successfully!");
 
 	    
-	    TitleLabel.setVisible(false);
-	    InfoTitle.setVisible(false);
-	    AuthorsLabel.setVisible(false);
-	    InfoAuthors.setVisible(false);
-	    KeywordsLabel.setVisible(false);
-	    SummaryLabel.setVisible(false);
-	    imageView.setVisible(false);
-	    InfoKeywords.setVisible(false);
-	    infoPrice.setVisible(false);
-	    PriceLabel.setVisible(false);
-	    BookSummary.setVisible(false);
-	    delBtn.setVisible(false);
-	    editBtn.setVisible(false);
-	    hideBtn.setVisible(false);
-	    
-	    addBookPane.setVisible(false);
-	    editBookPane.setVisible(false);
-	    mainPane.setVisible(true);
-	    });
+			try {
+			while(globalPane.getChildren().size()>0)
+			globalPane.getChildren().remove(0);
+			Parent root = FXMLLoader.load(getClass().getResource(ScreensInfo.HOMEPAGE_BOOK_MANAGEMENT));
+		globalPane.getChildren().add(root);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+
 	   }
 	  
   });
@@ -1925,49 +1806,19 @@ private Button editAuthorSubmit;
 									    } catch (Exception e1) {
 									     e1.printStackTrace();
 									    }
-									    Platform.runLater(() -> {
 									    actionOnError(ActionType.CONTINUE, "The domain edited successfully!");
-									    editDomainName.setText("");
+						  	  			
+									    try {
+						  	  	  			while(globalPane.getChildren().size()>0)
+						  	  	  			globalPane.getChildren().remove(0);
+						  	  	  			Parent root = FXMLLoader.load(getClass().getResource(ScreensInfo.HOMEPAGE_BOOK_MANAGEMENT));
+						  	  	  		globalPane.getChildren().add(root);
+						  	  	  		} catch (Exception e1) {
+						  	  	  			e1.printStackTrace();
+						  	  	  		}
 									    
-									    dataDomains.clear();
-					  				    Message message6 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
-					  				    try {
-					  				     ClientController.clientConnectionController.sendToServer(message6);
-					  				    } catch (IOException e2) {
-					  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-					  				    }
-					  				    
-					  				  //itai
-					  				  Platform.runLater(new Runnable() {
-					  						@Override
-					  						public void run() {
-					  								BookManagermentGetDomainsWithIdRecv2 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv2();
-					  								recv_getDomainsWithId.start();
-					  								synchronized (recv_getDomainsWithId) {
-					  									try{
-					  										recv_getDomainsWithId.wait();
-					  									}catch(InterruptedException e){
-					  										e.printStackTrace();
-					  									}
-					  								}
-					  						}});
-					  				  
-					  				    
-					  				    Platform.runLater(() -> {
-					  						for(int i=0;i<domainsList.size();i+=2){
-					  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-					  						}
-					  				    });
-					  				    try {
-					  						Thread.sleep(500);
-					  					} catch (Exception e1) {
-					  						e1.printStackTrace();
-					  					}
-									    
-									    addDomainPane.setVisible(false);
-									    editDomainPane.setVisible(false);
-									    mainDomainPane.setVisible(true);
-								});
+
+
 								}
 							});
 
@@ -2028,13 +1879,14 @@ private Button editAuthorSubmit;
 												//////////////////////////////////
 												
 												actionOnError(ActionType.CONTINUE, "The domain deleted successfully!");
-											    dataDomains.clear();
-							  				    Message message7 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
-							  				    try {
-							  				     ClientController.clientConnectionController.sendToServer(message7);
-							  				    } catch (IOException e2) {
-							  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-							  				    }
+								  	  			try {
+								  	  	  			while(globalPane.getChildren().size()>0)
+								  	  	  			globalPane.getChildren().remove(0);
+								  	  	  			Parent root = FXMLLoader.load(getClass().getResource(ScreensInfo.HOMEPAGE_BOOK_MANAGEMENT));
+								  	  	  		globalPane.getChildren().add(root);
+								  	  	  		} catch (Exception e1) {
+								  	  	  			e1.printStackTrace();
+								  	  	  		}
 							  				    
 							  				    
 							  				  //itai
@@ -2113,46 +1965,17 @@ private Button editAuthorSubmit;
 											  							 
 											  							 	////////////////////////////////////////////
 											  							 
-											  							    Platform.runLater(() -> {
+											  							
 											  							    actionOnError(ActionType.CONTINUE, "The domain edited successfully!");
-											  							    editDomainName.setText("");
-											  							    
-											  							    dataDomains.clear();
-											  			  				    Message message6 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
-											  			  				    try {
-											  			  				     ClientController.clientConnectionController.sendToServer(message6);
-											  			  				    } catch (IOException e2) {
-											  			  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-											  			  				    }
-											  			  				    
-											  			  				  //itai
-											  			  				  Platform.runLater(new Runnable() {
-											  			  						@Override
-											  			  						public void run() {
-											  			  								BookManagermentGetDomainsWithIdRecv2 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv2();
-											  			  								recv_getDomainsWithId.start();
-											  			  								synchronized (recv_getDomainsWithId) {
-											  			  									try{
-											  			  										recv_getDomainsWithId.wait();
-											  			  									}catch(InterruptedException e){
-											  			  										e.printStackTrace();
-											  			  									}
-											  			  				  				    Platform.runLater(() -> {
-											  			  				  						for(int i=0;i<domainsList.size();i+=2){
-											  			  				  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-											  			  				  						}
-											  			  				  				    });
-											  			  								}
-											  			  						}});
-											  			  				  
-											  			  				    
+											  				  	  			try {
+											  				    	  			while(globalPane.getChildren().size()>0)
+											  				    	  			globalPane.getChildren().remove(0);
+											  				    	  			Parent root = FXMLLoader.load(getClass().getResource(ScreensInfo.HOMEPAGE_BOOK_MANAGEMENT));
+											  				    	  		globalPane.getChildren().add(root);
+											  				    	  		} catch (Exception e1) {
+											  				    	  			e1.printStackTrace();
+											  				    	  		}
 
-
-											  							    
-											  							    addDomainPane.setVisible(false);
-											  							    editDomainPane.setVisible(false);
-											  							    mainDomainPane.setVisible(true);
-											  						});
 											  						}
 											  					});
 							  								}
@@ -2193,48 +2016,17 @@ private Button editAuthorSubmit;
   				    } catch (Exception e1) {
   				     e1.printStackTrace();
   				    }
-  				Platform.runLater(() -> {
-  				    actionOnError(ActionType.CONTINUE, "The domain added successfully!");
-  				    addDomainName.setText("");
-  				    
-  				    dataDomains.clear();
-  				    Message message6 = prepareGetDomainsWithId(ActionType.GET_DOMAINS_WITH_ID);
-  				    try {
-  				     ClientController.clientConnectionController.sendToServer(message6);
-  				    } catch (IOException e2) {
-  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  				    }
-  				    
-  				  //itai
-  				  Platform.runLater(new Runnable() {
-  						@Override
-  						public void run() {
-  								BookManagermentGetDomainsWithIdRecv4 recv_getDomainsWithId = new BookManagermentGetDomainsWithIdRecv4();
-  								recv_getDomainsWithId.start();
-  								synchronized (recv_getDomainsWithId) {
-  									try{
-  										recv_getDomainsWithId.wait();
-  									}catch(InterruptedException e){
-  										e.printStackTrace();
-  									}
-  				  				    Platform.runLater(() -> {
-  				  						for(int i=0;i<domainsList.size();i+=2){
-  				  							dataDomains.add(new PropertyDomain(domainsList.get(i), domainsList.get(i+1)));
-  				  						}
-  				  				    });
-  								}
-  						}});
-  				  
-  				    
-
-
-  				    
-  				  mainDomainPane.setVisible(true);
-  				  addDomainPane.setVisible(false);
-  				  editDomainPane.setVisible(false);
-  				    
-  				    
-  				});
+  				    actionOnError(ActionType.CONTINUE, "The domain added successfully!"); 
+  				
+  	  			try {
+  	  			while(globalPane.getChildren().size()>0)
+  	  			globalPane.getChildren().remove(0);
+  	  			Parent root = FXMLLoader.load(getClass().getResource(ScreensInfo.HOMEPAGE_BOOK_MANAGEMENT));
+  	  		globalPane.getChildren().add(root);
+  	  		} catch (Exception e1) {
+  	  			e1.printStackTrace();
+  	  		}
+  				
   			}
   		});
 	
@@ -2443,39 +2235,15 @@ private Button editAuthorSubmit;
   				   						   }
   				   						actionOnError(ActionType.CONTINUE, "The subject deleted successfully!");
   				   						
-  				   						////////////////////////////////////////
-  				   						
-  				   						///////////////////////////////////////
-  				   						
-  				   						dataSubjects.clear();
-  				   	  	  		  	  Message message8 = prepareGetDomainsWithId(ActionType.GET_SUBJECTS_INFO);
-  				   	  	  	  	  try {
-  				   	  	  	  	   ClientController.clientConnectionController.sendToServer(message8);
-  				   	  	  	  	  } catch (IOException e2) {
-  				   	  	  	  		  e2.printStackTrace();
-  				   	  	  	  	   actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  				   	  	  	  	  }
-  				   	  	  	  	  
-  				   	  		  //itai
-  				   	  		  Platform.runLater(new Runnable() {
-  				   	  				@Override
-  				   	  				public void run() {
-  				   	  						BookManagermentGetSubjectsInfoRecv2 recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv2();
-  				   	  						recv_getSubjectsInfo.start();
-  				   	  						synchronized (recv_getSubjectsInfo) {
-  				   	  							try{
-  				   	  								recv_getSubjectsInfo.wait();
-  				   	  							}catch(InterruptedException e){
-  				   	  								e.printStackTrace();
-  				   	  							}
-  				   	  	  	  	  	  		Platform.runLater(() -> {
-  				   	    	  	  	  			for(int i=0;i<subjectsList.size();i+=4){
-  				   	    	  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-  				   	    	  	  	  			}
-  				   	    	  	  	  			mainSubjectTable.setItems(dataSubjects);
-  				   	    	  	  	  	  });
-  				   	  						}
-  				   	  				}});
+  				   	  	  			try {
+  				   	  	  			while(globalPane.getChildren().size()>0)
+  				   	  	  			globalPane.getChildren().remove(0);
+  				   	  	  			Parent root = FXMLLoader.load(getClass().getResource(ScreensInfo.HOMEPAGE_BOOK_MANAGEMENT));
+  				   	  	  		globalPane.getChildren().add(root);
+  				   	  	  		} catch (Exception e1) {
+  				   	  	  			e1.printStackTrace();
+  				   	  	  		}
+  				   
   				   	  	  	  	  
 
 
@@ -2510,11 +2278,11 @@ private Button editAuthorSubmit;
   	  			String SubjectName = null;
   	  			SubjectName = addSubjectsName.getText();
   	  			//System.out.println(SubjectName);
-  	  			String SubjectDomain;
-  	  			SubjectDomain = addSubjectsDomainsList.getSelectionModel().getSelectedItem().toString();
+  	  			String SubjectDomain = null;
+  	  			SubjectDomain = addSubjectsDomainsList.getSelectionModel().getSelectedItem();
   	  			//System.out.println(SubjectDomain);
   	  			
-  	  			if (SubjectName.equals("") || SubjectDomain.equals(""))
+  	  			if (SubjectName.equals("") || SubjectDomain==null)
   	  			    actionOnError(ActionType.CONTINUE, "You must to fill the all fields!");
   	  			else {
   	  				 SubjectDomain=SubjectDomain.substring(SubjectDomain.indexOf("(")+1, SubjectDomain.indexOf(")"));
@@ -2534,36 +2302,14 @@ private Button editAuthorSubmit;
   	  				addSubjectsDomainsList.getSelectionModel().clearSelection();
   	  				
   	  				
-  	  				
-  	  			dataSubjects.clear();
-  	  		  	  Message message7 = prepareGetDomainsWithId(ActionType.GET_SUBJECTS_INFO);
-  	  	  	  try {
-  	  	  	   ClientController.clientConnectionController.sendToServer(message7);
-  	  	  	  } catch (IOException e2) {
-  	  	  		  e2.printStackTrace();
-  	  	  	   actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  	  	  	  }
-
-  	  					BookManagermentGetSubjectsInfoRecv3 recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv3();
-  	  					recv_getSubjectsInfo.start();
-  	  					synchronized (recv_getSubjectsInfo) {
-  	  						try{
-  	  							recv_getSubjectsInfo.wait();
-  	  						}catch(InterruptedException e2){
-  	  							e2.printStackTrace();
-  	  						}
-  	  	  	  	  		
-  	    	  	  			for(int i=0;i<subjectsList.size();i+=4)
-  	    	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-  	    	  	  			
-  	    	  	  	
-  	  	  	  	  		
-	  	  	  				mainSubjectTable.setItems(dataSubjects);
-	  	    	  			mainSubjectPane.setVisible(true);
-	  	    	  				addSubjectPane.setVisible(false);
-	  	    	  			editSubjectPane.setVisible(false);
-  	  					}
-  	  		
+  	  			try {
+  	  			while(globalPane.getChildren().size()>0)
+  	  			globalPane.getChildren().remove(0);
+  	  			Parent root = FXMLLoader.load(getClass().getResource(ScreensInfo.HOMEPAGE_BOOK_MANAGEMENT));
+  	  		globalPane.getChildren().add(root);
+  	  		} catch (Exception e1) {
+  	  			e1.printStackTrace();
+  	  		}
   	  	  	  
 
 
@@ -2600,49 +2346,19 @@ private Button editAuthorSubmit;
 				 
 				 	//////////////////////////////////////
 				 
-				    Platform.runLater(() -> {
+
 				    actionOnError(ActionType.CONTINUE, "The subject edited successfully!");
-				    editDomainName.setText("");
 				    
-				    
-				    
-				    dataSubjects.clear();
-	  	  		  	  Message message7 = prepareGetDomainsWithId(ActionType.GET_SUBJECTS_INFO);
-	  	  	  	  try {
-	  	  	  	   ClientController.clientConnectionController.sendToServer(message7);
-	  	  	  	  } catch (IOException e2) {
-	  	  	  		  e2.printStackTrace();
-	  	  	  	   actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-	  	  	  	  }
-	  	  	  //itai
-	  	  	  Platform.runLater(new Runnable() {
-	  	  			@Override
-	  	  			public void run() {
-	  	  					BookManagermentGetSubjectsInfoRecv4 recv_getSubjectsInfo = new BookManagermentGetSubjectsInfoRecv4();
-	  	  					recv_getSubjectsInfo.start();
-	  	  					synchronized (recv_getSubjectsInfo) {
-	  	  						try{
-	  	  							recv_getSubjectsInfo.wait();
-	  	  						}catch(InterruptedException e){
-	  	  							e.printStackTrace();
-	  	  						}
-	  	  	  	  	  		Platform.runLater(() -> {
-	  		  	  	  			for(int i=0;i<subjectsList.size();i+=4){
-	  		  	  	  				dataSubjects.add(new PropertySubject(subjectsList.get(i), subjectsList.get(i+1), "("+subjectsList.get(i+2)+")"+" "+subjectsList.get(i+3)));
-	  		  	  	  			}
-	  		  	  	  	  });
-	  	  	  	  	  		
-		  	  				mainSubjectTable.setItems(dataSubjects);
-			  	  			mainSubjectPane.setVisible(true);
-			  	  				addSubjectPane.setVisible(false);
-			  	  			editSubjectPane.setVisible(false);
-	  	  					}
-	  	  			}});
-	  	  	  	  
+	  	  			try {
+	  	  	  			while(globalPane.getChildren().size()>0)
+	  	  	  			globalPane.getChildren().remove(0);
+	  	  	  			Parent root = FXMLLoader.load(getClass().getResource(ScreensInfo.HOMEPAGE_BOOK_MANAGEMENT));
+	  	  	  		globalPane.getChildren().add(root);
+	  	  	  		} catch (Exception e1) {
+	  	  	  			e1.printStackTrace();
+	  	  	  		}
 
-	
 
-			});
 			}
   			
   		});
@@ -2755,41 +2471,15 @@ private Button editAuthorSubmit;
   					 
   					    Platform.runLater(() -> {
   					    actionOnError(ActionType.CONTINUE, "The author edited successfully!");
-  					    editAuthorFirstName.setText("");
-  					    editAuthorLastName.setText("");
-  					    
-  					    dataAuthors.clear();
-  	  				    Message message8 = prepareGetAuthors(ActionType.GET_AUTHORS);
-  	  				    try {
-  	  				     ClientController.clientConnectionController.sendToServer(message8);
-  	  				    } catch (IOException e2) {
-  	  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  	  				    }
-  	  				    
-  	  				  //itai
-  	  				  Platform.runLater(new Runnable() {
-  	  						@Override
-  	  						public void run() {
-  	  								BookManagermentGetAuthorsRecv4 recv_getAuthors = new BookManagermentGetAuthorsRecv4();
-  	  								recv_getAuthors.start();
-  	  								synchronized (recv_getAuthors) {
-  	  									try{
-  	  										recv_getAuthors.wait();
-  	  									}catch(InterruptedException e){
-  	  										e.printStackTrace();
-  	  									}
-  	  		  	  				    Platform.runLater(() -> {
-  	  	  	  				    	for(int i=0;i<authorList.size();i++){
-  	  	  	  				    			dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
-  	  	  	  				    		}
-  	  	  	  				    });
-  	  		  	  				    
-  	  		 	  				filterField.clear();
-  	  		 	  				data.clear();
-  	  		 	  				filteredData.clear();
-
-  	  								}
-  	  						}});
+  					   
+  		  	  			try {
+  		    	  			while(globalPane.getChildren().size()>0)
+  		    	  			globalPane.getChildren().remove(0);
+  		    	  			Parent root = FXMLLoader.load(getClass().getResource(ScreensInfo.HOMEPAGE_BOOK_MANAGEMENT));
+  		    	  		globalPane.getChildren().add(root);
+  		    	  		} catch (Exception e1) {
+  		    	  			e1.printStackTrace();
+  		    	  		}
   	  				    
   	  				    
 
@@ -2910,33 +2600,16 @@ private Button editAuthorSubmit;
    				  						   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
    				  						   }
    				  						actionOnError(ActionType.CONTINUE, "The author deleted successfully!");
-   				  						dataAuthors.clear();
-   				  	  				    Message message9 = prepareGetAuthors(ActionType.GET_AUTHORS);
-   				  	  				    try {
-   				  	  				     ClientController.clientConnectionController.sendToServer(message9);
-   				  	  				    } catch (IOException e2) {
-   				  	  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-   				  	  				    }
-   				  	  				  //itai
-   				  	  				  Platform.runLater(new Runnable() {
-   				  	  						@Override
-   				  	  						public void run() {
-   				  	  							BookManagermentGetAuthorsRecv5 recv_getAuthors = new BookManagermentGetAuthorsRecv5();
-   				  	  								recv_getAuthors.start();
-   				  	  								synchronized (recv_getAuthors) {
-   				  	  									try{
-   				  	  										recv_getAuthors.wait();
-   				  	  									}catch(InterruptedException e){
-   				  	  										e.printStackTrace();
-   				  	  									}
-   				  	  								}
-   				  	  						}});
-   				  	  				    
-   				  	  				    Platform.runLater(() -> {
-   				  	  				    for(int i=0;i<authorList.size();i++){
-   								    			dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
-   								    		}
-   				  	  				    });
+
+
+   				  	  	  			try {
+   				  	  	  			while(globalPane.getChildren().size()>0)
+   				  	  	  			globalPane.getChildren().remove(0);
+   				  	  	  			Parent root = FXMLLoader.load(getClass().getResource(ScreensInfo.HOMEPAGE_BOOK_MANAGEMENT));
+   				  	  	  		globalPane.getChildren().add(root);
+   				  	  	  		} catch (Exception e1) {
+   				  	  	  			e1.printStackTrace();
+   				  	  	  		}
 
    				  						
    				  					}
@@ -2981,49 +2654,18 @@ private Button editAuthorSubmit;
   	  				    } catch (Exception e1) {
   	  				     e1.printStackTrace();
   	  				    }
-  	  				Platform.runLater(() -> {
+
   	  				    actionOnError(ActionType.CONTINUE, "The author added successfully!");
-  	  				    addAuthorFirstName.setText("");
-  	  				    addAuthorLastName.setText("");
+  	  				    
+  	    	  			try {
+  	    	  	  			while(globalPane.getChildren().size()>0)
+  	    	  	  			globalPane.getChildren().remove(0);
+  	    	  	  			Parent root = FXMLLoader.load(getClass().getResource(ScreensInfo.HOMEPAGE_BOOK_MANAGEMENT));
+  	    	  	  		globalPane.getChildren().add(root);
+  	    	  	  		} catch (Exception e1) {
+  	    	  	  			e1.printStackTrace();
+  	    	  	  		}
 
-  	  				    
-  	  				    dataAuthors.clear();
-  	  				    Message message8 = prepareGetAuthors(ActionType.GET_AUTHORS);
-  	  				    try {
-  	  				     ClientController.clientConnectionController.sendToServer(message8);
-  	  				    } catch (IOException e2) {
-  	  				     actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-  	  				    }
-  	  				    
-  	  				  //itai
-  	  				  Platform.runLater(new Runnable() {
-  	  						@Override
-  	  						public void run() {
-  	  								BookManagermentGetAuthorsRecv6 recv_getAuthors = new BookManagermentGetAuthorsRecv6();
-  	  								recv_getAuthors.start();
-  	  								synchronized (recv_getAuthors) {
-  	  									try{
-  	  										recv_getAuthors.wait();
-  	  									}catch(InterruptedException e){
-  	  										e.printStackTrace();
-  	  									}
-  	  		  	  				    Platform.runLater(() -> {
-  	  	  	  				    	for(int i=0;i<authorList.size();i++){
-  	  	  	  				    		dataAuthors.add(new PropertyAuthor(authorList.get(i).getId(), authorList.get(i).getFirstname(), authorList.get(i).getLastname()));
-  	  	  	  				    	}
-  	  	  	  				    });
-  	  								}
-  	  						}});
-  	  				    
-
-
-  	  				    
-  	  				  mainAuthorPane.setVisible(true);
-  	  				  addAuthorPane.setVisible(false);
-  	  				  editAuthorPane.setVisible(false);
-  	  				    
-  	  				    
-  	  				});
   	  			}
   	  		});
   		
