@@ -394,15 +394,15 @@ public class BookPopularityReportController implements Initializable {
 		//System.out.println();
 		for (int i=0;i<priceList.size();i++)
 			//System.out.println(specificList.get(i).getPurchase());
-		purchaseColumn.setSortType(TableColumn.SortType.ASCENDING);
+		purchaseColumn.setSortType(TableColumn.SortType.DESCENDING);
 		bookIdColumn.setCellValueFactory(new PropertyValueFactory<Popularity, Integer>("id"));
 		titleColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("title"));
 		authorColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("author"));
 		languageColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("language"));
 		purchaseColumn.setCellValueFactory(new PropertyValueFactory<Popularity, Integer>("purchase"));
 		ObservableList<Popularity> items = FXCollections.observableArrayList(specificList);
-		purchaseColumn.setSortType(TableColumn.SortType.ASCENDING);
 		table.setItems(items);
+		table.getSortOrder().add(purchaseColumn);
 		specificList.clear();
 	}
 	/**
