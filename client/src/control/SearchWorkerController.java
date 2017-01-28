@@ -76,7 +76,7 @@ public class SearchWorkerController implements ScreensIF{
 	/** This function called when the worker press on search. the function tests the
 	 * integrity of the fields, and send the message to the server.
 	 * @author itain
-	 * @param event
+	 * @param event The event when button pressed.
 	 */
 	@FXML
 	public void searchButtonPressed(ActionEvent event)
@@ -148,7 +148,7 @@ public class SearchWorkerController implements ScreensIF{
 	
 	/** When clear button pressed the function clear all fields.
 	 * @author itain
-	 * @param event
+	 * @param event The event when button pressed.
 	 */
 	@FXML
 	public void clearButtonPressed(ActionEvent event)
@@ -160,9 +160,9 @@ public class SearchWorkerController implements ScreensIF{
 	
 	/** This function prepare message that will be send to the server with arraylist,
 	 * and the action.
-	 * @param type - Gets the type of the action
-	 * @param user - Gets the class with the user information.
-	 * @return - message that will send to server.
+	 * @param type Gets the type of the action
+	 * @param user Gets the class with the user information.
+	 * @return message that will send to server.
 	 */
 	public Message prepareWorkerSearch(ActionType type, Worker worker)
 	{
@@ -190,8 +190,8 @@ public class SearchWorkerController implements ScreensIF{
 
 	/**
 	 * This function gets message and perform the task by the error type.
-	 * @param type - Gets error type.
-	 * @param errorCode - Gets error message.
+	 * @param type Gets error type.
+	 * @param errorCode Gets error message.
 	 */
 	@Override
 	public void actionOnError(ActionType type, String errorCode) {

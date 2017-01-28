@@ -36,11 +36,11 @@ public class User extends Person {
 	/**
 	 * Initialize User with parameters. firstname,lastname,username are defined in parent
 	 * class Person 
-	 * @param firstname
-	 * @param lastname
-	 * @param username
-	 * @param accountType
-	 * @param accountStatus
+	 * @param firstname The first name.
+	 * @param lastname The last name.
+	 * @param username The username.
+	 * @param accountType The account type.
+	 * @param accountStatus The account status.
 	 */
 	public User(String firstname, String lastname, String username, String password, String accountType, String accountStatus) {
 		super(firstname,lastname,username);
@@ -59,7 +59,7 @@ public class User extends Person {
 	/**
 	 * Given a String object setAccountType defines user's account
 	 * type using Enum class
-	 * @param accountTypes
+	 * @param accountTypes The account type.
 	 */
 	public void setAccountType(String accountTypes) {
 		switch(accountTypes)
@@ -82,7 +82,7 @@ public class User extends Person {
 		}
 	}
 	
-	/**
+	/** Getter for password.
 	 * @return User's password.
 	 */
 	public String getPassword()
@@ -90,15 +90,15 @@ public class User extends Person {
 		return password;
 	}
 	
-	/**
-	 * @param password
+	/** Setter for password.
+	 * @param password The password.
 	 */
 	public void setPassword(String password)
 	{
 		this.password = password;
 	}
 	
-	/**
+	/**Getter for account status.
 	 * @return Users's account status
 	 */
 	public AccountStatus getAccountStatus() {
@@ -107,7 +107,7 @@ public class User extends Person {
 	/**
 	 * Given a String object setAccountType defines user's account
 	 * type using Enum class
-	 * @param accountStatuss
+	 * @param accountStatuss The account status.
 	 */
 	public void setAccountStatus(String accountStatuss) {
 		switch(accountStatuss)
@@ -126,7 +126,7 @@ public class User extends Person {
 			break;
 		}
 	}
-	/**
+	/** Getter for connected user.
 	 * @return if user is connected
 	 */
 	public boolean getConnected()
@@ -134,7 +134,7 @@ public class User extends Person {
 		return this.connected;
 	}
 	
-	/**
+	/** Setter for connected user.
 	 * Define user's connection
 	 * @param connected
 	 */

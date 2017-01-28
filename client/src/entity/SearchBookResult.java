@@ -62,16 +62,16 @@ public class SearchBookResult {
 	/**
 	 * Book constructor store the data.
 	 * @author itain
-	 * @param bookSn - Gets the sn.
-	 * @param bookTitle - Gets the title.
-	 * @param bookLanguage - Gets the title.
-	 * @param bookSummary - Gets the title.
-	 * @param bookToc - Gets the tableOfContent.
-	 * @param bookKeywords - Gets the keywords.
-	 * @param bookPrice - Gets the price.
-	 * @param bookAuthors - Gets the authors.
-	 * @param bookDomains - Gets the domains.
-	 * @param bookSubjects - Gets the subjects.
+	 * @param bookSn Gets the sn.
+	 * @param bookTitle Gets the title.
+	 * @param bookLanguage Gets the title.
+	 * @param bookSummary Gets the title.
+	 * @param bookToc Gets the tableOfContent.
+	 * @param bookKeywords Gets the keywords.
+	 * @param bookPrice Gets the price.
+	 * @param bookAuthors Gets the authors.
+	 * @param bookDomains Gets the domains.
+	 * @param bookSubjects Gets the subjects.
 	 */
     public SearchBookResult(String bookSn, String bookTitle, String bookLanguage, String bookSummary, String bookToc, String bookKeywords, String bookAuthors, String bookSubjects, String bookDomains, String bookPrice) {
         this.bookSn = new SimpleStringProperty(bookSn);
@@ -88,7 +88,7 @@ public class SearchBookResult {
 
 	/** Getter for sn
 	 * @author itain
-	 * @return sn - the sn of book
+	 * @return sn the sn of book
 	 */
 	public String getBookSn() {
 		return bookSn.get();
@@ -174,7 +174,7 @@ public class SearchBookResult {
 	
 	/** Setter for sn
 	 * @author itain
-	 *@param bookSn - the sn of book
+	 *@param bookSn the sn of book
 	 */
 	public void setBookSn(String bookSn) {
 		this.bookSn.set(bookSn);
@@ -182,7 +182,7 @@ public class SearchBookResult {
 
 	/** Setter for title
 	 * @author itain
-	 * @param bookTitle - the title of book
+	 * @param bookTitle the title of book
 	 */
 	public void setBookTitle(String bookTitle) {
 		this.bookTitle.set(bookTitle);
@@ -190,7 +190,7 @@ public class SearchBookResult {
 
 	/** Setter for language
 	 * @author itain
-	 * @param bookLanguage - the language of book
+	 * @param bookLanguage the language of book
 	 */
 	public void setBookLanguague(String bookLanguage) {
 		this.bookLanguage.set(bookLanguage);
@@ -199,7 +199,7 @@ public class SearchBookResult {
 	
 	/** Setter for summary
 	 * @author itain
-	 * @param bookSummary - the summary of book
+	 * @param bookSummary the summary of book
 	 */
 	public void setBookSummary(String bookSummary) {
 		this.bookSummary.set(bookSummary);
@@ -207,7 +207,7 @@ public class SearchBookResult {
 
 	/** Setter for TableOfContents
 	 * @author itain
-	 * @param bookToc - the Table Of Contents of book
+	 * @param bookToc the Table Of Contents of book
 	 */
 	public void setBookToc(String bookToc) {
 		this.bookToc.set(bookToc);
@@ -215,7 +215,7 @@ public class SearchBookResult {
 
 	/** Setter for keywords
 	 * @author itain
-	 * @param bookKeywords - the keywords of book
+	 * @param bookKeywords the keywords of book
 	 */
 	public void setBookKeywords(String bookKeywords) {
 		this.bookKeywords.set(bookKeywords);
@@ -223,7 +223,7 @@ public class SearchBookResult {
 
 	/** Setter for authors
 	 * @author itain
-	 * @param bookAuthors - authors
+	 * @param bookAuthors authors
 	 */
 	public void setAuthors(String bookAuthors) {
 		this.bookAuthors.set(bookAuthors);
@@ -231,7 +231,7 @@ public class SearchBookResult {
 
 	/** Setter for subjects
 	 * @author itain
-	 * @param bookSubjects - subjects
+	 * @param bookSubjects subjects
 	 */
 	public void setSubjects(String bookSubjects) {
 		this.bookSubjects.set(bookSubjects);
@@ -239,7 +239,7 @@ public class SearchBookResult {
 
 	/** Setter for domains
 	 * @author itain
-	 * @param bookDomains - domains
+	 * @param bookDomains domains
 	 */
 	public void setDomains(String bookDomains) {
 		this.bookDomains.set(bookDomains);
@@ -247,7 +247,7 @@ public class SearchBookResult {
 
 	/** Setter for price
 	 * @author itain
-	 * @param bookPrice - the price of book
+	 * @param bookPrice the price of book
 	 */
 	public void setPrice(String bookPrice) {
 		this.bookPrice.set(bookPrice);

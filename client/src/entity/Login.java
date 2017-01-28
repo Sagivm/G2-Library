@@ -28,8 +28,8 @@ private String password;
 
 /**
  * Login constructor store the data.
- * @param username - Gets the username.
- * @param password - Gets the password.
+ * @param username Gets the username.
+ * @param password Gets the password.
  */
 public Login(String username, String password) {
 	setUsername(username);
@@ -46,7 +46,7 @@ public String getUsername() {
 }
 
 /** Setter for username
- * @param username - The username.
+ * @param username The username.
  */
 public void setUsername(String username) {
 	this.username = username;
@@ -60,7 +60,7 @@ public String getPassword() {
 }
 
 /** Setter for password.
- * @param password - The password.
+ * @param password The password.
  */
 public void setPassword(String password) {
 	this.password = password;

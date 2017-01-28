@@ -141,7 +141,7 @@ public class ServerController extends AbstractServer {
 
 	/**
 	 * Constructor to establish connection with server, and prepare log file.
-	 * @param port - Gets the port.
+	 * @param port Gets the port.
 	 */
 	public ServerController(int port) {
 		super(port);
@@ -163,7 +163,7 @@ public class ServerController extends AbstractServer {
 
 	/**
 	 * CloseApp close the application when function called by menu -> "close"
-	 * @param event - Gets the event.
+	 * @param event Gets the event.
 	 */
 	@FXML
 	public void CloseApp(ActionEvent event) {
@@ -197,9 +197,10 @@ public class ServerController extends AbstractServer {
 	 * Given a message from client actionToPerform decide what to perform and
 	 * the reply to return
 	 * 
-	 * @param - Gets the message.
-	 * @return - the replay for the client.
-	 */
+	 * @param message Gets the message.
+	 * @return the replay for the client.
+	 * @throws IOException IO exception.
+	**/
 	private Replay actionToPerform(Message message) throws IOException {
 
 		ActionType type = message.getType();
@@ -1944,7 +1945,7 @@ public class ServerController extends AbstractServer {
 	/**
 	 * When the user pressed menu -> "help" it displays the user the message
 	 * about us. 
-	 * @param event - Gets the event.
+	 * @param event Gets the event.
 	 */
 	@FXML
 	public void PressedHelpMenu(ActionEvent event) {
@@ -1958,8 +1959,8 @@ public class ServerController extends AbstractServer {
 	/**
 	 * This function called when the user pressed on the button connect or
 	 * disconnect the function connect databse, and server.
-	 * @param event - Gets the event.
-	 * @throws IOException
+	 * @param event Gets the event.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void buttonPressed(ActionEvent event) throws IOException {
@@ -2026,7 +2027,7 @@ public class ServerController extends AbstractServer {
 	/**
 	 * This function send the parameter to file, and to I/O after getting the
 	 * time. it appends the string.
-	 * @param msg - Gets themessage that will be write in log file, and into server GUI.
+	 * @param msg Gets themessage that will be write in log file, and into server GUI.
 	 */
 	void writeToLog(String msg) {
 		Date datelog = new Date();
@@ -2048,7 +2049,7 @@ public class ServerController extends AbstractServer {
 	/**
 	 * This function returns relevant data for book search
 	 * @author itain
-	 * @return - all unhidden books from server with relevant data for books search
+	 * @return all unhidden books from server with relevant data for books search
 	 */
 	private ArrayList<String> makeSearchBook() throws IOException 
 	{
@@ -2258,9 +2259,9 @@ public class ServerController extends AbstractServer {
 	
 	/**
 	 * This function returns number of items on each book row on search
-	 * @param str - Gets str string.
-	 * @param loofFor - Gets lookFor string.
-	 * @return - the count of items.
+	 * @param str Gets str string.
+	 * @param loofFor Gets lookFor string.
+	 * @return the count of items.
 	 */
 	private int countItems(String str, String lookFor)
 	{
@@ -2282,8 +2283,8 @@ public class ServerController extends AbstractServer {
 
 	/**
 	 * generateFile encode the file to bytes, and receive the file encoded.
-	 * @param destinationPath - Gets the destination path to the file.
-	 * @param sourceFilePath - Gets the source path.
+	 * @param destinationPath Gets the destination path to the file.
+	 * @param sourceFilePath Gets the source path.
 	 * @return The file encoded.
 	 */
 	public FileEvent generateFile(String destinationPath, String sourceFilePath) {

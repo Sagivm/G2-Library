@@ -255,7 +255,6 @@ public class MyBooksController implements Initializable {
 
 	/**
 	 * gets the specific user.
-	 * 
 	 * @return specific user
 	 */
 	public static User getSelectedUser() {
@@ -264,7 +263,6 @@ public class MyBooksController implements Initializable {
 
 	/**
 	 * Sets the user.
-	 * 
 	 * @param selectedUser
 	 *            a specific user that the list will be based upon
 	 */
@@ -337,10 +335,8 @@ public class MyBooksController implements Initializable {
 
 		/**
 		 * constructor
-		 * 
-		 * @param split
-		 *            String array containing the 6 attributes of Purchase in
-		 *            the order id,title,author,language,date,price
+		 * @param split String array containing the 6 attributes of Purchase in
+		 * the order id,title,author,language,date,price
 		 */
 		public Purchase(String split[]) {
 			this.id = Integer.valueOf(split[0]);
@@ -362,7 +358,7 @@ public class MyBooksController implements Initializable {
 		/**
 		 * Setter
 		 * sets bookId
-		 * @param id of the book
+		 * @param id The id of the book
 		 */
 		public void setId(int id) {
 			this.id = id;
@@ -378,7 +374,7 @@ public class MyBooksController implements Initializable {
 		/**
 		 * Setter
 		 * sets book's title
-		 * @param book's title
+		 * @param title The book's title
 		 */
 		public void setTitle(String title) {
 			this.title = title;
@@ -395,7 +391,7 @@ public class MyBooksController implements Initializable {
 		/**
 		 * Setter
 		 * sets book's authors
-		 * @param book's authors
+		 * @param author The book's authors
 		 */
 		public void setAuthor(String author) {
 			this.author = author;
@@ -411,7 +407,7 @@ public class MyBooksController implements Initializable {
 		/**
 		 * Setter
 		 * sets book's language
-		 * @param book's language
+		 * @param language The book's language
 		 */
 		public void setLanguage(String language) {
 			this.language = language;
@@ -427,7 +423,7 @@ public class MyBooksController implements Initializable {
 		/**
 		 * Setter
 		 * sets book's date of purchase
-		 * @param book's date of purchase
+		 * @param date The book's date of purchase
 		 */
 
 		public void setDate(String date) {
@@ -444,7 +440,7 @@ public class MyBooksController implements Initializable {
 		/**
 		 * Setter
 		 * sets the price of the book at the acquisition date
-		 * @param book's price at the acquisition date
+		 * @param price The book's price at the acquisition date
 		 */
 		public void setPrice(float price) {
 			this.price = price;

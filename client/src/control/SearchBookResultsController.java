@@ -310,7 +310,7 @@ public class SearchBookResultsController implements ScreensIF{
 
 	/** When pressed, takes user to books search page.
 	 * @author itain
-	 * @param event - Gets event.
+	 * @param event Gets event.
 	 */
 	public void backButtonPressed(ActionEvent event) {
 		if(ClientUI.getTypeOfUser()=="Librarian")
@@ -362,9 +362,9 @@ public class SearchBookResultsController implements ScreensIF{
 	/**
 	 * This function returns number of items on each book row on search
 	 * @author itain
-	 * @param str - string to be checked
-	 * @param lookFor - character that differs between words on given string (str) 
-	 * @return - number of words on string
+	 * @param str string to be checked
+	 * @param lookFor character that differs between words on given string (str) 
+	 * @return number of words on string
 	 */
 	private int countItems(String str, String lookFor)
 	{

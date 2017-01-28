@@ -230,7 +230,7 @@ public class UserPageController implements ScreensIF{
 	/**
 	 * /** when page comes up, loads user's report page
 	 * @author itain
-	 * @throws IOException
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void loadUserReport() throws IOException {
@@ -247,7 +247,7 @@ public class UserPageController implements ScreensIF{
 	
 	/** When pressed, takes user to search users result page.
 	 * @author itain
-	 * @param event - Gets event.
+	 * @param event Gets event.
 	 */
 	@FXML
 	public void backButtonPressed(ActionEvent event)
@@ -298,7 +298,7 @@ public class UserPageController implements ScreensIF{
 	
 	/** When pressed, blocks user from system.
 	 * @author itain
-	 * @param event - Gets event.
+	 * @param event Gets event.
 	 */
 	@FXML
 	public void blockButtonPressed(ActionEvent event) 
@@ -317,7 +317,7 @@ public class UserPageController implements ScreensIF{
 	
 	/** When pressed, unblocks user from system.
 	 * @author itain
-	 * @param event - Gets event.
+	 * @param event Gets event.
 	 */
 	@FXML
 	public void unblockButtonPressed(ActionEvent event) 
@@ -338,9 +338,9 @@ public class UserPageController implements ScreensIF{
 	/** This function prepare message that will be send to the server with arraylist,
 	 * and the action.
 	 * @author itain
-	 * @param type - Gets the type of the action
-	 * @param user - Gets the class with the user information.
-	 * @return - message that will send to server.
+	 * @param type Gets the type of the action
+	 * @param user Gets the class with the user information.
+	 * @return message that will send to server.
 	 */
 	public Message prepareEditUser(ActionType type, SearchUserResult user)
 	{

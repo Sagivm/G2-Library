@@ -27,10 +27,10 @@ public class Domain {
 	/**
 	 * Domain constructor store the data.
 	 * @author itain
-	 * @param domainsIdCounter - add 1 to domainsIdCounter.
-	 * @param id - Gets domainsIdCounter.
-	 * @param name - Gets the name.
-	 * @param subjects - initiate empty array
+	 * @param domainsIdCounter add 1 to domainsIdCounter.
+	 * @param id Gets domainsIdCounter.
+	 * @param name Gets the name.
+	 * @param subjects initiate empty array
 	 */
 	public Domain(int id, String name) {
 		this.id = id;
@@ -42,7 +42,7 @@ public class Domain {
 	/**
 	 * Domain empty constructor
 	 * @author itain
-	 * @param subjects - initiate empty array
+	 * @param subjects initiate empty array
 	 */
 	public Domain() {
 
@@ -60,7 +60,7 @@ public class Domain {
 
 	/** Setter for id
 	 * @author itain
-	 * @param id - id of domain
+	 * @param id id of domain
 	 */
 	public void setId(int id) {
 		this.id=id;
@@ -76,7 +76,7 @@ public class Domain {
 
 	/** Setter for name
 	 * @author itain
-	 * @param name - the name of domain
+	 * @param name the name of domain
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -94,7 +94,7 @@ public class Domain {
 
 	/** Setter for subjects
 	 * @author itain
-	 * @param subjects - subjects under this domain
+	 * @param subjects subjects under this domain
 	 */
 	public void setSubjects(ArrayList<Subject> subjects) {
 		this.subjects = subjects;

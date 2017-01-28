@@ -56,84 +56,84 @@ private String status;
 
 
 /** Getter for DestinationDirectory.
- * @return - The DestinationDirectory.
+ * @return The DestinationDirectory.
  */
 public String getDestinationDirectory() {
 return destinationDirectory;
 }
 
 /** Setter for DestinationDirectory.
- * @param - Gets the destinationDirectory.
+ * @param destinationDirectory Gets the destinationDirectory.
  */
 public void setDestinationDirectory(String destinationDirectory) {
 this.destinationDirectory = destinationDirectory;
 }
 
 /** Getter for SourceDirectory.
- * @return - The SourceDirectory.
+ * @return The SourceDirectory.
  */
 public String getSourceDirectory() {
 return sourceDirectory;
 }
 
 /** Setter for SourceDirectory.
- * @param - Gets the sourceDirectory.
+ * @param sourceDirectory Gets the sourceDirectory.
  */
 public void setSourceDirectory(String sourceDirectory) {
 this.sourceDirectory = sourceDirectory;
 }
 
 /** Getter for Filename.
- * @return - The filename.
+ * @return The filename.
  */
 public String getFilename() {
 return filename;
 }
 
 /** Setter for Filename.
- * @param - Gets the filename
+ * @param filename Gets the filename
  */
 public void setFilename(String filename) {
 this.filename = filename;
 }
 
 /** Getter for FileSize
- * @return - The fileSize.
+ * @return The fileSize.
  */
 public long getFileSize() {
 return fileSize;
 }
 
 /** Setter for FileSize.
- * @param - Gets the fileSize.
+ * @param fileSize Gets the fileSize.
  */
 public void setFileSize(long fileSize) {
 this.fileSize = fileSize;
 }
 
 /** Getter for status
- * @return - Gets the status.
+ * @return Gets the status.
  */
 public String getStatus() {
 return status;
 }
 
 /** Setter for status.
- * @param - the status.
+ * @param status the status.
  */
 public void setStatus(String status) {
 this.status = status;
 }
 
 /** Gets the FileData
- * @return - the fileData.
+ * @return the fileData.
  */
 public byte[] getFileData() {
 return fileData;
 }
 
 /** Setter for FileData.
- * @param fileData - Gets the fileData.
+ * @param fileData Gets the fileData.
  */
 public void setFileData(byte[] fileData) {
 this.fileData = fileData;

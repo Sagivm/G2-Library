@@ -99,7 +99,7 @@ public class ClientController implements ScreensIF {
 	
 	
 	/** Handler when press "help" in menu.
-	 * @param event - Gets the ActionEvent when the function called.
+	 * @param event Gets the ActionEvent when the function called.
 	 */
 	@FXML
 	public void pressedHelpMenu(ActionEvent event)
@@ -112,7 +112,7 @@ public class ClientController implements ScreensIF {
 	}
 	
 	/** Handler when press "connect" the GUI. this function loads the connect menu.
-	 * @param event - gets the ActionEvent when the function called.
+	 * @param event gets the ActionEvent when the function called.
 	 */
 	public void connectButtonPressed(ActionEvent event) throws ConnectException
 	{
@@ -179,6 +179,11 @@ public class ClientController implements ScreensIF {
 	return;
 	}
 
+	/** Create a message to the server with the Login ActionType.
+	 * @param type The action type of the message that will pass to the server.
+	 * @param login The parameter that passed to the server.
+	 * @return The message that passed to the server.
+	 */
 	public Message prepareLogin(ActionType type, Login login)
 	{
 		Message message = new Message();
@@ -193,7 +198,7 @@ public class ClientController implements ScreensIF {
 
 	/** Handler when press "register". this function forward the guest to
 	 * registration form.
-	 * @param event - gets the ActionEvent when the function called.
+	 * @param event Gets the ActionEvent when the function called.
 	 */
 	public void registerButtonPressed(ActionEvent event) throws IOException
 	{

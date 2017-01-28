@@ -44,6 +44,9 @@ public class ClientConnectionController extends AbstractClient{
 	private static ClientUI clientMain = null;
 	
 	
+	/**
+	 * Get true after receiving values from DB.
+	 */
 	public static boolean canContinue = false;
 	
 	/**
@@ -77,8 +80,8 @@ public class ClientConnectionController extends AbstractClient{
 	 * ClientConnectionController constructor initialize the hostname, and then
 	 * the port for establish connection to server. it also open new connection
 	 * physically for it.
-	 * @param host - Gets The hostname/ip for connection.
-	 * @param port - Gets The port for establish connection
+	 * @param host Gets The hostname/ip for connection.
+	 * @param port Gets The port for establish connection
 	 */
 	public ClientConnectionController(String host, int port) {
 		super(host, port);
@@ -110,9 +113,7 @@ public class ClientConnectionController extends AbstractClient{
 	/**
 	 * This function gets the replay from server and decrypt to action by his
 	 * information.
-	 * 
-	 * @param replay
-	 *            - Gets the replay with the data.
+	 * @param replay Gets the replay with the data.
 	 */
 	public void actionToPerform(Replay replay)  {
 		ActionType transmitType = replay.getTransmitType();
@@ -731,10 +732,9 @@ public class ClientConnectionController extends AbstractClient{
 
 	/**
 	 * This function choose what to display the user.
-	 * @param type - Gets the type of action after display.
-	 * @param message - Gets the message to display in popup.
+	 * @param type Gets the type of action after display.
+	 * @param message Gets the message to display in popup.
 	 */
-	
 	public void actionToDisplay(ActionType type, String message) {
 
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -752,7 +752,7 @@ public class ClientConnectionController extends AbstractClient{
 
 	/**
 	 * Set the window in the center of the screen.
-	 * @param screenController - Gets the screencontroller
+	 * @param screenController Gets the screencontroller
 	 */
 	public void centerWindow(ScreenController screenController) {
 		Stage primaryStage = screenController.getStage();
@@ -765,22 +765,22 @@ public class ClientConnectionController extends AbstractClient{
 
 	/**
 	 * The function decode the file and download into the user's computer.
-	 * @param fileEvent - Gets the file.
+	 * @param fileEvent Gets the file.
 	 */
 	public void downloadFile(FileEvent fileEvent) {
 		try {
-		String outputFile = fileEvent.getDestinationDirectory() + fileEvent.getFilename();
-		//System.out.println(outputFile);
-		if (!new File(fileEvent.getDestinationDirectory()).exists()) {
-		new File(fileEvent.getDestinationDirectory()).mkdirs();
+			String outputFile = fileEvent.getDestinationDirectory() + fileEvent.getFilename();
+			//System.out.println(outputFile);
+			if (!new File(fileEvent.getDestinationDirectory()).exists()) {
+			new File(fileEvent.getDestinationDirectory()).mkdirs();
 		}
-		dstFile = new File(outputFile);
-		fileOutputStream = new FileOutputStream(dstFile);
-		fileOutputStream.write(fileEvent.getFileData());
-		fileOutputStream.flush();
-		fileOutputStream.close();
+			dstFile = new File(outputFile);
+			fileOutputStream = new FileOutputStream(dstFile);
+			fileOutputStream.write(fileEvent.getFileData());
+			fileOutputStream.flush();
+			fileOutputStream.close();
 		} catch (IOException e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
-		}
+	}
 }

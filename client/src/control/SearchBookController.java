@@ -266,7 +266,8 @@ public class SearchBookController implements ScreensIF{
 	
 	/** When search button is pressed a search is made.
 	 * @author itain
-	 * @param event
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void searchButtonPressed(ActionEvent event) throws IOException {
@@ -414,7 +415,8 @@ public class SearchBookController implements ScreensIF{
 	}
 	
 	/** When clear button is pressed the function clears all fields.
-	 * @param event
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void clearButtonPressed(ActionEvent event) throws IOException {
@@ -447,8 +449,8 @@ public class SearchBookController implements ScreensIF{
 	/**
 	 * This function gets message and perform the task by the error type.
 	 * @author itain
-	 * @param type - Gets error type.
-	 * @param errorCode - Gets error message.
+	 * @param type Gets error type.
+	 * @param errorCode Gets error message.
 	 */
 	@Override
 	public void actionOnError(ActionType type, String errorCode) {
@@ -477,9 +479,9 @@ public class SearchBookController implements ScreensIF{
 	/** This function prepare message that will be sent to the server with arraylist,
 	 * and the action.
 	 * @author itain
-	 * @param type - Gets the type of the action
-	 * @param searchBook - Gets the class with the search book information.
-	 * @return - message that will be sent to server.
+	 * @param type Gets the type of the action
+	 * @param searchBook Gets the class with the search book information.
+	 * @return message that will be sent to server.
 	 */
 	public Message prepareSerachBook(ActionType type, Book searchBook)
 	{

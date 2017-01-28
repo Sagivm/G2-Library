@@ -9,9 +9,9 @@ public class Author extends Person{
 	/**
 	 * Author constructor store the data.
 	 * @author itain
-	 * @param firstname - Gets the firstname.
-	 * @param lastname - Gets the lastname.
-	 * @param id - Gets id.
+	 * @param firstname Gets the firstname.
+	 * @param lastname Gets the lastname.
+	 * @param id Gets id.
 	 */
 	public Author(String id, String firstname, String lastname) {
 		super(id, firstname, lastname);
@@ -29,7 +29,7 @@ public class Author extends Person{
 
 	/** prints author's name
 	 * @author itain
-	 * @return - full name of author
+	 * @return full name of author
 	 */
 	public String toString() { 
 	    return getFirstname()+" "+getLastname();

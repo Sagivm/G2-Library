@@ -66,10 +66,6 @@ import javafx.util.Callback;
  * BookManagementController is the controller that manage all books, domains, subject and authors.
  * @author idanN
  */
-/**
- * @author Idan
- *
- */
 public class BookManagementController {
 	
  /**
@@ -2712,7 +2708,7 @@ private void updateFilteredData() {
 
  /**
   * this function help to updateFilteredData function by searching in the data (books table) the appropriate string that user search
- * @param book 
+ * @param book  The book.
  * @return true- success, false - not success
  */
 private boolean matchesFilter(PropertyBook book) {
@@ -2753,7 +2749,7 @@ private void reapplyTableSortOrder() {
 
  /**
   * Prepare message to get books list from server
- * @param type - the type of the action that server need to do
+ * @param type the type of the action that server need to do
  * @return message
  */
 public Message prepareGetBooksList(ActionType type) {
@@ -2765,8 +2761,8 @@ public Message prepareGetBooksList(ActionType type) {
 
  /**
   * Prepare message to get amount of books by specific domain
- * @param type - the type of the action that server need to do
- * @param domainId - ID of domain
+ * @param type the type of the action that server need to do
+ * @param domainId ID of domain
  * @return message
  */
 private Message prepareGetNumberBookAtDomain(ActionType type, String domainId) {
@@ -2781,8 +2777,8 @@ private Message prepareGetNumberBookAtDomain(ActionType type, String domainId) {
 
  /**
   * Prepare message to get amount of books by specific author
- * @param type - the type of the action that server need to do
- * @param authorId -ID of author
+ * @param type the type of the action that server need to do
+ * @param authorId ID of author
  * @return message
  */
 private Message prepareGetNumberBookOfAuthor(ActionType type, String authorId) {
@@ -2796,9 +2792,9 @@ private Message prepareGetNumberBookOfAuthor(ActionType type, String authorId) {
  
  /**
   * Prepare message to edit specific domain
- * @param type - the type of the action that server need to do
- * @param domainId - ID of domain
- * @param DomainName - the new domain name
+ * @param type the type of the action that server need to do
+ * @param domainId ID of domain
+ * @param DomainName the new domain name
  * @return message
  */
 private Message prepareEditDomain(ActionType type, String domainId, String DomainName) {
@@ -2813,10 +2809,10 @@ private Message prepareEditDomain(ActionType type, String domainId, String Domai
  
  /**
   * Prepare message to edit specific subject
- * @param type - the type of the action that server need to do
- * @param subjectId - ID of subject
- * @param subjectName - new subject name
- * @param domainId - new ID of domain
+ * @param type the type of the action that server need to do
+ * @param subjectId ID of subject
+ * @param subjectName new subject name
+ * @param domainId new ID of domain
  * @return message
  */
 private Message prepareEditSubject(ActionType type, String subjectId, String subjectName, String domainId) {
@@ -2832,10 +2828,10 @@ private Message prepareEditSubject(ActionType type, String subjectId, String sub
  
  /**
   * Prepare message to edit specific author
- * @param type - the type of the action that server need to do
- * @param AuthorId - ID of author
- * @param AuthorFirstName - new first name
- * @param AuthorLastName - new last name
+ * @param type the type of the action that server need to do
+ * @param AuthorId ID of author
+ * @param AuthorFirstName new first name
+ * @param AuthorLastName new last name
  * @return message
  */
 private Message prepareEditAuthor(ActionType type, String AuthorId, String AuthorFirstName, String AuthorLastName) {
@@ -2852,7 +2848,7 @@ private Message prepareEditAuthor(ActionType type, String AuthorId, String Autho
  
  /**
   * Prepare message to get domains with thier ID
- * @param type - the type of the action that server need to do
+ * @param type the type of the action that server need to do
  * @return message
  */
 public Message prepareGetDomainsWithId(ActionType type) {
@@ -2863,16 +2859,16 @@ public Message prepareGetDomainsWithId(ActionType type) {
 
  /**
   * Prepare message to add book
- * @param type - the type of the action that server need to do
- * @param titleBook - title of book
- * @param authorsId2 - ID's of the authors
- * @param keywords - keywords of the book
- * @param language - language of the book
- * @param subjectsList2 - ID's of the subjects
- * @param tableOfContent - table of content of the book
- * @param summary - summary of the book
- * @param picture - picture of the book (base64 encoded)
- * @param price - price of the book
+ * @param type the type of the action that server need to do
+ * @param titleBook title of book
+ * @param authorsId2 ID's of the authors
+ * @param keywords keywords of the book
+ * @param language language of the book
+ * @param subjectsList2 ID's of the subjects
+ * @param tableOfContent table of content of the book
+ * @param summary summary of the book
+ * @param picture picture of the book (base64 encoded)
+ * @param price price of the book
  * @return message
  */
 public Message prepareAddBook(ActionType type, String titleBook, String authorsId2, String keywords, String language, String subjectsList2, String tableOfContent, String summary, String picture, String price) {
@@ -2894,8 +2890,8 @@ public Message prepareAddBook(ActionType type, String titleBook, String authorsI
  
  /**
   * Prepare message to add domain
- * @param type - the type of the action that server need to do
- * @param domainName - name of domain
+ * @param type the type of the action that server need to do
+ * @param domainName name of domain
  * @return message
  */
 	private Message prepareAddDomain(ActionType type, String domainName) {
@@ -2909,9 +2905,9 @@ public Message prepareAddBook(ActionType type, String titleBook, String authorsI
 	
 	/**
 	 * Prepare message to add author
-	 * @param type - the type of the action that server need to do
-	 * @param AuthorFirstName - first name
-	 * @param AuthorLastName - last name
+	 * @param type the type of the action that server need to do
+	 * @param AuthorFirstName first name
+	 * @param AuthorLastName last name
 	 * @return message
 	 */
 	private Message prepareAddAuthor(ActionType type, String AuthorFirstName, String AuthorLastName) {
@@ -2926,9 +2922,9 @@ public Message prepareAddBook(ActionType type, String titleBook, String authorsI
 	
 	/**
 	 * Prepare message to add subject
-	 * @param type - the type of the action that server need to do
-	 * @param subjectName - subject name
-	 * @param subjectDomain - domain of the subject
+	 * @param type the type of the action that server need to do
+	 * @param subjectName subject name
+	 * @param subjectDomain domain of the subject
 	 * @return message
 	 */
 	private Message prepareAddSubject(ActionType type, String subjectName, String subjectDomain) {
@@ -2943,17 +2939,17 @@ public Message prepareAddBook(ActionType type, String titleBook, String authorsI
  
  /**
   * Prepare message to edit book
- * @param type - the type of the action that server need to do
- * @param Sn - the SN of the edited book
- * @param titleBook - new title book
- * @param authorsId2 - new ID's of authors
- * @param keywords - new keywords
- * @param language - new language
- * @param subjectsList2 - new subjects
- * @param tableOfContent - new table of content
- * @param summary - new summary
- * @param picture - new picture (base64 encoded)
- * @param price - new price
+ * @param type the type of the action that server need to do
+ * @param Sn the SN of the edited book
+ * @param titleBook new title book
+ * @param authorsId2 new ID's of authors
+ * @param keywords new keywords
+ * @param language new language
+ * @param subjectsList2 new subjects
+ * @param tableOfContent new table of content
+ * @param summary new summary
+ * @param picture new picture (base64 encoded)
+ * @param price new price
  * @return message
  */
 public Message prepareEditBook(ActionType type, String Sn, String titleBook, String authorsId2, String keywords, String language, String subjectsList2, String tableOfContent, String summary, String picture, String price) {
@@ -2976,7 +2972,7 @@ public Message prepareEditBook(ActionType type, String Sn, String titleBook, Str
 
  /**
   * Prepare message to get all available authors
- * @param type - the type of the action that server need to do
+ * @param type the type of the action that server need to do
  * @return message
  */
 public Message prepareGetAuthors(ActionType type) {
@@ -2987,8 +2983,8 @@ public Message prepareGetAuthors(ActionType type) {
  
  /**
   * Prepare message to get authors of specific book
- * @param type - the type of the action that server need to do
- * @param bookSn - SN of book
+ * @param type the type of the action that server need to do
+ * @param bookSn SN of book
  * @return message
  */
 public Message prepareGetAuthors(ActionType type,String bookSn) {
@@ -3002,8 +2998,8 @@ public Message prepareGetAuthors(ActionType type,String bookSn) {
  
  /**
   * Prepare message to get language of specific book
- * @param type - the type of the action that server need to do
- * @param bookSn - SN of book
+ * @param type the type of the action that server need to do
+ * @param bookSn SN of book
  * @return message
  */
 public Message prepareGetLanguage(ActionType type,String bookSn) {
@@ -3017,8 +3013,8 @@ public Message prepareGetLanguage(ActionType type,String bookSn) {
  
 /**
  * Prepare message to get table of content of specific book
-* @param type - the type of the action that server need to do
-* @param bookSn - SN of book
+* @param type the type of the action that server need to do
+* @param bookSn SN of book
 * @return message
 */
 public Message prepareGetTableOfContent(ActionType type,String bookSn) {
@@ -3033,8 +3029,8 @@ public Message prepareGetTableOfContent(ActionType type,String bookSn) {
 
 /**
  * Prepare message to get subjects of specific book
-* @param type - the type of the action that server need to do
-* @param bookSn - SN of book
+* @param type the type of the action that server need to do
+* @param bookSn SN of book
 * @return message
 */
 public Message prepareGetSubjects(ActionType type,String bookSn) {
@@ -3048,7 +3044,7 @@ public Message prepareGetSubjects(ActionType type,String bookSn) {
 
  /**
   * Prepare message to get all available subjects
- * @param type - the type of the action that server need to do
+ * @param type the type of the action that server need to do
  * @return message
  */
 public Message prepareGetSubjects(ActionType type) {
@@ -3059,8 +3055,8 @@ public Message prepareGetSubjects(ActionType type) {
 
  /**
   * Prepare message to delete specific book
- * @param type - the type of the action that server need to do
- * @param sn - The SN of book
+ * @param type the type of the action that server need to do
+ * @param sn The SN of book
  * @return message
  */
 public Message prepareDeleteBook(ActionType type, String sn) {
@@ -3075,9 +3071,9 @@ public Message prepareDeleteBook(ActionType type, String sn) {
 
  /**
   * Prepare message to hide/unhide specific book
- * @param type - the type of the action that server need to do
- * @param sn - The SN of book
- * @param hide - hide or unhide operation
+ * @param type the type of the action that server need to do
+ * @param sn The SN of book
+ * @param hide hide or unhide operation
  * @return message
  */
 public Message prepareHideBook(ActionType type, String sn, String hide) {
@@ -3092,8 +3088,8 @@ public Message prepareHideBook(ActionType type, String sn, String hide) {
 
  /**
   * Prepare message create alert popup
- * @param type - the type of the action that server need to do
- * @param errorCode - the error to show
+ * @param type the type of the action that server need to do
+ * @param errorCode the error to show
  */
 public void actionOnError(ActionType type, String errorCode) {
 
@@ -3166,15 +3162,15 @@ private final SimpleStringProperty bookPrice;
 
   /**
    * PropertyBook constructor store the data.
- * @param bookSn - Gets the SN of book.
- * @param bookTitle - Gets the title of book.
- * @param bookKeywords - Gets the keywords of book.
- * @param bookHide - Gets the hide state of book.
- * @param authorId - Gets the author ID of book.
- * @param authorName - Gets the author name of book.
- * @param bookSummary - Gets the summary of book.
- * @param bookImage - Gets the image of book.
- * @param bookPrice - Gets the price of book.
+ * @param bookSn Gets the SN of book.
+ * @param bookTitle Gets the title of book.
+ * @param bookKeywords Gets the keywords of book.
+ * @param bookHide Gets the hide state of book.
+ * @param authorId Gets the author ID of book.
+ * @param authorName Gets the author name of book.
+ * @param bookSummary Gets the summary of book.
+ * @param bookImage Gets the image of book.
+ * @param bookPrice Gets the price of book.
  */
 private PropertyBook(String bookSn, String bookTitle, String bookKeywords, String bookHide, String authorId, String authorName, String bookSummary, String bookImage, String bookPrice) {
    this.bookSn = new SimpleStringProperty(bookSn);
@@ -3190,7 +3186,7 @@ private PropertyBook(String bookSn, String bookTitle, String bookKeywords, Strin
 
   /**
    * Getter for SN.
- * @return
+ * @return The book's sn.
  */
 public String getBookSn() {
    return bookSn.get();
@@ -3198,7 +3194,7 @@ public String getBookSn() {
 
   /**
    * Getter for title.
- * @return
+ * @return The book's title.
  */
 public String getBookTitle() {
    return bookTitle.get();
@@ -3206,7 +3202,7 @@ public String getBookTitle() {
 
   /**
    * Getter for keywords.
- * @return
+ * @return The book's key words.
  */
 public String getBookKeywords() {
    return bookKeywords.get();
@@ -3214,7 +3210,7 @@ public String getBookKeywords() {
 
   /**
    * Getter for hide state.
- * @return
+ * @return If the book hide or not.
  */
 public String getBookHide() {
    return bookHide.get();
@@ -3222,7 +3218,7 @@ public String getBookHide() {
 
   /**
    * Getter for author ID.
- * @return
+ * @return The author's id.
  */
 public String getAuthorId() {
    return authorId.get();
@@ -3230,7 +3226,7 @@ public String getAuthorId() {
 
   /**
    * Getter for author name.
- * @return
+ * @return The author's name.
  */
 public String getAuthorName() {
    return authorName.get();
@@ -3238,7 +3234,7 @@ public String getAuthorName() {
 
   /**
    * Getter for summary.
- * @return
+ * @return The book's summary.
  */
 public String getBookSummary() {
    return bookSummary.get();
@@ -3246,7 +3242,7 @@ public String getBookSummary() {
 
   /**
    * Getter for image.
- * @return
+ * @return The book's image.
  */
 public String getBookImage() {
    return bookImage.get();
@@ -3254,7 +3250,7 @@ public String getBookImage() {
   
   /**
    * Getter for price.
- * @return
+ * @return The book's price.
  */
 public String getBookPrice() {
 	   return bookPrice.get();
@@ -3263,7 +3259,7 @@ public String getBookPrice() {
 
   /**
    * Getter for SN.
- * @param bookSn
+ * @param bookSn The book' sn.
  */
 public void setBookSn(String bookSn) {
    this.bookSn.set(bookSn);
@@ -3271,7 +3267,7 @@ public void setBookSn(String bookSn) {
 
   /**
    * Setter for title
- * @param bookTitle
+ * @param bookTitle The book's title.
  */
 public void setBookTitle(String bookTitle) {
    this.bookTitle.set(bookTitle);
@@ -3279,7 +3275,7 @@ public void setBookTitle(String bookTitle) {
 
   /**
    * Setter for keywords
- * @param bookKeywords
+ * @param bookKeywords The book's key words.
  */
 public void setBookKeywords(String bookKeywords) {
    this.bookKeywords.set(bookKeywords);
@@ -3287,7 +3283,7 @@ public void setBookKeywords(String bookKeywords) {
 
   /**
    * Setter for hide state
- * @param bookHide
+ * @param bookHide If the books is hide or not.
  */
 public void setBookHide(String bookHide) {
    this.bookHide.set(bookHide);
@@ -3295,7 +3291,7 @@ public void setBookHide(String bookHide) {
 
   /**
    * Setter for author ID
- * @param authorId
+ * @param authorId The author's id.
  */
 public void setAuthorId(String authorId) {
    this.authorId.set(authorId);
@@ -3303,7 +3299,7 @@ public void setAuthorId(String authorId) {
 
   /**
    * Setter for author name
- * @param authorName
+ * @param authorName The author's name.
  */
 public void setAuthorName(String authorName) {
    this.authorName.set(authorName);
@@ -3311,7 +3307,7 @@ public void setAuthorName(String authorName) {
 
   /**
    * Setter for summary
- * @param bookSummary
+ * @param bookSummary The book's summary.
  */
 public void setBookSummary(String bookSummary) {
    this.bookSummary.set(bookSummary);
@@ -3319,7 +3315,7 @@ public void setBookSummary(String bookSummary) {
 
   /**
    * Setter for image
- * @param bookImage
+ * @param bookImage The book's image.
  */
 public void setBookImage(String bookImage) {
    this.bookImage.set(bookImage);
@@ -3327,7 +3323,7 @@ public void setBookImage(String bookImage) {
   
   /**
    * Setter for price
- * @param bookPrice
+ * @param bookPrice The book's price.
  */
 public void setBookPrice(String bookPrice) {
    this.bookPrice.set(bookPrice);
@@ -3355,8 +3351,8 @@ public void setBookPrice(String bookPrice) {
 
 	  /**
 	   * PropertyDomain constructor store the data.
-	 * @param domainId - Gets the ID of domain.
-	 * @param domainName - Gets the name of domain
+	 * @param domainId Gets the ID of domain.
+	 * @param domainName Gets the name of domain
 	 */
 	private PropertyDomain(String domainId, String domainName) {
 	   this.domainId = new SimpleStringProperty(domainId);
@@ -3366,7 +3362,7 @@ public void setBookPrice(String bookPrice) {
 
 	  /**
 	   * Getter for domain ID.
-	 * @return
+	 * @return The domain id.
 	 */
 	public String getDomainId() {
 		   return domainId.get();
@@ -3374,7 +3370,7 @@ public void setBookPrice(String bookPrice) {
 	  
 	  /**
 	   * Getter for domain name. 
-	 * @return
+	 * @return The domain name.
 	 */
 	public String getDomainName() {
 		   return domainName.get();
@@ -3382,7 +3378,7 @@ public void setBookPrice(String bookPrice) {
 
 	  /**
 	   * Setter for domain ID.
-	 * @param domainId
+	 * @param domainId The domain id.
 	 */
 	public void setDomainId(String domainId) {
 	   this.domainId.set(domainId);
@@ -3390,7 +3386,7 @@ public void setBookPrice(String bookPrice) {
 	  
 	  /**
 	   * Setter for domain name.
-	 * @param domainName
+	 * @param domainName The domain name.
 	 */
 	public void setDomainName(String domainName) {
 		   this.domainName.set(domainName);
@@ -3424,9 +3420,9 @@ public void setBookPrice(String bookPrice) {
 
 	  /**
 	   * PropertySubject constructor store the data.
-	 * @param subjectId - Gets the ID of subject.
-	 * @param subjectName - Gets the name of subject.
-	 * @param subjectDomain - Gets the domain of subject.
+	 * @param subjectId Gets the ID of subject.
+	 * @param subjectName Gets the name of subject.
+	 * @param subjectDomain Gets the domain of subject.
 	 */
 	private PropertySubject(String subjectId, String subjectName, String subjectDomain) {
 	   this.subjectId = new SimpleStringProperty(subjectId);
@@ -3437,7 +3433,7 @@ public void setBookPrice(String bookPrice) {
 
 	  /**
 	   * Getter for subject ID.
-	 * @return
+	 * @return The subject id.
 	 */
 	public String getSubjectId() {
 		   return subjectId.get();
@@ -3445,7 +3441,7 @@ public void setBookPrice(String bookPrice) {
 	  
 	  /**
 	   * Getter for subject name.
-	 * @return
+	 * @return The subject name.
 	 */
 	public String getSubjectName() {
 		   return subjectName.get();
@@ -3453,7 +3449,7 @@ public void setBookPrice(String bookPrice) {
 	  
 	  /**
 	   * Getter for domain of subject.
-	 * @return
+	 * @return The subject domain.
 	 */
 	public String getSubjectDomain() {
 		   return subjectDomain.get();
@@ -3461,7 +3457,7 @@ public void setBookPrice(String bookPrice) {
 
 	  /**
 	   * Setter for subject ID.
-	 * @param subjectId
+	 * @param subjectId The subject id.
 	 */
 	public void setSubjectId(String subjectId) {
 	   this.subjectId.set(subjectId);
@@ -3469,7 +3465,7 @@ public void setBookPrice(String bookPrice) {
 	  
 	  /**
 	   * Setter for subject name.
-	 * @param subjectName
+	 * @param subjectName The subject name.
 	 */
 	public void setSubjectName(String subjectName) {
 		   this.subjectName.set(subjectName);
@@ -3477,7 +3473,7 @@ public void setBookPrice(String bookPrice) {
 	  
 	  /**
 	   * Setter for domain of subject.
-	 * @param subjectDomain
+	 * @param subjectDomain The subject domain.
 	 */
 	public void setSubjectDomain(String subjectDomain) {
 		   this.subjectDomain.set(subjectDomain);
@@ -3512,9 +3508,9 @@ public void setBookPrice(String bookPrice) {
 
 	  /**
 	   * PropertyAuthor constructor store the data.
-	 * @param authorId
-	 * @param authorFirstName
-	 * @param authorLastName
+	 * @param authorId The author id.
+	 * @param authorFirstName The author first name.
+	 * @param authorLastName The author last name.
 	 */
 	private PropertyAuthor(String authorId, String authorFirstName, String authorLastName) {
 	   this.authorId = new SimpleStringProperty(authorId);
@@ -3525,7 +3521,7 @@ public void setBookPrice(String bookPrice) {
 
 	  /**
 	   * Getter for author ID.
-	 * @return
+	 * @return The author id.
 	 */
 	public String getAuthorId() {
 		   return authorId.get();
@@ -3533,7 +3529,7 @@ public void setBookPrice(String bookPrice) {
 	  
 	  /**
 	   * Getter for author first name.
-	 * @return
+	 * @return The author first name.
 	 */
 	public String getAuthorFirstName() {
 		   return authorFirstName.get();
@@ -3541,7 +3537,7 @@ public void setBookPrice(String bookPrice) {
 	  
 	  /**
 	   * Getter for author last name.
-	 * @return
+	 * @return The author last name.
 	 */
 	public String getAuthorLastName() {
 		   return authorLastName.get();
@@ -3549,7 +3545,7 @@ public void setBookPrice(String bookPrice) {
 
 	  /**
 	   * Setter for author ID.
-	 * @param authorId
+	 * @param authorId The author id.
 	 */
 	public void setDomainId(String authorId) {
 	   this.authorId.set(authorId);
@@ -3557,7 +3553,7 @@ public void setBookPrice(String bookPrice) {
 	  
 	  /**
 	   * Setter for author first name.
-	 * @param authorName
+	 * @param authorFirstName The author first name.
 	 */
 	public void setAuthorFirstName(String authorFirstName) {
 		   this.authorFirstName.set(authorFirstName);
@@ -3565,7 +3561,7 @@ public void setBookPrice(String bookPrice) {
 	  
 	  /**
 	   * Setter for author last name.
-	 * @param authorName
+	 * @param authorLastName The author last name.
 	 */
 	public void setAuthorLastName(String authorLastName) {
 		   this.authorLastName.set(authorLastName);

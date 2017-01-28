@@ -34,8 +34,8 @@ private ArrayList<String> elementsList;
 
 
 /** Message constructor to initialize the attributes.
- * @param type - Gets the kind of the process to perform.
- * @param elementsList - Gets the elements list that will be decrypt in the server.
+ * @param type Gets the kind of the process to perform.
+ * @param elementsList Gets the elements list that will be decrypt in the server.
  */
 public Message(ActionType type, ArrayList<String> elementsList)
 {
@@ -58,7 +58,7 @@ public Message(ActionType type) {
 
 
 /** Getter for attribute type.
- * @return - The type.
+ * @return The type.
  */
 public ActionType getType() {
 	return Type;
@@ -66,7 +66,7 @@ public ActionType getType() {
 
 
 /** Setter for attribute  type.
- * @param type - Sets the type.
+ * @param type Sets the type.
  */
 public void setType(ActionType type) {
 	this.Type = type;
@@ -74,7 +74,7 @@ public void setType(ActionType type) {
 
 
 /** Getter for elements list.
- * @return - Gets the elements list.
+ * @return Gets the elements list.
  */
 public ArrayList<String> getElementsList() {
 	return elementsList;
@@ -82,7 +82,7 @@ public ArrayList<String> getElementsList() {
 
 
 /** Setter for elements list.
- * @param elementsList - Set the elementsList.
+ * @param elementsList Set the elementsList.
  */
 public void setElementsList(ArrayList<String> elementsList) {
 	this.elementsList = elementsList;

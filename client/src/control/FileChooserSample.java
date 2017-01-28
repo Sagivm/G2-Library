@@ -18,6 +18,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
  
+/**This class responsible for choosing an image for a book.
+ * @author or
+ *
+ */
 public final class FileChooserSample extends Application {
  
     private Desktop desktop = Desktop.getDesktop();

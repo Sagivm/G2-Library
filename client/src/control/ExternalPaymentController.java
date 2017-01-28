@@ -175,8 +175,8 @@ public class ExternalPaymentController {
 	/**
 	 * When pressed, checks validation of all fields and call method makePurchase
 	 * On PayementController with TRUE and action to do.
-	 * @param event
-	 * @throws IOException
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void btnPayPressed(ActionEvent event) throws IOException
@@ -229,8 +229,8 @@ public class ExternalPaymentController {
 	
 	/**
 	 * When pressed, call method makePurchase On PayementController with FALSE and action to do.
-	 * @param event
-	 * @throws IOException
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void btnCancelPressed(ActionEvent event) throws IOException
@@ -242,7 +242,7 @@ public class ExternalPaymentController {
 	
 	/**
 	 * Setter of product.
-	 * @param product
+	 * @param product The product.
 	 */
 	public void setProduct(String product)
 	{
@@ -251,7 +251,7 @@ public class ExternalPaymentController {
 	
 	/**
 	 * Setter of price.
-	 * @param price
+	 * @param price The price.
 	 */
 	public void setPrice(String price)
 	{
@@ -260,7 +260,7 @@ public class ExternalPaymentController {
 	
 	/**
 	 * Setter of action.
-	 * @param action
+	 * @param action The action to do.
 	 */
 	public void setAction(int action)
 	{

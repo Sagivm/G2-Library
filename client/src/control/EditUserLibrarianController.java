@@ -91,7 +91,7 @@ public class EditUserLibrarianController implements ScreensIF{
 	
 	/** When submit button is pressed, checks violation of fields and sends data to server.
 	 * @author itain
-	 * @param event - Gets event.
+	 * @param event Gets event.
 	 */
 	@FXML
 	public void submitButtonPressed(ActionEvent event) 
@@ -128,7 +128,7 @@ public class EditUserLibrarianController implements ScreensIF{
 	
 	/** When cancel button is pressed, delete changes and goes back to user's page details.
 	 * @author itain
-	 * @param event - Gets event.
+	 * @param event Gets event.
 	 */
 	public void cancelButtonPressed(ActionEvent event)
 	{
@@ -173,8 +173,8 @@ public class EditUserLibrarianController implements ScreensIF{
 	/**
 	 * This function gets message and perform the task by the error type.
 	 * @author itain
-	 * @param type - Gets error type.
-	 * @param errorCode - Gets error message.
+	 * @param type Gets error type.
+	 * @param errorCode Gets error message.
 	 */
 	public void actionOnError(ActionType type, String errorCode) {
 		
@@ -195,9 +195,9 @@ public class EditUserLibrarianController implements ScreensIF{
 	/** This function prepare message that will be send to the server with arraylist,
 	 * and the action.
 	 * @author itain
-	 * @param type - Gets the type of the action
-	 * @param user - Gets the class with the user information.
-	 * @return - message that will send to server.
+	 * @param type Gets the type of the action
+	 * @param user Gets the class with the user information.
+	 * @return message that will send to server.
 	 */
 	public Message prepareEditUser(ActionType type, SearchUserResult user)
 	{
