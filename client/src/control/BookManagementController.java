@@ -3699,7 +3699,7 @@ class BookManagermentGetBookAuthorsRecv2 extends Thread{
 	}
 	
 }
-
+//
 /** This class makes sure the information from the server was received successfully.
  * @author itain
  */
