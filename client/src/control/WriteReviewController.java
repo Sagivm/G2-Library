@@ -45,15 +45,7 @@ public class WriteReviewController implements ScreensIF {
 	 */
 	//public static Book book; 
 	public static SearchBookResult book;
-	
-	/**
-	 * Load the image from the path.
-	 */
-	private Image bookImage;
-	
-	protected int row = 1;
-	protected int line = 110,rowlength=0;
-	
+		
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -117,14 +109,14 @@ public class WriteReviewController implements ScreensIF {
 	
 	/**
 	 * clear the text in the TextArea.
-	 * @param event
-	 * @throws IOException
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void ClearkButtonPressed(ActionEvent event) throws IOException{
 		try{
 			String text1 = txtAreaReview.getText();
-			System.out.println(text1);
+			//System.out.println(text1);
 			txtAreaReview.setText("");
 		}
 		catch(Exception e) {
@@ -135,8 +127,8 @@ public class WriteReviewController implements ScreensIF {
 	
 	/**
 	 * This method create a new review in the DB.
-	 * @param event
-	 * @throws IOException
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void submitButtonPressed(ActionEvent event) throws IOException{    
@@ -150,7 +142,6 @@ public class WriteReviewController implements ScreensIF {
 			review.add(HomepageUserController.getConnectedUser().getId());	//user id
 			review.add(book.getBookSn());	//book sn
 			String text1 = txtAreaReview.getText();
-			//System.out.println(text1);
 			review.add(Validate.fixText(txtAreaReview.getText()));	//review content
 	
 			Message message = addReview(ActionType.WRITE_REVIEW,review);
@@ -167,9 +158,9 @@ public class WriteReviewController implements ScreensIF {
 	
 	/**
 	 * Create a message to the server with the Review ActionType.
-	 * @param type
-	 * @param review
-	 * @return
+	 * @param type The action type of the message that will pass to the server.
+	 * @param review The parameters that will pass to the server.
+	 * @return The message that will pass to the server.
 	 */
 	public Message addReview(ActionType type, ArrayList<String> review)
 	{

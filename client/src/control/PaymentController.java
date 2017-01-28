@@ -61,8 +61,8 @@ public class PaymentController {
 	/**
 	 * The method gets answer(true, false) and action to do. this method responsible for 
 	 * purchasing books and subscriptions and to write the action in the DB.
-	 * @param answer
-	 * @param action
+	 * @param answer If "true" make a purchase, else cancel. 
+	 * @param action The action what to do.
 	 */
 	public void makePurchase(boolean answer, int action)
 	{
@@ -137,7 +137,7 @@ public class PaymentController {
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(date);
-				System.out.println("Now:" + cal.getTime() + " , " + dateGUIFormat);
+				//System.out.println("Now:" + cal.getTime() + " , " + dateGUIFormat);
 				if(action == 4)
 				{
 					cal.add(Calendar.MONTH, 1);  // number of months to add
@@ -151,7 +151,7 @@ public class PaymentController {
 				dateDBFormat = sdf.format(cal.getTime());  // dateDBFormat is now the new date
 				dateDBFormat = sdf.format(cal.getTime());
 				dateGUIFormat = dateDBFormat.replace('-','/');
-				System.out.println("Next:" + cal.getTime() + " , " + dateGUIFormat);
+				//System.out.println("Next:" + cal.getTime() + " , " + dateGUIFormat);
 				
 				
 				ArrayList<String> buySubscription = new ArrayList<>();
@@ -229,9 +229,9 @@ public class PaymentController {
 	
 	/**
 	 * Make purchase in the DB.
-	 * @param type
-	 * @param elementList
-	 * @return
+	 * @param type The action type of the message that will pass to the server.
+	 * @param elementList The parameters that will pass to the server.
+	 * @return The message that will pass to the server.
 	 */
 	public Message prepareBuy(ActionType type, ArrayList<String> elementList)
 	{
@@ -243,7 +243,7 @@ public class PaymentController {
 	
 	/**
 	 * Go to the previous screen.
-	 * @param screen
+	 * @param screen The previous screen.
 	 */
 	public void returnToPrevScreen(String screen)
 	{
@@ -293,8 +293,8 @@ public class PaymentController {
 
 	/**
 	 * This method shows alert message after the action finished.
-	 * @param type
-	 * @param message
+	 * @param type The action type of the message that will pass to the server.
+	 * @param message The message that will pass to the server.
 	 */
 	public void actionToDisplay(ActionType type, String message) {
 
@@ -313,7 +313,7 @@ public class PaymentController {
 
 	/**
 	 * Setter for searchedBookPage.
-	 * @param searchedBookPage
+	 * @param searchedBookPage The book entity.
 	 */
 	public void setSearchBookPage(SearchBookResult searchedBookPage)
 	{
@@ -322,7 +322,7 @@ public class PaymentController {
 	
 	/**
 	 * Setter for success.
-	 * @param success
+	 * @param success If the action was success.
 	 */
 	public void setSuccess(boolean success)
 	{
@@ -331,6 +331,10 @@ public class PaymentController {
 
 }
 
+/**
+ * This class makes sure the information from the server was received successfully.
+ * @author ork
+ */
 class PaymentRecv extends Thread{
     
 	/**

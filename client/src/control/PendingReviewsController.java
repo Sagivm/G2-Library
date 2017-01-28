@@ -102,6 +102,9 @@ public class PendingReviewsController implements ScreensIF {
 	 */
 	private static HomepageManagerController managerMain;
 	
+	/**
+	 *  static reference of review entity.
+	 */
 	private static EditReviewController editReview;
     
 	/**
@@ -288,8 +291,8 @@ public class PendingReviewsController implements ScreensIF {
 	}
 	
 	/** Create a message to the server with the Pending Reviews ActionType.
-	 * @param type
-	 * @return
+	 * @param type The action type of the message that will pass to the server.
+	 * @return The message that will pass to the server.
 	 */
 	public Message prepareGetPendingReviews(ActionType type)
 	{
@@ -316,12 +319,12 @@ public class PendingReviewsController implements ScreensIF {
 	    
 		/**
 		 * pendingReview constructor store the data.
-		 * @param reviewId - Gets the reviewId.
-		 * @param firstName - Gets the firstName.
-		 * @param lastName - Gets lastName.
-		 * @param bookTitle - Gets bookTitle.
-		 * @param reviewContent - Gets reviewContent.
-		 * @param reviewDate - Gets reviewDate.
+		 * @param reviewId Gets the reviewId.
+		 * @param firstName Gets the firstName.
+		 * @param lastName Gets lastName.
+		 * @param bookTitle Gets bookTitle.
+		 * @param reviewContent Gets reviewContent.
+		 * @param reviewDate Gets reviewDate.
 		 */
 	    private pendingReview(String reviewId, String username, String firstName,String lastName, String bookTitle,String reviewContent, String reviewDate) {
 	    	this.reviewId = new SimpleStringProperty(reviewId);
@@ -334,49 +337,49 @@ public class PendingReviewsController implements ScreensIF {
 	    }
 
 	    /** Getter for reviewId.
-	     * @return
+	     * @return The review id.
 	     */
 	    public String getReviewId() {
 	        return reviewId.get();
 	    }
 	    
 	    /** Getter for username.
-	     * @return
+	     * @return The username.
 	     */
 	    public String getUsername() {
 	        return username.get();
 	    }
 	    
 	    /** Getter for firstName.
-	     * @return
+	     * @return The first name.
 	     */
 	    public String getFirstName() {
 	        return firstName.get();
 	    }
 	    
 	    /** Getter for lastName.
-	     * @return
+	     * @return The last name.
 	     */
 	    public String getLastName() {
 	        return lastName.get();
 	    }
 	    
 	    /** Getter for bookTitle.
-	     * @return
+	     * @return The book title.
 	     */
 	    public String getBookTitle() {
 	        return bookTitle.get();
 	    }
 	    
 	    /** Getter for reviewContent.
-	     * @return
+	     * @return The review content.
 	     */
 	    public String getReviewContent() {
 	        return reviewContent.get();
 	    }
 	    
 	    /** Getter for reviewDate.
-	     * @return
+	     * @return The review date.
 	     */
 	    public String getReviewDate() {
 	        return reviewDate.get();
@@ -384,49 +387,49 @@ public class PendingReviewsController implements ScreensIF {
 	    
 	    
 	    /** Setter for reviewId.
-	     * @param reviewId
+	     * @param reviewId The review id.
 	     */
 	    public void setReviewId(String reviewId) {
 	    	this.reviewId.set(reviewId);
 	    }
 	    
 	    /** Setter for username.
-	     * @param username
+	     * @param username The username.
 	     */
 	    public void setUsername(String username) {
 	    	this.username.set(username);
 	    }
 	    
 	    /** Setter for firstName.
-	     * @param firstName
+	     * @param firstName The first name.
 	     */
 	    public void setFistname(String firstName) {
 	    	this.firstName.set(firstName);
 	    }
 
 	    /** Setter for lastName.
-	     * @param lastName
+	     * @param lastName The last name.
 	     */
 	    public void setLastName(String lastName) {
 	        this.lastName.set(lastName);
 	    }
 	    
 	    /** Setter for bookTitle.
-	     * @param bookTitle
+	     * @param bookTitle The book title.
 	     */
 	    public void setBookTitle(String bookTitle) {
 	    	this.bookTitle.set(bookTitle);
 	    }
 	    
 	    /** Setter for reviewContent.
-	     * @param reviewContent
+	     * @param reviewContent The review content.
 	     */
 	    public void setReviewContent(String reviewContent) {
 	        this.reviewContent.set(reviewContent);
 	    }
 
 	    /** Setter for reviewDate.
-	     * @param reviewDate
+	     * @param reviewDate The review date.
 	     */
 	    public void setReviewDate(String reviewDate) {
 	        this.reviewDate.set(reviewDate);
@@ -435,6 +438,10 @@ public class PendingReviewsController implements ScreensIF {
 	
 }
 
+/**
+ * This class makes sure the information from the server was received successfully.
+ * @author ork
+ */
 class PendingReviewsRecv extends Thread{
     
 	/**

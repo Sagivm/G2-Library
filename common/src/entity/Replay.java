@@ -59,8 +59,8 @@ private FileEvent fileEvent;
 
 
 /** Replay constructor that initialize the attributes.
- * @param type - Gets the type of action.
- * @param sucess - Gets the kind of response from SQL.
+ * @param type Gets the type of action.
+ * @param sucess Gets the kind of response from SQL.
  */
 public Replay(ActionType type, boolean sucess)
 {
@@ -70,8 +70,8 @@ public Replay(ActionType type, boolean sucess)
 }
 
 /** Replay constructor that initialize the attributes for file sending.
- * @param type - Gets the type of action.
- * @param fileEvent - Gets the file.
+ * @param type Gets the type of action.
+ * @param fileEvent Gets the file.
  */
 public Replay(ActionType type, FileEvent fileEvent) {
 	setType(type);
@@ -81,8 +81,8 @@ public Replay(ActionType type, FileEvent fileEvent) {
 
 
 /** Replay constructor that initialize the attributes.
- * @param type - Gets the type of action.
- * @param action - Gets the action.
+ * @param type Gets the type of action.
+ * @param action Gets the action.
  */
 public Replay(ActionType type, int action)
 {
@@ -94,10 +94,10 @@ public Replay(ActionType type, int action)
 
 
 /** Replay constructor that initialize the attributes.
- * @param type - Gets the type of action.
- * @param sucess - Gets if the action true\false.
- * @param transmitType - Gets the transmit type.
- * @param elementsList - Gets the elements list.
+ * @param type Gets the type of action.
+ * @param sucess Gets if the action true\false.
+ * @param transmitType Gets the transmit type.
+ * @param elementsList Gets the elements list.
  */
 public Replay(ActionType type, boolean sucess,ActionType transmitType, ArrayList<String> elementsList)
 {
@@ -109,10 +109,10 @@ public Replay(ActionType type, boolean sucess,ActionType transmitType, ArrayList
 
 
 /** Replay constructor that initialize the attributes.
- * @param type - Gets the type of action.
- * @param sucess - Gets the kind of response from SQL.
- * @param action - Gets a sub-action to do.
- * @param elementsList - Gets the elements list that will be decrypt in the client.
+ * @param type Gets the type of action.
+ * @param sucess Gets the kind of response from SQL.
+ * @param action Gets a sub-action to do.
+ * @param elementsList Gets the elements list that will be decrypt in the client.
  */
 public Replay(ActionType type, boolean sucess,ArrayList<String> elementsList)
 {
@@ -123,10 +123,10 @@ public Replay(ActionType type, boolean sucess,ArrayList<String> elementsList)
 }
 
 /** Replay constructor that initialize the attributes.
- * @param type - Gets the type of action.
- * @param sucess - Gets the kind of response from SQL.
- * @param action - Gets a sub-action to do.
- * @param elementsList - Gets the elements list that will be decrypt in the client.
+ * @param type Gets the type of action.
+ * @param sucess Gets the kind of response from SQL.
+ * @param action Gets a sub-action to do.
+ * @param elementsList Gets the elements list that will be decrypt in the client.
  */
 public Replay(ActionType type, boolean sucess,int action,ArrayList<String> elementsList)
 {
@@ -139,9 +139,9 @@ public Replay(ActionType type, boolean sucess,int action,ArrayList<String> eleme
 
 
 /** Replay constructor that initialize the attributes.
- * @param type - Gets the type of action.
- * @param sucess - Gets the kind of response from SQL.
- * @param msg - Gets a message.
+ * @param type Gets the type of action.
+ * @param sucess Gets the kind of response from SQL.
+ * @param msg Gets a message.
  */
 public Replay(ActionType type, boolean sucess,String msg)
 {
@@ -152,14 +152,14 @@ public Replay(ActionType type, boolean sucess,String msg)
 }
 
 /** Getter for action type.
- * @return - the type attribute.
+ * @return the type attribute.
  */
 public ActionType getType() {
 	return type;
 }
 
 /** Setter for action type.
- * @param type - Set the value into type.
+ * @param type Set the value into type.
  */
 public void setType(ActionType type) {
 	this.type = type;
@@ -167,42 +167,42 @@ public void setType(ActionType type) {
 
 
 /** Getter for sucess.
- * @return - the sucess attribute.
+ * @return the sucess attribute.
  */
 public boolean getSucess() {
 	return sucess;
 }
 
 /** Getter for action
- * @return - the action attribute.
+ * @return the action attribute.
  */
 public int getAction() {
 	return action;
 }
 
 /** Getter for GeneralMessages
- * @return - the GeneralMessages attribute.
+ * @return the GeneralMessages attribute.
  */
 public String getGnrlMsg() {
 	return GnrlMsg;
 }
 
 /** Getter for elements list.
- * @return - Gets the elements list.
+ * @return Gets the elements list.
  */
 public ArrayList<String> getElementsList() {
 	return elementsList;
 }
 
 /** Setter for sucess.
- * @param sucess - Set the value into sucess.
+ * @param sucess Set the value into sucess.
  */
 public void setSucess(boolean sucess) {
 	this.sucess = sucess;
 }	
 
 /** Setter for action
- * @param action - Set the value into action
+ * @param action Set the value into action
  */
 public void setAction(int action) {
 	this.action = action;
@@ -216,7 +216,7 @@ public void setGnrlMsg(String msg) {
 }
 
 /** Setter for elements list.
- * @param elementsList - Set the elementsList.
+ * @param elementsList Set the elementsList.
  */
 public void setElementsList(ArrayList<String> elementsList) {
 	this.elementsList = elementsList;
@@ -238,14 +238,14 @@ public void setTransmitType(ActionType transmitType) {
 }
 
 /** Getter for FileEvent.
- * @return - The fileEvent.
+ * @return The fileEvent.
  */
 public FileEvent getFileEvent() {
 	return fileEvent;
 }
 
 /** Setter for FileEvent.
- * @param fileEvent - Gets the fileEvent.
+ * @param fileEvent Gets the fileEvent.
  */
 public void setFileEvent(FileEvent fileEvent) {
 	this.fileEvent = fileEvent;

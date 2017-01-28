@@ -40,10 +40,10 @@ private String LastName;
 
 /**
  * The constructor store the data into the entity.
- * @param Username - Gets The username.
- * @param Password - Gets The password.
- * @param FirstName - Gets The first name.
- * @param LastName - Gets The last name.
+ * @param Username Gets The username.
+ * @param Password Gets The password.
+ * @param FirstName Gets The first name.
+ * @param LastName Gets The last name.
  */
 public Register(String Username, String Password, String FirstName, String LastName)
 {
@@ -63,7 +63,7 @@ public String getUsername() {
 
 
 /** Setter for username.
- * @param username - Set the username.
+ * @param username Set the username.
  */
 public void setUsername(String username) {
 	Username = username;
@@ -71,7 +71,7 @@ public void setUsername(String username) {
 
 
 /** Getter for password.
- * @return - The password.
+ * @return The password.
  */
 public String getPassword() {
 	return Password;
@@ -79,7 +79,7 @@ public String getPassword() {
 
 
 /** Setter the password.
- * @param password - Set the password.
+ * @param password Set the password.
  */
 public void setPassword(String password) {
 	Password = password;
@@ -87,7 +87,7 @@ public void setPassword(String password) {
 
 
 /** Getter for first name.
- * @return FirstName - The first name.
+ * @return FirstName The first name.
  */
 public String getFirstName() {
 	return FirstName;
@@ -95,7 +95,7 @@ public String getFirstName() {
 
 
 /** Setter for first name.
- * @param firstName - Gets the first name.
+ * @param firstName Gets the first name.
  */
 public void setFirstName(String firstName) {
 	FirstName = firstName;
@@ -103,7 +103,7 @@ public void setFirstName(String firstName) {
 
 
 /** Getter for last name.
- * @return lastName - The last name.
+ * @return lastName The last name.
  */
 public String getLastName() {
 	return LastName;
@@ -111,7 +111,7 @@ public String getLastName() {
 
 
 /** Setter for last name.
- * @param lastName - Gets the last name.
+ * @param lastName Gets the last name.
  */
 public void setLastName(String lastName) {
 	LastName = lastName;

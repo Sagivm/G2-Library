@@ -58,15 +58,15 @@ public class SearchUserResult {
 	/**
 	 * Initialize User with parameters.
 	 * @author itain
-	 * @param username
-	 * @param firstname
-	 * @param lastname
-	 * @param accountType
-	 * @param accountStatus
-	 * @param isBlocked - whether user is blocked or not
-	 * @param password
-	 * @param credits
-	 * @param endSubscription
+	 * @param username The username.
+	 * @param firstname The first name.
+	 * @param lastname The last name.
+	 * @param accountType The user's account type.
+	 * @param accountStatus The user's account status.
+	 * @param isBlocked whether user is blocked or not
+	 * @param password The password of the user account.
+	 * @param credits The cedits of the user.
+	 * @param endSubscription When the user's subscription will end.
 	 */
     public SearchUserResult(String username, String firstName, String lastName, String accountType, String accountStatus, String isBlocked, String password, String credits, String endSubscription) {
         this.username = new SimpleStringProperty(username);
@@ -157,7 +157,7 @@ public class SearchUserResult {
     
 	/** Setter for First Name
 	 * @author itain
-	 * @param fName
+	 * @param fName The first name.
 	 */
     public void setFirstName(String fName) {
     	firstName.set(fName);
@@ -165,7 +165,7 @@ public class SearchUserResult {
 
 	/** Setter for Last Name
 	 * @author itain
-	 * @param lName
+	 * @param lName Thr last name.
 	 */
     public void setLastName(String lName) {
         lastName.set(lName);
@@ -173,7 +173,7 @@ public class SearchUserResult {
     
 	/** Setter for account Type
 	 * @author itain
-	 * @param aType
+	 * @param aType The account type.
 	 */
     public void setAccountType(String aType) {
     	accountType.set(aType);
@@ -181,7 +181,7 @@ public class SearchUserResult {
     
 	/** Setter for account Status
 	 * @author itain
-	 * @param aStatus
+	 * @param aStatus The account status.
 	 */
     public void setAccountStatus(String aStatus) {
     	accountStatus.set(aStatus);
@@ -190,7 +190,7 @@ public class SearchUserResult {
     
 	/** Setter for block status
 	 * @author itain
-	 * @param blocked
+	 * @param blocked If the user is blocked or not.
 	 */
     public void setIsBlocked(String blocked) {
     	isBlocked.set(blocked);
@@ -198,7 +198,7 @@ public class SearchUserResult {
     
 	/** Setter for password
 	 * @author itain
-	 * @param pswrd
+	 * @param pswrd The password.
 	 */
     public void setPassword(String pswrd) {
     	password.set(pswrd);
@@ -206,7 +206,7 @@ public class SearchUserResult {
     
 	/** Setter for credits
 	 * @author itain
-	 * @param crdts
+	 * @param crdts The credits.
 	 */
     public void setCredits(String crdts) {
     	credits.set(crdts);
@@ -214,7 +214,7 @@ public class SearchUserResult {
     
 	/** Setter for End Subscription data
 	 * @author itain
-	 * @param endSub
+	 * @param endSub The end date of the subscription.
 	 */
     public void setEndSubscription(String endSub) {
     	endSubscription.set(endSub);

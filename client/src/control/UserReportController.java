@@ -254,7 +254,6 @@ public class UserReportController implements Initializable {
 
 	/**
 	 * gets the specific user.
-	 * 
 	 * @return specific user
 	 */
 	public static SearchUserResult getSelectedUser() {
@@ -263,9 +262,7 @@ public class UserReportController implements Initializable {
 
 	/**
 	 * Sets the user.
-	 * 
-	 * @param selectedUser
-	 *            a specific user that the list will be based upon
+	 * @param selectedUser a specific user that the list will be based upon
 	 */
 	public static void setSelectedUser(SearchUserResult selectedUser) {
 		UserReportController.selectedUser = selectedUser;
@@ -365,7 +362,7 @@ public class UserReportController implements Initializable {
 		/**
 		 * Setter
 		 * sets bookId
-		 * @param id of the book
+		 * @param id The id of the book
 		 */
 		public void setId(int id) {
 			this.id = id;
@@ -381,7 +378,7 @@ public class UserReportController implements Initializable {
 		/**
 		 * Setter
 		 * sets book's title
-		 * @param book's title
+		 * @param title The book's title
 		 */
 		public void setTitle(String title) {
 			this.title = title;
@@ -398,7 +395,7 @@ public class UserReportController implements Initializable {
 		/**
 		 * Setter
 		 * sets book's authors
-		 * @param book's authors
+		 * @param author The book's authors
 		 */
 		public void setAuthor(String author) {
 			this.author = author;
@@ -414,7 +411,7 @@ public class UserReportController implements Initializable {
 		/**
 		 * Setter
 		 * sets book's language
-		 * @param book's language
+		 * @param language The book's language
 		 */
 		public void setLanguage(String language) {
 			this.language = language;
@@ -430,7 +427,7 @@ public class UserReportController implements Initializable {
 		/**
 		 * Setter
 		 * sets book's date of purchase
-		 * @param book's date of purchase
+		 * @param date The book's date of purchase
 		 */
 
 		public void setDate(String date) {
@@ -447,7 +444,7 @@ public class UserReportController implements Initializable {
 		/**
 		 * Setter
 		 * sets the price of the book at the acquisition date
-		 * @param book's price at the acquisition date
+		 * @param price The book's price at the acquisition date
 		 */
 		public void setPrice(float price) {
 			this.price = price;

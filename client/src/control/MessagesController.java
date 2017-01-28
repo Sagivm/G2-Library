@@ -39,19 +39,19 @@ public class MessagesController implements ScreensIF
     private TableView<Messages> table;
     
 	/**
-	 * attribute for the date colmun.
+	 * attribute for the date column.
 	 */
 	@FXML
     private TableColumn dateCol;
 	
 	/**
-	 * attribute for the time colmun.
+	 * attribute for the time column.
 	 */
 	@FXML 
 	private TableColumn timeCol;
 	
 	/**
-	 * attribute for the msg colmun.
+	 * attribute for the msg column.
 	 */
 	@FXML
 	private TableColumn msgCol;
@@ -169,7 +169,7 @@ public class MessagesController implements ScreensIF
 	
 	
 	/**
-	 * Inner class for messsages that will be added as a row.
+	 * Inner class for messages that will be added as a row.
 	 * @author nire
 	 */
 	public static class Messages {
@@ -229,7 +229,7 @@ public class MessagesController implements ScreensIF
 	    
 	    
 	    /** Setter for date.
-	     * @param date - Gets the date.
+	     * @param date Gets the date.
 	     */
 	    public void setDate(String date) {
 	    	this.date.set(date);
@@ -238,7 +238,7 @@ public class MessagesController implements ScreensIF
 	    
 	    /**
 	     * Setter for time.
-	     * @param time - Gets the time.
+	     * @param time Gets the time.
 	     */
 	    public void setTime(String time) {
 	    	this.time.set(time);
@@ -246,7 +246,7 @@ public class MessagesController implements ScreensIF
 	    
 	    /**
 	     * Setter for msg.
-	     * @param time - Gets the msg.
+	     * @param time Gets the msg.
 	     */
 	    public void setMsg(String msg) {
 	    	this.msg.set(msg);

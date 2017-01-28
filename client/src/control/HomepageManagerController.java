@@ -92,8 +92,8 @@ public class HomepageManagerController implements ScreensIF {
 	
 	/**
 	 * this method load the page to the content AnchorPane.
-	 * @param screenPath
-	 * @throws IOException
+	 * @param screenPath The path of the next screen.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void loadPage(String screenPath) throws IOException {
@@ -108,8 +108,8 @@ public class HomepageManagerController implements ScreensIF {
 	}
 	
 	/** Handler when pressed "Logout". this function log out the current manager.
-	 * @param event - gets the ActionEvent when the function called.
-	 * @throws IOException
+	 * @param event gets the ActionEvent when the function called.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void logoutButtonPressed(ActionEvent event) throws IOException{    
@@ -123,7 +123,7 @@ public class HomepageManagerController implements ScreensIF {
 	
 	
 	/** This function log out the current manager from the server.
-	 * @throws IOException
+	 * @throws IOException IO exception.
 	 */
 	public void logout() throws IOException
 	{
@@ -156,9 +156,9 @@ public class HomepageManagerController implements ScreensIF {
 	}
 	
 	/** Send log out message to the server.
-	 * @param type
-	 * @param login
-	 * @return
+	 * @param type The action type of the message that will passed to the server.
+	 * @param login The parameter that will passed to the server.
+	 * @return The message that will passed to the server.
 	 */
 	public Message prepareLogout(ActionType type, Login login)
 	{
@@ -191,7 +191,7 @@ public class HomepageManagerController implements ScreensIF {
 	}
 	
 	/**Setter of the connected liberian.
-	 * @param connectedUser - Set the connected liberian.
+	 * @param connectedUser Set the connected liberian.
 	 */
 	public void setConnectedManager(Worker connectedManager)
 	{
@@ -199,8 +199,8 @@ public class HomepageManagerController implements ScreensIF {
 	}
 	
 	/** Handler when pressed "Pending Reviews requests". this function open the Pending Reviews requests form.
-	 * @param event
-	 * @throws IOException
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void pendingReviewsButtonPressed(ActionEvent event) throws IOException {
@@ -210,8 +210,7 @@ public class HomepageManagerController implements ScreensIF {
 	/**
 	 * Handler when pressed "search book". this function open the search book
 	 * form.
-	 * 
-	 * @param event - gets the ActionEvent when the function called.
+	 * @param event gets the ActionEvent when the function called.
 	 * @throws IOException
 	 */
 	@FXML
@@ -228,16 +227,31 @@ public class HomepageManagerController implements ScreensIF {
 	
 
 	
+	/** Handler when pressed "Block user". this function open the search user
+	 * form to block a user.
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
+	 */
 	@FXML
 	public void blockUserButtonPressed(ActionEvent event) throws IOException {
 		loadPage(ScreensInfo.SEARCH_USER_SCREEN);
 	}
 	
+	/** Handler when pressed "search worker". this function open the search worker
+	 * form.
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
+	 */
 	@FXML
 	public void searchWorkerButtonPressed(ActionEvent event) throws IOException {
 		loadPage(ScreensInfo.SEARCH_WORKER_SCREEN);
 	}
 	
+	/** Handler when pressed "book management". this function open the book
+	 * management form.
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
+	 */
 	@FXML
 	public void bookManagmentButtonPressed(ActionEvent event) throws IOException {
 		Platform.runLater(() -> {
@@ -254,7 +268,7 @@ public class HomepageManagerController implements ScreensIF {
 	}
 	
 	/** Setter for page.
-	 * @param page
+	 * @param page The page that load in the AnchorPane.
 	 */
 	public static void setPage(String pageToLoad)
 	{
@@ -262,7 +276,7 @@ public class HomepageManagerController implements ScreensIF {
 	}
 	
 	/** Getter for page.
-	 * @return
+	 * @return The page that load in the AnchorPane.
 	 */
 	public String getPage()
 	{

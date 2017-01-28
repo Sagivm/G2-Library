@@ -41,8 +41,6 @@ public class SetAccountTypeController implements Initializable {
 	
 	/**
 	 * Initialize account type list with available account types for the user
-	 * 
-	 * @param type
 	 */
 	@FXML
 	public void initializeSettingList() {
@@ -71,9 +69,8 @@ public class SetAccountTypeController implements Initializable {
 
 	/**
 	 * Update's User information to pending and send a notification to librarian
-	 * 
-	 * @param event
-	 * @throws IOException
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void submitSettingButtonPressed(ActionEvent event) throws IOException {
@@ -138,12 +135,9 @@ public class SetAccountTypeController implements Initializable {
 	/**
 	 * This function choose what to display the user.
 	 * 
-	 * @param type
-	 *            - Defines if alert or info.
-	 * @param actiontype
-	 *            - Gets the type of action after display.
-	 * @param message
-	 *            - Gets the message to display in popup.
+	 * @param type Defines if alert or info.
+	 * @param actiontype Gets the type of action after display.
+	 * @param message Gets the message to display in popup.
 	 */
 	public void actionToDisplay(String type, ActionType actiontype, String message) {
 

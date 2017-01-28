@@ -235,7 +235,7 @@ public class BookReportController implements Initializable {
 
 		/**
 		 * Date's Setter
-		 * @param date - A specific date
+		 * @param date A specific date
 		 */
 		public void setDate(String date) {
 			this.date = date;
@@ -249,7 +249,7 @@ public class BookReportController implements Initializable {
 		}
 		/**
 		 * Search's Setter
-		 * @param date - number of searches for a specific date 
+		 * @param search number of searches for a specific date 
 		 */
 		public void setSearch(int search) {
 			this.search = search;
@@ -263,7 +263,7 @@ public class BookReportController implements Initializable {
 		}
 		/**
 		 * Purchases's Setter
-		 * @param date - number of purchases for a specific date
+		 * @param purchase number of purchases for a specific date
 		 */
 		public void setPurchase(int purchase) {
 			this.purchase = purchase;

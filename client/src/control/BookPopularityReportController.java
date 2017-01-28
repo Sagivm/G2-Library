@@ -374,7 +374,7 @@ public class BookPopularityReportController implements Initializable {
 
 	}
 
-	/**s
+	/**
 	 * Generates the list that will be displayed base on the settings
 	 * selected by the manager
 	 */
@@ -388,12 +388,12 @@ public class BookPopularityReportController implements Initializable {
 				if(specificList.get(i).getId()==specificList.get(j).getId()&&i!=j)
 					specificList.remove(j);
 		}
-		for (int i=0;i<priceList.size();i++)
-			System.out.println(priceList.get(i));
+		/*for (int i=0;i<priceList.size();i++)
+			System.out.println(priceList.get(i));*/
 		setPrice();
-		System.out.println();
+		//System.out.println();
 		for (int i=0;i<priceList.size();i++)
-			System.out.println(specificList.get(i).getPurchase());
+			//System.out.println(specificList.get(i).getPurchase());
 		purchaseColumn.setSortType(TableColumn.SortType.ASCENDING);
 		bookIdColumn.setCellValueFactory(new PropertyValueFactory<Popularity, Integer>("id"));
 		titleColumn.setCellValueFactory(new PropertyValueFactory<Popularity, String>("title"));
@@ -495,7 +495,7 @@ public class BookPopularityReportController implements Initializable {
 		/**
 		 * Setter
 		 * sets bookId
-		 * @param id of the book
+		 * @param id The id of the book
 		 */
 		public void setId(int id) {
 			this.id = id;
@@ -512,7 +512,7 @@ public class BookPopularityReportController implements Initializable {
 		/**
 		 * Setter
 		 * sets book's title
-		 * @param book's title
+		 * @param title The book's title
 		 */
 		public void setTitle(String title) {
 			this.title = title;
@@ -527,7 +527,7 @@ public class BookPopularityReportController implements Initializable {
 		/**
 		 * Setter
 		 * sets book's author
-		 * @param book's author
+		 * @param author The book's author
 		 */
 		public void setAuthor(String author) {
 			this.author = author;
@@ -543,7 +543,7 @@ public class BookPopularityReportController implements Initializable {
 		/**
 		 * Setter
 		 * sets book's language
-		 * @param book's language
+		 * @param language The book's language
 		 */
 		public void setLanguage(String language) {
 			this.language = language;
@@ -559,7 +559,7 @@ public class BookPopularityReportController implements Initializable {
 		/**
 		 * Setter
 		 * sets number of purchases of the book
-		 * @param number of purchases of the book
+		 * @param purchase The of purchases of the book
 		 */
 		public void setPurchase(int purchase) {
 			this.purchase = purchase;
@@ -575,7 +575,7 @@ public class BookPopularityReportController implements Initializable {
 		/**
 		 * Setter
 		 * sets book's domain
-		 * @param book's domain
+		 * @param domain The book's domain
 		 */
 		public void setDomain(String domain) {
 			this.domain = domain;

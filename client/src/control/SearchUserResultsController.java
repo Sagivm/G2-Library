@@ -311,7 +311,7 @@ public class SearchUserResultsController implements ScreensIF{
 	
 	/** When pressed, takes worker to workers search page.
 	 * @author itain
-	 * @param event - Gets event.
+	 * @param event Gets event.
 	 */
 	public void backButtonPressed(ActionEvent event) {
 		if(ClientUI.getTypeOfUser()=="Librarian")

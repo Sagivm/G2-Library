@@ -85,16 +85,16 @@ public class Book {
 	/**
 	 * Book constructor store the data.
 	 * @author itain
-	 * @param sn - Gets the sn.
-	 * @param title - Gets the title.
-	 * @param language - Gets the language.
-	 * @param summary - Gets the summary.
-	 * @param tableOfContent - Gets the tableOfContent.
-	 * @param keywords - Gets the keywords.
-	 * @param price - Gets the price.
-	 * @param authors - Gets the authors.
-	 * @param domains - Gets the domains.
-	 * @param subjects - Gets the subjects.
+	 * @param sn Gets the sn.
+	 * @param title Gets the title.
+	 * @param language Gets the language.
+	 * @param summary Gets the summary.
+	 * @param tableOfContent Gets the tableOfContent.
+	 * @param keywords Gets the keywords.
+	 * @param price Gets the price.
+	 * @param authors Gets the authors.
+	 * @param domains Gets the domains.
+	 * @param subjects Gets the subjects.
 	 */
 	
 	public Book(int sn, String title, String language, String summary, String tableOfContent, String keywords,
@@ -118,14 +118,14 @@ public class Book {
 	/**
 	 * Book constructor store the data.
 	 * @author itain
-	 * @param sn - Gets the sn.
-	 * @param title - Gets the title.
-	 * @param language - Gets the language.
-	 * @param summary - Gets the summary.
-	 * @param tableOfContent - Gets the tableOfContent.
-	 * @param keywords - Gets the keywords.
-	 * @param price - Gets the price.
-	 * @param authorsList - Gets the authors.
+	 * @param sn Gets the sn.
+	 * @param title Gets the title.
+	 * @param language Gets the language.
+	 * @param summary Gets the summary.
+	 * @param tableOfContent Gets the tableOfContent.
+	 * @param keywords Gets the keywords.
+	 * @param price Gets the price.
+	 * @param authorsList Gets the authors.
 	 */
 	public Book(int sn,String title, String language, String summary, String tableOfContent, String keywords,
 			String price, ArrayList <Author> authorsList) 
@@ -154,7 +154,7 @@ public class Book {
 
 	/** Getter for sn
 	 * @author itain
-	 * @return sn - the sn of book
+	 * @return sn the sn of book
 	 */
 	public int getSn() {
 		return sn;
@@ -164,7 +164,7 @@ public class Book {
 
 	/** Setter for sn
 	 * @author itain
-	 *@param sn - the sn of book
+	 *@param sn the sn of book
 	 */
 	public void setSn(int sn) {
 		this.sn = sn;
@@ -180,7 +180,7 @@ public class Book {
 	
 	/** Setter for title
 	 * @author itain
-	 * @param title - the title of book
+	 * @param title the title of book
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -196,7 +196,7 @@ public class Book {
 	
 	/** Setter for language
 	 * @author itain
-	 * @param language - the language of book
+	 * @param language the language of book
 	 */
 	public void setLanguage(String language) {
 		this.language = language;
@@ -212,7 +212,7 @@ public class Book {
 	
 	/** Setter for summary
 	 * @author itain
-	 * @param summary - the summary of book
+	 * @param summary the summary of book
 	 */
 	public void setSummary(String summary) {
 		this.summary = summary;
@@ -228,7 +228,7 @@ public class Book {
 	
 	/** Setter for TableOfContents
 	 * @author itain
-	 * @param TableOfContents - the Table Of Contents of book
+	 * @param TableOfContents the Table Of Contents of book
 	 */
 	public void setTableOfContent(String tableOfContent) {
 		this.tableOfContent = tableOfContent;
@@ -244,7 +244,7 @@ public class Book {
 	
 	/** Setter for keywords
 	 * @author itain
-	 * @param keywords - the keywords of book
+	 * @param keywords the keywords of book
 	 */
 	public void setKeywords(String keywords) {
 		this.keywords = keywords;
@@ -260,7 +260,7 @@ public class Book {
 	
 	/** Setter for price
 	 * @author itain
-	 * @param price - the price of book
+	 * @param price the price of book
 	 */
 	public void setPrice(String price) {
 		this.price = price;
@@ -276,7 +276,7 @@ public class Book {
 	
 	/** Setter for hide
 	 * @author itain
-	 * @param hide - if book is hidden from catalog or not
+	 * @param hide if book is hidden from catalog or not
 	 */
 	public void setHide(boolean hide) {
 		this.hide = hide;
@@ -301,7 +301,7 @@ public class Book {
 
 	/** Setter for authors
 	 * @author itain
-	 * @param authors - list of authors
+	 * @param authors list of authors
 	 */
 	public void setAuthors(ArrayList<String> authors) {
 		this.authors = authors;
@@ -309,7 +309,7 @@ public class Book {
 	
 	/** Setter for authors
 	 * @author itain
-	 * @param authors - list of authors
+	 * @param authors list of authors
 	 */
 	public void setAuthorsList(ArrayList<Author> authorsList) {
 		this.authorsList = authorsList;
@@ -325,7 +325,7 @@ public class Book {
 
 	/** Setter for domains
 	 * @author itain
-	 * @param domains - list of domains
+	 * @param domains list of domains
 	 */
 	public void setDomains(ArrayList<String> domains) {
 		this.domains = domains;
@@ -341,7 +341,7 @@ public class Book {
 
 	/** Setter for subjects
 	 * @author itain
-	 * @param subjects - list of subjects
+	 * @param subjects list of subjects
 	 */
 	public void setSubjects(ArrayList<String> subjects) {
 		this.subjects = subjects;
@@ -358,7 +358,7 @@ public class Book {
 	
 	/** Setter for domains
 	 * @author itain
-	 * @param domains - list of domains
+	 * @param domains list of domains
 	 */
 	public void setDomainsList(ArrayList<Domain> domainsList) {
 		this.domainsList = domainsList;
@@ -374,7 +374,7 @@ public class Book {
 
 	/** Setter for subjects
 	 * @author itain
-	 * @param subjects - list of subjects
+	 * @param subjects list of subjects
 	 */
 	public void setSubjectsList(ArrayList<Subject> subjectsList) {
 		this.subjectsList = subjectsList;

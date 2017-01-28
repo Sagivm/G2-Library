@@ -11,7 +11,6 @@ import javafx.application.Platform;
 
 /**
  * LogoutController is the controller that responsible to log out the user.
- * 
  * @author ork
  */
 public class LogoutController {
@@ -23,7 +22,7 @@ public class LogoutController {
 	private static User connectedUser;
 	
 	/** This function log out the current user from the server.
-	 * @throws IOException
+	 * @throws IOException IO exception.
 	 */
 	public void logout() throws IOException
 	{
@@ -63,9 +62,9 @@ public class LogoutController {
 	}
 	
 	/** Send log out message to the server.
-	 * @param type
-	 * @param login
-	 * @return
+	 * @param type The action type of the message that will passed to the server.
+	 * @param login The parameter that will passed to the server.
+	 * @return The message that will passed to the server.
 	 */
 	public Message prepareLogout(ActionType type, Login login)
 	{

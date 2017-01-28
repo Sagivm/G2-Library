@@ -277,8 +277,8 @@ public class PendingAccountTypeController {
 	
 	/**
 	 * Create's a message for get the account requests from DB.
-	 * @param type
-	 * @return
+	 * @param type The action type of the message that will pass to the server.
+	 * @return  The message that will pass to the server.
 	 */
 	public Message prepareGetPendingAccunts(ActionType type)
 	{
@@ -290,11 +290,11 @@ public class PendingAccountTypeController {
 	
 	/**
 	 * Create's a message for update the DB with the new account type.
-	 * @param type
-	 * @param username
-	 * @param action
-	 * @param newAccountType
-	 * @return
+	 * @param type The action type of the message that will pass to the server.
+	 * @param username The username of the user.
+	 * @param action The action to do.
+	 * @param newAccountType The new account type of the user.
+	 * @return The message that will pass to the server.
 	 */
 	public Message prepareUpdatePendingAccounts(ActionType type,String username,String action, String newAccountType)
 	{
@@ -311,8 +311,8 @@ public class PendingAccountTypeController {
 	
 	/**
 	 * Shows alert message on error.
-	 * @param type
-	 * @param errorCode
+	 * @param type The action type of the error. 
+	 * @param errorCode The message to show.
 	 */
 	public void actionOnError(ActionType type, String errorCode) {
 		
@@ -356,7 +356,7 @@ public class PendingAccountTypeController {
 
 	    /**
 	     * Getter for username.
-	     * @return
+	     * @return The username.
 	     */
 	    public String getUsername() {
 	        return username.get();
@@ -364,7 +364,7 @@ public class PendingAccountTypeController {
 	    
 	    /**
 	     * Getter for first name.
-	     * @return
+	     * @return The first name.
 	     */
 	    public String getFirstName() {
 	        return firstName.get();
@@ -372,7 +372,7 @@ public class PendingAccountTypeController {
 	    
 	    /**
 	     * Getter for last name.
-	     * @return
+	     * @return The last name.
 	     */
 	    public String getLastName() {
 	        return lastName.get();
@@ -380,7 +380,7 @@ public class PendingAccountTypeController {
 	    
 	    /**
 	     * Getter for current account type.
-	     * @return
+	     * @return The current account type.
 	     */
 	    public String getCurrentAccType() {
 	        return currentAccType.get();
@@ -388,7 +388,7 @@ public class PendingAccountTypeController {
 	    
 	    /**
 	     * Getter for requests account type.
-	     * @return
+	     * @return The requested account type.
 	     */
 	    public String getRequestedAccType() {
 	        return requestedAccType.get();
@@ -396,7 +396,7 @@ public class PendingAccountTypeController {
 
 	    /**
 	     * Setter for first name.
-	     * @param fName
+	     * @param fName The user first name.
 	     */
 	    public void setFirstName(String fName) {
 	    	firstName.set(fName);
@@ -404,15 +404,15 @@ public class PendingAccountTypeController {
 
 	    /**
 	     * Setter for last name.
-	     * @param fName
+	     * @param lName The user last name.
 	     */
-	    public void setLastName(String fName) {
-	        lastName.set(fName);
+	    public void setLastName(String lName) {
+	        lastName.set(lName);
 	    }
 	    
 	    /**
 	     * Setter for current account type.
-	     * @param currAccType
+	     * @param currAccType The current account type.
 	     */
 	    public void setCurrentAccType(String currAccType) {
 	    	currentAccType.set(currAccType);
@@ -420,7 +420,7 @@ public class PendingAccountTypeController {
 
 	    /**
 	     * Setter requested account type.
-	     * @param reqAccType
+	     * @param reqAccType The requested account type.
 	     */
 	    public void setRequestedAccType(String reqAccType) {
 	    	requestedAccType.set(reqAccType);
@@ -430,7 +430,10 @@ public class PendingAccountTypeController {
 
 }
 
-
+/**
+ * This class makes sure the information from the server was received successfully.
+ * @author ork
+ */
 class PendingAccountTypeRecv extends Thread{
 	
 	/**

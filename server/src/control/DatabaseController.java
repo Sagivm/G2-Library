@@ -26,9 +26,9 @@ public static Connection connection;
 /**
  * Create new instance of driver for SQL connection. if the action failed
  * exceptions throw and catch into other class.
- * @throws InstantiationException  
- * @throws IllegalAccessException
- * @throws ClassNotFoundException
+ * @throws InstantiationException Instantiation Exception.
+ * @throws IllegalAccessException Illegal Access Exception.
+ * @throws ClassNotFoundException Class Not Found Exception.
  */
 public DatabaseController() throws InstantiationException,
 IllegalAccessException,
@@ -39,9 +39,9 @@ ClassNotFoundException
 
 /**
  * Set connection to database, and presave the connection in static variable connection.
- * @param username - Gets the username
- * @param password - Gets the database password
- * @throws SQLException
+ * @param username Gets the username
+ * @param password Gets the database password
+ * @throws SQLException SQL exceptions.
  */
 void SetConnection(String username, String password) throws SQLException
 {
@@ -62,8 +62,8 @@ static void CloseConnection()
 }
 
 /** Perform query to database (add).
- * @param statement - Gets the statement.
- * @throws SQLException - throw exception if there is problem in database.
+ * @param statement Gets the statement.
+ * @throws SQLException throw exception if there is problem in database.
  */
 public static void addToDatabase(String statement) throws SQLException {
 	Statement stmt=connection.createStatement();
@@ -72,8 +72,8 @@ public static void addToDatabase(String statement) throws SQLException {
 }
 
 /** Perform query to database (remove).
- * @param statement - Gets the statement.
- * @throws SQLException - throw exception if there is problem in database.
+ * @param statement Gets the statement.
+ * @throws SQLException throw exception if there is problem in database.
  */
 public static void removeFromDatabase(String statement) throws SQLException {
 	Statement stmt=connection.createStatement();
@@ -82,8 +82,8 @@ public static void removeFromDatabase(String statement) throws SQLException {
 }
 
 /** Perform query to database (update).
- * @param statement - Gets the statement.
- * @throws SQLException - throw exception if there is problem in database.
+ * @param statement Gets the statement.
+ * @throws SQLException throw exception if there is problem in database.
  */
 public static void updateDatabase(String statement) throws SQLException {
 	Statement stmt=connection.createStatement();
@@ -92,8 +92,8 @@ public static void updateDatabase(String statement) throws SQLException {
 }
 
 /** Perform query to database (search).
- * @param statement - Gets the statement.
- * @throws SQLException - throw exception if there is problem in database.
+ * @param statement Gets the statement.
+ * @throws SQLException throw exception if there is problem in database.
  */
 public static ResultSet searchInDatabase(String statement) throws SQLException {
 	Statement stmt = connection.createStatement();

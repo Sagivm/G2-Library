@@ -16,8 +16,8 @@ public class Validate {
 
 	/**
 	 * This static function validate the IP.
-	 * @param ip - Gets IP.
-	 * @return - true if valid IP, and otherwise false.
+	 * @param ip Gets IP.
+	 * @return true if valid IP, and otherwise false.
 	 */
 	public static boolean IPValidate(final String ip) {
 	    return PATTERN.matcher(ip).matches();
@@ -25,7 +25,7 @@ public class Validate {
 	
 	/** 
 	 * This static function validate the username.
-	 * @param text - Gets string
+	 * @param text Gets string
 	 * @return true when the string contains only numbers, and else false.
 	 */
 	public static boolean usernameValidate(String text) {
@@ -35,10 +35,9 @@ public class Validate {
 	return false;
 	}
 	
-	
 	/** 
 	 * This static function validate username for search user.
-	 * @param text - Gets string
+	 * @param text Gets string
 	 * @return true when the string contains only numbers, and else false.
 	 */
 	public static boolean usernameValidateNumbresOnly(String text) {
@@ -53,8 +52,8 @@ public class Validate {
 	
 	/** 
 	 * This static function validates name for characters only.
-	 * @param text - Gets string
-	 * @return - true when the string contains only characters, and else false.
+	 * @param text Gets string
+	 * @return true when the string contains only characters, and else false.
 	 */
 	public static boolean nameValidateCharactersOnly(String text) {
 	if(text.isEmpty())
@@ -67,8 +66,8 @@ public class Validate {
 	
 	/**
 	 * This static function validate the credit card number.
-	 * @param text - Gets the text.
-	 * @return - the answer.
+	 * @param text Gets the text.
+	 * @return the answer.
 	 */
 	public static boolean cardNumberValidate(String text) {
 	if (text.matches("[0-9]+")) 
@@ -78,8 +77,8 @@ public class Validate {
 	
 	/**
 	 * This static function validate if inserted 2 digits.
-	 * @param text - Gets the text.
-	 * @return - the answer.
+	 * @param text Gets the text.
+	 * @return the answer.
 	 */
 	public static boolean twoDigitValidate(String text) {
 	if (text.matches("[0-9]+") && text.length() == 2) 
@@ -90,8 +89,8 @@ public class Validate {
 	
 	/**
 	 * This static function validate for CVV.
-	 * @param text - Gets the text.
-	 * @return - the answer.
+	 * @param text Gets the text.
+	 * @return the answer.
 	 */
 	public static boolean cvvValidate(String text) {
 	if (text.matches("[0-9]+") && (text.length() == 3 || text.length() == 4 )) 
@@ -103,8 +102,8 @@ public class Validate {
 	/**
 	 * Get string and add apostrophe beside of every apostrophe in the text to fix
 	 * writing to DB problem.
-	 * @param str
-	 * @return
+	 * @param str The text that have fix.
+	 * @return The text after fixing.
 	 */
 	public static String fixText(String str)
 	{

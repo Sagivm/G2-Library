@@ -42,10 +42,10 @@ private String LastName;
 
 /**
  * The constructor store the data into the entity.
- * @param Username - The username.
- * @param Password - The password.
- * @param FirstName - The first name.
- * @param LastName - The last name.
+ * @param Username The username.
+ * @param Password The password.
+ * @param FirstName The first name.
+ * @param LastName The last name.
  */
 public Registration(int Username, String Password, String FirstName, String LastName)
 {
@@ -65,7 +65,7 @@ public int getUsername() {
 
 
 /** Setter for username.
- * @param username - Set the username.
+ * @param username Set the username.
  */
 public void setUsername(int username) {
 	Username = username;
@@ -73,7 +73,7 @@ public void setUsername(int username) {
 
 
 /** Getter for password.
- * @return - The password.
+ * @return The password.
  */
 public String getPassword() {
 	return Password;
@@ -81,7 +81,7 @@ public String getPassword() {
 
 
 /** Setter the password.
- * @param password - Set the password.
+ * @param password Set the password.
  */
 public void setPassword(String password) {
 	Password = password;
@@ -89,7 +89,7 @@ public void setPassword(String password) {
 
 
 /** Getter for first name.
- * @return FirstName - The first name.
+ * @return FirstName The first name.
  */
 public String getFirstName() {
 	return FirstName;
@@ -97,7 +97,7 @@ public String getFirstName() {
 
 
 /** Setter for first name.
- * @param firstName - Gets the first name.
+ * @param firstName Gets the first name.
  */
 public void setFirstName(String firstName) {
 	FirstName = firstName;
@@ -105,7 +105,7 @@ public void setFirstName(String firstName) {
 
 
 /** Getter for last name.
- * @return lastName - The last name.
+ * @return lastName The last name.
  */
 public String getLastName() {
 	return LastName;
@@ -113,7 +113,7 @@ public String getLastName() {
 
 
 /** Setter for last name.
- * @param lastName - Gets the last name.
+ * @param lastName Gets the last name.
  */
 public void setLastName(String lastName) {
 	LastName = lastName;

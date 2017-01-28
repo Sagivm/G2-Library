@@ -264,8 +264,8 @@ public class PendingRegistrationController {
 	
 	/** 
 	 * Create a message to the server with the Pending Registration ActionType.
-	 * @param type
-	 * @return message
+	 * @param type The action type of the message that will pass to the server.
+	 * @return message The message that will pass to the server.
 	 */
 	public Message prepareGetPendingUsers(ActionType type)
 	{
@@ -277,9 +277,9 @@ public class PendingRegistrationController {
 	
 	/** 
 	 * Create a message to the server with the Pending Registration Username to update.
-	 * @param type
-	 * @param username
-	 * @return message
+	 * @param type The action type of the message that will pass to the server.
+	 * @param username The parameter that will pass to the server.
+	 * @return message The message that will pass to the server.
 	 */
 	public Message prepareUpdatePendingUsers(ActionType type,String username)
 	{
@@ -351,7 +351,7 @@ public class PendingRegistrationController {
 
 	    /**
 	     * Getter for username.
-	     * @return
+	     * @return The username.
 	     */
 	    public String getUsername() {
 	        return username.get();
@@ -359,7 +359,7 @@ public class PendingRegistrationController {
 	    
 	    /**
 	     * Getter for first name.
-	     * @return
+	     * @return The first name.
 	     */
 	    public String getFirstName() {
 	        return firstName.get();
@@ -367,7 +367,7 @@ public class PendingRegistrationController {
 	    
 	    /**
 	     * Getter for last name.
-	     * @return
+	     * @return The last name.
 	     */
 	    public String getLastName() {
 	        return lastName.get();
@@ -375,7 +375,7 @@ public class PendingRegistrationController {
 
 	    /**
 	     * Setter for username
-	     * @param username
+	     * @param username The username.
 	     */
 	    public void setUsername(String Username) {
 	    	username.set(Username);
@@ -383,7 +383,7 @@ public class PendingRegistrationController {
 	    
 	    /**
 	     * Setter for first name
-	     * @param fName
+	     * @param fName The first name.
 	     */
 	    public void setFirstName(String fName) {
 	    	firstName.set(fName);
@@ -391,10 +391,10 @@ public class PendingRegistrationController {
 
 	    /**
 	     * Setter for last name
-	     * @param fName
+	     * @param lName The last name.
 	     */
-	    public void setLastName(String fName) {
-	        lastName.set(fName);
+	    public void setLastName(String lName) {
+	        lastName.set(lName);
 	    }
 
 	}

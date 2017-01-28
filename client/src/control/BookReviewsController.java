@@ -298,9 +298,9 @@ public class BookReviewsController implements ScreensIF {
 	
 	/**
 	 *  Create a message to the server with the Book Reviews ActionType.
-	 * @param type
-	 * @param bookSN
-	 * @return
+	 * @param type The action type of the message that passed to the server.
+	 * @param bookSN The parameter that passed to the server.
+	 * @return The message that passed to the server.
 	 */
 	public Message prepareGetBookReviews(ActionType type, String bookSN)
 	{
@@ -314,7 +314,10 @@ public class BookReviewsController implements ScreensIF {
 	}
 }
 
-
+/**
+ * This class makes sure the information from the server was received successfully.
+ * @author ork
+ */
 class BookReviewsRecv extends Thread{
     	
 	/**

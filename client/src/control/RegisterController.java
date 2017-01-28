@@ -80,7 +80,7 @@ public class RegisterController implements ScreensIF {
 	
 	/** This function called when the guest press on submit. the function tests the
 	 * integrity of the fields, and send the message to the server.
-	 * @param event
+	 * @param event The event when button pressed.
 	 */
 	@FXML
 	public void submitButtonPressed(ActionEvent event)
@@ -144,7 +144,7 @@ public class RegisterController implements ScreensIF {
 	}
 	
 	/** When clear button pressed the function clear the fields.
-	 * @param event - Gets event.
+	 * @param event Gets event.
 	 */
 	@FXML
 	public void clearButtonPressed(ActionEvent event)
@@ -177,9 +177,9 @@ public class RegisterController implements ScreensIF {
 	
 	/** This function prepare message that will be send to the server with arraylist,
 	 * and the action.
-	 * @param type - Gets the type of the action
-	 * @param register - Gets the class with the registration information.
-	 * @return - message that will send to server.
+	 * @param type Gets the type of the action
+	 * @param register Gets the class with the registration information.
+	 * @return message that will send to server.
 	 */
 	public Message prepareRegistration(ActionType type, Register register)
 	{

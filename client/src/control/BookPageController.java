@@ -490,9 +490,9 @@ public class BookPageController implements ScreensIF
 
 	/**
 	 * Create's a message for get data from DB.
-	 * @param type
-	 * @param elementList
-	 * @return
+	 * @param type Action type of the message that passed to the server.
+	 * @param elementList The parameters that passed to the server.
+	 * @return The message that passed to the server.
 	 */
 	public Message prepareGetFromSQL(ActionType type, ArrayList<String> elementList)
 	{
@@ -505,7 +505,7 @@ public class BookPageController implements ScreensIF
 
 	/**
 	 * Responsible to load the book's reviews screen.
-	 * @throws IOException
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void loadReviews() throws IOException {
@@ -521,7 +521,7 @@ public class BookPageController implements ScreensIF
 	
 	/**
 	 * Responsible to load the book's write review scrren.
-	 * @throws IOException
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void loadWriteReview() throws IOException {
@@ -538,8 +538,8 @@ public class BookPageController implements ScreensIF
 	
 	/**
 	 * This button responsible for purchasing the book.
-	 * @param event
-	 * @throws IOException
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void btnPurchasePressed(ActionEvent event) throws IOException{    
@@ -641,7 +641,7 @@ public class BookPageController implements ScreensIF
 					                    			screenController.replaceSceneContent(ScreensInfo.HOMEPAGE_USER_SCREEN,ScreensInfo.HOMEPAGE_USER_TITLE);	
 					                    		} 
 					                    		catch (Exception e) {
-					                    			System.out.println(e);
+					                    			//System.out.println(e);
 					                    			e.printStackTrace();
 					                    		}
 				                        	}	
@@ -665,8 +665,8 @@ public class BookPageController implements ScreensIF
 	
 	/**
 	 * This button opens pop-up with 3 options of formats to download the book.
-	 * @param event
-	 * @throws IOException
+	 * @param event The event when button pressed.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void btnDownloadPressed(ActionEvent event) throws IOException{    
@@ -745,8 +745,8 @@ public class BookPageController implements ScreensIF
 	
 	/**
 	 * An alert message that poped-up when the user click on "Purchase".
-	 * @param message
-	 * @return
+	 * @param message The message that show on the dialog box.
+	 * @return If clicked "yes" or clicked "no".
 	 */
 	public boolean yesNoDialog(String message)
 	{
@@ -822,8 +822,8 @@ public class BookPageController implements ScreensIF
 	
 	/** shows an alert to screen
 	 * @author itain
-	 * @param type - Gets type of action.
-	 * @param message - Gets message to display.
+	 * @param type Gets type of action.
+	 * @param message Gets message to display.
 	 */
 	public void actionToDisplay(ActionType type, String message) {
 
@@ -939,9 +939,9 @@ class BuyBookRecv extends Thread{
     }
 }
 
-/**This class makes sure the information from the server was received successfully.
+/**
+ * This class makes sure the information from the server was received successfully.
  * @author ork
- *
  */
 class BookImgRecv extends Thread{
 	

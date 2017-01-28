@@ -164,9 +164,8 @@ public class HomepageUserController implements ScreensIF {
 	/**
 	 * Handler when pressed "search book". this function open the search book
 	 * form.
-	 * 
-	 * @param event - gets the ActionEvent when the function called.
-	 * @throws IOException
+	 * @param event Gets the ActionEvent when the function called.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void searchBookButtonPressed(ActionEvent event) throws IOException {
@@ -176,10 +175,8 @@ public class HomepageUserController implements ScreensIF {
 	/**
 	 * Handler when pressed "set Account Type". this function open the account
 	 * type request form.
-	 * 
-	 * @param event
-	 *            - gets the ActionEvent when the function called.
-	 * @throws IOException
+	 * @param event gets the ActionEvent when the function called.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void settingsButtonPressed(ActionEvent event) throws IOException {
@@ -187,8 +184,8 @@ public class HomepageUserController implements ScreensIF {
 	}	
 
 	/** Handler when pressed "Logout". this function log out the current user.
-	 * @param event - gets the ActionEvent when the function called.
-	 * @throws IOException
+	 * @param event gets the ActionEvent when the function called.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void logoutButtonPressed(ActionEvent event) throws IOException{    
@@ -202,6 +199,10 @@ public class HomepageUserController implements ScreensIF {
 	
 	
 	
+	/** Handler when pressed "message". this function shows all the messages from
+	 * the librarian.
+	 * @param event gets the ActionEvent when the function called.
+	 */
 	@FXML
 	public void messageButtonPressed(ActionEvent event) {    
 		try {
@@ -214,7 +215,7 @@ public class HomepageUserController implements ScreensIF {
 	
 	
 	/** This function log out the current user from the server.
-	 * @throws IOException
+	 * @throws IOException IO exception.
 	 */
 	public void logout() throws IOException
 	{
@@ -247,9 +248,9 @@ public class HomepageUserController implements ScreensIF {
 	}
 	
 	/** Send log out message to the server.
-	 * @param type
-	 * @param login
-	 * @return
+	 * @param type The action type of the message that will passed to the server.
+	 * @param login The parameter that will passed to the server.
+	 * @return The message that will passed to the server.
 	 */
 	public Message prepareLogout(ActionType type, Login login)
 	{
@@ -347,7 +348,7 @@ public class HomepageUserController implements ScreensIF {
 	}
 	
 	/**Setter of the connected user.
-	 * @param connectedUser - Set the connected user.
+	 * @param connectedUser Set the connected user.
 	 */
 	public void setConnectedUser(User connectedUser)
 	{
@@ -357,10 +358,8 @@ public class HomepageUserController implements ScreensIF {
 	/**
 	 * This function choose what to display the user.
 	 * 
-	 * @param type
-	 *            - Gets the type of action after display.
-	 * @param message
-	 *            - Gets the message to display in popup.
+	 * @param type Gets the type of action after display.
+	 * @param message Gets the message to display in popup.
 	 */
 	public void actionToDisplay(ActionType type, String message) {
 
@@ -379,8 +378,8 @@ public class HomepageUserController implements ScreensIF {
 	
 	/**
 	 * this method load the page to the content AnchorPane.
-	 * @param screenPath
-	 * @throws IOException
+	 * @param screenPath The path of the next screen.
+	 * @throws IOException IO exception.
 	 */
 	@FXML
 	public void loadPage(String screenPath) throws IOException {
@@ -395,7 +394,7 @@ public class HomepageUserController implements ScreensIF {
 	}
 	
 	/** Setter for page.
-	 * @param page
+	 * @param page The page that load in the AnchorPane.
 	 */
 	public static void setPage(String pageToLoad)
 	{
@@ -403,13 +402,16 @@ public class HomepageUserController implements ScreensIF {
 	}
 	
 	/** Getter for page.
-	 * @return
+	 * @return The page that load in the AnchorPane.
 	 */
 	public String getPage()
 	{
 		return page;
 	}
 //check
+	/**
+	 * when pressed, load the my books screen.
+	 */
 	public void myBooksButtonPressed()
 	{
 		try {
@@ -459,9 +461,9 @@ public class HomepageUserController implements ScreensIF {
 	
 	/**
 	 * Gets type of account.
-	 * @param type
-	 * @param elementList
-	 * @return
+	 * @param type The action type of the message that will passed to the server.
+	 * @param elementList The parameter that will passed to the server.
+	 * @return The message that will passed to the server.
 	 */
 	public Message prepareGetFromSQL(ActionType type,ArrayList<String> elementList)
 	{
@@ -473,7 +475,7 @@ public class HomepageUserController implements ScreensIF {
 	
 	/**
 	 * Setter of subscription info.
-	 * @param subscription
+	 * @param subscription The subscription.
 	 */
 	public static void setSubscription(ArrayList<String> subs)
 	{

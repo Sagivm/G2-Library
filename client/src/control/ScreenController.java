@@ -38,10 +38,10 @@ public class ScreenController {
 
 	/**
 	 * This function actually replace the stages. we can think about it like context switch.
-	 * @param fxml - Gets the screen's path.
-	 * @param title - Gets the screen's title.
+	 * @param fxml Gets the screen's path.
+	 * @param title Gets the screen's title.
 	 * @return Pointer to parent.
-	 * @throws Exception
+	 * @throws Exception Exception.
 	 */ 
 	public Parent replaceSceneContent(String fxml, String title) throws Exception {
         Parent page = (Parent) FXMLLoader.load(ScreenController.class.getResource(fxml));
@@ -59,7 +59,7 @@ public class ScreenController {
 	
 	/**
 	 * Getter for stage
-	 * @return - Get the stage.
+	 * @return Get the stage.
 	 */
 	public static Stage getStage() {
 		return stage;
@@ -68,7 +68,7 @@ public class ScreenController {
 	
 	/**
 	 * Setter for stage.
-	 * @param stage - Set the stage.
+	 * @param stage Set the stage.
 	 */
 	public static void setStage(Stage stage) {
 		ScreenController.stage = stage;
@@ -85,7 +85,7 @@ public class ScreenController {
 	
 	
 	/** Setter for instance
-	 * @param instance - Set the instance.
+	 * @param instance Set the instance.
 	 */
 	public static void setInstance(ScreenController instance) {
 		ScreenController.instance = instance;
