@@ -1,13 +1,14 @@
 package unittests;
 
 import static org.junit.Assert.*;
-
+import static org.hamcrest.core.IsNot.not;
 import java.util.ArrayList;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import control.SearchBookController;
 import entity.Book;
+import entity.GeneralMessages;
 import entity.Message;
 import enums.ActionType;
 import junit.framework.TestCase;
@@ -199,6 +200,34 @@ public class SearchBookControllerTest extends TestCase
 		assertThat(expected2, CoreMatchers.containsString(result2));
 	}
 	
+	//test empty fields case
+	public void testEmptyFields() {
+		SearchBookController searchBook = new SearchBookController();
+		searchInputs = new Book(0, "", "", "", "", "", "", new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
+		Message output = searchBook.prepareSerachBook(ActionType.SEARCH_BOOK_AND, searchInputs);
+		ArrayList<String> result=output.getElementsList();
+		ArrayList<String> expected = new ArrayList<String>();
+		for(int i=0;i<5;i++)
+			expected.add("");
+		for(int i=0;i<2;i++)
+			expected.add("0");				
+		
+		assertEquals(expected, result);
+	}
+	
+	
+	//no result case
+	public void testNoResult() {
+		SearchBookController searchBook = new SearchBookController();
+		searchInputs = new Book(0, "algebra", "", "", "", "", "", new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
+		Message output = searchBook.prepareSerachBook(ActionType.SEARCH_BOOK_AND, searchInputs);
+		String result = output.getElementsList().get(0).toLowerCase();
+		String unexpected1 =  bookHarryPotter.getTitle().toLowerCase();
+		String unexpected2 =  bookLordOftheRings.getTitle().toLowerCase();
+		
+		assertThat(unexpected1, not(CoreMatchers.containsString(result)));
+		assertThat(unexpected2, not(CoreMatchers.containsString(result)));
+	}
 
 }
 
