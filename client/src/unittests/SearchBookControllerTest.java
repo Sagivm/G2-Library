@@ -1,4 +1,4 @@
-package control.unitests;
+package unittests;
 
 import static org.junit.Assert.*;
 
