@@ -34,6 +34,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import unittests.SearchBookControllerTest;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -60,64 +61,64 @@ public class SearchBookController implements ScreensIF{
 	@FXML private ImageView booksImageView;
 	
 	/**
-	 * show title "books search"
+	 * enables user enter title to search 
 	 */
-	@FXML private TextField titleTextField;
+	@FXML public TextField titleTextField;
 	
 	/**
 	 * show authors from DB 
 	 */
-	@FXML private ListView<String> authorListView;
+	@FXML public ListView<String> authorListView;
 	
 	/**
 	 * show available languages 
 	 */
-	@FXML private ComboBox<String> languageComboBox;
+	@FXML public ComboBox<String> languageComboBox;
 	
 	/**
 	 * enables user enter summary to search 
 	 */
-	@FXML private TextArea summaryTextArea;
+	@FXML public TextArea summaryTextArea;
 	
 	/**
 	 * enables user enter table of contents to search 
 	 */
-	@FXML private TextArea tocTextArea;
+	@FXML public TextArea tocTextArea;
 	
 	/**
 	 * shows domains from DB 
 	 */
-	@FXML private ListView<String> domainListView;
+	@FXML public ListView<String> domainListView;
 	
 	/**
 	 * enables user enter summary to search 
 	 */
-	@FXML private TextArea keywTextArea;
+	@FXML public TextArea keywTextArea;
 	
 	/**
 	 * starts books search
 	 */
-	@FXML private Button searchButton;
+	@FXML public Button searchButton;
 	
 	/**
 	 * clears all fields 
 	 */
-	@FXML private Button clearButton;
+	@FXML public Button clearButton;
 	
 	/**
 	 * makes an AND search with users data 
 	 */
-	@FXML private RadioButton andRadioButton;
+	@FXML public RadioButton andRadioButton;
 	
 	/**
 	 * makes an OR search with users data 
 	 */
-	@FXML private RadioButton orRadioButton;
+	@FXML public RadioButton orRadioButton;
 	
 	/**
 	 * make radio buttons connected so user can choose only one 
 	 */
-	@FXML private ToggleGroup searchGroup;
+	@FXML public ToggleGroup searchGroup;
 	
 	/**
 	 * information question mark for multiple choice 
@@ -312,14 +313,15 @@ public class SearchBookController implements ScreensIF{
 				Book newSearch = new Book(0, title, language, summary, toc,keyWords,"", authorList, domainList, new ArrayList<String>());
 				
 				String selectedToggle=searchGroup.getSelectedToggle().toString();
-			
+				
+				
 				/* get type of search - AND / OR */
 				if(selectedToggle.contains("AND"))
 				{
 					Message message = prepareSerachBook(ActionType.SEARCH_BOOK_AND,newSearch);
 					try {
 						
-						ClientController.clientConnectionController.sendToServer(message);
+						SearchBookControllerTest.clientCC.sendToServer(message);
 					
 					} catch (IOException e) {
 								
@@ -331,7 +333,7 @@ public class SearchBookController implements ScreensIF{
 					Message message = prepareSerachBook(ActionType.SEARCH_BOOK_OR,newSearch);
 					try {
 						
-						ClientController.clientConnectionController.sendToServer(message);
+						SearchBookControllerTest.clientCC.sendToServer(message);
 					
 					} catch (IOException e) {
 								

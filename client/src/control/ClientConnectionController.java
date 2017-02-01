@@ -27,6 +27,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import ocsf.client.AbstractClient;
+import unittests.SearchBookControllerTest;
 
 //TODO: Auto-generated Javadoc
 /**
@@ -341,6 +342,7 @@ public class ClientConnectionController extends AbstractClient{
 			list=replay.getElementsList();
 			SearchBookResultsController.resultList = list;
 			SearchBookResultsRecv.canContinue = true;
+			SearchBookControllerTest.getSearchResultsFlag=1;
 			break;
 		}
 		
@@ -450,6 +452,7 @@ public class ClientConnectionController extends AbstractClient{
 			BookManagermentGetAuthorsRecv4.canContinue=true;
 			BookManagermentGetAuthorsRecv5.canContinue=true;
 			BookManagermentGetAuthorsRecv6.canContinue=true;
+			SearchBookControllerTest.getAuthorsFlag=1;
 			break;
 		}
 		
@@ -475,6 +478,7 @@ public class ClientConnectionController extends AbstractClient{
 		case GET_DOMAINS: {
 			SearchBookController.domainList = replay.getElementsList();
 			SearchBookDomainsRecv.canContinue = true;
+			SearchBookControllerTest.getDomainsFlag=1;
 			break;
 		}
 		//

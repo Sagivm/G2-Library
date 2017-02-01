@@ -53,7 +53,7 @@ public class ClientController implements ScreensIF {
 	/**
 	 *  The connection between GUI and the client.
 	 */
-	static ClientConnectionController clientConnectionController=null;
+	public static ClientConnectionController clientConnectionController=null;
 	
 	
 	/**
