@@ -336,6 +336,7 @@ public class ServerController extends AbstractServer {
 						
 						replay = new Replay(ActionType.LOGIN, true, action, elementsList);
 						connectedList.add(login);
+						System.out.println("server");
 					} else {
 						replay = new Replay(ActionType.LOGIN, false, GeneralMessages.USER_LOGGED_IN_FAILED);
 						//System.out.println(replay.getSucess());

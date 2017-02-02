@@ -181,11 +181,11 @@ public class ClientConnectionController extends AbstractClient{
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-
 						ScreenController screenController = new ScreenController();
 						try {
 							int action = replay.getAction();
-							actionToDisplay(ActionType.CONTINUE, GeneralMessages.USER_LOGGED_IN_SUCESSFULLY);
+							if(ClientUI.testMode == false)
+								actionToDisplay(ActionType.CONTINUE, GeneralMessages.USER_LOGGED_IN_SUCESSFULLY);
 							if (action == 1) {
 								User user = new User(replay.getElementsList().get(1).toString(),
 										replay.getElementsList().get(2).toString(),
@@ -245,8 +245,8 @@ public class ClientConnectionController extends AbstractClient{
 
 						ScreenController screenController = new ScreenController();
 						try {
-								actionToDisplay(ActionType.CONTINUE, replay.getGnrlMsg().toString());
-
+								if(ClientUI.testMode == false)
+									actionToDisplay(ActionType.CONTINUE, replay.getGnrlMsg().toString());
 						} catch (Exception e) {
 							e.printStackTrace();
 						} 
@@ -255,7 +255,8 @@ public class ClientConnectionController extends AbstractClient{
 			}
 			
 			ClientRecv.canContinue = true;
-			//SearchBookControllerTest.connectedFlag=1;
+			if(ClientUI.testMode == true)
+				SearchBookControllerTest.connectedFlag=1;
 			break;
 		}
 		case LOGOUT: {
@@ -282,6 +283,8 @@ public class ClientConnectionController extends AbstractClient{
 			HomepageManagerRecv.canContinue = true;
 			HomepageUserRecv.canContinue = true;
 			LogoutRecv.canContinue = true;
+			if(ClientUI.testMode == true)
+				SearchBookControllerTest.disconnectedFlag=1;
 			break;
 		}
 		case ACCOUNTTYPEREQ: {
@@ -357,6 +360,8 @@ public class ClientConnectionController extends AbstractClient{
 			list=replay.getElementsList();
 			SearchBookResultsController.resultList = list;
 			SearchBookResultsRecv.canContinue = true;
+			if(ClientUI.testMode == true)
+				SearchBookControllerTest.getSearchResultsFlag=1;
 			break;
 		}
 		

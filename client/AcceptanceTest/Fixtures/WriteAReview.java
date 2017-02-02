@@ -50,7 +50,7 @@ public class WriteAReview extends ActionFixture{
 		clientCC = new ClientConnectionController(ClientController.IP_ADDRESS, ClientController.DEFAULT_PORT);
 		clientCon = new ClientController();
 		Message message = clientCon.prepareLogin(ActionType.LOGIN,login);
-
+		
 		clientCC.sendToServer(message);
 		
 		user = new User("Or","Koren","302659743","12345","PerBook","Standard");
