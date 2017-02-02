@@ -1,9 +1,23 @@
-פבר 02, 2017 1:51:31 AM control.ServerController writeToLog
+פבר 02, 2017 9:34:41 AM control.ServerController writeToLog
 INFO: Connected to database
-פבר 02, 2017 1:51:31 AM control.ServerController writeToLog
+פבר 02, 2017 9:34:41 AM control.ServerController writeToLog
 INFO: Server listening for connections
 on port: 1337
-פבר 02, 2017 1:51:33 AM control.ServerController writeToLog
+פבר 02, 2017 9:34:43 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 02, 2017 1:51:34 AM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '35' to '36'
+פבר 02, 2017 9:34:47 AM control.ServerController writeToLog
+INFO: Login attempt
+פבר 02, 2017 9:34:51 AM control.ServerController writeToLog
+INFO: Login attempt
+פבר 02, 2017 9:34:53 AM control.ServerController writeToLog
+INFO: Login attempt
+פבר 02, 2017 9:34:55 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '5' to '6'
+פבר 02, 2017 9:34:59 AM control.ServerController writeToLog
+INFO: Login attempt
+פבר 02, 2017 9:35:27 AM control.ServerController writeToLog
+INFO: Login attempt
+פבר 02, 2017 9:35:28 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '6' to '7'
+פבר 02, 2017 9:35:33 AM control.ServerController writeToLog
+INFO: Login attempt
