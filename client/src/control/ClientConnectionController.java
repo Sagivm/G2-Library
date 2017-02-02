@@ -7,6 +7,8 @@ import java.io.WriteAbortedException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import com.sun.javafx.geom.BaseBounds.BoundsType;
+
 import Fixtures.WriteAReview;
 import boundry.ClientUI;
 import entity.Author;
@@ -29,6 +31,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import ocsf.client.AbstractClient;
+import unittests.RemoveBookTest;
 import unittests.SearchBookControllerTest;
 
 //TODO: Auto-generated Javadoc
@@ -232,6 +235,10 @@ public class ClientConnectionController extends AbstractClient{
 							else if (action == 3)
 								clientMain.setTypeOfUser("Manager");
 							centerWindow(screenController);
+							if(boundry.ClientUI.testMode==true)
+							{
+								RemoveBookTest.connectedFlag=true;
+							}
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -744,6 +751,12 @@ public class ClientConnectionController extends AbstractClient{
 				MyBooksController.data = null;
 			MyBooksRecv.canContinue = true;
 			break;
+		}
+		case  DELETE_BOOK:
+		{
+			//Acknowledgment for testing
+			if(boundry.ClientUI.testMode==true)
+				RemoveBookTest.bookRemovedFlag=true;
 		}
 		}
 
