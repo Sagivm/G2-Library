@@ -1,7 +1,38 @@
+<<<<<<< HEAD
 פבר 02, 2017 4:10:26 PM control.ServerController writeToLog
+=======
+פבר 02, 2017 9:34:41 AM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp.git
 INFO: Connected to database
+<<<<<<< HEAD
 פבר 02, 2017 4:10:26 PM control.ServerController writeToLog
+=======
+פבר 02, 2017 9:34:41 AM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp.git
 INFO: Server listening for connections
 on port: 1337
+<<<<<<< HEAD
 פבר 02, 2017 4:10:35 PM control.ServerController writeToLog
+=======
+פבר 02, 2017 9:34:43 AM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp.git
 INFO: Login attempt
+<<<<<<< HEAD
+=======
+פבר 02, 2017 9:34:47 AM control.ServerController writeToLog
+INFO: Login attempt
+פבר 02, 2017 9:34:51 AM control.ServerController writeToLog
+INFO: Login attempt
+פבר 02, 2017 9:34:53 AM control.ServerController writeToLog
+INFO: Login attempt
+פבר 02, 2017 9:34:55 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '5' to '6'
+פבר 02, 2017 9:34:59 AM control.ServerController writeToLog
+INFO: Login attempt
+פבר 02, 2017 9:35:27 AM control.ServerController writeToLog
+INFO: Login attempt
+פבר 02, 2017 9:35:28 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '6' to '7'
+פבר 02, 2017 9:35:33 AM control.ServerController writeToLog
+INFO: Login attempt
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp.git

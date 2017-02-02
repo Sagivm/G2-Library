@@ -232,12 +232,13 @@ public class SearchBookControllerTest extends TestCase
 		
 		
 	}
+	
 
 	
 	/* test AND search of author and language */
 	@Test
 	public void testAndSearch() {
-		Book book1 = new Book(18,"Harry Potter","English", "Rescued from the outrageous neglect of his aunt and uncle", "The Boy Who Lived", "harry, potter, magic, troll, quidditch", "25.6","JK Rowling","Fantasy","Magic");
+		Book book1 = new Book(18,"", "", "", "", "","","","", "");
 		ArrayList<Book> expected = new ArrayList<Book>();
 		expected.add(book1);
 		
