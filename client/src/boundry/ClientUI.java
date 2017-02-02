@@ -33,6 +33,8 @@ public class ClientUI extends Application {
 	 */
 	private static String typeOfUser;
 	
+	public static boolean testMode = false;
+	
 	
 	/** main function executes the client by calling the method launch (method of Application)
 	* @param args

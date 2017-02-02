@@ -38,13 +38,16 @@ public class WriteReviewController implements ScreensIF {
 	 * A Text Area for writing a reviews.
 	 */
 	@FXML
-	private TextArea txtAreaReview;
+	//private TextArea txtAreaReview; //
+	public TextArea txtAreaReview;
 	
 	/**
 	 * Gets the specific book entity.
 	 */
 	//public static Book book; 
 	public static SearchBookResult book;
+	
+	public static boolean success = false;	//
 		
 	/*
 	 * (non-Javadoc)

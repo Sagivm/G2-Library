@@ -43,6 +43,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
+import unittests.SearchBookControllerTest;
 
 /** SearchBookResultsController. Responsible show users their search book results.
  * @author itain
@@ -53,37 +54,37 @@ public class SearchBookResultsController implements ScreensIF{
 	/**
 	 * shows results table  
 	 */
-	@FXML private TableView resultsTable;
+	@FXML public TableView resultsTable;
 	
 	/**
 	 * shows books titles 
 	 */
-	@FXML private TableColumn bookCol;
+	@FXML public TableColumn bookCol;
 	
 	/**
 	 * shows books authors 
 	 */
-	@FXML private TableColumn authorsCol;
+	@FXML public TableColumn authorsCol;
 	
 	/**
 	 * shows books language 
 	 */
-	@FXML private TableColumn languageCol;
+	@FXML public TableColumn languageCol;
 	
 	/**
 	 * shows books domains 
 	 */
-	@FXML private TableColumn domainsCol;
+	@FXML public TableColumn domainsCol;
 	
 	/**
 	 * shows books subjects 
 	 */
-	@FXML private TableColumn subjectsCol;
+	@FXML public TableColumn subjectsCol;
 	
 	/**
 	 * shows button to enter book's page 
 	 */
-	@FXML private TableColumn bookPageCol;
+	@FXML public TableColumn bookPageCol;
 	
 	/**
 	 * shows button to go back for books search page
@@ -100,7 +101,7 @@ public class SearchBookResultsController implements ScreensIF{
 	/**
 	 * saves results data from DB according to user's serach in order to show on table
 	 */
-	private ObservableList<SearchBookResult> data = FXCollections.observableArrayList();
+	public static ObservableList<SearchBookResult> data = FXCollections.observableArrayList();
 	
 	/**
 	 * saves results data from DB according to user's search 
@@ -128,7 +129,7 @@ public class SearchBookResultsController implements ScreensIF{
 	 * @author itain
 	 */
 	@FXML
-	private void initialize()
+	public void initialize()
 	{
 	
 			
@@ -190,6 +191,8 @@ public class SearchBookResultsController implements ScreensIF{
 								SearchBookResult book = new SearchBookResult(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], author, subject, domain, Float.toString(price));
 								data.add(book);
 							}
+							SearchBookControllerTest.dataFlag=1;
+							
 							
 							bookCol.setSortType(TableColumn.SortType.ASCENDING);
 							

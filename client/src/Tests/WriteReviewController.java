@@ -43,7 +43,7 @@ public class WriteReviewController implements ScreensIF {
 	 * A Text Area for writing a reviews.
 	 */
 	@FXML
-	private TextArea txtAreaReview;
+	public TextArea txtAreaReview;
 	
 	@FXML
 	public Button btnSubmit;

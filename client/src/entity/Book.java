@@ -59,6 +59,11 @@ public class Book {
 	 */
 	private ArrayList <Author> authorsList;
 	
+	/**
+	 *authors of book
+	 */
+	private String authorsString;
+	
 	
 	/**
 	 *domains of book
@@ -66,21 +71,30 @@ public class Book {
 	private ArrayList <String> domains;
 	
 	/**
-	 *subjects of book
-	 */
-	private ArrayList <String> subjects;
-	
-	/**
 	 *domains of book
 	 */
 	private ArrayList <Domain> domainsList;
 	
 	/**
+	 *domains of book
+	 */
+	private String domainsString;
+	
+	/**
+	 *subjects of book
+	 */
+	private ArrayList <String> subjects;
+	
+
+	/**
 	 *subjects of book
 	 */
 	private ArrayList <Subject> subjectsList;
 
-
+	/**
+	 *subjects of book
+	 */
+	private String subjectsString;
 
 	/**
 	 * Book constructor store the data.
@@ -96,6 +110,24 @@ public class Book {
 	 * @param domains Gets the domains.
 	 * @param subjects Gets the subjects.
 	 */
+	
+	public Book(int sn, String title, String language, String summary, String tableOfContent, String keywords,
+			String price, String authors, String domains, String subjects) 
+	{
+		
+		this.sn = sn;
+		this.title = title;
+		this.language = language;
+		this.summary = summary;
+		this.tableOfContent = tableOfContent;
+		this.keywords = keywords;
+		this.price = price;
+		this.hide = false;
+		this.authorsString=authors;
+		this.domainsString=domains;
+		this.subjectsString=subjects;
+	}
+	
 	
 	public Book(int sn, String title, String language, String summary, String tableOfContent, String keywords,
 			String price, ArrayList <String> authors, ArrayList <String> domains, ArrayList <String> subjects) 
@@ -298,6 +330,15 @@ public class Book {
 	public ArrayList<Author> getAuthorsList() {
 		return authorsList;
 	}
+	
+	/** Getter for authors
+	 * @author itain
+	 * @return authors string
+	 */
+	public String getAuthorsString() {
+		return authorsString;
+	}
+	
 
 	/** Setter for authors
 	 * @author itain
@@ -314,6 +355,14 @@ public class Book {
 	public void setAuthorsList(ArrayList<Author> authorsList) {
 		this.authorsList = authorsList;
 	}
+	
+	/** Setter for authors
+	 * @author itain
+	 * @param authors string of authors
+	 */
+	public void setAuthors(String authors) {
+		this.authorsString = authors;
+	}
 
 	/** Getter for domains
 	 * @author itain
@@ -321,6 +370,22 @@ public class Book {
 	 */
 	public ArrayList<String> getDomains() {
 		return domains;
+	}
+	
+	/** Getter for domains
+	 * @author itain
+	 * @return domains
+	 */
+	public String getDomainsString() {
+		return domainsString;
+	}
+	
+	/** Setter for domains
+	 * @author itain
+	 * @param domains string of domains
+	 */
+	public void setDomains(String domains) {
+		this.domainsString = domains;
 	}
 
 	/** Setter for domains
@@ -339,6 +404,22 @@ public class Book {
 		return subjects;
 	}
 
+	/** Getter for subjects
+	 * @author itain
+	 * @return subjects
+	 */
+	public String getSubjectsString() {
+		return subjectsString;
+	}
+
+	/** Setter for subjects
+	 * @author itain
+	 * @param subjects string of subjects
+	 */
+	public void setSubjects(String subjects) {
+		this.subjectsString = subjects;
+	}
+	
 	/** Setter for subjects
 	 * @author itain
 	 * @param subjects list of subjects
@@ -381,6 +462,13 @@ public class Book {
 	}
 	
 	
-
+    @Override public boolean equals(Object other) {
+        boolean result = false;
+        if (other instanceof Book) {
+            Book that = (Book) other;
+            result = (this.getSn() == that.getSn());
+        }
+        return result;
+    }
 	
 }

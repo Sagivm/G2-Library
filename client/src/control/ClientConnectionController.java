@@ -3,9 +3,11 @@ package control;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.WriteAbortedException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import Fixtures.WriteAReview;
 import boundry.ClientUI;
 import entity.Author;
 import entity.Domain;
@@ -27,6 +29,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import ocsf.client.AbstractClient;
+import unittests.SearchBookControllerTest;
 
 //TODO: Auto-generated Javadoc
 /**
@@ -341,6 +344,8 @@ public class ClientConnectionController extends AbstractClient{
 			list=replay.getElementsList();
 			SearchBookResultsController.resultList = list;
 			SearchBookResultsRecv.canContinue = true;
+			if(ClientUI.testMode == true)
+				SearchBookControllerTest.getSearchResultsFlag=1;
 			break;
 		}
 		
@@ -450,6 +455,8 @@ public class ClientConnectionController extends AbstractClient{
 			BookManagermentGetAuthorsRecv4.canContinue=true;
 			BookManagermentGetAuthorsRecv5.canContinue=true;
 			BookManagermentGetAuthorsRecv6.canContinue=true;
+			if(ClientUI.testMode == true)
+				SearchBookControllerTest.getAuthorsFlag=1;
 			break;
 		}
 		
@@ -475,6 +482,8 @@ public class ClientConnectionController extends AbstractClient{
 		case GET_DOMAINS: {
 			SearchBookController.domainList = replay.getElementsList();
 			SearchBookDomainsRecv.canContinue = true;
+			if(ClientUI.testMode == true)
+				SearchBookControllerTest.getDomainsFlag=1;
 			break;
 		}
 		//
@@ -601,6 +610,9 @@ public class ClientConnectionController extends AbstractClient{
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
+					
+					WriteReviewController.success = success;
+					WriteAReview.getResultFormServer = true;
 					
 					String currUsername;
 					int flag=0;
