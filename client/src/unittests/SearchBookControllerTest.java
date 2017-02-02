@@ -50,6 +50,7 @@ public class SearchBookControllerTest extends TestCase
 	public static SearchBookResultsController searchBookResult;
 	public static ClientController clientCon;
 	public static ClientConnectionController clientCC;
+	public static ClientUI clientMain;
 	
 
 	
@@ -159,6 +160,7 @@ public class SearchBookControllerTest extends TestCase
 	
 	protected void setUp() throws Exception {
 		super.setUp();
+		clientMain.testMode = true;
 		Login login = new Login("123123123","123123");
 		clientCC = new ClientConnectionController(ClientController.IP_ADDRESS, ClientController.DEFAULT_PORT);
 		clientCon = new ClientController();

@@ -119,7 +119,8 @@ public class BookPageController implements ScreensIF
 	/**
 	 * tab for writing a review page
 	 */
-	@FXML private Tab writeReviewTab;
+	//@FXML private Tab writeReviewTab;
+	@FXML public Tab writeReviewTab;
 	
 	/**
 	 * tab for book's report
@@ -409,7 +410,8 @@ public class BookPageController implements ScreensIF
 				                        	}
 				                        	else
 				                        	{
-				                        		bookTabPane.getTabs().remove(2); // remove write review tab
+				                        		writeReviewTab.setDisable(true);
+				                        		//bookTabPane.getTabs().remove(2); // remove write review tab
 				                        	}
 			                        	}
 									}

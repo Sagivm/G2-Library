@@ -319,25 +319,31 @@ public class SearchBookController implements ScreensIF{
 				if(selectedToggle.contains("AND"))
 				{
 					Message message = prepareSerachBook(ActionType.SEARCH_BOOK_AND,newSearch);
-					try {
+					if(ClientUI.testMode == true)
+					{
+						try {
+							
+							SearchBookControllerTest.clientCC.sendToServer(message);
 						
-						SearchBookControllerTest.clientCC.sendToServer(message);
-					
-					} catch (IOException e) {
-								
-						actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+						} catch (IOException e) {
+									
+							actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+						}
 					}
 				}
 				else if(selectedToggle.contains("OR"))
 				{
 					Message message = prepareSerachBook(ActionType.SEARCH_BOOK_OR,newSearch);
-					try {
+					if(ClientUI.testMode == true)
+					{
+						try {
+							
+							SearchBookControllerTest.clientCC.sendToServer(message);
 						
-						SearchBookControllerTest.clientCC.sendToServer(message);
-					
-					} catch (IOException e) {
-								
-						actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+						} catch (IOException e) {
+									
+							actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+						}
 					}
 				}
 		        

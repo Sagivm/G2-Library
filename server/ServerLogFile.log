@@ -1,11 +1,41 @@
+<<<<<<< HEAD
 פבר 02, 2017 4:55:54 PM control.ServerController writeToLog
+=======
+<<<<<<< HEAD
+פבר 02, 2017 4:10:26 PM control.ServerController writeToLog
+=======
+פבר 02, 2017 9:34:41 AM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp.git
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Connected to database
+<<<<<<< HEAD
 פבר 02, 2017 4:55:54 PM control.ServerController writeToLog
+=======
+<<<<<<< HEAD
+פבר 02, 2017 4:10:26 PM control.ServerController writeToLog
+=======
+פבר 02, 2017 9:34:41 AM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp.git
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Server listening for connections
 on port: 1337
+<<<<<<< HEAD
 פבר 02, 2017 5:04:34 PM control.ServerController writeToLog
+=======
+<<<<<<< HEAD
+פבר 02, 2017 4:10:35 PM control.ServerController writeToLog
+=======
+פבר 02, 2017 9:34:43 AM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp.git
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Login attempt
+<<<<<<< HEAD
 פבר 02, 2017 5:04:37 PM control.ServerController writeToLog
+=======
+<<<<<<< HEAD
+=======
+פבר 02, 2017 9:34:47 AM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Login attempt
 פבר 02, 2017 5:04:40 PM control.ServerController writeToLog
 INFO: Login attempt
@@ -17,9 +47,13 @@ INFO: Login attempt
 INFO: Login attempt
 פבר 02, 2017 5:04:49 PM control.ServerController writeToLog
 INFO: Login attempt
+<<<<<<< HEAD
 פבר 02, 2017 5:04:51 PM control.ServerController writeToLog
 INFO: Login attempt
 פבר 02, 2017 5:04:53 PM control.ServerController writeToLog
 INFO: Login attempt
 פבר 02, 2017 5:04:54 PM control.ServerController writeToLog
 INFO: Search counter of book ID '18' was increased from '7' to '8'
+=======
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp.git
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
