@@ -155,14 +155,19 @@ public class SearchBookControllerTest extends TestCase
 	public static int getDomainsFlag;
 	public static int getSearchResultsFlag;
 	public static int dataFlag;
-
+	public static int connectedFlag;
+	
 	protected void setUp() throws Exception {
 		super.setUp();
 		Login login = new Login("123123123","123123");
 		clientCC = new ClientConnectionController(ClientController.IP_ADDRESS, ClientController.DEFAULT_PORT);
 		clientCon = new ClientController();
+		connectedFlag=0;
 		Message message = clientCon.prepareLogin(ActionType.LOGIN,login);
-
+		/*
+		while(connectedFlag==0)
+			System.out.print("");
+		*/
 		clientCC.sendToServer(message);
 	
 		new JFXPanel();

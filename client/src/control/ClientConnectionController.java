@@ -233,6 +233,7 @@ public class ClientConnectionController extends AbstractClient{
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
+						
 					}
 				});
 			} else {
@@ -252,6 +253,7 @@ public class ClientConnectionController extends AbstractClient{
 			}
 			
 			ClientRecv.canContinue = true;
+			//SearchBookControllerTest.connectedFlag=1;
 			break;
 		}
 		case LOGOUT: {
