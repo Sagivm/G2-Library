@@ -1,31 +1,15 @@
-ינו 28, 2017 8:51:54 PM control.ServerController writeToLog
+פבר 01, 2017 11:48:06 PM control.ServerController writeToLog
 INFO: Connected to database
-ינו 28, 2017 8:51:54 PM control.ServerController writeToLog
+פבר 01, 2017 11:48:06 PM control.ServerController writeToLog
 INFO: Server listening for connections
 on port: 1337
-ינו 28, 2017 8:52:05 PM control.ServerController writeToLog
+פבר 01, 2017 11:48:15 PM control.ServerController writeToLog
 INFO: Login attempt
-ינו 28, 2017 8:52:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '22' was increased from '8' to '9'
-ינו 28, 2017 8:52:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '9' to '10'
-ינו 28, 2017 8:52:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '4' to '5'
-ינו 28, 2017 8:52:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '26' was increased from '10' to '11'
-ינו 28, 2017 8:52:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '5' to '6'
-ינו 28, 2017 8:52:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '30' was increased from '5' to '6'
-ינו 28, 2017 8:52:09 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '6' to '7'
-ינו 28, 2017 8:52:09 PM control.ServerController writeToLog
-INFO: Search counter of book ID '23' was increased from '6' to '7'
-ינו 28, 2017 8:52:09 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '5' to '6'
-ינו 28, 2017 8:52:09 PM control.ServerController writeToLog
-INFO: Search counter of book ID '25' was increased from '5' to '6'
-ינו 28, 2017 8:52:09 PM control.ServerController writeToLog
-INFO: Search counter of book ID '24' was increased from '8' to '9'
-ינו 28, 2017 8:52:09 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '5' to '6'
+פבר 01, 2017 11:48:25 PM control.ServerController writeToLog
+INFO: Search counter of book ID '23' was increased from '0' to '1'
+פבר 01, 2017 11:48:26 PM control.ServerController writeToLog
+INFO: Search counter of book ID '24' was increased from '0' to '1'
+פבר 01, 2017 11:49:26 PM control.ServerController writeToLog
+INFO: Search counter of book ID '23' was increased from '1' to '2'
+פבר 01, 2017 11:49:26 PM control.ServerController writeToLog
+INFO: Search counter of book ID '24' was increased from '1' to '2'
