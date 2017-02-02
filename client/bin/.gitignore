@@ -1,12 +1,10 @@
-<<<<<<< HEAD
+/FitResults/
+/FitTests/
 /Fixtures/
-=======
->>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp.git
+/Tests/
 /boundry/
 /control/
 /entity/
+/img/
 /interfaces/
 /unittests/
-/Tests/
-/FitTests/
-/FitResults/
