@@ -127,8 +127,8 @@ public class RemoveBookTest extends TestCase {
 			clientCon = new ClientController();
 			Message message = clientCon.prepareLogin(ActionType.LOGIN,login);
 			clientCC.sendToServer(message);
-			while(connectedFlag==false)
-				System.out.print("");
+//			while(connectedFlag==false)
+//				System.out.print("");
 			new JFXPanel();
 			RemoveBookTest.bookManagementController =new BookManagementController();
 			this.BooksTableView=new TableView<>();
@@ -163,7 +163,7 @@ public class RemoveBookTest extends TestCase {
 		 System.out.println("sa");
 		 BookManagementController.PropertyBook selectedItem = new BookManagementController.PropertyBook("19","Out of Order","","","","","","","");
 		 MergeTestSubjects();
-		 bookManagementController.initialize();
+		 //bookManagementController.initialize();
 		 bookManagementController.BooksTableView.getSelectionModel().select(selectedItem);
 		 bookManagementController.PressedDelete(null);
 		 while(!bookRemovedFlag)
