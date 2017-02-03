@@ -268,7 +268,7 @@ public class HomepageUserController implements ScreensIF {
      * Print the name of the user on the screen.
      */
     @FXML
-    private void initialize() {
+    public void initialize() {
 		if (page != null)
 		 {
 			try {
