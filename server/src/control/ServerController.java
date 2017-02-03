@@ -336,7 +336,6 @@ public class ServerController extends AbstractServer {
 						
 						replay = new Replay(ActionType.LOGIN, true, action, elementsList);
 						connectedList.add(login);
-						System.out.println("server");
 					} else {
 						replay = new Replay(ActionType.LOGIN, false, GeneralMessages.USER_LOGGED_IN_FAILED);
 						//System.out.println(replay.getSucess());
@@ -1500,7 +1499,7 @@ public class ServerController extends AbstractServer {
 		        }
 
 				//stmt.executeUpdate("UPDATE books SET hide="+hide+" WHERE sn="+sn);
-				replay = new Replay(ActionType.HIDE_BOOK, true);
+				replay = new Replay(ActionType.ADD_BOOK, true);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1610,7 +1609,7 @@ public class ServerController extends AbstractServer {
 		        }
 
 				//stmt.executeUpdate("UPDATE books SET hide="+hide+" WHERE sn="+sn);
-				replay = new Replay(ActionType.HIDE_BOOK, true);
+				replay = new Replay(ActionType.EDIT_BOOK, true);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

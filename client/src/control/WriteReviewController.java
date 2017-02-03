@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import com.sun.javafx.image.impl.ByteIndexed.Getter;
 
+import Fixtures.WriteAReview;
+import boundry.ClientUI;
 import entity.Book;
 import entity.GeneralMessages;
 import entity.Message;
@@ -138,7 +140,10 @@ public class WriteReviewController implements ScreensIF {
 		try{
 			if (txtAreaReview.getText().length() == 0)
 			{
-				actionOnError(ActionType.CONTINUE,GeneralMessages.EMPTY_REVIEW);
+				if(ClientUI.testMode == true)
+					WriteAReview.getResult = true;
+				else
+					actionOnError(ActionType.CONTINUE,GeneralMessages.EMPTY_REVIEW);
 				return;
 			}
 			ArrayList<String> review = new ArrayList<>();

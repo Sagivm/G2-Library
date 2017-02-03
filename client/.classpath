@@ -8,10 +8,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/common"/>
 	<classpathentry kind="lib" path="/server/drivers/mysql-connector-java-3.1.11-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="D:/לימודים/סמסטר ז/מעבדה בהנדסת תוכנה/מעבדות/lab10_done/fitlibraryRunner.jar"/>
-=======
-	<classpathentry kind="lib" path="C:/Users/givi/Desktop/fitlibraryRunner.jar"/>
->>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
+	<classpathentry kind="lib" path="C:/Users/אור/Desktop/Documents/לימודים/סמסטר ז/מעבדה בהנדסת תכנה/מעבדות/מעבדה10/Lab_04-FITpro/CoffeeMaker_Student - lab/fitlibraryRunner.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

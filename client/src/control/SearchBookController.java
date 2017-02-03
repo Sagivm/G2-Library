@@ -272,6 +272,8 @@ public class SearchBookController implements ScreensIF{
 	 */
 	@FXML
 	public void searchButtonPressed(ActionEvent event) throws IOException {
+		int i;
+
         Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -294,28 +296,29 @@ public class SearchBookController implements ScreensIF{
 				ArrayList<String> domainList= new ArrayList<String>();
 		        for(String s : selectedDomains)
 		        	domainList.add(s);
+		        
 		        String keyWords=keywTextArea.getText().trim();
 				if (title.equals("") && authorList.isEmpty() &&	language.equals("") && summary.equals("") && toc.equals("") && domainList.isEmpty() && keyWords.equals(""))
 				{
-					if(ClientUI.testMode == false)
-						actionOnError(ActionType.CONTINUE,GeneralMessages.EMPTY_FIELDS);
-					if(ClientUI.testMode == true)
-					{
-						SearchBookControllerTest.emptyFieldsFlag=true;
-						SearchBookControllerTest.getEmptyFieldAnswerFlag=1;
-					}
+					 if(ClientUI.testMode == false)
+	                        actionOnError(ActionType.CONTINUE,GeneralMessages.EMPTY_FIELDS);
+	                    if(ClientUI.testMode == true)
+	                    {
+	                        SearchBookControllerTest.emptyFieldsFlag=true;
+	                        SearchBookControllerTest.getEmptyFieldAnswerFlag=1;
+	                    }
 					return;
 				}
 				
 				if (title.contains("^") ||  summary.contains("^") || toc.contains("^") || keyWords.contains("^"))
 				{
 					if(ClientUI.testMode == false)
-						actionOnError(ActionType.CONTINUE,GeneralMessages.ILLEGAL_CHARACTER);
-					if(ClientUI.testMode == true)
-					{
-						SearchBookControllerTest.SpecialCharacterFlag=true;
-						SearchBookControllerTest.getSpecialCharacterAnswerFlag=1;
-					}
+                        actionOnError(ActionType.CONTINUE,GeneralMessages.ILLEGAL_CHARACTER);
+                    if(ClientUI.testMode == true)
+                    {
+                        SearchBookControllerTest.SpecialCharacterFlag=true;
+                        SearchBookControllerTest.getSpecialCharacterAnswerFlag=1;
+                    }
 					return;
 				}
 				
@@ -328,41 +331,31 @@ public class SearchBookController implements ScreensIF{
 				if(selectedToggle.contains("AND"))
 				{
 					Message message = prepareSerachBook(ActionType.SEARCH_BOOK_AND,newSearch);
-					if(ClientUI.testMode == true)
-					{
-						try {
-							
+					try {
+						if(ClientUI.testMode == true)
 							SearchBookControllerTest.clientCC.sendToServer(message);
-						
-						} catch (IOException e) {
-									
-							actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-						}
-
+						else
+							ClientController.clientConnectionController.sendToServer(message);
+					
+					} catch (IOException e) {
+								
+						actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 					}
-					else
-						ClientController.clientConnectionController.sendToServer(message);
 				}
 				else if(selectedToggle.contains("OR"))
 				{
 					Message message = prepareSerachBook(ActionType.SEARCH_BOOK_OR,newSearch);
-					
-					if(ClientUI.testMode == true)
-					{
-						try {
-							
+					try {
+						if(ClientUI.testMode == true)
 							SearchBookControllerTest.clientCC.sendToServer(message);
-						
-						} catch (IOException e) {
-									
-							actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-						}
+						else
+							ClientController.clientConnectionController.sendToServer(message);
+					
+					} catch (IOException e) {
+								
+						actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 					}
-					else
-						ClientController.clientConnectionController.sendToServer(message);
 				}
-		        
-		        
 				} catch (Exception e) {
 					e.printStackTrace();		
 					}

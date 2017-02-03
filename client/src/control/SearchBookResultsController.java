@@ -191,7 +191,7 @@ public class SearchBookResultsController implements ScreensIF{
 								SearchBookResult book = new SearchBookResult(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5], author, subject, domain, Float.toString(price));
 								data.add(book);
 							}
-							if(ClientUI.testMode==true)
+							if(ClientUI.testMode == true)
 								SearchBookControllerTest.dataFlag=1;
 							
 							

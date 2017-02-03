@@ -33,11 +33,13 @@ public class WriteAReview extends ActionFixture{
 	
 	public static boolean getResultFormServer = false;
 	
+	public static boolean getResult = false;
+	
 	public TextArea txtAreaReview;
 	
-	public Button btnSubmit;
-	
 	public Tab writeReviewTab;
+	
+	public String textToCompare;
 	
 	WriteReviewController wr;
 	User user;
@@ -45,12 +47,15 @@ public class WriteAReview extends ActionFixture{
 	
 	public void setUP() throws Exception 
 	{
+		clientMain = new ClientUI();
+		clientMain.setTypeOfUser("User");
+		clientMain.testMode = true;
 		Login login = new Login("302659743","12345");
 		
 		clientCC = new ClientConnectionController(ClientController.IP_ADDRESS, ClientController.DEFAULT_PORT);
 		clientCon = new ClientController();
 		Message message = clientCon.prepareLogin(ActionType.LOGIN,login);
-		
+
 		clientCC.sendToServer(message);
 		
 		user = new User("Or","Koren","302659743","12345","PerBook","Standard");
@@ -58,27 +63,38 @@ public class WriteAReview extends ActionFixture{
 		userMain.setConnectedUser(user);
 		book = new SearchBookResult("23", "Steve Jobs", "English", "Summary", "TOC", "key1,key2", "Walter Isaacson", "Biography", "Computers", "34.9");
 		wr.book = book;
-		clientMain = new ClientUI();
-		clientMain.setTypeOfUser("User");
 		
 		new JFXPanel();	//BookPageController
 		bookPage = new BookPageController();
 		writeReviewTab = new Tab();
-		//bookPage.writeReviewTab = writeReviewTab;
 		bookPage.searchedBookPage = book;
-		
 		
 		new JFXPanel();	//WriteReviewController
 		wr = new WriteReviewController();
 		txtAreaReview = new TextArea();
-		btnSubmit = new Button();
 		
 	}
 	
 	public boolean checkWriteTab()
 	{
-		writeReviewTab = bookPage.writeReviewTab;
-		if(writeReviewTab.isDisabled() == true)
+		if(bookPage.writeReviewTab.isDisabled() == true)
+			return true;
+		return false;
+	}
+	
+	public void pressClearButton() throws IOException
+	{
+		wr.ClearkButtonPressed(null);
+	}
+	
+	public void setTextToCompare(String text)
+	{
+		textToCompare = text;
+	}
+	
+	public boolean compareText()
+	{
+		if(wr.txtAreaReview.getText().equals(textToCompare))
 			return true;
 		return false;
 	}
@@ -87,24 +103,24 @@ public class WriteAReview extends ActionFixture{
 	{
 		txtAreaReview.setText(str);
 		wr.txtAreaReview = txtAreaReview;
-		//txtAreaReview.setText(str);
 	}
 	
 	public void sendReview() throws IOException
 	{
-		//wr.submitButtonPressed(event);
 		wr.submitButtonPressed(null);
-		//wr.btnSubmit.fire();
-		//btnSubmit.fire();
 	}
 	
-	public boolean testReview() throws InterruptedException
+	public boolean testSendEmptyReview() throws InterruptedException
 	{
-		//System.out.println(writeReviewTab.isDisabled());
-		//if(bookPage.writeReviewTab.isDisabled() == true)
-			//return false;
-		
-		//TimeUnit.SECONDS.sleep(1);
+		while(getResult == false)
+		{
+			System.out.print("");
+		}
+		return wr.success;
+	}
+	
+	public boolean testSendReview() throws InterruptedException
+	{
 		while(getResultFormServer == false)
 		{
 			System.out.print("");

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import com.sun.javafx.geom.BaseBounds.BoundsType;
-
+import Fixtures.AddBook;
 import Fixtures.WriteAReview;
 import boundry.ClientUI;
 import entity.Author;
@@ -31,8 +31,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import ocsf.client.AbstractClient;
-import unittests.RemoveBookTest;
 import unittests.SearchBookControllerTest;
+import unittests.RemoveBookTest;
 
 //TODO: Auto-generated Javadoc
 /**
@@ -184,6 +184,7 @@ public class ClientConnectionController extends AbstractClient{
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
+
 						ScreenController screenController = new ScreenController();
 						try {
 							int action = replay.getAction();
@@ -235,14 +236,14 @@ public class ClientConnectionController extends AbstractClient{
 							else if (action == 3)
 								clientMain.setTypeOfUser("Manager");
 							centerWindow(screenController);
-							if(boundry.ClientUI.testMode==true)
-							{
-								RemoveBookTest.connectedFlag=true;
-							}
+							 if(boundry.ClientUI.testMode==true)
+	                            {
+	                                RemoveBookTest.connectedFlag=true;
+	                            }
+
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-						
 					}
 				});
 			} else {
@@ -252,8 +253,9 @@ public class ClientConnectionController extends AbstractClient{
 
 						ScreenController screenController = new ScreenController();
 						try {
-								if(ClientUI.testMode == false)
-									actionToDisplay(ActionType.CONTINUE, replay.getGnrlMsg().toString());
+							if(ClientUI.testMode == false)
+								actionToDisplay(ActionType.CONTINUE, replay.getGnrlMsg().toString());
+
 						} catch (Exception e) {
 							e.printStackTrace();
 						} 
@@ -263,7 +265,7 @@ public class ClientConnectionController extends AbstractClient{
 			
 			ClientRecv.canContinue = true;
 			if(ClientUI.testMode == true)
-				SearchBookControllerTest.connectedFlag=1;
+                SearchBookControllerTest.connectedFlag=1;
 			break;
 		}
 		case LOGOUT: {
@@ -291,7 +293,7 @@ public class ClientConnectionController extends AbstractClient{
 			HomepageUserRecv.canContinue = true;
 			LogoutRecv.canContinue = true;
 			if(ClientUI.testMode == true)
-				SearchBookControllerTest.disconnectedFlag=1;
+                SearchBookControllerTest.disconnectedFlag=1;
 			break;
 		}
 		case ACCOUNTTYPEREQ: {
@@ -368,7 +370,7 @@ public class ClientConnectionController extends AbstractClient{
 			SearchBookResultsController.resultList = list;
 			SearchBookResultsRecv.canContinue = true;
 			if(ClientUI.testMode == true)
-				SearchBookControllerTest.getSearchResultsFlag=1;
+                SearchBookControllerTest.getSearchResultsFlag=1;
 			break;
 		}
 		
@@ -626,7 +628,8 @@ public class ClientConnectionController extends AbstractClient{
 				public void run() {
 					
 					WriteReviewController.success = success;
-					WriteAReview.getResultFormServer = true;
+					if(ClientUI.testMode == true)
+						WriteAReview.getResultFormServer = true;
 					
 					String currUsername;
 					int flag=0;
@@ -668,6 +671,11 @@ public class ClientConnectionController extends AbstractClient{
 			});
 			break;
 
+		}
+		
+		case ADD_BOOK: {
+					BookManagementController.success = success;
+					AddBook.getResultFormServer = true;
 		}
 		
 		case GET_BOOK_LIST: {
@@ -751,12 +759,13 @@ public class ClientConnectionController extends AbstractClient{
 				MyBooksController.data = null;
 			MyBooksRecv.canContinue = true;
 			break;
-		}
-		case  DELETE_BOOK:
-		{
-			//Acknowledgment for testing
-			if(boundry.ClientUI.testMode==true)
-				RemoveBookTest.bookRemovedFlag=true;
+		 }
+        case  DELETE_BOOK:
+        {
+            //Acknowledgment for testing
+            if(boundry.ClientUI.testMode==true)
+                RemoveBookTest.bookRemovedFlag=true;
+
 		}
 		}
 

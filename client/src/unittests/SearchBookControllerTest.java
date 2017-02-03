@@ -6,39 +6,34 @@ import static org.hamcrest.core.IsNot.not;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-
+import org.junit.Before;
 import boundry.ClientUI;
 import control.ClientConnectionController;
 import control.ClientController;
-import control.HomepageUserController;
-import control.LogoutController;
 import control.SearchBookController;
 import control.SearchBookResultsController;
 import entity.Author;
 import entity.Book;
-
+import control.HomepageUserController;
+import control.LogoutController;
+import entity.User;
 import entity.Login;
 import entity.Message;
-
+import javafx.scene.control.Alert;
 import entity.SearchBookResult;
-import entity.User;
 import enums.ActionType;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -49,7 +44,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import junit.framework.TestCase;
-
+import javafx.scene.control.MultipleSelectionModel;
 
 public class SearchBookControllerTest extends TestCase
 {
@@ -164,30 +159,31 @@ public class SearchBookControllerTest extends TestCase
 	public static int getSearchResultsFlag;
 	public static int dataFlag;
 	public static int connectedFlag;
-	public static int disconnectedFlag;
-	public static int getEmptyFieldAnswerFlag;
-	public static boolean emptyFieldsFlag;
-	public static int getSpecialCharacterAnswerFlag;
-	public static boolean SpecialCharacterFlag;
-	Login login;
-	User user;
-	
-	@Before
+    public static int disconnectedFlag;
+    public static int getEmptyFieldAnswerFlag;
+    public static boolean emptyFieldsFlag;
+    public static int getSpecialCharacterAnswerFlag;
+    public static boolean SpecialCharacterFlag;
+    Login login;
+    User user;  
+    
+    @Before
+
 	protected void setUp() throws Exception {
 		super.setUp();
 		clientMain.testMode = true;
-		login = new Login("302659743","12345");
+		Login login = new Login("123123123","123123");
 		clientCC = new ClientConnectionController(ClientController.IP_ADDRESS, ClientController.DEFAULT_PORT);
 		clientCon = new ClientController();
 		connectedFlag=0;
-		HomepageUserController userMain = new HomepageUserController();
+        HomepageUserController userMain = new HomepageUserController();
 		Message message = clientCon.prepareLogin(ActionType.LOGIN,login);
-		clientCC.sendToServer(message);
 
-		//userMain.setConnectedUser(user);
-		//while(connectedFlag==0)
-			//System.out.print("");
+		clientCC.sendToServer(message);
 		
+		//userMain.setConnectedUser(user);
+        //while(connectedFlag==0)
+            //System.out.print("");
 	
 		new JFXPanel();
 		searchBook = new SearchBookController();
@@ -226,10 +222,13 @@ public class SearchBookControllerTest extends TestCase
 
 		Message msg1 = new Message(ActionType.GET_AUTHORS, elementList);
 		clientCC.sendToServer(msg1);
+
+
+		authorListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		while(getAuthorsFlag==0)
 			System.out.print("");
 		getAuthorsFlag=0;
-		authorListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        authorListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		for(int i=0 ; i< SearchBookController.authorList.size();i++)
 			names.add(i, "("+SearchBookController.authorList.get(i).getId()+")"+"\t"+SearchBookController.authorList.get(i).getFirstname()+" "+SearchBookController.authorList.get(i).getLastname());
 		ObservableList<String> items = FXCollections.observableArrayList(names);
@@ -254,456 +253,457 @@ public class SearchBookControllerTest extends TestCase
 		
 		
 	}
-	
-	/*
-	protected void tearDown() throws Exception{
-		disconnectedFlag=0;
-		LogoutController logoutCon = new LogoutController();
-		Message msg = logoutCon.prepareLogout(ActionType.LOGOUT, login);
-		try {
-			clientCC.sendToServer(msg);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		while(disconnectedFlag==0)
-			System.out.print("");
-	}
-	*/
+    
+    /*
+    protected void tearDown() throws Exception{
+        disconnectedFlag=0;
+        LogoutController logoutCon = new LogoutController();
+        Message msg = logoutCon.prepareLogout(ActionType.LOGOUT, login);
+        try {
+            clientCC.sendToServer(msg);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        while(disconnectedFlag==0)
+            System.out.print("");
+    }
+    */
+
 
 	
 	/* test AND search of author and language */
 	@Test
 	public void testAndSearch() {
 
-		Book book1 = new Book(27,"", "", "", "", "","","","", "");
-		Book book2 = new Book(28,"", "", "", "", "","","","", "");
-		Book book3 = new Book(29,"", "", "", "", "","","","", "");
-		Book book4 = new Book(30,"", "", "", "", "","","","", "");
-		ArrayList<Book> expected = new ArrayList<Book>();
-		expected.add(book1); expected.add(book4); expected.add(book2); expected.add(book3); 
-		
-		
-		authorListView.getSelectionModel().select(10);
-		languageComboBox.getSelectionModel().select(2);
-		setUpSearchAndResultControllers();
-		
-		getSearchResultsFlag=0;
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        Book book1 = new Book(27,"", "", "", "", "","","","", "");
+        Book book2 = new Book(28,"", "", "", "", "","","","", "");
+        Book book3 = new Book(29,"", "", "", "", "","","","", "");
+        Book book4 = new Book(30,"", "", "", "", "","","","", "");
+        ArrayList<Book> expected = new ArrayList<Book>();
+        expected.add(book1); expected.add(book4); expected.add(book2); expected.add(book3); 
+        
+        
+        authorListView.getSelectionModel().select(10);
+        languageComboBox.getSelectionModel().select(2);
+        setUpSearchAndResultControllers();
+        
+        getSearchResultsFlag=0;
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+ 
+        while(getSearchResultsFlag==0)
+            System.out.print("");
+        getSearchResultsFlag=0;
+        ArrayList<Book> result = getSearchResults();
+        if(result.size()==expected.size())
+            for(int i=0;i<result.size();i++)
+                assertEquals(result.get(i),expected.get(i));
+        
+        
+    }
+    
+ 
+    
+ 
+    /* test OR search of 2 authors */
+    public void testOrSearch() {
+        Book book1 = new Book(18,"", "", "", "", "","","","", "");
+        Book book2 = new Book(27,"", "", "", "", "","","","", "");
+        Book book3 = new Book(28,"", "", "", "", "","","","", "");
+        Book book4 = new Book(29,"", "", "", "", "","","","", "");
+        Book book5 = new Book(30,"", "", "", "", "","","","", "");
+        ArrayList<Book> expected = new ArrayList<Book>();
+        expected.add(book1); expected.add(book2); expected.add(book5); expected.add(book3); expected.add(book4); 
+        
+        searchGroup.selectToggle(orRadioButton);
+        authorListView.getSelectionModel().select(0);
+        authorListView.getSelectionModel().select(10);
+        
+        setUpSearchAndResultControllers();
+        getSearchResultsFlag=0;
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        /*
+        while(getSearchResultsFlag==0)
+            System.out.print(""); 
+            */
+        getSearchResultsFlag=0;
+        ArrayList<Book> result = getSearchResults();
+        if(result.size()==expected.size())
+            for(int i=0;i<result.size();i++)
+                assertEquals(result.get(i),expected.get(i));
+    }
+    
+    /* test a search by title */
+    public void testSearchByTitle() {
+        Book book1 = new Book(18,"", "", "", "", "","","","", "");
+        ArrayList<Book> expected = new ArrayList<Book>();
+        expected.add(book1);
+        
+        titleTextField.setText("harry");
+        setUpSearchAndResultControllers();
+        
+        getSearchResultsFlag=0;
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+ 
+        while(getSearchResultsFlag==0)
+            System.out.print(""); 
+        getSearchResultsFlag=0;
+        ArrayList<Book> result = getSearchResults();
+        if(result.size()==expected.size())  
+            for(int i=0;i<result.size();i++)
+                assertEquals(result.get(i),expected.get(i));
+    }
+    
+    /* test a search by language */
+    public void testSearchByLanguage() {
+        Book book1 = new Book(19,"", "", "", "", "","","","", "");
+        ArrayList<Book> expected = new ArrayList<Book>();
+        expected.add(book1);
+        
+        languageComboBox.getSelectionModel().select(3);
+        setUpSearchAndResultControllers();
+        
+        getSearchResultsFlag=0;
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+ 
+        while(getSearchResultsFlag==0)
+            System.out.print(""); 
+        getSearchResultsFlag=0;
+        ArrayList<Book> result = getSearchResults();
+        if(result.size()==expected.size())  
+            for(int i=0;i<result.size();i++)
+                assertEquals(result.get(i),expected.get(i));
+    }
+    
+    /* test a search by summary */
+    public void testSearchBySummary() {
+        Book book1 = new Book(21,"", "", "", "", "","","","", "");
+        ArrayList<Book> expected = new ArrayList<Book>();
+        expected.add(book1);
+        
+        summaryTextArea.setText("algebra");
+        setUpSearchAndResultControllers();
+        
+        getSearchResultsFlag=0;
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+ 
+        while(getSearchResultsFlag==0)
+            System.out.print(""); 
+        getSearchResultsFlag=0;
+        ArrayList<Book> result = getSearchResults();
+        if(result.size()==expected.size())  
+            for(int i=0;i<result.size();i++)
+                assertEquals(result.get(i),expected.get(i));
+    }
+    
+    /* test a search by Table Of Contents */
+    public void testSearchByTableOfContents() {
+        Book book1 = new Book(19,"", "", "", "", "","","","", "");
+        Book book2 = new Book(25,"", "", "", "", "","","","", "");
+        Book book3 = new Book(21,"", "", "", "", "","","","", "");
+        ArrayList<Book> expected = new ArrayList<Book>();
+        expected.add(book3); expected.add(book1); expected.add(book2);
+        
+        tocTextArea.setText("introduction");
+        setUpSearchAndResultControllers();
+        
+        getSearchResultsFlag=0;
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+ 
+        while(getSearchResultsFlag==0)
+            System.out.print(""); 
+        getSearchResultsFlag=0;
+        ArrayList<Book> result = getSearchResults();
+        if(result.size()==expected.size())  
+            for(int i=0;i<result.size();i++)
+                assertEquals(result.get(i),expected.get(i));
+    }
+    
+    /* test a search by key words */
+    public void testSearchByKeyWords() {
+        Book book1 = new Book(27,"", "", "", "", "","","","", "");
+        Book book2 = new Book(28,"", "", "", "", "","","","", "");
+        Book book3 = new Book(29,"", "", "", "", "","","","", "");
+        ArrayList<Book> expected = new ArrayList<Book>();
+        expected.add(book1); expected.add(book2); expected.add(book3);
+        
+        keywTextArea.setText("travel, europe");
+        setUpSearchAndResultControllers();
+        
+        getSearchResultsFlag=0;
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+ 
+        while(getSearchResultsFlag==0)
+            System.out.print(""); 
+        getSearchResultsFlag=0;
+        ArrayList<Book> result = getSearchResults();
+        if(result.size()==expected.size())  
+            for(int i=0;i<result.size();i++)
+                assertEquals(result.get(i),expected.get(i));
+    }
+    
+    /* test a search by a single author */
+    public void testSearchBySingleAuthor() {
+        Book book1 = new Book(26,"", "", "", "", "","","","", "");
+        ArrayList<Book> expected = new ArrayList<Book>();
+        expected.add(book1);
+        
+        authorListView.getSelectionModel().select(8);
+        setUpSearchAndResultControllers();
+        
+        getSearchResultsFlag=0;
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+ 
+        while(getSearchResultsFlag==0)
+            System.out.print(""); 
+        getSearchResultsFlag=0;
+        ArrayList<Book> result = getSearchResults();
+        if(result.size()==expected.size())  
+            for(int i=0;i<result.size();i++)
+                assertEquals(result.get(i),expected.get(i));
+    }
+    
+    /* test a search by multiple authors */
+    public void testSearchByMultipleAuthors() {
+        Book book1 = new Book(18,"", "", "", "", "","","","", "");
+        Book book2 = new Book(19,"", "", "", "", "","","","", "");
+        ArrayList<Book> expected = new ArrayList<Book>();
+        expected.add(book1); expected.add(book2);
+        
+        authorListView.getSelectionModel().select(0);
+        authorListView.getSelectionModel().select(1);
+        searchGroup.selectToggle(orRadioButton);
+        
+        setUpSearchAndResultControllers();
+        
+        getSearchResultsFlag=0;
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+ 
+        while(getSearchResultsFlag==0)
+            System.out.print(""); 
+        getSearchResultsFlag=0;
+        ArrayList<Book> result = getSearchResults();
+        if(result.size()==expected.size())  
+            for(int i=0;i<result.size();i++)
+                assertEquals(result.get(i),expected.get(i));
+    }
+    
+    /* test a search by a single domain */
+    public void testSearchBySingleDomain() {
+        Book book1 = new Book(18,"", "", "", "", "","","","", "");
+        Book book2 = new Book(19,"", "", "", "", "","","","", "");
+        ArrayList<Book> expected = new ArrayList<Book>();
+        expected.add(book1); expected.add(book2);
+        
+        authorListView.getSelectionModel().select(0);
+        authorListView.getSelectionModel().select(1);
+        searchGroup.selectToggle(orRadioButton);
+        
+        setUpSearchAndResultControllers();
+        
+        getSearchResultsFlag=0;
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+ 
+        while(getSearchResultsFlag==0)
+            System.out.print(""); 
+        getSearchResultsFlag=0;
+        ArrayList<Book> result = getSearchResults();
+        if(result.size()==expected.size())  
+            for(int i=0;i<result.size();i++)
+                assertEquals(result.get(i),expected.get(i));
+    }
+    
+    /* test a search by multiple domains */
+    public void testSearchByMultipleDomain() {
+        Book book1 = new Book(18,"", "", "", "", "","","","", "");
+        Book book2 = new Book(22,"", "", "", "", "","","","", "");
+        Book book3 = new Book(19,"", "", "", "", "","","","", "");
+        ArrayList<Book> expected = new ArrayList<Book>();
+        expected.add(book2); expected.add(book1);  expected.add(book3);
+        
+        domainListView.getSelectionModel().select(0); //magic
+        domainListView.getSelectionModel().select(1); //mystery
+        searchGroup.selectToggle(orRadioButton);
+        
+        setUpSearchAndResultControllers();
+        getSearchResultsFlag=0;
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+ 
+        while(getSearchResultsFlag==0)
+            System.out.print(""); 
+        getSearchResultsFlag=0;
+        ArrayList<Book> result = getSearchResults();
+        if(result.size()==expected.size())  
+            for(int i=0;i<result.size();i++)
+                assertEquals(result.get(i),expected.get(i));
+    }
+    
+    /* test empty fields case */
+    public void testEmptyFields() {
+        emptyFieldsFlag=false;
+        boolean expected=true;
+        setUpSearchAndResultControllers();
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        while(getEmptyFieldAnswerFlag==0)
+            System.out.print("");
+            
+        getEmptyFieldAnswerFlag=0;
+        boolean result=emptyFieldsFlag;
+        assertEquals(expected, result);
+    }
+    
+    /* test special character '^' case */
+    public void testSpecialCharacter() {
+        SpecialCharacterFlag=false;
+        boolean expected=true;
+        
+        titleTextField.setText("beit^ar");
+        setUpSearchAndResultControllers();
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        while(getSpecialCharacterAnswerFlag==0)
+            System.out.print("");
+            
+        getEmptyFieldAnswerFlag=0;
+        boolean result=SpecialCharacterFlag;
+        assertEquals(expected, result);
+    }
+    
+    
+    /* no result case */
+    public void testNoResult() {
+        ArrayList<Book> expected = new ArrayList<Book>();
+        
+        titleTextField.setText("beitar");
+        setUpSearchAndResultControllers();
+        
+        getSearchResultsFlag=0;
+        try {
+            searchBook.searchButtonPressed(null);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+ 
+        while(getSearchResultsFlag==0)
+            System.out.print(""); 
+        getSearchResultsFlag=0;
+        ArrayList<Book> result = getSearchResults();
+        if(result.size()==expected.size())  
+            for(int i=0;i<result.size();i++)
+                assertEquals(result.get(i),expected.get(i));
+    }
 
-		while(getSearchResultsFlag==0)
-			System.out.print("");
-		getSearchResultsFlag=0;
-		ArrayList<Book> result = getSearchResults();
-		if(result.size()==expected.size())
-			for(int i=0;i<result.size();i++)
-				assertEquals(result.get(i),expected.get(i));
-		
-		
-	}
-	
+    private void setUpSearchAndResultControllers() {
+        searchBook.titleTextField=titleTextField;
+        searchBook.authorListView=authorListView;
+        searchBook.languageComboBox = languageComboBox;
+        searchBook.summaryTextArea = summaryTextArea;
+        searchBook.tocTextArea = tocTextArea;
+        searchBook.domainListView = domainListView;
+        searchBook.keywTextArea = keywTextArea;
+        searchBook.searchButton = searchButton;
+        searchBook.clearButton = clearButton;
+        searchBook.andRadioButton = andRadioButton;
+        searchBook.orRadioButton = orRadioButton;
+        searchBook.searchGroup = searchGroup;
+        
+        
+        searchBookResult.resultsTable=resultsTable;
+        searchBookResult.bookCol=bookCol;
+        searchBookResult.authorsCol=authorsCol;
+        searchBookResult.languageCol=languageCol;
+        searchBookResult.domainsCol=domainsCol;
+        searchBookResult.subjectsCol=subjectsCol;
+        searchBookResult.bookPageCol=bookPageCol;
 
-	
-
-	/* test OR search of 2 authors */
-	public void testOrSearch() {
-		Book book1 = new Book(18,"", "", "", "", "","","","", "");
-		Book book2 = new Book(27,"", "", "", "", "","","","", "");
-		Book book3 = new Book(28,"", "", "", "", "","","","", "");
-		Book book4 = new Book(29,"", "", "", "", "","","","", "");
-		Book book5 = new Book(30,"", "", "", "", "","","","", "");
-		ArrayList<Book> expected = new ArrayList<Book>();
-		expected.add(book1); expected.add(book2); expected.add(book5); expected.add(book3); expected.add(book4); 
-		
-		searchGroup.selectToggle(orRadioButton);
-		authorListView.getSelectionModel().select(0);
-		authorListView.getSelectionModel().select(10);
-		
-		setUpSearchAndResultControllers();
-		getSearchResultsFlag=0;
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		/*
-		while(getSearchResultsFlag==0)
-			System.out.print("");	
-			*/
-		getSearchResultsFlag=0;
-		ArrayList<Book> result = getSearchResults();
-		if(result.size()==expected.size())
-			for(int i=0;i<result.size();i++)
-				assertEquals(result.get(i),expected.get(i));
-	}
-	
-	/* test a search by title */
-	public void testSearchByTitle() {
-		Book book1 = new Book(18,"", "", "", "", "","","","", "");
-		ArrayList<Book> expected = new ArrayList<Book>();
-		expected.add(book1);
-		
-		titleTextField.setText("harry");
-		setUpSearchAndResultControllers();
-		
-		getSearchResultsFlag=0;
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		while(getSearchResultsFlag==0)
-			System.out.print("");	
-		getSearchResultsFlag=0;
-		ArrayList<Book> result = getSearchResults();
-		if(result.size()==expected.size())	
-			for(int i=0;i<result.size();i++)
-				assertEquals(result.get(i),expected.get(i));
-	}
-	
-	/* test a search by language */
-	public void testSearchByLanguage() {
-		Book book1 = new Book(19,"", "", "", "", "","","","", "");
-		ArrayList<Book> expected = new ArrayList<Book>();
-		expected.add(book1);
-		
-		languageComboBox.getSelectionModel().select(3);
-		setUpSearchAndResultControllers();
-		
-		getSearchResultsFlag=0;
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		while(getSearchResultsFlag==0)
-			System.out.print("");	
-		getSearchResultsFlag=0;
-		ArrayList<Book> result = getSearchResults();
-		if(result.size()==expected.size())	
-			for(int i=0;i<result.size();i++)
-				assertEquals(result.get(i),expected.get(i));
-	}
-	
-	/* test a search by summary */
-	public void testSearchBySummary() {
-		Book book1 = new Book(21,"", "", "", "", "","","","", "");
-		ArrayList<Book> expected = new ArrayList<Book>();
-		expected.add(book1);
-		
-		summaryTextArea.setText("algebra");
-		setUpSearchAndResultControllers();
-		
-		getSearchResultsFlag=0;
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		while(getSearchResultsFlag==0)
-			System.out.print("");	
-		getSearchResultsFlag=0;
-		ArrayList<Book> result = getSearchResults();
-		if(result.size()==expected.size())	
-			for(int i=0;i<result.size();i++)
-				assertEquals(result.get(i),expected.get(i));
-	}
-	
-	/* test a search by Table Of Contents */
-	public void testSearchByTableOfContents() {
-		Book book1 = new Book(19,"", "", "", "", "","","","", "");
-		Book book2 = new Book(25,"", "", "", "", "","","","", "");
-		Book book3 = new Book(21,"", "", "", "", "","","","", "");
-		ArrayList<Book> expected = new ArrayList<Book>();
-		expected.add(book3); expected.add(book1); expected.add(book2);
-		
-		tocTextArea.setText("introduction");
-		setUpSearchAndResultControllers();
-		
-		getSearchResultsFlag=0;
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		while(getSearchResultsFlag==0)
-			System.out.print("");	
-		getSearchResultsFlag=0;
-		ArrayList<Book> result = getSearchResults();
-		if(result.size()==expected.size())	
-			for(int i=0;i<result.size();i++)
-				assertEquals(result.get(i),expected.get(i));
-	}
-	
-	/* test a search by key words */
-	public void testSearchByKeyWords() {
-		Book book1 = new Book(27,"", "", "", "", "","","","", "");
-		Book book2 = new Book(28,"", "", "", "", "","","","", "");
-		Book book3 = new Book(29,"", "", "", "", "","","","", "");
-		ArrayList<Book> expected = new ArrayList<Book>();
-		expected.add(book1); expected.add(book2); expected.add(book3);
-		
-		keywTextArea.setText("travel, europe");
-		setUpSearchAndResultControllers();
-		
-		getSearchResultsFlag=0;
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		while(getSearchResultsFlag==0)
-			System.out.print("");	
-		getSearchResultsFlag=0;
-		ArrayList<Book> result = getSearchResults();
-		if(result.size()==expected.size())	
-			for(int i=0;i<result.size();i++)
-				assertEquals(result.get(i),expected.get(i));
-	}
-	
-	/* test a search by a single author */
-	public void testSearchBySingleAuthor() {
-		Book book1 = new Book(26,"", "", "", "", "","","","", "");
-		ArrayList<Book> expected = new ArrayList<Book>();
-		expected.add(book1);
-		
-		authorListView.getSelectionModel().select(8);
-		setUpSearchAndResultControllers();
-		
-		getSearchResultsFlag=0;
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		while(getSearchResultsFlag==0)
-			System.out.print("");	
-		getSearchResultsFlag=0;
-		ArrayList<Book> result = getSearchResults();
-		if(result.size()==expected.size())	
-			for(int i=0;i<result.size();i++)
-				assertEquals(result.get(i),expected.get(i));
-	}
-	
-	/* test a search by multiple authors */
-	public void testSearchByMultipleAuthors() {
-		Book book1 = new Book(18,"", "", "", "", "","","","", "");
-		Book book2 = new Book(19,"", "", "", "", "","","","", "");
-		ArrayList<Book> expected = new ArrayList<Book>();
-		expected.add(book1); expected.add(book2);
-		
-		authorListView.getSelectionModel().select(0);
-		authorListView.getSelectionModel().select(1);
-		searchGroup.selectToggle(orRadioButton);
-		
-		setUpSearchAndResultControllers();
-		
-		getSearchResultsFlag=0;
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		while(getSearchResultsFlag==0)
-			System.out.print("");	
-		getSearchResultsFlag=0;
-		ArrayList<Book> result = getSearchResults();
-		if(result.size()==expected.size())	
-			for(int i=0;i<result.size();i++)
-				assertEquals(result.get(i),expected.get(i));
-	}
-	
-	/* test a search by a single domain */
-	public void testSearchBySingleDomain() {
-		Book book1 = new Book(18,"", "", "", "", "","","","", "");
-		Book book2 = new Book(19,"", "", "", "", "","","","", "");
-		ArrayList<Book> expected = new ArrayList<Book>();
-		expected.add(book1); expected.add(book2);
-		
-		authorListView.getSelectionModel().select(0);
-		authorListView.getSelectionModel().select(1);
-		searchGroup.selectToggle(orRadioButton);
-		
-		setUpSearchAndResultControllers();
-		
-		getSearchResultsFlag=0;
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		while(getSearchResultsFlag==0)
-			System.out.print("");	
-		getSearchResultsFlag=0;
-		ArrayList<Book> result = getSearchResults();
-		if(result.size()==expected.size())	
-			for(int i=0;i<result.size();i++)
-				assertEquals(result.get(i),expected.get(i));
-	}
-	
-	/* test a search by multiple domains */
-	public void testSearchByMultipleDomain() {
-		Book book1 = new Book(18,"", "", "", "", "","","","", "");
-		Book book2 = new Book(22,"", "", "", "", "","","","", "");
-		Book book3 = new Book(19,"", "", "", "", "","","","", "");
-		ArrayList<Book> expected = new ArrayList<Book>();
-		expected.add(book2); expected.add(book1);  expected.add(book3);
-		
-		domainListView.getSelectionModel().select(0); //magic
-		domainListView.getSelectionModel().select(1); //mystery
-		searchGroup.selectToggle(orRadioButton);
-		
-		setUpSearchAndResultControllers();
-		getSearchResultsFlag=0;
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		while(getSearchResultsFlag==0)
-			System.out.print("");	
-		getSearchResultsFlag=0;
-		ArrayList<Book> result = getSearchResults();
-		if(result.size()==expected.size())	
-			for(int i=0;i<result.size();i++)
-				assertEquals(result.get(i),expected.get(i));
-	}
-	
-	/* test empty fields case */
-	public void testEmptyFields() {
-		emptyFieldsFlag=false;
-		boolean expected=true;
-		setUpSearchAndResultControllers();
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		while(getEmptyFieldAnswerFlag==0)
-			System.out.print("");
-			
-		getEmptyFieldAnswerFlag=0;
-		boolean result=emptyFieldsFlag;
-		assertEquals(expected, result);
-	}
-	
-	/* test special character '^' case */
-	public void testSpecialCharacter() {
-		SpecialCharacterFlag=false;
-		boolean expected=true;
-		
-		titleTextField.setText("beit^ar");
-		setUpSearchAndResultControllers();
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		while(getSpecialCharacterAnswerFlag==0)
-			System.out.print("");
-			
-		getEmptyFieldAnswerFlag=0;
-		boolean result=SpecialCharacterFlag;
-		assertEquals(expected, result);
-	}
-	
-	
-	/* no result case */
-	public void testNoResult() {
-		ArrayList<Book> expected = new ArrayList<Book>();
-		
-		titleTextField.setText("beitar");
-		setUpSearchAndResultControllers();
-		
-		getSearchResultsFlag=0;
-		try {
-			searchBook.searchButtonPressed(null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		while(getSearchResultsFlag==0)
-			System.out.print("");	
-		getSearchResultsFlag=0;
-		ArrayList<Book> result = getSearchResults();
-		if(result.size()==expected.size())	
-			for(int i=0;i<result.size();i++)
-				assertEquals(result.get(i),expected.get(i));
-	}
-	
-	
-
-	
-	private void setUpSearchAndResultControllers() {
-		searchBook.titleTextField=titleTextField;
-		searchBook.authorListView=authorListView;
-		searchBook.languageComboBox = languageComboBox;
-		searchBook.summaryTextArea = summaryTextArea;
-		searchBook.tocTextArea = tocTextArea;
-		searchBook.domainListView = domainListView;
-		searchBook.keywTextArea = keywTextArea;
-		searchBook.searchButton = searchButton;
-		searchBook.clearButton = clearButton;
-		searchBook.andRadioButton = andRadioButton;
-		searchBook.orRadioButton = orRadioButton;
-		searchBook.searchGroup = searchGroup;
-		
-		
-		searchBookResult.resultsTable=resultsTable;
-		searchBookResult.bookCol=bookCol;
-		searchBookResult.authorsCol=authorsCol;
-		searchBookResult.languageCol=languageCol;
-		searchBookResult.domainsCol=domainsCol;
-		searchBookResult.subjectsCol=subjectsCol;
-		searchBookResult.bookPageCol=bookPageCol;
-	}
-	
-	private ArrayList<Book> getSearchResults()
-	{
-		dataFlag=0;
-		if(searchBookResult.data.size()!=0)
-			searchBookResult.data.clear();
-		searchBookResult.initialize();
-		while(dataFlag==0)
-			System.out.print("");
-		dataFlag=0;
-		ObservableList<SearchBookResult> res = searchBookResult.data;
-		ArrayList<Book> result = new ArrayList<Book>();
-		for(int i=0;i<res.size();i++)
-			result.add(new Book(Integer.parseInt(res.get(i).getBookSn()),res.get(i).getBookTitle(),res.get(i).getBookLanguage(),res.get(i).getBookSummary(), res.get(i).getBookToc(), res.get(i).getBookKeywords(), res.get(i).getBookPrice(), res.get(i).getBookAuthors(), res.get(i).getBookDomains(), res.get(i).getBookSubjects()));
-		return result;
-	}
-
+    }
+    
+    private ArrayList<Book> getSearchResults()
+    {
+        dataFlag=0;
+        if(searchBookResult.data.size()!=0)
+            searchBookResult.data.clear();
+        searchBookResult.initialize();
+        while(dataFlag==0)
+            System.out.print("");
+ 
+        dataFlag=0;
+        ObservableList<SearchBookResult> res = searchBookResult.data;
+        ArrayList<Book> result = new ArrayList<Book>();
+        for(int i=0;i<res.size();i++)
+            result.add(new Book(Integer.parseInt(res.get(i).getBookSn()),res.get(i).getBookTitle(),res.get(i).getBookLanguage(),res.get(i).getBookSummary(), res.get(i).getBookToc(), res.get(i).getBookKeywords(), res.get(i).getBookPrice(), res.get(i).getBookAuthors(), res.get(i).getBookDomains(), res.get(i).getBookSubjects()));
+ 
+        return result;
+    }
 }
+
 
 
 
