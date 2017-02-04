@@ -210,7 +210,7 @@ public class ClientConnectionController extends AbstractClient{
 										replay.getElementsList().get(4).toString(),
 										replay.getElementsList().get(5).toString(),
 										replay.getElementsList().get(6).toString());
-								if(ClientUI.testMode=false)
+								if(ClientUI.testMode==false)
 								screenController.replaceSceneContent(ScreensInfo.HOMEPAGE_LIBRARIAN_SCREEN,
 										ScreensInfo.HOMEPAGE_LIBRARIAN_TITLE);
 								HomepageLibrarianController liberianPage = new HomepageLibrarianController();
@@ -809,7 +809,7 @@ public class ClientConnectionController extends AbstractClient{
 		Stage primaryStage = screenController.getStage();
 		ScreenController.setStage(primaryStage);
 		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-		if(ClientUI.testMode=false)
+		//if(ClientUI.testMode==false)
 		primaryStage.show();
 		primaryStage.setX(primaryScreenBounds.getMaxX() / 2.0 - primaryStage.getWidth() / 2.0);
 		primaryStage.setY(primaryScreenBounds.getMaxY() / 2.0 - primaryStage.getHeight() / 2.0);

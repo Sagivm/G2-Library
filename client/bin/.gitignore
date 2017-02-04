@@ -1,21 +1,9 @@
-<<<<<<< HEAD
 /FitResults/
 /FitTests/
-=======
-<<<<<<< HEAD
+/Fixtures/
 /Tests/
 /boundry/
-=======
->>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
-/Fixtures/
-<<<<<<< HEAD
-/Tests/
-=======
->>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library.git
->>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 /control/
-/Fixtures/
 /entity/
 /interfaces/
 /unittests/
-/boundry/

@@ -2706,15 +2706,15 @@ public void SendDeleteMessage(PropertyBook selectedItem)
 	messageDel = prepareDeleteBook(ActionType.DELETE_BOOK, selectedItem.getBookSn());
 	System.out.println(messageDel.getType());
 	try {
-		if(ClientUI.testMode=false)
+		if(ClientUI.testMode==false)
 			ClientController.clientConnectionController.sendToServer(messageDel);
-		if(ClientUI.testMode=true)
+		if(ClientUI.testMode==true)
 			RemoveBookTest.clientCC.sendToServer(messageDel);
 	} catch (IOException e1) {
 		
-		if(ClientUI.testMode=true)
+		if(ClientUI.testMode==true)
 			RemoveBookTest.bookNotExsits=true;
-		if(ClientUI.testMode=false)
+		if(ClientUI.testMode==false)
 			actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
 	}
 	
