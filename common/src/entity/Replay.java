@@ -236,7 +236,7 @@ public ActionType getTransmitType() {
 public void setTransmitType(ActionType transmitType) {
 	this.transmitType = transmitType;
 }
-
+//
 /** Getter for FileEvent.
  * @return The fileEvent.
  */

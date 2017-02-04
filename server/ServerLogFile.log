@@ -1,333 +1,163 @@
-פבר 03, 2017 11:52:08 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:19 AM control.ServerController writeToLog
 INFO: Connected to database
-פבר 03, 2017 11:52:08 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:19 AM control.ServerController writeToLog
 INFO: Server listening for connections
 on port: 1337
-פבר 03, 2017 11:52:10 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:29 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:52:52 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:30 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '0' to '1'
+פבר 04, 2017 10:09:30 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
+INFO: Search counter of book ID '21' was increased from '0' to '1'
+פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '0' to '1'
+פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
+INFO: Search counter of book ID '25' was increased from '0' to '1'
+פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
+INFO: Search counter of book ID '27' was increased from '0' to '1'
+פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
+INFO: Search counter of book ID '28' was increased from '0' to '1'
+פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
+INFO: Search counter of book ID '29' was increased from '0' to '1'
+פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '156' to '157'
-פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '342' to '343'
-פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '25' was increased from '101' to '102'
-פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '198' to '199'
-פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '198' to '199'
-פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '198' to '199'
-פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:32 AM control.ServerController writeToLog
+INFO: Search counter of book ID '22' was increased from '0' to '1'
+פבר 04, 2017 10:09:32 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '1' to '2'
+פבר 04, 2017 10:09:32 AM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '1' to '2'
+פבר 04, 2017 10:09:32 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:33 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '2' to '3'
+פבר 04, 2017 10:09:33 AM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '2' to '3'
+פבר 04, 2017 10:09:33 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
-INFO: Search counter of book ID '22' was increased from '70' to '71'
-פבר 03, 2017 11:53:09 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '281' to '282'
-פבר 03, 2017 11:53:09 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '343' to '344'
-פבר 03, 2017 11:53:09 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:33 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:09 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '282' to '283'
-פבר 03, 2017 11:53:09 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '344' to '345'
-פבר 03, 2017 11:53:09 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:33 AM control.ServerController writeToLog
+INFO: Search counter of book ID '27' was increased from '1' to '2'
+פבר 04, 2017 10:09:33 AM control.ServerController writeToLog
+INFO: Search counter of book ID '30' was increased from '0' to '1'
+פבר 04, 2017 10:09:33 AM control.ServerController writeToLog
+INFO: Search counter of book ID '28' was increased from '1' to '2'
+פבר 04, 2017 10:09:33 AM control.ServerController writeToLog
+INFO: Search counter of book ID '29' was increased from '1' to '2'
+פבר 04, 2017 10:09:33 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:09 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:34 AM control.ServerController writeToLog
+INFO: Search counter of book ID '26' was increased from '0' to '1'
+פבר 04, 2017 10:09:34 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:10 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '199' to '200'
-פבר 03, 2017 11:53:10 PM control.ServerController writeToLog
-INFO: Search counter of book ID '30' was increased from '116' to '117'
-פבר 03, 2017 11:53:10 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '199' to '200'
-פבר 03, 2017 11:53:10 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '199' to '200'
-פבר 03, 2017 11:53:10 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:35 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '3' to '4'
+פבר 04, 2017 10:09:35 AM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '3' to '4'
+פבר 04, 2017 10:09:35 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:10 PM control.ServerController writeToLog
-INFO: Search counter of book ID '26' was increased from '57' to '58'
-פבר 03, 2017 11:53:10 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:35 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:11 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '283' to '284'
-פבר 03, 2017 11:53:11 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '345' to '346'
-פבר 03, 2017 11:53:11 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:36 AM control.ServerController writeToLog
+INFO: Search counter of book ID '21' was increased from '1' to '2'
+פבר 04, 2017 10:09:36 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:11 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:37 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '4' to '5'
+פבר 04, 2017 10:09:37 AM control.ServerController writeToLog
+INFO: Search counter of book ID '27' was increased from '2' to '3'
+פבר 04, 2017 10:09:37 AM control.ServerController writeToLog
+INFO: Search counter of book ID '30' was increased from '1' to '2'
+פבר 04, 2017 10:09:37 AM control.ServerController writeToLog
+INFO: Search counter of book ID '28' was increased from '2' to '3'
+פבר 04, 2017 10:09:37 AM control.ServerController writeToLog
+INFO: Search counter of book ID '29' was increased from '2' to '3'
+פבר 04, 2017 10:09:37 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:11 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '157' to '158'
-פבר 03, 2017 11:53:11 PM control.ServerController writeToLog
+פבר 04, 2017 10:09:37 AM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '4' to '5'
+פבר 04, 2017 10:10:08 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:12 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '284' to '285'
-פבר 03, 2017 11:53:12 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '200' to '201'
-פבר 03, 2017 11:53:12 PM control.ServerController writeToLog
-INFO: Search counter of book ID '30' was increased from '117' to '118'
-פבר 03, 2017 11:53:12 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '200' to '201'
-פבר 03, 2017 11:53:12 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '200' to '201'
-פבר 03, 2017 11:53:12 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:08 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:53:13 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '346' to '347'
-פבר 03, 2017 11:53:31 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:08 AM control.ServerController writeToLog
+INFO: Search counter of book ID '21' was increased from '2' to '3'
+פבר 04, 2017 10:10:08 AM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '5' to '6'
+פבר 04, 2017 10:10:08 AM control.ServerController writeToLog
+INFO: Search counter of book ID '25' was increased from '1' to '2'
+פבר 04, 2017 10:10:08 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:54:10 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:08 AM control.ServerController writeToLog
+INFO: Search counter of book ID '27' was increased from '3' to '4'
+פבר 04, 2017 10:10:09 AM control.ServerController writeToLog
+INFO: Search counter of book ID '28' was increased from '3' to '4'
+פבר 04, 2017 10:10:09 AM control.ServerController writeToLog
+INFO: Search counter of book ID '29' was increased from '3' to '4'
+פבר 04, 2017 10:10:09 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:54:10 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:09 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:54:11 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '158' to '159'
-פבר 03, 2017 11:54:11 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '347' to '348'
-פבר 03, 2017 11:54:11 PM control.ServerController writeToLog
-INFO: Search counter of book ID '25' was increased from '102' to '103'
-פבר 03, 2017 11:54:11 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:09 AM control.ServerController writeToLog
+INFO: Search counter of book ID '22' was increased from '1' to '2'
+פבר 04, 2017 10:10:09 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '5' to '6'
+פבר 04, 2017 10:10:09 AM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '6' to '7'
+פבר 04, 2017 10:10:09 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:54:11 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '201' to '202'
-פבר 03, 2017 11:54:11 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '201' to '202'
-פבר 03, 2017 11:54:11 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '201' to '202'
-פבר 03, 2017 11:54:11 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:10 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '6' to '7'
+פבר 04, 2017 10:10:10 AM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '7' to '8'
+פבר 04, 2017 10:10:10 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:54:11 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:10 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:54:12 PM control.ServerController writeToLog
-INFO: Search counter of book ID '22' was increased from '71' to '72'
-פבר 03, 2017 11:54:12 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '285' to '286'
-פבר 03, 2017 11:54:12 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '348' to '349'
-פבר 03, 2017 11:54:12 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:11 AM control.ServerController writeToLog
+INFO: Search counter of book ID '27' was increased from '4' to '5'
+פבר 04, 2017 10:10:11 AM control.ServerController writeToLog
+INFO: Search counter of book ID '30' was increased from '2' to '3'
+פבר 04, 2017 10:10:11 AM control.ServerController writeToLog
+INFO: Search counter of book ID '28' was increased from '4' to '5'
+פבר 04, 2017 10:10:11 AM control.ServerController writeToLog
+INFO: Search counter of book ID '29' was increased from '4' to '5'
+פבר 04, 2017 10:10:11 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:54:13 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '286' to '287'
-פבר 03, 2017 11:54:13 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '349' to '350'
-פבר 03, 2017 11:54:13 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:12 AM control.ServerController writeToLog
+INFO: Search counter of book ID '26' was increased from '1' to '2'
+פבר 04, 2017 10:10:12 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:54:13 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:12 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '7' to '8'
+פבר 04, 2017 10:10:12 AM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '8' to '9'
+פבר 04, 2017 10:10:12 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:54:13 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '202' to '203'
-פבר 03, 2017 11:54:13 PM control.ServerController writeToLog
-INFO: Search counter of book ID '30' was increased from '118' to '119'
-פבר 03, 2017 11:54:13 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '202' to '203'
-פבר 03, 2017 11:54:13 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '202' to '203'
-פבר 03, 2017 11:54:14 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:12 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:54:14 PM control.ServerController writeToLog
-INFO: Search counter of book ID '26' was increased from '58' to '59'
-פבר 03, 2017 11:54:14 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:12 AM control.ServerController writeToLog
+INFO: Search counter of book ID '21' was increased from '3' to '4'
+פבר 04, 2017 10:10:12 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:54:14 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '287' to '288'
-פבר 03, 2017 11:54:14 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '350' to '351'
-פבר 03, 2017 11:54:14 PM control.ServerController writeToLog
+פבר 04, 2017 10:10:13 AM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '8' to '9'
+פבר 04, 2017 10:10:13 AM control.ServerController writeToLog
+INFO: Search counter of book ID '27' was increased from '5' to '6'
+פבר 04, 2017 10:10:13 AM control.ServerController writeToLog
+INFO: Search counter of book ID '30' was increased from '3' to '4'
+פבר 04, 2017 10:10:13 AM control.ServerController writeToLog
+INFO: Search counter of book ID '28' was increased from '5' to '6'
+פבר 04, 2017 10:10:13 AM control.ServerController writeToLog
+INFO: Search counter of book ID '29' was increased from '5' to '6'
+פבר 04, 2017 10:10:13 AM control.ServerController writeToLog
 INFO: Login attempt
-פבר 03, 2017 11:54:15 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:15 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '159' to '160'
-פבר 03, 2017 11:54:15 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:15 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '288' to '289'
-פבר 03, 2017 11:54:15 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '203' to '204'
-פבר 03, 2017 11:54:15 PM control.ServerController writeToLog
-INFO: Search counter of book ID '30' was increased from '119' to '120'
-פבר 03, 2017 11:54:15 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '203' to '204'
-פבר 03, 2017 11:54:15 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '203' to '204'
-פבר 03, 2017 11:54:15 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:16 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '351' to '352'
-פבר 03, 2017 11:54:24 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:25 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:25 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '160' to '161'
-פבר 03, 2017 11:54:25 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '352' to '353'
-פבר 03, 2017 11:54:25 PM control.ServerController writeToLog
-INFO: Search counter of book ID '25' was increased from '103' to '104'
-פבר 03, 2017 11:54:25 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:25 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '204' to '205'
-פבר 03, 2017 11:54:25 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '204' to '205'
-פבר 03, 2017 11:54:26 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '204' to '205'
-פבר 03, 2017 11:54:26 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:26 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:26 PM control.ServerController writeToLog
-INFO: Search counter of book ID '22' was increased from '72' to '73'
-פבר 03, 2017 11:54:26 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '289' to '290'
-פבר 03, 2017 11:54:26 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '353' to '354'
-פבר 03, 2017 11:54:30 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:31 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:31 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '161' to '162'
-פבר 03, 2017 11:54:31 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '354' to '355'
-פבר 03, 2017 11:54:31 PM control.ServerController writeToLog
-INFO: Search counter of book ID '25' was increased from '104' to '105'
-פבר 03, 2017 11:54:31 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:32 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '205' to '206'
-פבר 03, 2017 11:54:32 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '205' to '206'
-פבר 03, 2017 11:54:32 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '205' to '206'
-פבר 03, 2017 11:54:32 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:32 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:32 PM control.ServerController writeToLog
-INFO: Search counter of book ID '22' was increased from '73' to '74'
-פבר 03, 2017 11:54:32 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '290' to '291'
-פבר 03, 2017 11:54:32 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '355' to '356'
-פבר 03, 2017 11:54:36 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:36 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '291' to '292'
-פבר 03, 2017 11:54:36 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:37 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '162' to '163'
-פבר 03, 2017 11:54:37 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '356' to '357'
-פבר 03, 2017 11:54:37 PM control.ServerController writeToLog
-INFO: Search counter of book ID '25' was increased from '105' to '106'
-פבר 03, 2017 11:54:37 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:54:38 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '206' to '207'
-פבר 03, 2017 11:54:38 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '206' to '207'
-פבר 03, 2017 11:54:38 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '206' to '207'
-פבר 03, 2017 11:54:38 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:55:57 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:55:57 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:55:57 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '163' to '164'
-פבר 03, 2017 11:55:57 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '357' to '358'
-פבר 03, 2017 11:55:57 PM control.ServerController writeToLog
-INFO: Search counter of book ID '25' was increased from '106' to '107'
-פבר 03, 2017 11:56:37 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:37 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:37 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '164' to '165'
-פבר 03, 2017 11:56:37 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '358' to '359'
-פבר 03, 2017 11:56:37 PM control.ServerController writeToLog
-INFO: Search counter of book ID '25' was increased from '107' to '108'
-פבר 03, 2017 11:56:37 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:37 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '207' to '208'
-פבר 03, 2017 11:56:37 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '207' to '208'
-פבר 03, 2017 11:56:37 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '207' to '208'
-פבר 03, 2017 11:56:37 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:38 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:38 PM control.ServerController writeToLog
-INFO: Search counter of book ID '22' was increased from '74' to '75'
-פבר 03, 2017 11:56:38 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '292' to '293'
-פבר 03, 2017 11:56:39 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '359' to '360'
-פבר 03, 2017 11:56:39 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:39 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '293' to '294'
-פבר 03, 2017 11:56:39 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '360' to '361'
-פבר 03, 2017 11:56:39 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:39 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:40 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '208' to '209'
-פבר 03, 2017 11:56:40 PM control.ServerController writeToLog
-INFO: Search counter of book ID '30' was increased from '120' to '121'
-פבר 03, 2017 11:56:40 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '208' to '209'
-פבר 03, 2017 11:56:40 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '208' to '209'
-פבר 03, 2017 11:56:40 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:41 PM control.ServerController writeToLog
-INFO: Search counter of book ID '26' was increased from '59' to '60'
-פבר 03, 2017 11:56:41 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:41 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '294' to '295'
-פבר 03, 2017 11:56:42 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '361' to '362'
-פבר 03, 2017 11:56:42 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:42 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:42 PM control.ServerController writeToLog
-INFO: Search counter of book ID '21' was increased from '165' to '166'
-פבר 03, 2017 11:56:42 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:43 PM control.ServerController writeToLog
-INFO: Search counter of book ID '18' was increased from '295' to '296'
-פבר 03, 2017 11:56:43 PM control.ServerController writeToLog
-INFO: Search counter of book ID '27' was increased from '209' to '210'
-פבר 03, 2017 11:56:43 PM control.ServerController writeToLog
-INFO: Search counter of book ID '30' was increased from '121' to '122'
-פבר 03, 2017 11:56:43 PM control.ServerController writeToLog
-INFO: Search counter of book ID '28' was increased from '209' to '210'
-פבר 03, 2017 11:56:43 PM control.ServerController writeToLog
-INFO: Search counter of book ID '29' was increased from '209' to '210'
-פבר 03, 2017 11:56:43 PM control.ServerController writeToLog
-INFO: Login attempt
-פבר 03, 2017 11:56:43 PM control.ServerController writeToLog
-INFO: Search counter of book ID '19' was increased from '362' to '363'
+פבר 04, 2017 10:10:14 AM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '9' to '10'
