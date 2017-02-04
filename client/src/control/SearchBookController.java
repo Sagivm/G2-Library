@@ -387,7 +387,8 @@ public class SearchBookController implements ScreensIF{
         			else if(ClientUI.getTypeOfUser()=="Manager")
         				screenController.replaceSceneContent(ScreensInfo.HOMEPAGE_MANAGER_SCREEN,ScreensInfo.HOMEPAGE_MANAGER_TITLE);
         			else if(ClientUI.getTypeOfUser()=="User")
-        				screenController.replaceSceneContent(ScreensInfo.HOMEPAGE_USER_SCREEN,ScreensInfo.HOMEPAGE_USER_TITLE);
+        				if(ClientUI.testMode == false)
+        					screenController.replaceSceneContent(ScreensInfo.HOMEPAGE_USER_SCREEN,ScreensInfo.HOMEPAGE_USER_TITLE);
         		} 
         		catch (Exception e) {
 					e.printStackTrace();

@@ -199,8 +199,9 @@ public class ClientConnectionController extends AbstractClient{
 										replay.getElementsList().get(5).toString());
 								HomepageUserController userPage = new HomepageUserController();
 								userPage.setConnectedUser(user);
-								screenController.replaceSceneContent(ScreensInfo.HOMEPAGE_USER_SCREEN,
-										ScreensInfo.HOMEPAGE_USER_TITLE);
+								if(clientMain.testMode==false)
+									screenController.replaceSceneContent(ScreensInfo.HOMEPAGE_USER_SCREEN,
+											ScreensInfo.HOMEPAGE_USER_TITLE);
 							} else if (action == 2) {
 								Worker worker = new Worker(replay.getElementsList().get(1).toString(),
 										replay.getElementsList().get(2).toString(),
@@ -266,8 +267,10 @@ public class ClientConnectionController extends AbstractClient{
 			}
 			
 			ClientRecv.canContinue = true;
+			/*
 			if(ClientUI.testMode == true)
                 SearchBookControllerTest.connectedFlag=1;
+			*/
 			break;
 		}
 		case LOGOUT: {

@@ -3,6 +3,7 @@ package unittests;
 import static org.junit.Assert.*;
 import static org.hamcrest.core.IsNot.not;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -10,7 +11,11 @@ import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
 import org.junit.Before;
+import org.junit.Rule;
+
 import boundry.ClientUI;
 import control.ClientConnectionController;
 import control.ClientController;
@@ -44,6 +49,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import junit.framework.TestCase;
+import ocsf.client.AbstractClient;
 import javafx.scene.control.MultipleSelectionModel;
 
 public class SearchBookControllerTest extends TestCase
@@ -51,9 +57,9 @@ public class SearchBookControllerTest extends TestCase
 	public static SearchBookController searchBook;
 	public static SearchBookResultsController searchBookResult;
 	public static ClientController clientCon;
-	public static ClientConnectionController clientCC;
+	public static ClientConnectionController clientCC=null;
 	public static ClientUI clientMain;
-	
+	public static HomepageUserController userMain;
 
 	
 	
@@ -166,22 +172,29 @@ public class SearchBookControllerTest extends TestCase
     public static boolean SpecialCharacterFlag;
     Login login;
     User user;  
-    
-    @Before
 
+   
+    @Before
 	protected void setUp() throws Exception {
 		super.setUp();
+		
+		clientMain = new ClientUI();
+		clientMain.setTypeOfUser("User");
+		
 		clientMain.testMode = true;
-		Login login = new Login("123123123","123123");
+		Login login = new Login("302659743","12345");
 		clientCC = new ClientConnectionController(ClientController.IP_ADDRESS, ClientController.DEFAULT_PORT);
 		clientCon = new ClientController();
 		connectedFlag=0;
-        HomepageUserController userMain = new HomepageUserController();
-		Message message = clientCon.prepareLogin(ActionType.LOGIN,login);
+        
+		Message msg = clientCon.prepareLogin(ActionType.LOGIN,login);
 
-		clientCC.sendToServer(message);
+		clientCC.sendToServer(msg);
 		
-		//userMain.setConnectedUser(user);
+		user = new User("Or","Koren","302659743","12345","PerBook","Standard");
+		userMain=new HomepageUserController();
+		userMain.setConnectedUser(user);
+		
         //while(connectedFlag==0)
             //System.out.print("");
 	
@@ -216,19 +229,21 @@ public class SearchBookControllerTest extends TestCase
 		
 		
 		ArrayList<String> names=new ArrayList<String>();
+		ArrayList<String> elementList = new ArrayList<String>();
 		getAuthorsFlag=0;
 		getDomainsFlag=0;
-		ArrayList<String> elementList = new ArrayList<String>();
+		
 
 		Message msg1 = new Message(ActionType.GET_AUTHORS, elementList);
+		
+		
 		clientCC.sendToServer(msg1);
 
 
-		authorListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		while(getAuthorsFlag==0)
 			System.out.print("");
 		getAuthorsFlag=0;
-        authorListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		authorListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		for(int i=0 ; i< SearchBookController.authorList.size();i++)
 			names.add(i, "("+SearchBookController.authorList.get(i).getId()+")"+"\t"+SearchBookController.authorList.get(i).getFirstname()+" "+SearchBookController.authorList.get(i).getLastname());
 		ObservableList<String> items = FXCollections.observableArrayList(names);
@@ -249,11 +264,10 @@ public class SearchBookControllerTest extends TestCase
 		ObservableList<String> lanaguageOptions = FXCollections.observableArrayList("","Hebrew", "English", "Russian");
 		languageComboBox.getItems().addAll(lanaguageOptions);
 		languageComboBox.getSelectionModel().select(0);		
-		
-		
-		
+
 	}
     
+
     /*
     protected void tearDown() throws Exception{
         disconnectedFlag=0;
@@ -275,7 +289,6 @@ public class SearchBookControllerTest extends TestCase
 	/* test AND search of author and language */
 	@Test
 	public void testAndSearch() {
-
         Book book1 = new Book(27,"", "", "", "", "","","","", "");
         Book book2 = new Book(28,"", "", "", "", "","","","", "");
         Book book3 = new Book(29,"", "", "", "", "","","","", "");
@@ -343,6 +356,7 @@ public class SearchBookControllerTest extends TestCase
                 assertEquals(result.get(i),expected.get(i));
     }
     
+    @Test
     /* test a search by title */
     public void testSearchByTitle() {
         Book book1 = new Book(18,"", "", "", "", "","","","", "");
