@@ -1376,26 +1376,32 @@ public class ServerController extends AbstractServer {
 		
 		case DELETE_BOOK: {
 			try {
-				ArrayList<String> elementsList = new ArrayList<String>();
-				Statement stmt = DatabaseController.connection.createStatement();
-				String sn = data.get(0);
-				ResultSet rs = stmt.executeQuery("SELECT subjectId FROM project.book_subjects WHERE bookId="+sn);
-				
-				while (rs.next()) {
-					elementsList.add(rs.getString(1));
-				}
-				for(int i=0;i<elementsList.size();i++)
+				ResultSet rs1 = DatabaseController.searchInDatabase("SELECT * FROM books WHERE books.sn='" + data.get(0) + "'");
+				if(!rs1.isBeforeFirst())
+					replay = new Replay(ActionType.DELETE_BOOK, false);
+				else
 				{
-					stmt.executeUpdate("UPDATE subjects SET booksCount=booksCount-1 WHERE id=" + elementsList.get(i));
+					ArrayList<String> elementsList = new ArrayList<String>();
+					Statement stmt = DatabaseController.connection.createStatement();
+					String sn = data.get(0);
+					ResultSet rs = stmt.executeQuery("SELECT subjectId FROM project.book_subjects WHERE bookId="+sn);
+					
+					while (rs.next()) {
+						elementsList.add(rs.getString(1));
+					}
+					for(int i=0;i<elementsList.size();i++)
+					{
+						stmt.executeUpdate("UPDATE subjects SET booksCount=booksCount-1 WHERE id=" + elementsList.get(i));
+					}
+					
+					stmt.executeUpdate("DELETE FROM books WHERE sn=" + sn);
+					stmt.executeUpdate("DELETE FROM reviews WHERE bookId=" + sn);
+					stmt.executeUpdate("DELETE FROM bought_book WHERE bookId=" + sn);
+					stmt.executeUpdate("DELETE FROM book_by_date WHERE bookId=" + sn);
+					stmt.executeUpdate("DELETE FROM book_authors WHERE bookId=" + sn);
+					stmt.executeUpdate("DELETE FROM book_subjects WHERE bookId=" + sn);
+					replay = new Replay(ActionType.DELETE_BOOK, true);
 				}
-				
-				stmt.executeUpdate("DELETE FROM books WHERE sn=" + sn);
-				stmt.executeUpdate("DELETE FROM reviews WHERE bookId=" + sn);
-				stmt.executeUpdate("DELETE FROM bought_book WHERE bookId=" + sn);
-				stmt.executeUpdate("DELETE FROM book_by_date WHERE bookId=" + sn);
-				stmt.executeUpdate("DELETE FROM book_authors WHERE bookId=" + sn);
-				stmt.executeUpdate("DELETE FROM book_subjects WHERE bookId=" + sn);
-				replay = new Replay(ActionType.DELETE_BOOK, true);
 			} catch (SQLException e) {
 				replay = new Replay(ActionType.DELETE_BOOK, false);
 				e.printStackTrace();

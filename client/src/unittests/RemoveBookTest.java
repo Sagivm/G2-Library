@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import boundry.ClientUI;
 import control.ClientConnectionController;
@@ -51,7 +53,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import junit.framework.TestCase;
 
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class RemoveBookTest extends TestCase {
 	
@@ -127,8 +129,6 @@ public class RemoveBookTest extends TestCase {
 			clientCon = new ClientController();
 			Message message = clientCon.prepareLogin(ActionType.LOGIN,login);
 			clientCC.sendToServer(message);
-//			while(connectedFlag==false)
-//				System.out.print("");
 			new JFXPanel();
 			RemoveBookTest.bookManagementController =new BookManagementController();
 			this.BooksTableView=new TableView<>();
@@ -138,8 +138,7 @@ public class RemoveBookTest extends TestCase {
 			this.BookKeywords= new TableColumn();
 			this.BookHide= new TableColumn();
 			this.delBtn= new Button();
-			this.filterField = new TextField();
-			
+			this.filterField = new TextField();	
 	 }
 	 public void MergeTestSubjects()
 	 {
@@ -155,18 +154,9 @@ public class RemoveBookTest extends TestCase {
 	 
 	 public void testDeleteFail()
 	 {
-		 try {
-			//setUp();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		 BookManagementController.PropertyBook selectedItem = new BookManagementController.PropertyBook("42","The Answer to all things","","","","","","","");
-		// bookManagementController.initialize();
-		 //bookManagementController.BooksTableView.getSelectionModel().select(selectedItem);
 		 MergeTestSubjects();
 		 bookManagementController.SendDeleteMessage(selectedItem);
-		 
 		 while(!bookNotExsits)
 		 {
 			 System.out.print("");
@@ -176,15 +166,7 @@ public class RemoveBookTest extends TestCase {
 	 }
 	 public void testDelete()
 	 {
-		 try {
-			setUp();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 BookManagementController.PropertyBook selectedItem = new BookManagementController.PropertyBook("19","Out of Order","","","","","","","");
-		// bookManagementController.initialize();
-		 //bookManagementController.BooksTableView.getSelectionModel().select(selectedItem);
+		 BookManagementController.PropertyBook selectedItem = new BookManagementController.PropertyBook("23","","","","","","","","");
 		 MergeTestSubjects();
 		 bookManagementController.SendDeleteMessage(selectedItem);
 		 
