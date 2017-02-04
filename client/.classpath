@@ -6,6 +6,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/common"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/OCSF"/>
-	<classpathentry kind="lib" path="C:/Users/givi/Desktop/fitlibraryRunner.jar"/>
+	<classpathentry kind="lib" path="D:/לימודים/סמסטר ז/מעבדה בהנדסת תוכנה/מעבדות/lab10_done/fitlibraryRunner.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

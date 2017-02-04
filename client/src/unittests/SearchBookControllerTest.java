@@ -183,17 +183,21 @@ public class SearchBookControllerTest extends TestCase
 		
 		clientMain.testMode = true;
 		Login login = new Login("302659743","12345");
-		clientCC = new ClientConnectionController(ClientController.IP_ADDRESS, ClientController.DEFAULT_PORT);
-		clientCon = new ClientController();
-		connectedFlag=0;
-        
-		Message msg = clientCon.prepareLogin(ActionType.LOGIN,login);
-
-		clientCC.sendToServer(msg);
-		
-		user = new User("Or","Koren","302659743","12345","PerBook","Standard");
-		userMain=new HomepageUserController();
-		userMain.setConnectedUser(user);
+		if(clientCC!=null)
+		{
+			clientCC.closeConnection();
+			clientCC = new ClientConnectionController(ClientController.IP_ADDRESS, ClientController.DEFAULT_PORT);
+			clientCon = new ClientController();
+			connectedFlag=0;
+	        
+			Message msg = clientCon.prepareLogin(ActionType.LOGIN,login);
+	
+			clientCC.sendToServer(msg);
+			
+			user = new User("Or","Koren","302659743","12345","PerBook","Standard");
+			userMain=new HomepageUserController();
+			userMain.setConnectedUser(user);
+		}
 		
         //while(connectedFlag==0)
             //System.out.print("");
@@ -236,7 +240,10 @@ public class SearchBookControllerTest extends TestCase
 
 		Message msg1 = new Message(ActionType.GET_AUTHORS, elementList);
 		
+		if(clientCC==null)
+			clientCC = new ClientConnectionController(ClientController.IP_ADDRESS, ClientController.DEFAULT_PORT);
 		
+		//TimeUnit.SECONDS.sleep(1);
 		clientCC.sendToServer(msg1);
 
 
@@ -356,8 +363,9 @@ public class SearchBookControllerTest extends TestCase
                 assertEquals(result.get(i),expected.get(i));
     }
     
+    
     @Test
-    /* test a search by title */
+    //test a search by title
     public void testSearchByTitle() {
         Book book1 = new Book(18,"", "", "", "", "","","","", "");
         ArrayList<Book> expected = new ArrayList<Book>();
@@ -382,6 +390,7 @@ public class SearchBookControllerTest extends TestCase
             for(int i=0;i<result.size();i++)
                 assertEquals(result.get(i),expected.get(i));
     }
+    
     
     /* test a search by language */
     public void testSearchByLanguage() {
