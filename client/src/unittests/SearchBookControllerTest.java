@@ -245,7 +245,7 @@ public class SearchBookControllerTest extends TestCase
 		
 		//TimeUnit.SECONDS.sleep(1);
 		clientCC.sendToServer(msg1);
-
+		
 
 		while(getAuthorsFlag==0)
 			System.out.print("");
@@ -292,7 +292,7 @@ public class SearchBookControllerTest extends TestCase
     */
 
 
-	
+	//
 	/* test AND search of author and language */
 	@Test
 	public void testAndSearch() {
