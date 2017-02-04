@@ -238,11 +238,6 @@ public class SearchBookControllerTest extends TestCase
 		Message msg1 = new Message(ActionType.GET_AUTHORS, elementList);
 		
 		clientCC.sendToServer(msg1);
-<<<<<<< HEAD
-		
-
-=======
->>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 		while(getAuthorsFlag==0)
 			System.out.print("");
 		getAuthorsFlag=0;
