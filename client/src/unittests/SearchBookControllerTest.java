@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Rule;
 
 import boundry.ClientUI;
@@ -51,6 +52,8 @@ import javafx.scene.image.Image;
 import junit.framework.TestCase;
 import ocsf.client.AbstractClient;
 import javafx.scene.control.MultipleSelectionModel;
+import org.junit.runners.MethodSorters;
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class SearchBookControllerTest extends TestCase
 {
@@ -61,7 +64,6 @@ public class SearchBookControllerTest extends TestCase
 	public static ClientUI clientMain;
 	public static HomepageUserController userMain;
 
-	
 	
 	/**
 	 * enables user enter title to search 
@@ -158,6 +160,8 @@ public class SearchBookControllerTest extends TestCase
 	 */
 	private TableColumn bookPageCol;
 	
+	public int first=1;
+	
 	
 	
 	public static int getAuthorsFlag;
@@ -178,30 +182,6 @@ public class SearchBookControllerTest extends TestCase
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		clientMain = new ClientUI();
-		clientMain.setTypeOfUser("User");
-		
-		clientMain.testMode = true;
-		Login login = new Login("302659743","12345");
-		if(clientCC!=null)
-		{
-			clientCC.closeConnection();
-			clientCC = new ClientConnectionController(ClientController.IP_ADDRESS, ClientController.DEFAULT_PORT);
-			clientCon = new ClientController();
-			connectedFlag=0;
-	        
-			Message msg = clientCon.prepareLogin(ActionType.LOGIN,login);
-	
-			clientCC.sendToServer(msg);
-			
-			user = new User("Or","Koren","302659743","12345","PerBook","Standard");
-			userMain=new HomepageUserController();
-			userMain.setConnectedUser(user);
-		}
-		
-        //while(connectedFlag==0)
-            //System.out.print("");
-	
 		new JFXPanel();
 		searchBook = new SearchBookController();
 		titleTextField = new TextField();
@@ -231,22 +211,38 @@ public class SearchBookControllerTest extends TestCase
 		subjectsCol=new TableColumn<>();
 		bookPageCol=new TableColumn<>();
 		
+		if(clientCC==null)
+		{
+			login = new Login("302659743","12345");
+			clientCC = new ClientConnectionController(ClientController.IP_ADDRESS, ClientController.DEFAULT_PORT);
+			clientCon = new ClientController();
+			Message message = clientCon.prepareLogin(ActionType.LOGIN,login);
+			
+			clientCC.sendToServer(message);
+			
+			clientMain = new ClientUI();
+			clientMain.setTypeOfUser("User");
+			clientMain.testMode = true;
+			
+			/*user = new User("Or","Koren","302659743","12345","PerBook","Standard");
+			userMain=new HomepageUserController();
+			userMain.setConnectedUser(user);*/
+
+			
+		}
 		
 		ArrayList<String> names=new ArrayList<String>();
 		ArrayList<String> elementList = new ArrayList<String>();
 		getAuthorsFlag=0;
 		getDomainsFlag=0;
-		
-
 		Message msg1 = new Message(ActionType.GET_AUTHORS, elementList);
 		
-		if(clientCC==null)
-			clientCC = new ClientConnectionController(ClientController.IP_ADDRESS, ClientController.DEFAULT_PORT);
-		
-		//TimeUnit.SECONDS.sleep(1);
 		clientCC.sendToServer(msg1);
+<<<<<<< HEAD
 		
 
+=======
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 		while(getAuthorsFlag==0)
 			System.out.print("");
 		getAuthorsFlag=0;
@@ -270,13 +266,13 @@ public class SearchBookControllerTest extends TestCase
 		
 		ObservableList<String> lanaguageOptions = FXCollections.observableArrayList("","Hebrew", "English", "Russian");
 		languageComboBox.getItems().addAll(lanaguageOptions);
-		languageComboBox.getSelectionModel().select(0);		
+		languageComboBox.getSelectionModel().select(0);
 
 	}
     
 
-    /*
-    protected void tearDown() throws Exception{
+    
+/*    protected void tearDown() throws Exception{
         disconnectedFlag=0;
         LogoutController logoutCon = new LogoutController();
         Message msg = logoutCon.prepareLogout(ActionType.LOGOUT, login);
@@ -286,10 +282,11 @@ public class SearchBookControllerTest extends TestCase
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        clientCC.closeConnection();
         while(disconnectedFlag==0)
             System.out.print("");
-    }
-    */
+    }*/
+    
 
 
 	//
@@ -389,6 +386,7 @@ public class SearchBookControllerTest extends TestCase
         if(result.size()==expected.size())  
             for(int i=0;i<result.size();i++)
                 assertEquals(result.get(i),expected.get(i));
+        
     }
     
     
@@ -499,6 +497,7 @@ public class SearchBookControllerTest extends TestCase
             for(int i=0;i<result.size();i++)
                 assertEquals(result.get(i),expected.get(i));
     }
+    
     
     /* test a search by a single author */
     public void testSearchBySingleAuthor() {

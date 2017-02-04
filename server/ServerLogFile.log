@@ -1,9 +1,77 @@
+<<<<<<< HEAD
 פבר 04, 2017 1:27:58 PM control.ServerController writeToLog
+=======
+פבר 04, 2017 4:39:19 PM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Connected to database
+<<<<<<< HEAD
 פבר 04, 2017 1:27:58 PM control.ServerController writeToLog
+=======
+פבר 04, 2017 4:39:19 PM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Server listening for connections
 on port: 1337
+<<<<<<< HEAD
 פבר 04, 2017 1:28:09 PM control.ServerController writeToLog
 INFO: Search counter of book ID '18' was increased from '74' to '75'
 פבר 04, 2017 1:28:09 PM control.ServerController writeToLog
+=======
+פבר 04, 2017 4:39:26 PM control.ServerController writeToLog
+INFO: Login attempt
+פבר 04, 2017 4:39:26 PM control.ServerController writeToLog
+INFO: Search counter of book ID '27' was increased from '0' to '1'
+פבר 04, 2017 4:39:26 PM control.ServerController writeToLog
+INFO: Search counter of book ID '30' was increased from '0' to '1'
+פבר 04, 2017 4:39:26 PM control.ServerController writeToLog
+INFO: Search counter of book ID '28' was increased from '0' to '1'
+פבר 04, 2017 4:39:26 PM control.ServerController writeToLog
+INFO: Search counter of book ID '29' was increased from '0' to '1'
+פבר 04, 2017 4:39:26 PM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '0' to '1'
+פבר 04, 2017 4:39:26 PM control.ServerController writeToLog
+INFO: Search counter of book ID '27' was increased from '1' to '2'
+פבר 04, 2017 4:39:26 PM control.ServerController writeToLog
+INFO: Search counter of book ID '30' was increased from '1' to '2'
+פבר 04, 2017 4:39:26 PM control.ServerController writeToLog
+INFO: Search counter of book ID '28' was increased from '1' to '2'
+פבר 04, 2017 4:39:26 PM control.ServerController writeToLog
+INFO: Search counter of book ID '29' was increased from '1' to '2'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '27' was increased from '2' to '3'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '28' was increased from '2' to '3'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '29' was increased from '2' to '3'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '0' to '1'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '1' to '2'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '1' to '2'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '22' was increased from '0' to '1'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '2' to '3'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '2' to '3'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '26' was increased from '0' to '1'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '3' to '4'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '3' to '4'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '21' was increased from '0' to '1'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '21' was increased from '1' to '2'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '19' was increased from '4' to '5'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '25' was increased from '0' to '1'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Search counter of book ID '18' was increased from '4' to '5'
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+INFO: Login attempt
+פבר 04, 2017 4:39:27 PM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Login attempt

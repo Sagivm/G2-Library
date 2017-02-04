@@ -61,7 +61,7 @@ public class WriteAReview extends ActionFixture{
 		user = new User("Or","Koren","302659743","12345","PerBook","Standard");
 		HomepageUserController userMain = new HomepageUserController();
 		userMain.setConnectedUser(user);
-		book = new SearchBookResult("23", "Steve Jobs", "English", "Summary", "TOC", "key1,key2", "Walter Isaacson", "Biography", "Computers", "34.9");
+		book = new SearchBookResult("25", "JAVA on a cup of coffee", "English", "Summary", "TOC", "key1,key2", "Meir Sela", "Programming", "Computers", "47");
 		wr.book = book;
 		
 		new JFXPanel();	//BookPageController
