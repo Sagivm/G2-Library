@@ -1,14 +1,47 @@
+<<<<<<< HEAD
 פבר 04, 2017 10:09:19 AM control.ServerController writeToLog
+=======
+<<<<<<< HEAD
+פבר 03, 2017 11:19:31 PM control.ServerController writeToLog
+=======
+פבר 03, 2017 11:52:08 PM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library.git
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Connected to database
+<<<<<<< HEAD
 פבר 04, 2017 10:09:19 AM control.ServerController writeToLog
+=======
+<<<<<<< HEAD
+פבר 03, 2017 11:19:31 PM control.ServerController writeToLog
+=======
+פבר 03, 2017 11:52:08 PM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library.git
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Server listening for connections
 on port: 1337
+<<<<<<< HEAD
 פבר 04, 2017 10:09:29 AM control.ServerController writeToLog
+=======
+<<<<<<< HEAD
+פבר 03, 2017 11:19:34 PM control.ServerController writeToLog
+=======
+פבר 03, 2017 11:52:10 PM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library.git
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Login attempt
+<<<<<<< HEAD
 פבר 04, 2017 10:09:30 AM control.ServerController writeToLog
 INFO: Search counter of book ID '18' was increased from '0' to '1'
 פבר 04, 2017 10:09:30 AM control.ServerController writeToLog
+=======
+<<<<<<< HEAD
+פבר 03, 2017 11:19:34 PM control.ServerController writeToLog
+=======
+פבר 03, 2017 11:52:52 PM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library.git
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Login attempt
+<<<<<<< HEAD
 פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
 INFO: Search counter of book ID '21' was increased from '0' to '1'
 פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
@@ -16,6 +49,13 @@ INFO: Search counter of book ID '19' was increased from '0' to '1'
 פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
 INFO: Search counter of book ID '25' was increased from '0' to '1'
 פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
+=======
+<<<<<<< HEAD
+פבר 03, 2017 11:19:34 PM control.ServerController writeToLog
+=======
+פבר 03, 2017 11:53:08 PM control.ServerController writeToLog
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library.git
+>>>>>>> branch 'master' of https://github.com/Sagivm/G2-Library-Temp
 INFO: Login attempt
 פבר 04, 2017 10:09:31 AM control.ServerController writeToLog
 INFO: Search counter of book ID '27' was increased from '0' to '1'
