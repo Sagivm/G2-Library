@@ -772,8 +772,12 @@ public class ClientConnectionController extends AbstractClient{
         		if(boundry.ClientUI.testMode==true)
         			RemoveBookTest.bookRemovedFlag=true;
         	if(success==false)
+        	{
         		if(boundry.ClientUI.testMode==true)
         			RemoveBookTest.bookNotExsits=true;
+        		if(boundry.ClientUI.testMode==true)
+        			RemoveBookTest.bookRemovedFlag=false;
+        	}
         	
 
 		}

@@ -138,8 +138,7 @@ public class RemoveBookTest extends TestCase {
 			this.BookKeywords= new TableColumn();
 			this.BookHide= new TableColumn();
 			this.delBtn= new Button();
-			this.filterField = new TextField();
-			
+			this.filterField = new TextField();	
 	 }
 	 public void MergeTestSubjects()
 	 {
@@ -161,6 +160,7 @@ public class RemoveBookTest extends TestCase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 ClientUI.testMode=true;
 		 BookManagementController.PropertyBook selectedItem = new BookManagementController.PropertyBook("42","The Answer to all things","","","","","","","");
 		// bookManagementController.initialize();
 		 //bookManagementController.BooksTableView.getSelectionModel().select(selectedItem);
@@ -182,7 +182,7 @@ public class RemoveBookTest extends TestCase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 BookManagementController.PropertyBook selectedItem = new BookManagementController.PropertyBook("19","Out of Order","","","","","","","");
+		 BookManagementController.PropertyBook selectedItem = new BookManagementController.PropertyBook("23","Out of Order","","","","","","","");
 		// bookManagementController.initialize();
 		 //bookManagementController.BooksTableView.getSelectionModel().select(selectedItem);
 		 MergeTestSubjects();
