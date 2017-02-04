@@ -61,7 +61,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
+import unittests.RemoveBookTest;
 import Fixtures.AddBook;
+import boundry.ClientUI;
 
 /**
  * BookManagementController is the controller that manage all books, domains, subject and authors.
@@ -844,7 +846,7 @@ private Button editAuthorSubmit;
  * initialize all the listener and data from the DB in the form on load.
  */
  @FXML
- private void initialize() {
+public void initialize() {
   addBookPane.setVisible(false);
   editBookPane.setVisible(false);
   BookSummary.setStyle("-fx-focus-color: -fx-control-inner-background ; -fx-faint-focus-color: -fx-control-inner-background ; -fx-background-insets: 0;-fx-background-color: transparent, white, transparent, white;");
@@ -1310,25 +1312,25 @@ private Button editAuthorSubmit;
 	  }); //end edit button
 
 
-  delBtn.setOnAction(e -> {
-   PropertyBook selectedItem = BooksTableView.getSelectionModel().getSelectedItem();
-   BooksTableView.getItems().remove(selectedItem);
-   Message messageDel = prepareDeleteBook(ActionType.DELETE_BOOK ,selectedItem.getBookSn());
-   try {
-   	ClientController.clientConnectionController.sendToServer(messageDel);
-   } catch (IOException e1) {	
-   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-   }
-   
-   /////////////////////////////////////////////////////////////////
-   
-   ///////////////////////////////////////////////////////////////////
-   
-   Platform.runLater(() -> {
-   			data.remove(selectedItem);
-   });
-   //delete book
-  });
+//  delBtn.setOnAction(e -> {
+//   PropertyBook selectedItem = BooksTableView.getSelectionModel().getSelectedItem();
+//   BooksTableView.getItems().remove(selectedItem);
+//   Message messageDel = prepareDeleteBook(ActionType.DELETE_BOOK ,selectedItem.getBookSn());
+//   try {
+//   	ClientController.clientConnectionController.sendToServer(messageDel);
+//   } catch (IOException e1) {	
+//   	actionOnError(ActionType.TERMINATE,GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+//   }
+//   
+//   /////////////////////////////////////////////////////////////////
+//   
+//   ///////////////////////////////////////////////////////////////////
+//   
+//   Platform.runLater(() -> {
+//   			data.remove(selectedItem);
+//   });
+//   //delete book
+//  });
 
   hideBtn.setOnAction(e -> {
    PropertyBook selectedItem = BooksTableView.getSelectionModel().getSelectedItem();
@@ -2666,8 +2668,7 @@ private Button editAuthorSubmit;
   	  			}
   	  		});
   		
-  		
-  		
+  	  		
   //////////////////////////////////////////////
 	
 
@@ -2675,18 +2676,20 @@ private Button editAuthorSubmit;
 
  // ---------------- functions -------------------
  
- 
+
 //Sagiv
+
 public void PressedDelete(ActionEvent e)
-{
-	PropertyBook selectedItem = BooksTableView.getSelectionModel().getSelectedItem();
+{ 
+	PropertyBook selectedItem = BooksTableView.getSelectionModel().getSelectedItem(); 	
 	BooksTableView.getItems().remove(selectedItem);
-	Message messageDel = prepareDeleteBook(ActionType.DELETE_BOOK, selectedItem.getBookSn());
-	try {
-		ClientController.clientConnectionController.sendToServer(messageDel);
-	} catch (IOException e1) {
-		actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
-	}
+//	Message messageDel = prepareDeleteBook(ActionType.DELETE_BOOK, selectedItem.getBookSn());
+//	try {
+//		ClientController.clientConnectionController.sendToServer(messageDel);
+//	} catch (IOException e1) {
+//		actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+//	}
+	SendDeleteMessage(selectedItem);
 
 	/////////////////////////////////////////////////////////////////
 
@@ -2696,6 +2699,25 @@ public void PressedDelete(ActionEvent e)
 		data.remove(selectedItem);
 	});
 	// delete book
+}
+public void SendDeleteMessage(PropertyBook selectedItem)
+{
+	Message messageDel=new Message();
+	messageDel = prepareDeleteBook(ActionType.DELETE_BOOK, selectedItem.getBookSn());
+	System.out.println(messageDel.getType());
+	try {
+		if(ClientUI.testMode=false)
+			ClientController.clientConnectionController.sendToServer(messageDel);
+		if(ClientUI.testMode=true)
+			RemoveBookTest.clientCC.sendToServer(messageDel);
+	} catch (IOException e1) {
+		
+		if(ClientUI.testMode=true)
+			RemoveBookTest.bookNotExsits=true;
+		if(ClientUI.testMode=false)
+			actionOnError(ActionType.TERMINATE, GeneralMessages.UNNKNOWN_ERROR_DURING_SEND);
+	}
+	
 }
  
  /**
@@ -3288,7 +3310,7 @@ private final SimpleStringProperty bookPrice;
  * @param bookImage Gets the image of book.
  * @param bookPrice Gets the price of book.
  */
-private PropertyBook(String bookSn, String bookTitle, String bookKeywords, String bookHide, String authorId, String authorName, String bookSummary, String bookImage, String bookPrice) {
+public PropertyBook(String bookSn, String bookTitle, String bookKeywords, String bookHide, String authorId, String authorName, String bookSummary, String bookImage, String bookPrice) {
    this.bookSn = new SimpleStringProperty(bookSn);
    this.bookTitle = new SimpleStringProperty(bookTitle);
    this.bookKeywords = new SimpleStringProperty(bookKeywords);
@@ -3300,7 +3322,8 @@ private PropertyBook(String bookSn, String bookTitle, String bookKeywords, Strin
    this.bookPrice = new SimpleStringProperty(bookPrice);
   }
 
-  /**
+
+/**
    * Getter for SN.
  * @return The book's sn.
  */

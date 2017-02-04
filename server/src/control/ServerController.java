@@ -1397,6 +1397,7 @@ public class ServerController extends AbstractServer {
 				stmt.executeUpdate("DELETE FROM book_subjects WHERE bookId=" + sn);
 				replay = new Replay(ActionType.DELETE_BOOK, true);
 			} catch (SQLException e) {
+				replay = new Replay(ActionType.DELETE_BOOK, false);
 				e.printStackTrace();
 			}
 			break;

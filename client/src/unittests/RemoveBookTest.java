@@ -117,7 +117,7 @@ public class RemoveBookTest extends TestCase {
 	 //busy wait flags
 	 public static boolean bookRemovedFlag=false;
 	 public static boolean connectedFlag=false;
-	 
+	 public static boolean bookNotExsits=false;
 	 
 	 protected void setUp() throws Exception{
 		 super.setUp();
@@ -152,7 +152,8 @@ public class RemoveBookTest extends TestCase {
 		 bookManagementController.delBtn=this.delBtn;
 		 bookManagementController.filterField=this.filterField;
 	 }
-/*	 public void testDelete()
+	 
+	 public void testDeleteFail()
 	 {
 		 try {
 			//setUp();
@@ -160,16 +161,38 @@ public class RemoveBookTest extends TestCase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 BookManagementController.PropertyBook selectedItem = new BookManagementController.PropertyBook("19","Out of Order","","","","","","","");
+		 BookManagementController.PropertyBook selectedItem = new BookManagementController.PropertyBook("42","The Answer to all things","","","","","","","");
+		// bookManagementController.initialize();
+		 //bookManagementController.BooksTableView.getSelectionModel().select(selectedItem);
 		 MergeTestSubjects();
-		 //bookManagementController.initialize();
-		 bookManagementController.BooksTableView.getSelectionModel().select(selectedItem);
-		 bookManagementController.PressedDelete(null);
+		 bookManagementController.SendDeleteMessage(selectedItem);
+		 
+		 while(!bookNotExsits)
+		 {
+			 System.out.print("");
+		 }
+		 assertEquals(bookNotExsits,true);
+		 
+	 }
+	 public void testDelete()
+	 {
+		 try {
+			setUp();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 BookManagementController.PropertyBook selectedItem = new BookManagementController.PropertyBook("19","Out of Order","","","","","","","");
+		// bookManagementController.initialize();
+		 //bookManagementController.BooksTableView.getSelectionModel().select(selectedItem);
+		 MergeTestSubjects();
+		 bookManagementController.SendDeleteMessage(selectedItem);
+		 
 		 while(!bookRemovedFlag)
 		 {
 			 System.out.print("");
 		 }
 		 assertEquals(bookRemovedFlag,true);
 		 
-	 }*/
+	 }
 }

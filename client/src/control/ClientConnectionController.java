@@ -209,6 +209,7 @@ public class ClientConnectionController extends AbstractClient{
 										replay.getElementsList().get(4).toString(),
 										replay.getElementsList().get(5).toString(),
 										replay.getElementsList().get(6).toString());
+								if(ClientUI.testMode=false)
 								screenController.replaceSceneContent(ScreensInfo.HOMEPAGE_LIBRARIAN_SCREEN,
 										ScreensInfo.HOMEPAGE_LIBRARIAN_TITLE);
 								HomepageLibrarianController liberianPage = new HomepageLibrarianController();
@@ -235,6 +236,7 @@ public class ClientConnectionController extends AbstractClient{
 								clientMain.setTypeOfUser("Librarian");
 							else if (action == 3)
 								clientMain.setTypeOfUser("Manager");
+							if(ClientUI.testMode=false)
 							centerWindow(screenController);
 							 if(boundry.ClientUI.testMode==true)
 	                            {
@@ -763,8 +765,13 @@ public class ClientConnectionController extends AbstractClient{
         case  DELETE_BOOK:
         {
             //Acknowledgment for testing
-            if(boundry.ClientUI.testMode==true)
-                RemoveBookTest.bookRemovedFlag=true;
+        	if(success==true)
+        		if(boundry.ClientUI.testMode==true)
+        			RemoveBookTest.bookRemovedFlag=true;
+        	if(success==false)
+        		if(boundry.ClientUI.testMode==true)
+        			RemoveBookTest.bookNotExsits=true;
+        	
 
 		}
 		}
@@ -799,6 +806,7 @@ public class ClientConnectionController extends AbstractClient{
 		Stage primaryStage = screenController.getStage();
 		ScreenController.setStage(primaryStage);
 		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+		if(ClientUI.testMode=false)
 		primaryStage.show();
 		primaryStage.setX(primaryScreenBounds.getMaxX() / 2.0 - primaryStage.getWidth() / 2.0);
 		primaryStage.setY(primaryScreenBounds.getMaxY() / 2.0 - primaryStage.getHeight() / 2.0);
